@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc2yitoqqnijk"]
+
+[ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/hud.tscn" id="1_4a0xm"]
+[ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="2_7khj7"]
+
+[node name="world" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hud" parent="CanvasLayer" instance=ExtResource("1_4a0xm")]
+
+[node name="Player" parent="." instance=ExtResource("2_7khj7")]
+position = Vector2(596, 366)

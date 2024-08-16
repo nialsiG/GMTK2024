@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://344q25c6djbv"]
+
+[ext_resource type="Script" path="res://scripts/lifebar.gd" id="1_u2ygi"]
+
+[node name="lifebar" type="HSlider"]
+offset_right = 409.0
+offset_bottom = 16.0
+max_value = 4.0
+value = 2.0
+editable = false
+scrollable = false
+tick_count = 5
+script = ExtResource("1_u2ygi")
