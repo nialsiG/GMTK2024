@@ -120,12 +120,13 @@ func OnAnimalDied(foodValue : int, bodyPosition : Vector2):
 	GenerateAnimals(1)
 
 func OnPlayerDeath():
-	get_tree().paused = true
+	var tree = get_tree()
+	tree.paused = true
 	_hud.DisplayDeath(true)
 	await get_tree().create_timer(5).timeout
 	_hud.DisplayDeath(false)
-	get_tree().paused = false
-	get_tree().change_scene_to_file(start_menu)
+	tree.paused = false
+	tree.change_scene_to_file(start_menu)
 
 
 func OnFoodOverFlow():

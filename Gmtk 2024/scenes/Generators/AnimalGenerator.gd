@@ -12,7 +12,8 @@ deinoPackedScene,
 prolagusPackedScene,
 garganomisPackedScene,
 mikrotiaPackedScene,
-mikrotiaPackedScene]
+mikrotiaPackedScene,
+tytoPackedScene]
 
 func GenerateAnimals(numberOfAnimals: int, width: float, height: float, margin: float) -> Array[Animal]:
 	var animals : Array[Animal] = []

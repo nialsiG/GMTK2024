@@ -4,6 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dd3wjt3p1xdvk" path="res://assets/sprites/Animals/Tyto/Tyto.tres" id="2_88tv6"]
 
 [node name="deinogalerix" instance=ExtResource("1_janl0")]
+scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("2_88tv6")

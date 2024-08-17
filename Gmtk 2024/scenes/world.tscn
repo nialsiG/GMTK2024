@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=16 format=3 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Texture2D" uid="uid://dsks8j1k787d2" path="res://assets/sprites/Plants/IslandMap.png" id="1_amxf0"]
@@ -9,6 +9,21 @@
 [ext_resource type="Script" path="res://scenes/Generators/EvolutionChoiceGenerator.gd" id="7_ioev3"]
 [ext_resource type="Script" path="res://scenes/Generators/PlantGenerator.gd" id="7_ne5ik"]
 [ext_resource type="Script" path="res://scenes/Generators/AnimalGenerator.gd" id="7_qbf2g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vplec"]
+radius = 100.0
+
+[sub_resource type="Gradient" id="Gradient_kta2r"]
+offsets = PackedFloat32Array(0, 0.821429, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.321728, 0.321728, 0.321728, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y0vqh"]
+gradient = SubResource("Gradient_kta2r")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.49569, 0.512931)
+fill_to = Vector2(0.784483, 0.258621)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1m0ao"]
 size = Vector2(2050, 80)
@@ -54,6 +69,15 @@ position = Vector2(596, 366)
 
 [node name="Bounds" type="Node" parent="GameElements"]
 
+[node name="Rock1" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(495, 1403)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/Rock1"]
+shape = SubResource("CircleShape2D_vplec")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/Bounds/Rock1"]
+texture = SubResource("GradientTexture2D_y0vqh")
+
 [node name="BottomBounds" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(1016, 2027)
 
@@ -77,6 +101,24 @@ position = Vector2(1016, -46)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/TopBound"]
 shape = SubResource("RectangleShape2D_xbdkw")
+
+[node name="Rock2" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(908, 821)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/Rock2"]
+shape = SubResource("CircleShape2D_vplec")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/Bounds/Rock2"]
+texture = SubResource("GradientTexture2D_y0vqh")
+
+[node name="Rock3" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(811, 1282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/Rock3"]
+shape = SubResource("CircleShape2D_vplec")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameElements/Bounds/Rock3"]
+texture = SubResource("GradientTexture2D_y0vqh")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
