@@ -62,22 +62,18 @@ func apply_friction(amount):
 		velocity -= velocity.normalized() * amount
 	else:
 		velocity = Vector2.ZERO
-	print("decelerate")
 
 func apply_acceleration(amount):
 	velocity += amount
 	velocity = velocity.limit_length(current_speed)
-	print("accelerate")
 
 
 func increase_size():
-	print("size up")
 	if current_size != enums.Size.MEGA:
 		current_size += 1
 		scale *= 1.2
 
 func decrease_size():
-	print("size down")
 	if current_size != enums.Size.MICRO:
 		current_size -= 1
 		scale *= 0.8
@@ -105,3 +101,14 @@ func UpdateSprite():
 		sprite.animation = "Left"
 	elif (currentState == enums.State.Right):
 		sprite.animation = "Right"
+
+func GetCollidingAnimals() -> Array[Animal]:
+	var array : Array[Animal] = []
+	for i in get_slide_collision_count()-1:
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if (collider is Animal):
+			var animal = collider as Animal
+			array.append(animal)
+		
+	return array

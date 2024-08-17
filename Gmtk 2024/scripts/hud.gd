@@ -8,14 +8,17 @@ var _lifebar : lifebar
 var _iconCarni : PanelContainer
 var _iconHerbi : PanelContainer
 var _sizeLabel : Label
+var _deathContainer : PanelContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_hungerbar = get_node("hungerbar")
+	
 	_lifebar = get_node("lifebar")
 	_iconCarni = get_node("CarniIcon")
 	_iconHerbi = get_node("HerbiIcon")
 	_sizeLabel = get_node("SizeLabel")
+	_deathContainer = get_node("DeathContainer")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,6 +26,9 @@ func _process(delta):
 
 func eat(amount):
 	_hungerbar.eat(amount)
+
+func UpdateHealth(currentHealth : int, maxHealth : int):
+	_lifebar.UpdateHealth(currentHealth, maxHealth)
 
 func UpdateDiet(diet : enums.Diet):
 	if(diet != enums.Diet.carnivore):
@@ -59,3 +65,13 @@ func Pause(pause : bool):
 		hide()
 	else:
 		show()
+
+func DisplayDeath(display : bool):
+	if (display):
+		_deathContainer.show()
+	else:
+		_deathContainer.hide()
+
+func UpdateDeathModulate(value : float):
+	_deathContainer.modulate.a = value
+	_deathContainer.self_modulate.a = value

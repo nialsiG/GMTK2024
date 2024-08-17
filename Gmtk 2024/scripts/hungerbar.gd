@@ -3,6 +3,9 @@ class_name hungerbar
 
 @export var default_factor = 1
 
+signal DiedOfHunger()
+signal FoodOverflowed()
+
 static var HUNGER_FACTOR
 static var current_hunger
 var _isPaused : bool
@@ -18,13 +21,13 @@ func _process(delta):
 		pass;
 	current_hunger -= delta * HUNGER_FACTOR
 	value = current_hunger
-	# debug eat
-	if Input.is_action_just_pressed("miam"):
-		eat(20)
+	if (current_hunger <= 0):
+		DiedOfHunger.emit()
 
 func eat(amount):
 	current_hunger += amount
 	if current_hunger > max_value:
+		FoodOverflowed.emit()
 		current_hunger = max_value
 	value = current_hunger
 

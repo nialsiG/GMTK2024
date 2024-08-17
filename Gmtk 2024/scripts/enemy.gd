@@ -9,7 +9,19 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 @export var MAX_MOVE_TIME: float = 5
 @export var MAX_FLEEING_TIME: float = 6
 
+var meatValue : int = 30
+
+signal Died(meatValue : int, position : Vector2)
+
 func _process(delta):
+	var hitAnimals = GetCollidingAnimals()
+	if (hitAnimals.size() > 0):
+		for i in hitAnimals.size():
+			var animal = hitAnimals[i]
+			if (current_size < animal.current_size):
+				Died.emit(meatValue, position)
+				queue_free()
+	
 	match current_state:
 		state.IDLE:
 			timer += delta
@@ -46,3 +58,4 @@ func _physics_process(delta):
 func start_moving():
 	var my_array = [Vector2(1,0), Vector2(1,1), Vector2(0,1), Vector2(-1,1), Vector2(-1,0), Vector2(-1,-1), Vector2(0,-1), Vector2(1,-1)]
 	axis = my_array.pick_random()
+

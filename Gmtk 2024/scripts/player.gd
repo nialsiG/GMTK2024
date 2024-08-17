@@ -1,20 +1,41 @@
 class_name Player extends Animal
 
+var _invincibilityTimer : Timer
+var _isInvincible : bool
 
 func _ready():
-	sprite = get_node("Sprite2D")# Replace with function body.
-
+	sprite = get_node("Sprite2D")
+	current_size = enums.Size.SMALL
+	_invincibilityTimer = get_node("InvincibilityTimer")
+	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
+	
 signal Fed(amount : int)
 signal UpdatedDiet(diet : enums.Diet)
 signal UpdatedSize(size : enums.Size)
+signal Died()
+signal UpdatedHealth(health : int, maxHealth : int)
 
-var maxh_health = 2;
+var maxHealth = 2;
 var currentHealth = 2;
 
 func _process(delta):
+	if (!_isInvincible):
+		var hitAnimals = GetCollidingAnimals()
+		if (hitAnimals.size() > 0):
+			for i in hitAnimals.size():
+				var animal = hitAnimals[i]
+				if (current_size < animal.current_size):
+					AddHealth(-1)
+					if (currentHealth <= 0):
+						Died.emit()
+					else:
+						_isInvincible = true
+						_invincibilityTimer.start()
+
+			
 	get_input_axis()
 	UpdateState(axis)
-
+	
 	#debug change size
 	if Input.is_action_just_pressed("size_up"):
 		increase_size()
@@ -79,8 +100,8 @@ func ApplyEvolution(evol : enums.evolution):
 		UpdateSize()
 		RaiseUpdateSize()
 	elif (evol == enums.evolution.HEALTH):
-		maxh_health +=1
-		currentHealth +=1
+		maxHealth +=1
+		AddHealth(1)
 
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet
@@ -88,3 +109,10 @@ func UpdateDiet(newDiet : enums.Diet):
 
 func RaiseUpdateSize():
 	UpdatedSize.emit(current_size)
+
+func OnIFrameTimeOut():
+	_isInvincible = false
+
+func AddHealth(health : int):
+	currentHealth = clamp(currentHealth + health, 0, maxHealth)
+	UpdatedHealth.emit(currentHealth, maxHealth)
