@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dd3wjt3p1xdvk"]
+
+[ext_resource type="Texture2D" uid="uid://b53vknlokr6mp" path="res://assets/sprites/Animals/Tyto/Tyto_Down.png" id="1_hebhh"]
+[ext_resource type="Texture2D" uid="uid://eu3jxr2eeqfd" path="res://assets/sprites/Animals/Tyto/Tyto_Left.png" id="2_nfcdp"]
+[ext_resource type="Texture2D" uid="uid://bcvfepsxu40j0" path="res://assets/sprites/Animals/Tyto/Tyto_Right.png" id="3_k3cw2"]
+[ext_resource type="Texture2D" uid="uid://b56sc4ul870f0" path="res://assets/sprites/Animals/Tyto/Tyto_Still.png" id="4_owh5v"]
+[ext_resource type="Texture2D" uid="uid://mu85hord07dl" path="res://assets/sprites/Animals/Tyto/Tyto_Up.png" id="5_2wbni"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hebhh")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nfcdp")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k3cw2")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_owh5v")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2wbni")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

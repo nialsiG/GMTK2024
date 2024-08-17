@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://barpun0yigmsb"]
+
+[ext_resource type="Texture2D" uid="uid://p8out8mi1xko" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_Down.png" id="1_518u7"]
+[ext_resource type="Texture2D" uid="uid://jpyic0vdywax" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_still.png" id="1_rljnc"]
+[ext_resource type="Texture2D" uid="uid://cfemfkfnkrlhh" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_Left.png" id="2_56561"]
+[ext_resource type="Texture2D" uid="uid://8en2cgowehc" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_Right.png" id="3_ilxpf"]
+[ext_resource type="Texture2D" uid="uid://cqryjs8n7o04j" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_Top.png" id="5_c7ukb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_518u7")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_56561")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ilxpf")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rljnc")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_c7ukb")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

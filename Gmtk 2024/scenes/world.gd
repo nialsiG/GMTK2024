@@ -26,6 +26,9 @@ var currentState : gameState
 
 var _cycle : int = 1
 var _cycleTimer : Timer
+var _totalFoodValue : int = 0
+var _totalMeatValue : int = 0
+var _totalPlantValue : int = 0
 
 func _ready():
 	_hud = get_node("CanvasLayer/hud")
@@ -68,7 +71,7 @@ func _process(delta):
 			Unpause()
 
 func StartGame():
-	GeneratePlants(5)
+	GeneratePlants(10)
 	GenerateAnimals(5)
 	currentState = gameState.OnGoing
 	_hud.Pause(false);
@@ -79,7 +82,7 @@ func StartGame():
 func GeneratePlants(numberOfPlants):
 	var plants = _plantGenerator.GeneratePlants(numberOfPlants, _width, _height, _margin)
 	for newPlant in plants:
-		newPlant.connect("Eaten", OnEatenPlant)
+		newPlant.connect("Eaten", OnEatenConsumable)
 		_dynamicElements.call_deferred("add_child", newPlant)
 
 func GenerateAnimals(numberOfAnimals):
@@ -100,14 +103,19 @@ func OnPlayerUpdatedSize(size : enums.Size, hungerCoeff : float):
 func OnPlayerUpdatedHealth(currentHealth : int, maxHealth : int):
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	
-func OnEatenPlant(amount : int):
-	_hud.eat(amount)
-	GeneratePlants(1)
+func OnEatenConsumable(amount : int, foodType : enums.FoodType):
+	_totalFoodValue += amount
+	if (foodType == enums.FoodType.Meat):
+		_totalMeatValue += amount
+	else:
+		_totalPlantValue += amount
+		GeneratePlants(1)
 
 func OnAnimalDied(foodValue : int, bodyPosition : Vector2):
 	var meat = meatPackedScene.instantiate()
 	meat.foodValue = foodValue
 	meat.position = bodyPosition
+	meat.connect("Eaten", OnEatenConsumable)
 	_dynamicElements.call_deferred("add_child",  meat)
 	GenerateAnimals(1)
 
@@ -118,7 +126,7 @@ func OnPlayerDeath():
 	_hud.DisplayDeath(false)
 	get_tree().paused = false
 	get_tree().change_scene_to_file(start_menu)
-	
+
 
 func OnFoodOverFlow():
 	_player.AddHealth(1)

@@ -10,4 +10,3 @@ editable = false
 scrollable = false
 tick_count = 11
 script = ExtResource("1_qx0kb")
-default_factor = 10

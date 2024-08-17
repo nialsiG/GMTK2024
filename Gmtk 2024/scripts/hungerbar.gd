@@ -1,7 +1,7 @@
 extends HSlider
 class_name hungerbar
 
-@export var default_factor = 1
+@export var default_factor = 10
 
 signal DiedOfHunger()
 signal FoodOverflowed()

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqg7jad33ecwk"]
+
+[ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_qeo52"]
+[ext_resource type="Script" path="res://scripts/Animals/Mikrotia.gd" id="2_jqakm"]
+[ext_resource type="SpriteFrames" uid="uid://barpun0yigmsb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia.tres" id="3_f4rfx"]
+
+[node name="deinogalerix" instance=ExtResource("1_qeo52")]
+scale = Vector2(0.35, 0.35)
+script = ExtResource("2_jqakm")
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = ExtResource("3_f4rfx")
+animation = &"Left"

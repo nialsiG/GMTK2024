@@ -7,6 +7,7 @@ var defaultSpeed : float = 500
 var scaleCoeff : float = 1.0
 var speedCoeff : float = 1.0
 var hungerCoeff : float = 1.0
+var _isDead : bool
 
 @export var current_size = enums.Size.MEDIUM
 @export var current_speed = defaultSpeed
@@ -15,7 +16,8 @@ var hungerCoeff : float = 1.0
 
 @onready var axis = Vector2.ZERO
 
-
+var target : Node2D
+var relationToTarget : enums.Relationship
 var sprite : AnimatedSprite2D
 
 var currentState = enums.State.Still
@@ -141,7 +143,7 @@ func UpdateSprite():
 
 func GetCollidingAnimals() -> Array[Animal]:
 	var array : Array[Animal] = []
-	for i in get_slide_collision_count()-1:
+	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if (collider is Animal):
@@ -149,3 +151,18 @@ func GetCollidingAnimals() -> Array[Animal]:
 			array.append(animal)
 		
 	return array
+
+func GetSizeValue(value : enums.Size) -> int:
+	match(value):
+		enums.Size.MICRO:
+			return 1
+		enums.Size.SMALL:
+			return 2
+		enums.Size.MEDIUM:
+			return 3
+		enums.Size.LARGE:
+			return 4
+		enums.Size.MEGA:
+			return 5
+		_:
+			return 0

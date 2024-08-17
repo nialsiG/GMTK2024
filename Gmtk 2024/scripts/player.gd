@@ -20,20 +20,17 @@ var currentHealth = 2;
 
 
 func _process(delta):
-	if (!_isInvincible):
-		var hitAnimals = GetCollidingAnimals()
-		if (hitAnimals.size() > 0):
-			for i in hitAnimals.size():
-				var animal = hitAnimals[i]
-				if (current_size < animal.current_size):
-					AddHealth(-1)
-					if (currentHealth <= 0):
-						Died.emit()
-					else:
-						_isInvincible = true
-						_invincibilityTimer.start()
-
-			
+	var hitAnimals = GetCollidingAnimals()
+	if (hitAnimals.size() > 0):
+		for i in hitAnimals.size():
+			var animal = hitAnimals[i]
+			var sizeValue = GetSizeValue(current_size)
+			var animalSizeValue= GetSizeValue(animal.current_size) 
+			if (sizeValue < animalSizeValue && !_isInvincible):
+				hit(animalSizeValue - sizeValue)
+			elif (sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
+				animal.hit(sizeValue - animalSizeValue)
+				
 	get_input_axis()
 	UpdateState(axis)
 	
@@ -56,6 +53,15 @@ func get_input_axis():
 
 func eat(amount: int, foodType : enums.FoodType):
 	Fed.emit(amount * GetFoodCoef(foodType))
+
+func hit(amount : int):
+	AddHealth(-amount)
+	if (currentHealth <= 0):
+		Died.emit()
+	else:
+		_isInvincible = true
+		_invincibilityTimer.start()
+
 
 func GetFoodCoef(foodType : enums.FoodType) -> float :
 	if (diet == enums.Diet.omni):
