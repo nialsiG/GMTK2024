@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=6 format=3 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/hud.tscn" id="1_4a0xm"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="2_7khj7"]
+[ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/pause_menu.tscn" id="2_uunlj"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://icon.svg" id="3_1ly6u"]
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/deinogalerix.tscn" id="4_2hyyi"]
 
@@ -10,6 +11,9 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="hud" parent="CanvasLayer" instance=ExtResource("1_4a0xm")]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("2_uunlj")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_7khj7")]
 position = Vector2(596, 366)

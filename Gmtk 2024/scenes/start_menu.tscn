@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://f0jqo5i07ilx"]
+
+[node name="start_menu" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
