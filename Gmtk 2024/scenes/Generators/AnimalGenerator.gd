@@ -2,8 +2,9 @@ extends Node
 class_name AnimalGenerator
 
 var deinoPackedScene = preload("res://scenes/deinogalerix.tscn")
+var garganomisPackedScene = preload("res://scenes/Garganomis.tscn")
 
-var animalsPSs : Array[PackedScene] = [deinoPackedScene]
+var animalsPSs : Array[PackedScene] = [deinoPackedScene, deinoPackedScene, garganomisPackedScene]
 
 func GenerateAnimals(numberOfAnimals: int, width: float, height: float, margin: float) -> Array[Animal]:
 	var animals : Array[Animal] = []

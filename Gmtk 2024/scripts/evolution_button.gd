@@ -1,26 +1,25 @@
 class_name EvolutionButton extends Button
 
-enum evolution { NANISM, GIGANTISM, CHANGE_DIET, HEALTH }
+const enums = preload("res://scripts/enums.gd")
 
-@onready var current_choice: evolution
-@onready var world_scene = "res://scenes/world.tscn"
+var evol : enums.evolution
+var textureRec : TextureRect
+var title : Label
+var content : Label
+
+signal Chose(evol : enums.evolution)
+
+func _ready():
+	textureRec = get_node("VBoxContainer/TextureRect")
+	title = get_node("VBoxContainer/title")
+	content = get_node("VBoxContainer/content")
+
+func SetChoice(evolChoice : EvolutionChoice):
+	title.text = evolChoice.Name
+	content.text = evolChoice.Description
+	textureRec.texture = evolChoice.Texture()
+	evol = evolChoice.evolution	
+	pass
 
 func _on_pressed():
-	evolve()
-	go_to_world()
-
-func evolve():
-	match current_choice:
-		evolution.NANISM:
-			pass
-		evolution.GIGANTISM:
-			pass
-		evolution.CHANGE_DIET:
-			pass
-		evolution.HEALTH:
-			pass
-		_:
-			pass
-
-func go_to_world():
-	get_tree().change_scene_to_file(world_scene)
+	Chose.emit(evol)

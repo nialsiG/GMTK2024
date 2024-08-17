@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_jex88"]
 
 [node name="start_menu" type="Node"]
+process_mode = 3
 script = ExtResource("1_riksi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

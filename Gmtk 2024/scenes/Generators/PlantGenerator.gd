@@ -4,7 +4,7 @@ class_name PlantGenerator
 var glandPackedScene = preload("res://scenes/Plants/plant_gland.tscn")
 var morellePackedScene = preload("res://scenes/Plants/plant_morelle.tscn")
 
-var plantPSs : Array[PackedScene] = [glandPackedScene, morellePackedScene]
+var plantPSs : Array[PackedScene] = [glandPackedScene, morellePackedScene, morellePackedScene]
 
 func GeneratePlants(numberOfPlants: int, width: float, height: float, margin: float) -> Array[plant]:
 	var plants : Array[plant] = []

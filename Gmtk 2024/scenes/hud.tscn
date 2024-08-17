@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=6 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
 [ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
+[ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="4_g1m0o"]
+[ext_resource type="Texture2D" uid="uid://b6yl3g72eph12" path="res://assets/sprites/Other/Meat.png" id="5_dgnj4"]
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -42,3 +44,35 @@ offset_top = 55.0
 offset_right = 523.0
 offset_bottom = 78.0
 text = "Hunger"
+
+[node name="HerbiIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 97.0
+offset_right = 83.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
+layout_mode = 2
+texture = ExtResource("4_g1m0o")
+expand_mode = 2
+
+[node name="CarniIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 97.0
+offset_right = 139.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="CarniIcon"]
+layout_mode = 2
+texture = ExtResource("5_dgnj4")
+expand_mode = 2
+
+[node name="SizeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 109.0
+offset_right = 190.0
+offset_bottom = 132.0
+text = "DefaultSize"

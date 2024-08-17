@@ -9,27 +9,34 @@ const enums = preload("res://scripts/enums.gd")
 
 @onready var axis = Vector2.ZERO
 
+var defaultScale : Vector2 = Vector2.ONE
+var scaleCoeff : float = 1.0
+
 var sprite : AnimatedSprite2D
 
 var currentState = enums.State.Still
 var diet : enums.Diet = enums.Diet.omni
 
 func _ready():
+	defaultScale = scale
 	sprite = get_node("Sprite2D")
+	UpdateSize()
+
+func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
-			scale = Vector2(0.64, 0.64)
+			scaleCoeff = 0.64
 		enums.Size.SMALL:
-			scale = Vector2(0.8, 0.8)
+			scaleCoeff = 0.8
 		enums.Size.MEDIUM:
-			scale = Vector2(1, 1)
+			scaleCoeff = 1
 		enums.Size.LARGE:
-			scale = Vector2(1.2, 1.2)
+			scaleCoeff = 1.2
 		enums.Size.MEGA:
-			scale = Vector2(1.44, 1.44)
+			scaleCoeff = 1.44
 		_:
-			scale = Vector2(1, 1)
-
+			scaleCoeff = 1
+	scale = defaultScale * scaleCoeff
 
 func move(delta):
 	if axis == Vector2.ZERO:
