@@ -1,25 +1,31 @@
 class_name Animal extends CharacterBody2D
 
-enum size { MICRO, SMALL, MEDIUM, LARGE, MEGA }
+const enums = preload("res://scripts/enums.gd")
 
-@export var current_size = size.MEDIUM
+@export var current_size = enums.Size.MEDIUM
 @export var current_speed = 500
 @export var acceleration = 1500
 @export var friction = 1200
 
 @onready var axis = Vector2.ZERO
 
+var sprite : AnimatedSprite2D
+
+var currentState = enums.State.Still
+var diet : enums.Diet = enums.Diet.omni
+
 func _ready():
+	sprite = get_node("Sprite2D")
 	match current_size:
-		size.MICRO:
+		enums.Size.MICRO:
 			scale = Vector2(0.64, 0.64)
-		size.SMALL:
+		enums.Size.SMALL:
 			scale = Vector2(0.8, 0.8)
-		size.MEDIUM:
+		enums.Size.MEDIUM:
 			scale = Vector2(1, 1)
-		size.LARGE:
+		enums.Size.LARGE:
 			scale = Vector2(1.2, 1.2)
-		size.MEGA:
+		enums.Size.MEGA:
 			scale = Vector2(1.44, 1.44)
 		_:
 			scale = Vector2(1, 1)
@@ -41,7 +47,8 @@ func hit(amount):
 func die():
 	pass
 
-
+func eat(amount: int, foodType: enums.FoodType):
+	pass
 
 func apply_friction(amount):
 	if velocity.length() >= amount:
@@ -58,12 +65,36 @@ func apply_acceleration(amount):
 
 func increase_size():
 	print("size up")
-	if current_size != size.MEGA:
+	if current_size != enums.Size.MEGA:
 		current_size += 1
 		scale *= 1.2
 
 func decrease_size():
 	print("size down")
-	if current_size != size.MICRO:
+	if current_size != enums.Size.MICRO:
 		current_size -= 1
 		scale *= 0.8
+
+func UpdateState(currentAxis : Vector2):
+	if currentAxis == Vector2.ZERO:
+		currentState = enums.State.Still
+	if (currentAxis.x < 0):
+		currentState = enums.State.Left
+	if (currentAxis.x > 0):
+		currentState = enums.State.Right
+	if (currentAxis.y > 0):
+		currentState = enums.State.Down
+	if (currentAxis.y < 0):
+		currentState = enums.State.Up
+
+func UpdateSprite():
+	if (currentState == enums.State.Still):
+		sprite.animation = "Still"
+	elif (currentState == enums.State.Down):
+		sprite.animation = "Down"
+	elif (currentState == enums.State.Up):
+		sprite.animation = "Up"
+	elif (currentState == enums.State.Left):
+		sprite.animation = "Left"
+	elif (currentState == enums.State.Right):
+		sprite.animation = "Right"

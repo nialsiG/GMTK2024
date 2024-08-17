@@ -1,6 +1,12 @@
 extends Area2D
+class_name plant
+const enums = preload("res://scripts/enums.gd")
 
-signal eaten(amount)
+signal Eaten(amount)
+
+@export var FoodValue : int
+
+var foodType : enums.FoodType = enums.FoodType.Plant
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,8 +17,8 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func OnBodyEntered(body):
-	if body is Player:
-		eaten.emit(20)
+	if (body is Animal && (body as Animal).diet != enums.Diet.carnivore):
+		(body as Animal).eat(FoodValue, foodType)
+		Eaten.emit(FoodValue)
 		queue_free()

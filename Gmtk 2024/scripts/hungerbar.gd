@@ -1,9 +1,11 @@
 extends HSlider
+class_name hungerbar
 
 @export var default_factor = 1
 
 static var HUNGER_FACTOR
 static var current_hunger
+var _isPaused : bool
 
 func _ready():
 	if HUNGER_FACTOR == null:
@@ -12,6 +14,8 @@ func _ready():
 		current_hunger = value
 
 func _process(delta):
+	if (_isPaused):
+		pass;
 	current_hunger -= delta * HUNGER_FACTOR
 	value = current_hunger
 	# debug eat
@@ -24,3 +28,5 @@ func eat(amount):
 		current_hunger = max_value
 	value = current_hunger
 
+func Pause(pause : bool):
+	_isPaused = pause

@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=12 format=3 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Texture2D" uid="uid://dsks8j1k787d2" path="res://assets/sprites/Plants/IslandMap.png" id="1_amxf0"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_ip67v"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="2_7khj7"]
 [ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/pause_menu.tscn" id="2_uunlj"]
-[ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/deinogalerix.tscn" id="4_2hyyi"]
+[ext_resource type="PackedScene" uid="uid://y4j8wtgf7p6k" path="res://scenes/evolution_menu.tscn" id="5_h40nj"]
+[ext_resource type="Script" path="res://scenes/Generators/PlantGenerator.gd" id="7_ne5ik"]
+[ext_resource type="Script" path="res://scenes/Generators/AnimalGenerator.gd" id="7_qbf2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m0ao"]
+size = Vector2(2050, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kse0"]
+size = Vector2(269, 2050)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbdkw"]
+size = Vector2(2050, 80)
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_ip67v")
@@ -14,18 +25,55 @@ script = ExtResource("1_ip67v")
 position = Vector2(982, 986)
 texture = ExtResource("1_amxf0")
 
+[node name="evolution_menu" parent="." instance=ExtResource("5_h40nj")]
+process_mode = 3
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="hud" parent="CanvasLayer" instance=ExtResource("1_4a0xm")]
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("2_uunlj")]
-visible = false
+process_mode = 3
 
-[node name="Player" parent="." instance=ExtResource("2_7khj7")]
+[node name="PlantGenerator" type="Node" parent="."]
+script = ExtResource("7_ne5ik")
+
+[node name="AnimalGenerator" type="Node" parent="."]
+script = ExtResource("7_qbf2g")
+
+[node name="GameElements" type="Node" parent="."]
+
+[node name="DynamicElements" type="Node" parent="GameElements"]
+
+[node name="Player" parent="GameElements" instance=ExtResource("2_7khj7")]
 position = Vector2(596, 366)
 
-[node name="DynamicElements" type="Node" parent="."]
+[node name="Bounds" type="Node" parent="GameElements"]
 
-[node name="deinogalerix" parent="DynamicElements" instance=ExtResource("4_2hyyi")]
-position = Vector2(315, 608)
-current_speed = 400
+[node name="BottomBounds" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(1016, 2027)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/BottomBounds"]
+shape = SubResource("RectangleShape2D_1m0ao")
+
+[node name="RightBounds" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(2142, 983)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/RightBounds"]
+shape = SubResource("RectangleShape2D_1kse0")
+
+[node name="LeftBound" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(-136, 983)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/LeftBound"]
+shape = SubResource("RectangleShape2D_1kse0")
+
+[node name="TopBound" type="StaticBody2D" parent="GameElements/Bounds"]
+position = Vector2(1016, -46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/TopBound"]
+shape = SubResource("RectangleShape2D_xbdkw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true

@@ -5,9 +5,9 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 @onready var current_state = state.IDLE
 @onready var timer = 0
 
-@export var MAX_IDLE_TIME: float
-@export var MAX_MOVE_TIME: float
-@export var MAX_FLEEING_TIME: float
+@export var MAX_IDLE_TIME: float = 3
+@export var MAX_MOVE_TIME: float = 5
+@export var MAX_FLEEING_TIME: float = 6
 
 func _process(delta):
 	match current_state:
@@ -35,6 +35,9 @@ func _process(delta):
 			pass
 		_:
 			pass
+			
+	UpdateState(axis)
+	UpdateSprite()	
 	move(delta)
 
 func _physics_process(delta):

@@ -1,32 +1,82 @@
 extends Node2D
+ 
+var _width = 2000
+var _height = 2000
+var _margin =30
 
-var plantPS = preload("res://scenes/plant.tscn")
-var deinogalerixPS = preload("res://scenes/deinogalerix.tscn")
-var width = 2000
-var height = 2000
-var margin =30
-var dynamicElements
-var hud
+var _dynamicElements : Node
+var _gameElements : Node
+var _hud : hud
+var _plantGenerator : PlantGenerator
+var _animalGenerator : AnimalGenerator
+var _player : Player
+var _cycle : int = 1
+var _pauseMenu : PauseMenu
+var _evolutionMenu : EvolutionMenu
 
-# Called when the node enters the scene tree for the first time.
+enum gameState {Menu, Evolution, OnGoing }
+var currentState : gameState
+
 func _ready():
-	hud = get_node("CanvasLayer/hud")
-	dynamicElements = (get_node("DynamicElements")) as Node
-	GeneratePlants(5)
+	_hud = get_node("CanvasLayer/hud")
+	_gameElements = get_node("GameElements")
+	_dynamicElements = (get_node("GameElements/DynamicElements")) as Node
+	_plantGenerator = get_node("PlantGenerator")
+	_animalGenerator = get_node("AnimalGenerator")
+	_player = get_node("GameElements/Player")
+	_pauseMenu = get_node("CanvasLayer/pause_menu")
+	_pauseMenu.connect("Resume", Unpause)
+	_evolutionMenu = get_node("evolution_menu")
+	
+	StartGame()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (Input.is_action_just_pressed("pause_unpause")):
+		if (currentState == gameState.OnGoing):
+			Pause()
+		elif (currentState == gameState.Menu):
+			Unpause()
 
+func StartGame():
+	GeneratePlants(5)
+	GenerateAnimals(2)
+	currentState = gameState.OnGoing
+	_hud.Pause(false);
+	_evolutionMenu.hide()
+	_pauseMenu.UnPause()
+	
 func GeneratePlants(numberOfPlants):
-	for i in numberOfPlants:
-		var x = randf() * (width - 2*margin) + margin
-		var y = randf() * (height - 2*margin) + margin
-		var plant = plantPS.instantiate()
-		plant.position = Vector2(x, y)
-		plant.connect("eaten", OnEaten)
-		dynamicElements.call_deferred("add_child", plant)
+	var plants = _plantGenerator.GeneratePlants(numberOfPlants, _width, _height, _margin)
+	for plant in plants:
+		plant.connect("Eaten", OnEatenPlant)
+		_dynamicElements.call_deferred("add_child", plant)
 
-func OnEaten(amount):
-	hud.eat(amount)
+func GenerateAnimals(numberOfAnimals):
+	var animals = _animalGenerator.GenerateAnimals(numberOfAnimals, _width, _height, _margin)
+	for animal in animals:
+		_dynamicElements.call_deferred("add_child", animal)
+
+func OnEatenPlant(amount):
+	_hud.eat(amount)
 	GeneratePlants(1)
+
+func Pause():
+	currentState = gameState.Menu
+	get_tree().paused = true
+	_pauseMenu.Pause()
+	_hud.Pause(true)
+	_evolutionMenu.hide()
+
+func Unpause():
+	currentState = gameState.OnGoing
+	get_tree().paused = false
+	_pauseMenu.hide()
+	_hud.Pause(false)
+	_evolutionMenu.hide()
+	
+func Evolve():
+	currentState = gameState.Evolution
+	_hud.Pause(true)
+	_pauseMenu.Pause()
+	_evolutionMenu.show()
+	get_tree().paused = false
