@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://q25xtiarjdfc"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7ofvm"]
+[ext_resource type="Script" path="res://scripts/Animals/Deinogalerix.gd" id="1_q5uyd"]
 [ext_resource type="SpriteFrames" uid="uid://buigqoc3hk2n4" path="res://scenes/deinogalerix.tres" id="2_o5fpu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85bkv"]
@@ -8,9 +8,7 @@ radius = 60.0
 height = 128.0
 
 [node name="deinogalerix" type="CharacterBody2D"]
-script = ExtResource("1_7ofvm")
-MAX_IDLE_TIME = 0.5
-MAX_MOVE_TIME = 1.0
+script = ExtResource("1_q5uyd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_85bkv")

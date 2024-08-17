@@ -11,7 +11,7 @@ func _ready():
 	
 signal Fed(amount : int)
 signal UpdatedDiet(diet : enums.Diet)
-signal UpdatedSize(size : enums.Size)
+signal UpdatedSize(size : enums.Size, newhungerCoeff : float)
 signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
 
@@ -109,7 +109,7 @@ func UpdateDiet(newDiet : enums.Diet):
 	UpdatedDiet.emit(diet)
 
 func RaiseUpdateSize():
-	UpdatedSize.emit(current_size)
+	UpdatedSize.emit(current_size, hungerCoeff)
 
 func OnIFrameTimeOut():
 	_isInvincible = false

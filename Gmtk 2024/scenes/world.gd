@@ -53,7 +53,7 @@ func _ready():
 	_player.connect("UpdatedHealth", OnPlayerUpdatedHealth)
 	_player.connect("Died", OnPlayerDeath)
 	
-	_hud.UpdateSize(_player.current_size)
+	_hud.UpdateSize(_player.current_size, _player.hungerCoeff)
 	_hud.UpdateDiet(_player.diet)
 	_hud.UpdateHealth(_player.currentHealth, _player.maxHealth)
 	_cycleTimer = get_node("Timer")
@@ -94,8 +94,8 @@ func OnPlayerAte(amount : int):
 func OnPlayerUpdatedDiet(diet : enums.Diet):
 	_hud.UpdateDiet(diet)
 	
-func OnPlayerUpdatedSize(size : enums.Size):
-	_hud.UpdateSize(size)
+func OnPlayerUpdatedSize(size : enums.Size, hungerCoeff : float):
+	_hud.UpdateSize(size, hungerCoeff)
 	
 func OnPlayerUpdatedHealth(currentHealth : int, maxHealth : int):
 	_hud.UpdateHealth(currentHealth, maxHealth)

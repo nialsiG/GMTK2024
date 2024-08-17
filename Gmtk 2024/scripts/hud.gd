@@ -41,8 +41,9 @@ func UpdateDiet(diet : enums.Diet):
 	else:
 		_iconCarni.hide()
 
-func UpdateSize(size : enums.Size):
+func UpdateSize(size : enums.Size, hungerCoeff : float):
 	_sizeLabel.text = GetSizeLabel(size)
+	_hungerbar.HUNGER_FACTOR = hungerCoeff
 
 func GetSizeLabel(size : enums.Size):
 	match(size):

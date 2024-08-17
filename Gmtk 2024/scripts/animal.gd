@@ -2,15 +2,19 @@ class_name Animal extends CharacterBody2D
 
 const enums = preload("res://scripts/enums.gd")
 
+var defaultScale : Vector2 = Vector2.ONE
+var defaultSpeed : float = 500
+var scaleCoeff : float = 1.0
+var speedCoeff : float = 1.0
+var hungerCoeff : float = 1.0
+
 @export var current_size = enums.Size.MEDIUM
-@export var current_speed = 500
+@export var current_speed = defaultSpeed
 @export var acceleration = 1500
 @export var friction = 1200
 
 @onready var axis = Vector2.ZERO
 
-var defaultScale : Vector2 = Vector2.ONE
-var scaleCoeff : float = 1.0
 
 var sprite : AnimatedSprite2D
 
@@ -26,17 +30,33 @@ func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
 			scaleCoeff = 0.64
+			speedCoeff = 0.8
+			hungerCoeff = 0.6
 		enums.Size.SMALL:
 			scaleCoeff = 0.8
+			speedCoeff = 0.9
+			hungerCoeff = 0.8
 		enums.Size.MEDIUM:
 			scaleCoeff = 1
+			speedCoeff = 1
+			hungerCoeff = 1
 		enums.Size.LARGE:
 			scaleCoeff = 1.2
+			speedCoeff = 1.1
+			hungerCoeff = 1.3
 		enums.Size.MEGA:
 			scaleCoeff = 1.44
+			speedCoeff = 1.2
+			hungerCoeff = 1.6
 		_:
 			scaleCoeff = 1
+			speedCoeff = 1
+			hungerCoeff = 1
 	scale = defaultScale * scaleCoeff
+	current_speed = current_speed * speedCoeff
+
+func RaiseHungerChange():
+	pass
 
 func move(delta):
 	if axis == Vector2.ZERO:
