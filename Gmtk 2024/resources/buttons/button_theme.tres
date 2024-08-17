@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cy4ctfdd5em41"]
+
+[ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="1_p8igi"]
+
+[resource]
+default_font = ExtResource("1_p8igi")
+default_font_size = 40

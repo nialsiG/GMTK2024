@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://6l4w61rf18jd"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_4dify"]
+[ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="2_3kwnb"]
+
+[node name="pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4dify")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -339.0
+offset_right = 371.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.658824, 0.513726, 0.219608, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -33.0
+offset_right = 58.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PAUSE"
+label_settings = ExtResource("2_3kwnb")
+horizontal_alignment = 1
+
+[node name="resume_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../back_to_menu_button")
+text = "Resume game"
+
+[node name="back_to_menu_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../resume_button")
+text = "Back to menu"
+
+[connection signal="pressed" from="VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
