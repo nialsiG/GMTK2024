@@ -1,11 +1,13 @@
 extends Node
 
+enum evolution { NANISM, GIGANTISM, CHANGE_DIET, HEALTH }
 
-# Called when the node enters the scene tree for the first time.
+@export var choice_1: evolution
+@export var choice_2: evolution
+
+@onready var button_1 = $CanvasLayer/ColorRect/evolution_button_1
+@onready var button_2 = $CanvasLayer/ColorRect/evolution_button_2
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	#TODO : populate buttons using Resources 
 	pass

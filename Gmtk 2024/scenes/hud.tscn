@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://yfeq2kd77xiu"]
 
-[ext_resource type="Script" path="res://scenes/hud.gd" id="1_yiyiu"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
 [ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/hud.tscn" id="1_4a0xm"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="2_7khj7"]
 [ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/pause_menu.tscn" id="2_uunlj"]
-[ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://icon.svg" id="3_1ly6u"]
+[ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="3_1ly6u"]
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/deinogalerix.tscn" id="4_2hyyi"]
 
 [node name="world" type="Node2D"]
@@ -18,11 +18,11 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("2_7khj7")]
 position = Vector2(596, 366)
 
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.34902, 0.580392, 0.305882, 0.603922)
-position = Vector2(1278, 192)
-texture = ExtResource("3_1ly6u")
-
 [node name="deinogalerix" parent="." instance=ExtResource("4_2hyyi")]
 position = Vector2(315, 608)
 current_speed = 400
+
+[node name="plant_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.34902, 0.580392, 0.305882, 0.603922)
+position = Vector2(1278, 192)
+texture = ExtResource("3_1ly6u")
