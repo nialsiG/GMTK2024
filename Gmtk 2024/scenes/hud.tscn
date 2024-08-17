@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=7 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
 [ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
 [ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="4_g1m0o"]
 [ext_resource type="Texture2D" uid="uid://b6yl3g72eph12" path="res://assets/sprites/Other/Meat.png" id="5_dgnj4"]
+[ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="6_tbnw7"]
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -21,6 +22,7 @@ offset_left = 43.0
 offset_top = 24.0
 offset_right = 452.0
 offset_bottom = 40.0
+tick_count = 0
 
 [node name="health_label" type="Label" parent="."]
 layout_mode = 0
@@ -36,6 +38,7 @@ offset_left = 43.0
 offset_top = 60.0
 offset_right = 452.0
 offset_bottom = 76.0
+tick_count = 0
 
 [node name="hunger_label" type="Label" parent="."]
 layout_mode = 0
@@ -76,3 +79,19 @@ offset_top = 109.0
 offset_right = 190.0
 offset_bottom = 132.0
 text = "DefaultSize"
+
+[node name="DeathContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DeathContainer"]
+layout_mode = 2
+text = "You went extinct"
+label_settings = ExtResource("6_tbnw7")
+horizontal_alignment = 1
+vertical_alignment = 1

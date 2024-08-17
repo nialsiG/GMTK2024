@@ -6,8 +6,8 @@ class_name hungerbar
 signal DiedOfHunger()
 signal FoodOverflowed()
 
-static var HUNGER_FACTOR
-static var current_hunger
+var HUNGER_FACTOR
+var current_hunger
 var _isPaused : bool
 
 func _ready():

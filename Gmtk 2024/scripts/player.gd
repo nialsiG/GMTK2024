@@ -18,6 +18,7 @@ signal UpdatedHealth(health : int, maxHealth : int)
 var maxHealth = 2;
 var currentHealth = 2;
 
+
 func _process(delta):
 	if (!_isInvincible):
 		var hitAnimals = GetCollidingAnimals()

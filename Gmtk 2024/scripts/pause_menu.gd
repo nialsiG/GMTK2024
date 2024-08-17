@@ -10,9 +10,6 @@ signal Resume()
 func _ready():
 	is_paused = true
 
-func _process(delta):
-	pass
-
 func Pause():
 	show()
 

@@ -6,8 +6,8 @@ var morellePackedScene = preload("res://scenes/Plants/plant_morelle.tscn")
 
 var plantPSs : Array[PackedScene] = [glandPackedScene, morellePackedScene, morellePackedScene]
 
-func GeneratePlants(numberOfPlants: int, width: float, height: float, margin: float) -> Array[plant]:
-	var plants : Array[plant] = []
+func GeneratePlants(numberOfPlants: int, width: float, height: float, margin: float) -> Array[Plant]:
+	var plants : Array[Plant] = []
 	for i in numberOfPlants:
 		var x = randf() * (width - 2*margin) + margin
 		var y = randf() * (height - 2*margin) + margin

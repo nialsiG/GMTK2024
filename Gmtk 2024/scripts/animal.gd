@@ -78,6 +78,23 @@ func decrease_size():
 		current_size -= 1
 		scale *= 0.8
 
+func ApplyEvolution(evol : enums.evolution):
+	if (evol == enums.evolution.DIET_CARNI):
+		UpdateDiet(enums.Diet.carnivore)
+	elif (evol == enums.evolution.DIET_HERBI):
+		UpdateDiet(enums.Diet.vegetarian)
+	elif (evol == enums.evolution.DIET_OMNI):
+		UpdateDiet(enums.Diet.omni)
+	elif (evol == enums.evolution.NANISM && current_size != enums.Size.MICRO):
+		current_size += -1
+		UpdateSize()
+	elif (evol == enums.evolution.GIGANTISM && current_size != enums.Size.MEGA):
+		current_size +=1
+		UpdateSize()
+
+func UpdateDiet(newDiet : enums.Diet):
+	diet = newDiet
+
 func UpdateState(currentAxis : Vector2):
 	if currentAxis == Vector2.ZERO:
 		currentState = enums.State.Still
