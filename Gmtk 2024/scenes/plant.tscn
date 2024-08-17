@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://drb7ykpkbtr74"]
+
+[ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="1_sak00"]
+[ext_resource type="Script" path="res://scenes/plant.gd" id="1_vdtmb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x16dt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sak00")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xgfhv"]
+
+[node name="Plant" type="Area2D"]
+script = ExtResource("1_vdtmb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x16dt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xgfhv")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

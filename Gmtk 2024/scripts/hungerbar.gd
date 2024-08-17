@@ -23,3 +23,4 @@ func eat(amount):
 	if current_hunger > max_value:
 		current_hunger = max_value
 	value = current_hunger
+

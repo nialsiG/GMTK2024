@@ -1,16 +1,18 @@
-extends Control
+extends Area2D
 
-var hungerbar
-var lifebar
+signal eaten(amount)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hungerbar = get_node("hungerbar")
-	lifebar = get_node("lifebar")
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func eat(amount):
-	hungerbar.eat(20)
+
+func OnBodyEntered(body):
+	if body is Player:
+		eaten.emit(20)
+		queue_free()
