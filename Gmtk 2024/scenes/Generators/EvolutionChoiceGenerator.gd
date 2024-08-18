@@ -5,6 +5,7 @@ const evolutionChoiceScript = preload("res://scripts/Evolutions/EvolutionChoice.
 const enums= preload("res://scripts/enums.gd")
 
 var _allEvolutions : Array[EvolutionChoice]
+var _enemyEvolutions : Array[EvolutionChoice]
 
 func _ready():
 	var nanism = CreateChoice("Nanism", 
@@ -43,6 +44,10 @@ func _ready():
 	"Your movements are more efficient, your dash cost less food",
 	enums.evolution.EFFICIENCY, "")
 
+	var color = CreateChoice("COAT",
+	"Your coat evolved, maybe it was not the best color, but it is who you are now",
+	enums.evolution.COLOR, "")
+
 	_allEvolutions.append(nanism)
 	_allEvolutions.append(gigantism)
 	_allEvolutions.append(healthBonus)
@@ -52,6 +57,17 @@ func _ready():
 	_allEvolutions.append(fangs)
 	_allEvolutions.append(efficiency)
 	_allEvolutions.append(agility)
+	_allEvolutions.append(color)
+	
+	#_enemyEvolutions.append(nanism)
+	#_enemyEvolutions.append(gigantism)
+	#_enemyEvolutions.append(nanism)
+	#_enemyEvolutions.append(gigantism)
+	#_enemyEvolutions.append(dietHerbi)
+	#_enemyEvolutions.append(dietOmni)
+	#_enemyEvolutions.append(dietCarni)
+	_enemyEvolutions.append(color)
+	_enemyEvolutions.append(color)
 
 func CreateChoice(evolName : String, description : String, evol : enums.evolution, path : String) -> EvolutionChoice:
 	var evolChoice = evolutionChoiceScript.new()
@@ -81,3 +97,7 @@ func GetTwoRandomEvolsExcludingSome(excludedEvols : Array[enums.evolution]) -> A
 	pickedEvol.append(allowedEvols[indexChoice1])
 	pickedEvol.append(allowedEvols[indexChoice2])
 	return pickedEvol
+
+func GetEnemyEvol() -> enums.evolution:
+	var index = randi_range(0, _enemyEvolutions.size()-1)
+	return _enemyEvolutions[index].evolution

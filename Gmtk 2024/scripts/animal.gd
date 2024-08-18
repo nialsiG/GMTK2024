@@ -104,18 +104,23 @@ func decrease_size():
 		scale *= 0.8
 
 func ApplyEvolution(evol : enums.evolution):
-	if (evol == enums.evolution.DIET_CARNI):
-		UpdateDiet(enums.Diet.carnivore)
-	elif (evol == enums.evolution.DIET_HERBI):
-		UpdateDiet(enums.Diet.vegetarian)
-	elif (evol == enums.evolution.DIET_OMNI):
-		UpdateDiet(enums.Diet.omni)
-	elif (evol == enums.evolution.NANISM && current_size != enums.Size.MICRO):
-		current_size += -1
-		UpdateSize()
-	elif (evol == enums.evolution.GIGANTISM && current_size != enums.Size.MEGA):
-		current_size +=1
-		UpdateSize()
+	match(evol):
+		enums.evolution.DIET_CARNI:
+			UpdateDiet(enums.Diet.carnivore)
+		enums.evolution.DIET_HERBI:
+			UpdateDiet(enums.Diet.vegetarian)
+		enums.evolution.DIET_OMNI:
+			UpdateDiet(enums.Diet.omni)
+		enums.evolution.NANISM:
+			if(current_size != enums.Size.MICRO):
+				current_size += -1
+				UpdateSize()
+		enums.evolution.GIGANTISM:
+			if (current_size != enums.Size.MEGA):
+				current_size +=1
+				UpdateSize()
+		enums.evolution.COLOR:
+			UpdateColorRandomly()
 
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet
@@ -180,3 +185,9 @@ func GetSizeValue() -> int:
 			return 5
 		_:
 			return 0
+
+func UpdateColorRandomly():
+	var r = randi_range(50, 200)
+	var g = randi_range(50, 200)
+	var b = randi_range(50, 200)
+	modulate = Color8(r, g, b, 255)

@@ -183,6 +183,11 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.EFFICIENCY:
 			_dashFoodCost *= 0.8	
 			print("Foodcost: "+str(_dashFoodCost))
+		enums.evolution.COLOR:
+			var r = randi_range(50, 200)
+			var g = randi_range(50, 200)
+			var b = randi_range(50, 200)
+			modulate = Color8(r, g, b, 255)
 		
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet

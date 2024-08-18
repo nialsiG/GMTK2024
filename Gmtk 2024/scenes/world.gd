@@ -12,6 +12,8 @@ var _plantGenerator : PlantGenerator
 var _animalGenerator : AnimalGenerator
 var _evolutionChoiceGenerator : EvolutionChoiceGenerator
 
+var _pickedEvolutions : Array[enums.evolution] = []
+
 var _dynamicElements : Node
 var _gameElements : Node
 var _player : Player
@@ -93,6 +95,7 @@ func GenerateAnimals(numberOfAnimals):
 	for animal in animals:
 		if ((animal.position - _player.position).length() < _safetySpawnRadius):
 			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
+		_applyEnemyEvolForCycle(animal)
 		animal.connect("Died", OnAnimalDied)
 		_currentAnimals.append(animal)
 		_dynamicElements.call_deferred("add_child", animal)
@@ -169,12 +172,21 @@ func Evolve():
 	_pauseMenu.UnPause()
 	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())	
 	_evolutionMenu.DisplayChoice(choices)
+	for i in _currentAnimals.size():
+		_applyEnemyEvolForCycle(_currentAnimals[i])
+		
 	get_tree().paused = true
+
+func _applyEnemyEvolForCycle(animal : Animal):
+	for i in _cycle - 1:
+		var evol = _evolutionChoiceGenerator.GetEnemyEvol()
+		animal.ApplyEvolution(evol)
 
 func OnCycleTimeOut():
 	Evolve()
 	
 func OnEvolutionChosen(evol : enums.evolution):
+	_pickedEvolutions.append(evol)
 	_player.ApplyEvolution(evol)
 	Unpause()
 	_cycle+=1
