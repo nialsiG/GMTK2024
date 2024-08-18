@@ -18,15 +18,15 @@ func _ready():
 	
 	var dietCarni = CreateChoice("Carnivore",
 	"You become carnivore. You get better benefits from eating meat but cannot eat plants.",
-	enums.evolution.DIET_CARNI, "")
+	enums.evolution.DIET_CARNI, "res://assets/sprites/Icons/IconCarnivore.png")
 	
 	var dietHerbi = CreateChoice("Herbivore",
 	"You become herbivore. You get better benefits from eating plants but cannot eat meat.",
-	enums.evolution.DIET_HERBI, "")
+	enums.evolution.DIET_HERBI, "res://assets/sprites/Icons/IconVegetarism.png")
 	
 	var dietOmni =CreateChoice("Omnivore",
 	"You become omnivore. You can eat everything but get lesser benefits from all food.",
-	enums.evolution.DIET_OMNI, "")
+	enums.evolution.DIET_OMNI, "res://assets/sprites/Icons/IconOmni.png")
 	
 	var healthBonus = CreateChoice("Health",
 	"Give you one more hitpoint.",
@@ -38,7 +38,7 @@ func _ready():
 	
 	var fangs = CreateChoice("Fang",
 	"Your tooth become bigger, during your dash, you gain a temporary size",
-	enums.evolution.FANG, "")
+	enums.evolution.FANG, "res://assets/sprites/Icons/IconFang.png")
 
 	var efficiency = CreateChoice("Efficiency",
 	"Your movements are more efficient, your dash cost less food",
