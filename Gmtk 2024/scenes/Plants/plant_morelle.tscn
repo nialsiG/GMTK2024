@@ -1,14 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://i8vmvgudegbb"]
+[gd_scene load_steps=8 format=3 uid="uid://i8vmvgudegbb"]
 
 [ext_resource type="PackedScene" uid="uid://drb7ykpkbtr74" path="res://scenes/plant.tscn" id="1_ioytj"]
 [ext_resource type="Texture2D" uid="uid://bdlrthjada7hb" path="res://assets/sprites/Plants/Morelles.png" id="2_80574"]
 [ext_resource type="Script" path="res://scenes/Plants/plant_morelle.gd" id="2_rb31u"]
+[ext_resource type="Texture2D" uid="uid://dr5oi0g81qbwe" path="res://assets/sprites/Plants/Morelles_2.png" id="4_3j6ly"]
+[ext_resource type="Texture2D" uid="uid://bc4kbk524w7wv" path="res://assets/sprites/Plants/Morelles_3.png" id="5_3pvhi"]
+[ext_resource type="Texture2D" uid="uid://bit00a2dqpdep" path="res://assets/sprites/Plants/Morelles_4.png" id="6_ykjio"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_86u66"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_80574")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3j6ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3pvhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ykjio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3pvhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3j6ly")
 }],
 "loop": true,
 "name": &"default",
@@ -19,4 +37,7 @@ animations = [{
 script = ExtResource("2_rb31u")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_86u66")
+autoplay = "default"
+frame_progress = 0.839207

@@ -46,9 +46,10 @@ horizontal_alignment = 1
 
 [node name="content" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "This is the description of the button - not too long, but not too shjort either."
+text = "You become smaller. Your food needs are increased and so is your speed. You can predate more animals."
 label_settings = ExtResource("3_bi4fj")
 horizontal_alignment = 3
 autowrap_mode = 2
+justification_flags = 170
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

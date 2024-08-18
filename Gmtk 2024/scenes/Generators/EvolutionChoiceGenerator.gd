@@ -10,11 +10,11 @@ var _enemyEvolutions : Array[EvolutionChoice]
 func _ready():
 	var nanism = CreateChoice("Nanism", 
 	"You become smaller. Your food needs are reduced and so is your speed. More animal are predators to you.",
-	 enums.evolution.NANISM, "")
+	 enums.evolution.NANISM, "res://assets/sprites/Icons/IconNanism.png")
 	
 	var gigantism = CreateChoice("Gigantism",
 	"You become bigger. Your food needs are increased and so is your speed. You can predate more animals.",
-	enums.evolution.GIGANTISM, "")
+	enums.evolution.GIGANTISM, "res://assets/sprites/Icons/IconGigantism.png")
 	
 	var dietCarni = CreateChoice("Carnivore",
 	"You become carnivore. You get better benefits from eating meat but cannot eat plants.",
@@ -28,13 +28,13 @@ func _ready():
 	"You become omnivore. You can eat everything but get lesser benefits from all food.",
 	enums.evolution.DIET_OMNI, "res://assets/sprites/Icons/IconOmni.png")
 	
-	var healthBonus = CreateChoice("Health",
-	"Give you one more hitpoint.",
-	enums.evolution.HEALTH, "")
+	var healthBonus = CreateChoice("Sturdy",
+	"You become sturdier. You gain one more maximum hitpoint.",
+	enums.evolution.HEALTH, "res://assets/sprites/Icons/IconSturdy.png")
 	
 	var agility = CreateChoice("Agility",
 	"Your movements are sharper, your dash cooldown is reduced",
-	enums.evolution.AGILITY, "")
+	enums.evolution.AGILITY, "res://assets/sprites/Icons/IconAgility.png")
 	
 	var fangs = CreateChoice("Fang",
 	"Your tooth become bigger, during your dash, you gain a temporary size",
@@ -42,11 +42,11 @@ func _ready():
 
 	var efficiency = CreateChoice("Efficiency",
 	"Your movements are more efficient, your dash cost less food",
-	enums.evolution.EFFICIENCY, "")
+	enums.evolution.EFFICIENCY, "res://assets/sprites/Icons/IconEfficiency.png")
 
 	var color = CreateChoice("COAT",
 	"Your coat evolved, maybe it was not the best color, but it is who you are now",
-	enums.evolution.COLOR, "")
+	enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
 
 	_allEvolutions.append(nanism)
 	_allEvolutions.append(gigantism)
@@ -92,7 +92,8 @@ func GetTwoRandomEvolsExcludingSome(excludedEvols : Array[enums.evolution]) -> A
 	
 	var indexChoice1 = randi_range(0, allowedEvols.size()-1)
 	var indexChoice2 = randi_range(0, allowedEvols.size()-1)
-	while (indexChoice2 == indexChoice1):
+	
+	while (indexChoice2 == indexChoice1 && allowedEvols[indexChoice2] == allowedEvols[indexChoice1]):
 		indexChoice2 = randi_range(0, allowedEvols.size()-1)
 	
 	var pickedEvol : Array[EvolutionChoice] = []

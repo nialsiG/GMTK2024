@@ -9,7 +9,6 @@
 script = ExtResource("1_8kr84")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -49,8 +48,8 @@ anchor_top = 0.0
 anchor_bottom = 0.0
 offset_left = -565.0
 offset_top = 303.0
-offset_right = -79.0
-offset_bottom = 902.0
+offset_right = -15.0
+offset_bottom = 953.0
 grow_vertical = 1
 
 [node name="evolution_button_2" parent="CanvasLayer/ColorRect" instance=ExtResource("3_g3mq4")]
@@ -60,6 +59,6 @@ anchor_top = 0.0
 anchor_bottom = 0.0
 offset_left = 106.0
 offset_top = 303.0
-offset_right = 592.0
-offset_bottom = 902.0
+offset_right = 656.0
+offset_bottom = 953.0
 grow_vertical = 1
