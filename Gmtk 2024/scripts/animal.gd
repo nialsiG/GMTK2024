@@ -2,7 +2,6 @@ class_name Animal extends CharacterBody2D
 
 const enums = preload("res://scripts/enums.gd")
 
-var defaultScale : Vector2 = Vector2.ONE
 var defaultSpeed : float = 500
 var scaleCoeff : float = 1.0
 var speedCoeff : float = 1.0
@@ -24,39 +23,51 @@ var currentState = enums.State.Still
 var diet : enums.Diet = enums.Diet.omni
 
 func _ready():
-	defaultScale = scale
 	sprite = get_node("Sprite2D")
 	UpdateSize()
 
-func UpdateSize():
+func UpdateSize():	
 	match current_size:
 		enums.Size.MICRO:
-			scaleCoeff = 0.64
-			speedCoeff = 0.8
+			scaleCoeff = 0.2
+			hungerCoeff = 0.5
+		enums.Size.VERYSMALL:
+			scaleCoeff = 0.4
 			hungerCoeff = 0.6
 		enums.Size.SMALL:
+			scaleCoeff = 0.6
+			hungerCoeff = 0.7
+		enums.Size.MEDIUMSMALL:
 			scaleCoeff = 0.8
-			speedCoeff = 0.9
 			hungerCoeff = 0.8
 		enums.Size.MEDIUM:
 			scaleCoeff = 1
-			speedCoeff = 1
 			hungerCoeff = 1
-		enums.Size.LARGE:
+		enums.Size.MEDIUMLARGE:
 			scaleCoeff = 1.2
-			speedCoeff = 1.1
-			hungerCoeff = 1.3
+			hungerCoeff = 1.2
+		enums.Size.LARGE:
+			scaleCoeff = 1.5
+			hungerCoeff = 1.4
+		enums.Size.VERYLARGE:
+			scaleCoeff = 1.9
+			hungerCoeff = 1.6			
 		enums.Size.MEGA:
-			scaleCoeff = 1.44
-			speedCoeff = 1.2
-			hungerCoeff = 1.6
+			scaleCoeff = 2.4
+			hungerCoeff = 1.8
+		enums.Size.COLOSSAL:
+			scaleCoeff = 2.5
+			hungerCoeff = 2.2
 		_:
 			scaleCoeff = 1
-			speedCoeff = 1
 			hungerCoeff = 1
-	scale = defaultScale * scaleCoeff
+	scale = Vector2.ONE * scaleCoeff
 	current_speed = current_speed * speedCoeff
+	DisplaySize()
 
+func DisplaySize():
+	pass
+	
 func GetFoodValue() -> int:
 	return GetSizeValue() * 5
 
@@ -92,17 +103,6 @@ func apply_acceleration(amount):
 	velocity += amount
 	velocity = velocity.limit_length(current_speed)
 
-
-func increase_size():
-	if current_size != enums.Size.MEGA:
-		current_size += 1
-		scale *= 1.2
-
-func decrease_size():
-	if current_size != enums.Size.MICRO:
-		current_size -= 1
-		scale *= 0.8
-
 func ApplyEvolution(evol : enums.evolution):
 	match(evol):
 		enums.evolution.DIET_CARNI:
@@ -116,7 +116,7 @@ func ApplyEvolution(evol : enums.evolution):
 				current_size += -1
 				UpdateSize()
 		enums.evolution.GIGANTISM:
-			if (current_size != enums.Size.MEGA):
+			if (current_size != enums.Size.COLOSSAL):
 				current_size +=1
 				UpdateSize()
 		enums.evolution.COLOR:
@@ -175,14 +175,24 @@ func GetSizeValue() -> int:
 	match(current_size):
 		enums.Size.MICRO:
 			return 1
-		enums.Size.SMALL:
+		enums.Size.VERYSMALL:
 			return 2
-		enums.Size.MEDIUM:
+		enums.Size.SMALL:
 			return 3
-		enums.Size.LARGE:
+		enums.Size.MEDIUMSMALL:
 			return 4
-		enums.Size.MEGA:
+		enums.Size.MEDIUM:
 			return 5
+		enums.Size.MEDIUMLARGE:
+			return 6
+		enums.Size.LARGE:
+			return 7
+		enums.Size.VERYLARGE:
+			return 8
+		enums.Size.MEGA:
+			return 9
+		enums.Size.COLOSSAL:
+			return 10
 		_:
 			return 0
 

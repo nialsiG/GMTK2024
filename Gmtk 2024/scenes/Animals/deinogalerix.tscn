@@ -33,5 +33,20 @@ max_distance = 500.0
 
 [node name="FleeingSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 
+[node name="SizeLabel" type="Label" parent="."]
+offset_left = -45.7143
+offset_top = -100.0
+offset_right = -5.71429
+offset_bottom = -77.0
+text = "Size"
+
+[node name="DietLabel" type="Label" parent="."]
+offset_left = -45.7143
+offset_top = -70.0
+offset_right = -5.71428
+offset_bottom = -47.0
+text = "Diet
+"
+
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
 [connection signal="body_entered" from="Area2D" to="." method="OnDetectionAreaEntered"]
