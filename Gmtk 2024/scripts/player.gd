@@ -7,7 +7,7 @@ var _isDashing : bool = false
 var _isDashInRecovery : bool = false
 var _dashDuration : float = 0
 var _dashMaxDuration : float = 0.2
-var _dashRecoveryTime : float = 5 
+var _dashRecoveryTime : float = 10 
 var _dashSizeBonus : int = 1
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : int = 5
@@ -24,10 +24,10 @@ signal UpdatedDiet(diet : enums.Diet)
 signal UpdatedSize(size : enums.Size, newhungerCoeff : float)
 signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
+signal UpdatedDashCooldown(isAvailable: bool)
 
 var maxHealth = 2;
 var currentHealth = 2;
-
 
 func _process(delta):
 	var collisionCount = get_slide_collision_count()
@@ -49,6 +49,7 @@ func _process(delta):
 	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") && !(_isDashing || _isDashInRecovery)):
 		_isDashing = true
 		_dashAxis = axis
+		UpdatedDashCooldown.emit(false)
 		eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
 			
 	UpdateState(axis)
@@ -62,6 +63,7 @@ func ManageDashCoolDown(delta : float):
 		if (_dashDuration > _dashRecoveryTime):
 			_isDashInRecovery = false
 			_dashDuration = 0
+			UpdatedDashCooldown.emit(true)
 	
 	if (_isDashing):
 		_dashDuration += delta
@@ -153,24 +155,35 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 	return evols
 	
 func ApplyEvolution(evol : enums.evolution):
-	if (evol == enums.evolution.DIET_CARNI):
-		UpdateDiet(enums.Diet.carnivore)
-	elif (evol == enums.evolution.DIET_HERBI):
-		UpdateDiet(enums.Diet.vegetarian)
-	elif (evol == enums.evolution.DIET_OMNI):
-		UpdateDiet(enums.Diet.omni)
-	elif (evol == enums.evolution.NANISM && current_size != enums.Size.MICRO):
-		current_size += -1
-		UpdateSize()
-		RaiseUpdateSize()
-	elif (evol == enums.evolution.GIGANTISM && current_size != enums.Size.MEGA):
-		current_size +=1
-		UpdateSize()
-		RaiseUpdateSize()
-	elif (evol == enums.evolution.HEALTH):
-		maxHealth +=1
-		AddHealth(1)
-
+	match (evol):
+		enums.evolution.DIET_CARNI:
+			UpdateDiet(enums.Diet.carnivore)
+		enums.evolution.DIET_HERBI:
+			UpdateDiet(enums.Diet.vegetarian)
+		enums.evolution.DIET_OMNI:
+			UpdateDiet(enums.Diet.omni)
+		enums.evolution.NANISM:
+			if(current_size != enums.Size.MICRO):
+				current_size += -1
+				UpdateSize()
+				RaiseUpdateSize()
+		enums.evolution.GIGANTISM:
+			if(current_size != enums.Size.MEGA):
+				current_size +=1
+				UpdateSize()
+				RaiseUpdateSize()
+		enums.evolution.HEALTH:
+			maxHealth +=1
+			AddHealth(1)
+		enums.evolution.AGILITY:
+			_dashRecoveryTime *= 0.8
+			print("RecoveryTime: "+str(_dashRecoveryTime))
+		enums.evolution.FANG:
+			_dashSizeBonus += 1
+		enums.evolution.EFFICIENCY:
+			_dashFoodCost *= 0.8	
+			print("Foodcost: "+str(_dashFoodCost))
+		
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet
 	UpdatedDiet.emit(diet)
@@ -182,6 +195,5 @@ func OnIFrameTimeOut():
 	_isInvincible = false
 
 func AddHealth(health : int):
-	print("Lost "+str(health)+" HP")
 	currentHealth = clamp(currentHealth + health, 0, maxHealth)
 	UpdatedHealth.emit(currentHealth, maxHealth)

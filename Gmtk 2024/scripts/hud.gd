@@ -9,8 +9,8 @@ var _iconCarni : PanelContainer
 var _iconHerbi : PanelContainer
 var _sizeLabel : Label
 var _deathContainer : PanelContainer
+var _dashOverlay : TextureRect
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	_hungerbar = get_node("hungerbar")
 	
@@ -19,13 +19,20 @@ func _ready():
 	_iconHerbi = get_node("HerbiIcon")
 	_sizeLabel = get_node("SizeLabel")
 	_deathContainer = get_node("DeathContainer")
+	_dashOverlay = get_node("PanelContainer/DashOverlay")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func eat(amount):
 	_hungerbar.eat(amount)
+
+func UpdateDashCooldown(isAvailable : bool):
+	if (isAvailable):
+		_dashOverlay.hide()
+	else:
+		_dashOverlay.show()
+
 
 func UpdateHealth(currentHealth : int, maxHealth : int):
 	_lifebar.UpdateHealth(currentHealth, maxHealth)

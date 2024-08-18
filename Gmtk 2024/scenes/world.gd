@@ -57,6 +57,7 @@ func _ready():
 	_player.connect("UpdatedSize", OnPlayerUpdatedSize)
 	_player.connect("UpdatedHealth", OnPlayerUpdatedHealth)
 	_player.connect("Died", OnPlayerDeath)
+	_player.connect("UpdatedDashCooldown", OnPlayerUpdatedDashCoolDown)
 	
 	_hud.UpdateSize(_player.current_size, _player.hungerCoeff)
 	_hud.UpdateDiet(_player.diet)
@@ -107,7 +108,10 @@ func OnPlayerUpdatedSize(size : enums.Size, hungerCoeff : float):
 	
 func OnPlayerUpdatedHealth(currentHealth : int, maxHealth : int):
 	_hud.UpdateHealth(currentHealth, maxHealth)
-	
+
+func OnPlayerUpdatedDashCoolDown(isAvailable : bool):
+	_hud.UpdateDashCooldown(isAvailable)
+
 func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_totalFoodValue += amount
 	if (foodType == enums.FoodType.Meat):

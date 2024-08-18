@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=9 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="4_g1m0o"]
 [ext_resource type="Texture2D" uid="uid://b6yl3g72eph12" path="res://assets/sprites/Other/Meat.png" id="5_dgnj4"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="6_tbnw7"]
+
+[sub_resource type="Gradient" id="Gradient_wctgb"]
+colors = PackedColorArray(0, 0, 0, 0.419608, 0, 0, 0, 0.337255)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dapuk"]
+gradient = SubResource("Gradient_wctgb")
+width = 40
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -79,6 +86,22 @@ offset_top = 109.0
 offset_right = 190.0
 offset_bottom = 132.0
 text = "DefaultSize"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 97.0
+offset_right = 296.0
+offset_bottom = 137.0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+text = "Dash"
+
+[node name="DashOverlay" type="TextureRect" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture1D_dapuk")
 
 [node name="DeathContainer" type="PanelContainer" parent="."]
 visible = false
