@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=10 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8cnlt"]
 [ext_resource type="Texture2D" uid="uid://x0c2u2eydsa6" path="res://assets/sprites/Player/Player_left.png" id="2_hemiq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cvce5kr577lbu" path="res://assets/sprites/Player/Player_right.png" id="3_oprea"]
 [ext_resource type="Texture2D" uid="uid://dox4p3bi2ql5j" path="res://assets/sprites/Player/Player_still.png" id="4_s00ii"]
 [ext_resource type="Texture2D" uid="uid://cv4pv1k6owsiv" path="res://assets/sprites/Player/Player_Up.png" id="6_yb3pu"]
+[ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_20df6"]
 animations = [{
@@ -75,3 +76,6 @@ one_shot = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="EatingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_7nei2")

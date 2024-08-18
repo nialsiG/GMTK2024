@@ -66,6 +66,8 @@ script = ExtResource("7_qbf2g")
 
 [node name="Player" parent="GameElements" instance=ExtResource("2_7khj7")]
 position = Vector2(596, 366)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Bounds" type="Node" parent="GameElements"]
 
@@ -80,24 +82,32 @@ texture = SubResource("GradientTexture2D_y0vqh")
 
 [node name="BottomBounds" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(1016, 2027)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/BottomBounds"]
 shape = SubResource("RectangleShape2D_1m0ao")
 
 [node name="RightBounds" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(2142, 983)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/RightBounds"]
 shape = SubResource("RectangleShape2D_1kse0")
 
 [node name="LeftBound" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(-136, 983)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/LeftBound"]
 shape = SubResource("RectangleShape2D_1kse0")
 
 [node name="TopBound" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(1016, -46)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameElements/Bounds/TopBound"]
 shape = SubResource("RectangleShape2D_xbdkw")

@@ -12,6 +12,8 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 
 var meatValue : int = 30
 var _name : String = "enemy"
+var _chasingSoundPlayer : AudioStreamPlayer2D
+var _fleeingSoundPlayer : AudioStreamPlayer2D
 
 signal Died(animal : Animal)
 
@@ -42,9 +44,13 @@ func _process(delta):
 	if (target != null && current_state != state.CHASING && current_state != state.FLEEING):
 		if (relationToTarget == enums.Relationship.PREDATOR):
 			current_state = state.CHASING
+			if(_chasingSoundPlayer != null):
+				_chasingSoundPlayer.play()
 			print(_name+" started chasing")
 		else:
 			current_state = state.FLEEING
+			if (_fleeingSoundPlayer != null):
+				_fleeingSoundPlayer.play()
 			print(_name+" started fleeing")
 		timer = 0
 

@@ -9,3 +9,4 @@ func _ready():
 	sprite = get_node("Sprite2D")
 	UpdateSize()
 	UpdateIdleFactor()
+	_fleeingSoundPlayer = get_node("FleeingSoundPlayer")

@@ -13,8 +13,11 @@ var _dashSpeedBonus : float = 4
 var _dashFoodCost : int = 5
 var _dashAxis : Vector2
 
+var _eatingSoundPlayer : AudioStreamPlayer2D
+
 func _ready():
 	sprite = get_node("Sprite2D")
+	_eatingSoundPlayer = get_node("EatingSound")
 	current_size = enums.Size.SMALL
 	_invincibilityTimer = get_node("InvincibilityTimer")
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
@@ -115,6 +118,7 @@ func apply_acceleration(amount):
 		print(velocity)
 
 func eat(amount: int, foodType : enums.FoodType):
+	_eatingSoundPlayer.play()
 	Fed.emit(amount * GetFoodCoef(foodType))
 
 func hit(amount : int):

@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqg7jad33ecwk"]
+[gd_scene load_steps=6 format=3 uid="uid://dqg7jad33ecwk"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_qeo52"]
 [ext_resource type="Script" path="res://scripts/Animals/Mikrotia.gd" id="2_jqakm"]
 [ext_resource type="SpriteFrames" uid="uid://barpun0yigmsb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia.tres" id="3_f4rfx"]
+[ext_resource type="AudioStream" uid="uid://dn78ts73r2lw" path="res://assets/Sounds/mouse-2.ogg" id="4_bcon0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5nilg"]
+radius = 600.0
 
 [node name="deinogalerix" instance=ExtResource("1_qeo52")]
 scale = Vector2(0.35, 0.35)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("2_jqakm")
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_f4rfx")
 animation = &"Left"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_5nilg")
+
+[node name="FleeingSoundPlayer" parent="." index="4"]
+stream = ExtResource("4_bcon0")
