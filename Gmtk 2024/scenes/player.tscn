@@ -107,7 +107,6 @@ shape = SubResource("CapsuleShape2D_ifsr4")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="Node" type="Node" parent="."]

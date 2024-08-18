@@ -12,6 +12,8 @@ var _dashSizeBonus : int = 1
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : int = 5
 var _dashAxis : Vector2
+var blink_timer : float = 0
+var blink_limit : float = 0.1
 
 var _eatingSoundPlayer : AudioStreamPlayer2D
 
@@ -44,11 +46,9 @@ func _process(delta):
 				hit(animalSizeValue - sizeValue)
 			elif (sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
-
 	ManageDashCoolDown(delta)
-
 	get_input_axis()
-		
+	
 	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") && !(_isDashing || _isDashInRecovery)):
 		_isDashing = true
 		_dashAxis = axis
@@ -57,6 +57,7 @@ func _process(delta):
 			
 	UpdateState(axis)
 	UpdateSprite()
+	blink(delta)
 	move(delta)
 
 func ManageDashCoolDown(delta : float):
@@ -131,13 +132,25 @@ func eat(amount: int, foodType : enums.FoodType):
 	Fed.emit(amount * GetFoodCoef(foodType))
 
 func hit(amount : int):
-	if (!_isInvincible):	
-		AddHealth(-amount)	
-	if (currentHealth <= 0):
-		Died.emit()
-	else:
-		_isInvincible = true
-		_invincibilityTimer.start()
+	if (!_isInvincible):
+		AddHealth(-amount)
+		if (currentHealth <= 0):
+			Died.emit()
+		else:
+			_isInvincible = true
+			_invincibilityTimer.start()
+
+# A function to blink while invincible
+func blink(delta):
+	if !_isInvincible and !sprite.is_visible_in_tree():
+		sprite.show()
+	if _isInvincible:
+		blink_timer += delta
+	if blink_timer >= blink_limit:
+		blink_timer = 0
+		match sprite.is_visible_in_tree():
+			true: sprite.hide()
+			false: sprite.show()
 
 func GetFoodCoef(foodType : enums.FoodType) -> float :
 	if (diet == enums.Diet.omni):

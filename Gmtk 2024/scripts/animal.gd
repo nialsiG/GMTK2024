@@ -11,7 +11,7 @@ var _isDead : bool
 @export var current_size = enums.Size.MEDIUM
 @export var current_speed = defaultSpeed
 @export var acceleration = 1500
-@export var friction = 1200
+@export var friction = 1500
 
 @onready var axis = Vector2.ZERO
 @onready var current_direction = enums.Direction.Down
@@ -81,16 +81,6 @@ func move(delta):
 		apply_friction(friction * delta)
 	else:
 		apply_acceleration(acceleration * axis * delta)
-
-
-func attack():
-	pass
-
-func hit(amount):
-	pass
-
-func die():
-	pass
 
 func eat(amount: int, foodType: enums.FoodType):
 	pass
