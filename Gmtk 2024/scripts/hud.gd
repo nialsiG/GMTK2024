@@ -55,15 +55,25 @@ func UpdateSize(size : enums.Size, hungerCoeff : float):
 func GetSizeLabel(size : enums.Size):
 	match(size):
 		enums.Size.MICRO:
-			return "Micro" 
+			return "Micro"
+		enums.Size.VERYSMALL:
+			return "Very small" 
 		enums.Size.SMALL:
 			return "Small"
+		enums.Size.MEDIUMSMALL:
+			return "Medium small"
 		enums.Size.MEDIUM:
 			return "Medium"
+		enums.Size.MEDIUMLARGE:
+			return "Medium large"
 		enums.Size.LARGE:
 			return "Large"
+		enums.Size.VERYLARGE:
+			return "Very large"
 		enums.Size.MEGA:
 			return "Mega"
+		enums.Size.COLOSSAL:
+			return "Colossal"
 		_:
 			return "klmdsqklmdfds"
 			

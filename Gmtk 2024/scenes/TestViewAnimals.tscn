@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://eywd4ny71022"]
+
+[ext_resource type="PackedScene" uid="uid://bkxmx828vv8d8" path="res://scenes/Animals/Tyto.tscn" id="1_symas"]
+[ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="2_fm5o0"]
+[ext_resource type="PackedScene" uid="uid://di8qff821ygdf" path="res://scenes/Animals/Garganomis.tscn" id="3_ig71k"]
+[ext_resource type="PackedScene" uid="uid://dqg7jad33ecwk" path="res://scenes/Animals/Mikrotia.tscn" id="4_8rjmj"]
+[ext_resource type="PackedScene" uid="uid://bdsqtikpmbisd" path="res://scenes/Animals/Prolagus.tscn" id="5_sx5rp"]
+[ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="6_evm0s"]
+
+[node name="TestViewAnimals" type="Node2D"]
+
+[node name="Tyto" parent="." instance=ExtResource("1_symas")]
+position = Vector2(527, -70)
+
+[node name="deinogalerix2" parent="." instance=ExtResource("2_fm5o0")]
+position = Vector2(139, -132)
+
+[node name="deinogalerix" parent="." instance=ExtResource("2_fm5o0")]
+position = Vector2(139, -42)
+
+[node name="Garganomis" parent="." instance=ExtResource("3_ig71k")]
+position = Vector2(765, -147)
+
+[node name="Mikrotia" parent="." instance=ExtResource("4_8rjmj")]
+position = Vector2(-42, -23)
+
+[node name="Prolagus" parent="." instance=ExtResource("5_sx5rp")]
+position = Vector2(308, -46)
+scale = Vector2(0.8, 0.8)
+
+[node name="Player2" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-97, -59)
+
+[node name="Player" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-97, -23)

@@ -14,6 +14,8 @@ var meatValue : int = 30
 var _name : String = "enemy"
 var _chasingSoundPlayer : AudioStreamPlayer2D
 var _fleeingSoundPlayer : AudioStreamPlayer2D
+@onready var _debugSizeLabel : Label= $SizeLabel
+@onready var _debugRegimLabel : Label = $DietLabel
 
 signal Died(animal : Animal)
 
@@ -146,3 +148,12 @@ func OnAreaEntered(area):
 		current_state = state.CHASING
 		relationToTarget = enums.Relationship.PREDATOR
 		target = consumable
+
+func DisplaySize():
+	if (_debugSizeLabel != null):
+		_debugSizeLabel.text = "Size "+str(current_size)
+
+func UpdateDiet(newDiet : enums.Diet):
+	diet = newDiet
+	if (_debugRegimLabel != null):
+		_debugRegimLabel.text = "Diet: "+str(newDiet)

@@ -5,8 +5,8 @@ func _ready():
 	meatValue = 5
 	current_size = enums.Size.MEDIUM
 	diet = enums.Diet.carnivore
-	defaultScale = scale
 	sprite = get_node("Sprite2D")
 	UpdateSize()
 	UpdateIdleFactor()
 	_chasingSoundPlayer = get_node("ChasingSoundPlayer")
+	DisplaySize()

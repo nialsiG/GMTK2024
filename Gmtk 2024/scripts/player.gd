@@ -18,7 +18,7 @@ var _eatingSoundPlayer : AudioStreamPlayer2D
 func _ready():
 	sprite = get_node("Sprite2D")
 	_eatingSoundPlayer = get_node("EatingSound")
-	current_size = enums.Size.SMALL
+	current_size = enums.Size.VERYSMALL
 	_invincibilityTimer = get_node("InvincibilityTimer")
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	
@@ -85,14 +85,24 @@ func GetSizeValue() -> int:
 	match(current_size):
 		enums.Size.MICRO:
 			sizeValue = 1
-		enums.Size.SMALL:
+		enums.Size.VERYSMALL:
 			sizeValue = 2
-		enums.Size.MEDIUM:
+		enums.Size.SMALL:
 			sizeValue = 3
-		enums.Size.LARGE:
+		enums.Size.MEDIUMSMALL:
 			sizeValue = 4
-		enums.Size.MEGA:
+		enums.Size.MEDIUM:
 			sizeValue = 5
+		enums.Size.MEDIUMLARGE:
+			sizeValue = 6
+		enums.Size.LARGE:
+			sizeValue = 7
+		enums.Size.VERYLARGE:
+			sizeValue = 8
+		enums.Size.MEGA:
+			sizeValue = 9
+		enums.Size.COLOSSAL:
+			sizeValue = 10
 		_:
 			return 0
 
@@ -153,7 +163,7 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 		evols.append(enums.evolution.DIET_HERBI)	
 	if (current_size == enums.Size.MICRO):
 		evols.append(enums.evolution.NANISM)
-	elif (current_size == enums.Size.MEGA):
+	elif (current_size == enums.Size.COLOSSAL):
 		evols.append(enums.evolution.GIGANTISM)
 		
 	return evols
@@ -172,7 +182,7 @@ func ApplyEvolution(evol : enums.evolution):
 				UpdateSize()
 				RaiseUpdateSize()
 		enums.evolution.GIGANTISM:
-			if(current_size != enums.Size.MEGA):
+			if(current_size != enums.Size.COLOSSAL):
 				current_size +=1
 				UpdateSize()
 				RaiseUpdateSize()
