@@ -3,6 +3,16 @@ class_name Player extends Animal
 var _invincibilityTimer : Timer
 var _isInvincible : bool
 
+var _isDashing : bool = false
+var _isDashInRecovery : bool = false
+var _dashDuration : float = 0
+var _dashMaxDuration : float = 0.2
+var _dashRecoveryTime : float = 5 
+var _dashSizeBonus : int = 1
+var _dashSpeedBonus : float = 4
+var _dashFoodCost : int = 5
+var _dashAxis : Vector2
+
 func _ready():
 	sprite = get_node("Sprite2D")
 	current_size = enums.Size.SMALL
@@ -25,32 +35,82 @@ func _process(delta):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = GetSizeValue(current_size)
-			var animalSizeValue= GetSizeValue(animal.current_size) 
+			var sizeValue = GetSizeValue()
+			var animalSizeValue= animal.GetSizeValue() 
 			if (sizeValue < animalSizeValue && !_isInvincible):
 				hit(animalSizeValue - sizeValue)
 			elif (sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
-				
+
+	ManageDashCoolDown(delta)
+
 	get_input_axis()
+		
+	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") && !(_isDashing || _isDashInRecovery)):
+		_isDashing = true
+		_dashAxis = axis
+		eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
+			
 	UpdateState(axis)
 	
-	#debug change size
-	if Input.is_action_just_pressed("size_up"):
-		increase_size()
-		RaiseUpdateSize()
-	if Input.is_action_just_pressed("size_down"):
-		decrease_size()
-		RaiseUpdateSize()
 	UpdateSprite()
 	move(delta)
+
+func ManageDashCoolDown(delta : float):
+	if(_isDashInRecovery):
+		_dashDuration += delta
+		if (_dashDuration > _dashRecoveryTime):
+			_isDashInRecovery = false
+			_dashDuration = 0
+	
+	if (_isDashing):
+		_dashDuration += delta
+		if (_dashDuration > _dashMaxDuration):
+			_isDashing = false
+			_isDashInRecovery = true
+
+func GetDashSpeed() -> float:
+	if (!_isDashing):
+		return 1
+	else:
+		return _dashSpeedBonus
+
+func GetSizeValue() -> int:
+	var sizeValue = 0;
+	match(current_size):
+		enums.Size.MICRO:
+			sizeValue = 1
+		enums.Size.SMALL:
+			sizeValue = 2
+		enums.Size.MEDIUM:
+			sizeValue = 3
+		enums.Size.LARGE:
+			sizeValue = 4
+		enums.Size.MEGA:
+			sizeValue = 5
+		_:
+			return 0
+
+	if (_isDashing):
+		sizeValue += _dashSizeBonus
+
+	return sizeValue
 
 func _physics_process(delta):
 	move_and_slide()
 
 func get_input_axis():
-	axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
-	axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+	if (_isDashing):
+		axis = _dashAxis
+	else :
+		axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+		axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+
+func apply_acceleration(amount):
+	velocity += amount * GetDashSpeed()
+	velocity = velocity.limit_length(current_speed * GetDashSpeed())
+	if (_isDashing):
+		print(velocity)
 
 func eat(amount: int, foodType : enums.FoodType):
 	Fed.emit(amount * GetFoodCoef(foodType))
@@ -63,7 +123,6 @@ func hit(amount : int):
 	else:
 		_isInvincible = true
 		_invincibilityTimer.start()
-
 
 func GetFoodCoef(foodType : enums.FoodType) -> float :
 	if (diet == enums.Diet.omni):

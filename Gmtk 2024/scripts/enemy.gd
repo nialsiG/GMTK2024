@@ -28,8 +28,8 @@ func _process(delta):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = GetSizeValue(current_size)
-			var animalSizeValue = GetSizeValue(animal.current_size)
+			var sizeValue = GetSizeValue()
+			var animalSizeValue = animal.GetSizeValue()
 			if (sizeValue < animalSizeValue && animal.diet != enums.Diet.vegetarian):
 				hit(animalSizeValue - sizeValue)
 			elif(sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
@@ -119,8 +119,8 @@ func OnDetectionAreaEntered(body):
 		return
 		
 	var detectedTarget = body as Animal
-	var sizeValue = GetSizeValue(current_size)
-	var targetSizeValue = GetSizeValue(detectedTarget.current_size)
+	var sizeValue = GetSizeValue()
+	var targetSizeValue = detectedTarget.GetSizeValue()
 
 	if (targetSizeValue > sizeValue && detectedTarget.diet != enums.Diet.vegetarian):
 		target = detectedTarget

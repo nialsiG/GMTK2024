@@ -1,6 +1,7 @@
 extends Node
 
 enum FoodType {
+	Consumed,
 	Plant,
 	Meat
 }

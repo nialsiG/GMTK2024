@@ -23,7 +23,6 @@ var sprite : AnimatedSprite2D
 var currentState = enums.State.Still
 var diet : enums.Diet = enums.Diet.omni
 
-
 func _ready():
 	defaultScale = scale
 	sprite = get_node("Sprite2D")
@@ -59,7 +58,7 @@ func UpdateSize():
 	current_speed = current_speed * speedCoeff
 
 func GetFoodValue() -> int:
-	return GetSizeValue(current_size) * 5
+	return GetSizeValue() * 5
 
 func RaiseHungerChange():
 	pass
@@ -167,8 +166,8 @@ func GetCollidingNonAnimals(collisionCount : int) -> Array[Node2D]:
 		
 	return array
 
-func GetSizeValue(value : enums.Size) -> int:
-	match(value):
+func GetSizeValue() -> int:
+	match(current_size):
 		enums.Size.MICRO:
 			return 1
 		enums.Size.SMALL:
