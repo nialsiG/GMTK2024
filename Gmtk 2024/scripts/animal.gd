@@ -14,6 +14,7 @@ var _isDead : bool
 @export var friction = 1200
 
 @onready var axis = Vector2.ZERO
+@onready var current_direction = enums.Direction.Down
 
 var target : Node2D
 var relationToTarget : enums.Relationship
@@ -25,6 +26,7 @@ var diet : enums.Diet = enums.Diet.omni
 func _ready():
 	sprite = get_node("Sprite2D")
 	UpdateSize()
+	UpdateSprite()
 
 func UpdateSize():	
 	match current_size:
@@ -130,24 +132,46 @@ func UpdateState(currentAxis : Vector2):
 		currentState = enums.State.Still
 	if (currentAxis.x < 0):
 		currentState = enums.State.Left
+		current_direction = enums.Direction.Left
 	if (currentAxis.x > 0):
 		currentState = enums.State.Right
+		current_direction = enums.Direction.Right
 	if (currentAxis.y > 0):
 		currentState = enums.State.Down
+		current_direction = enums.Direction.Down
 	if (currentAxis.y < 0):
 		currentState = enums.State.Up
+		current_direction = enums.Direction.Up
 
 func UpdateSprite():
 	if (currentState == enums.State.Still):
-		sprite.animation = "Still"
+		match current_direction:
+			enums.Direction.Down:
+				sprite.animation = "Idle_Down"
+				sprite.flip_h = false
+			enums.Direction.Left:
+				sprite.animation = "Idle_Right"
+				sprite.flip_h = true
+			enums.Direction.Right:
+				sprite.animation = "Idle_Right"
+				sprite.flip_h = false
+			enums.Direction.Up:
+				sprite.animation = "Idle_Down"
+				sprite.flip_h = false
+			_:
+				sprite.animation = "Still"
 	elif (currentState == enums.State.Down):
-		sprite.animation = "Down"
+		sprite.play("Down")
+		sprite.flip_h = false
 	elif (currentState == enums.State.Up):
-		sprite.animation = "Up"
+		sprite.play("Up")
+		sprite.flip_h = false
 	elif (currentState == enums.State.Left):
-		sprite.animation = "Left"
+		sprite.play("Right")
+		sprite.flip_h = true
 	elif (currentState == enums.State.Right):
-		sprite.animation = "Right"
+		sprite.play("Right")
+		sprite.flip_h = false
 
 func GetCollidingAnimals(collisionCount : int) -> Array[Animal]:
 	var array : Array[Animal] = []

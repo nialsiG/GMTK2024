@@ -7,7 +7,7 @@ var _isDashing : bool = false
 var _isDashInRecovery : bool = false
 var _dashDuration : float = 0
 var _dashMaxDuration : float = 0.2
-var _dashRecoveryTime : float = 10 
+var _dashRecoveryTime : float = 3
 var _dashSizeBonus : int = 1
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : int = 5
@@ -56,7 +56,6 @@ func _process(delta):
 		eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
 			
 	UpdateState(axis)
-	
 	UpdateSprite()
 	move(delta)
 
