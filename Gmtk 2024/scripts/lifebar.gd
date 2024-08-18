@@ -1,11 +1,6 @@
 extends HSlider
+class_name lifebar
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func UpdateHealth(currentHealth : int, maxHealth : int):
+	value = currentHealth
+	max_value = maxHealth	

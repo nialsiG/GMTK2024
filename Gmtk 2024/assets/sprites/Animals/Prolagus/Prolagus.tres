@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dkw3d75fcqhkx"]
+
+[ext_resource type="Texture2D" uid="uid://drqcg0l2jfwuo" path="res://assets/sprites/Animals/Prolagus/Prolagus_Down.png" id="1_i3qvh"]
+[ext_resource type="Texture2D" uid="uid://cgrmf0s61gayc" path="res://assets/sprites/Animals/Prolagus/Prolagus_left.png" id="2_cxdgp"]
+[ext_resource type="Texture2D" uid="uid://cdyer04hhk7dd" path="res://assets/sprites/Animals/Prolagus/Prolagus_Right.png" id="3_r3lgm"]
+[ext_resource type="Texture2D" uid="uid://ck3fj5c5tmwww" path="res://assets/sprites/Animals/Prolagus/Prolagus_Still.png" id="4_3w6cr"]
+[ext_resource type="Texture2D" uid="uid://cdmenn5rhrsrd" path="res://assets/sprites/Animals/Prolagus/Prolagus_Top.png" id="5_lumds"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i3qvh")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cxdgp")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r3lgm")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3w6cr")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lumds")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

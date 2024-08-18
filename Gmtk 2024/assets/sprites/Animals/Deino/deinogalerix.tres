@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://buigqoc3hk2n4"]
+
+[ext_resource type="Texture2D" uid="uid://dmw8cw432i4cx" path="res://assets/sprites/Animals/Deino/DeinogalerixDown.png" id="1_efkpf"]
+[ext_resource type="Texture2D" uid="uid://bpcq17vsoe386" path="res://assets/sprites/Animals/Deino/DeinogalerixLeft.png" id="2_gub3e"]
+[ext_resource type="Texture2D" uid="uid://be0c1l1eli1pd" path="res://assets/sprites/Animals/Deino/DeinogalerixRight.png" id="3_mjh8g"]
+[ext_resource type="Texture2D" uid="uid://cgwl2s455n0qv" path="res://assets/sprites/Animals/Deino/DeinogalerixStill.png" id="4_8iqjk"]
+[ext_resource type="Texture2D" uid="uid://dngitmjkvxvyh" path="res://assets/sprites/Animals/Deino/DeinogalerixUp.png" id="5_vie4u"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_efkpf")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gub3e")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mjh8g")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8iqjk")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vie4u")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

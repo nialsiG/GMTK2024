@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtbq6li2w18ix"]
+
+[ext_resource type="PackedScene" uid="uid://drb7ykpkbtr74" path="res://scenes/plant.tscn" id="1_k8cl7"]
+[ext_resource type="Script" path="res://scenes/Plants/plant_gland.gd" id="2_lexwq"]
+
+[node name="PlantGland" instance=ExtResource("1_k8cl7")]
+script = ExtResource("2_lexwq")
