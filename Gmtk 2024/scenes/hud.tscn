@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
 [ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
-[ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="4_g1m0o"]
-[ext_resource type="Texture2D" uid="uid://b6yl3g72eph12" path="res://assets/sprites/Other/Meat.png" id="5_dgnj4"]
+[ext_resource type="Texture2D" uid="uid://bosl0vtd1dqst" path="res://assets/sprites/Icons/IconVegetarian.png" id="4_3ukey"]
+[ext_resource type="Texture2D" uid="uid://dljljj4i3yhoc" path="res://assets/sprites/Icons/IconDietCarnivore.png" id="5_o4yav"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="6_tbnw7"]
 
 [sub_resource type="Gradient" id="Gradient_wctgb"]
@@ -64,7 +64,7 @@ offset_bottom = 137.0
 
 [node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
 layout_mode = 2
-texture = ExtResource("4_g1m0o")
+texture = ExtResource("4_3ukey")
 expand_mode = 2
 
 [node name="CarniIcon" type="PanelContainer" parent="."]
@@ -76,7 +76,7 @@ offset_bottom = 137.0
 
 [node name="TextureRect" type="TextureRect" parent="CarniIcon"]
 layout_mode = 2
-texture = ExtResource("5_dgnj4")
+texture = ExtResource("5_o4yav")
 expand_mode = 2
 
 [node name="SizeLabel" type="Label" parent="."]
