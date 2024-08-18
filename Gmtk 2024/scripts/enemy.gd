@@ -13,13 +13,18 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 var meatValue : int = 30
 var _name : String = "enemy"
 
-signal Died(meatValue : int, position : Vector2)
+signal Died(animal : Animal)
+
+var _lastCollidedItems : Array[Node2D] = []
+
+var _idleFactor : float = 1
 
 func _process(delta):
 	if(_isDead):
 		return
-		
-	var hitAnimals = GetCollidingAnimals()
+	
+	var numberOfCollisions = get_slide_collision_count()
+	var hitAnimals = GetCollidingAnimals(numberOfCollisions)
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
@@ -29,6 +34,10 @@ func _process(delta):
 				hit(animalSizeValue - sizeValue)
 			elif(sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
+	
+	var array = GetCollidingNonAnimals(numberOfCollisions)
+	var collidedNewItem = array.size() > _lastCollidedItems.size()
+	_lastCollidedItems = array
 	
 	if (target != null && current_state != state.CHASING && current_state != state.FLEEING):
 		if (relationToTarget == enums.Relationship.PREDATOR):
@@ -40,9 +49,7 @@ func _process(delta):
 		timer = 0
 
 	if (target == null && (current_state == state.CHASING || current_state == state.FLEEING)):
-		current_state = state.IDLE
-		print(_name+" started being idle")
-		timer = 0
+		stayIdle()
 
 	timer += delta
 	
@@ -54,14 +61,14 @@ func _process(delta):
 				start_moving()
 				print(_name+" started moving")
 		state.MOVING:
-			if timer > MAX_MOVE_TIME:
-				timer = 0
-				current_state = state.IDLE
-				axis = Vector2.ZERO
+			if timer > MAX_MOVE_TIME * _idleFactor || collidedNewItem:
+				stayIdle()
 		state.CHASING:
 			if timer > MAX_CHASING_TIME || target == null:
 				timer = 0
-				current_state = state.IDLE				
+				stayIdle()
+				target = null
+				relationToTarget = enums.Relationship.NONE
 			else:
 				axis = (target.position - position).normalized()
 		state.ATTACKING:
@@ -83,12 +90,21 @@ func _process(delta):
 	UpdateSprite()	
 	move(delta)
 
+func stayIdle():
+	timer = 0
+	UpdateIdleFactor()
+	current_state = state.IDLE
+	axis = Vector2.ZERO
+
+func UpdateIdleFactor():
+	_idleFactor = randf_range(0.5, 2)
+
 func hit(amount):
 	if (_isDead):
 		return
 	
 	_isDead = true
-	Died.emit(meatValue, position)
+	Died.emit(self)
 	queue_free()
 
 func _physics_process(delta):

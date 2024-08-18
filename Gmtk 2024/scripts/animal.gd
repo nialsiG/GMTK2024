@@ -23,6 +23,7 @@ var sprite : AnimatedSprite2D
 var currentState = enums.State.Still
 var diet : enums.Diet = enums.Diet.omni
 
+
 func _ready():
 	defaultScale = scale
 	sprite = get_node("Sprite2D")
@@ -56,6 +57,9 @@ func UpdateSize():
 			hungerCoeff = 1
 	scale = defaultScale * scaleCoeff
 	current_speed = current_speed * speedCoeff
+
+func GetFoodValue() -> int:
+	return GetSizeValue(current_size) * 5
 
 func RaiseHungerChange():
 	pass
@@ -141,14 +145,25 @@ func UpdateSprite():
 	elif (currentState == enums.State.Right):
 		sprite.animation = "Right"
 
-func GetCollidingAnimals() -> Array[Animal]:
+func GetCollidingAnimals(collisionCount : int) -> Array[Animal]:
 	var array : Array[Animal] = []
-	for i in get_slide_collision_count():
+		
+	for i in collisionCount:
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if (collider is Animal):
 			var animal = collider as Animal
 			array.append(animal)
+		
+	return array
+
+func GetCollidingNonAnimals(collisionCount : int) -> Array[Node2D]:
+	var array : Array[Node2D] = []
+	for i in collisionCount:
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if (!(collider is Animal)):
+			array.append(collider)
 		
 	return array
 

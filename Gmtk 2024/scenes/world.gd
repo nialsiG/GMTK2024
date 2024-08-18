@@ -29,6 +29,8 @@ var _cycleTimer : Timer
 var _totalFoodValue : int = 0
 var _totalMeatValue : int = 0
 var _totalPlantValue : int = 0
+var _safetySpawnRadius : float = 300
+var _currentAnimals : Array[Animal] = []
 
 func _ready():
 	_hud = get_node("CanvasLayer/hud")
@@ -88,7 +90,10 @@ func GeneratePlants(numberOfPlants):
 func GenerateAnimals(numberOfAnimals):
 	var animals = _animalGenerator.GenerateAnimals(numberOfAnimals, _width, _height, _margin)
 	for animal in animals:
+		if ((animal.position - _player.position).length() < _safetySpawnRadius):
+			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
 		animal.connect("Died", OnAnimalDied)
+		_currentAnimals.append(animal)
 		_dynamicElements.call_deferred("add_child", animal)
 
 func OnPlayerAte(amount : int):
@@ -111,14 +116,21 @@ func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 		_totalPlantValue += amount
 		GeneratePlants(1)
 
-func OnAnimalDied(foodValue : int, bodyPosition : Vector2):
+func OnAnimalDied(animal : Animal):
 	var meat = meatPackedScene.instantiate()
-	meat.foodValue = foodValue
-	meat.position = bodyPosition
+	meat.foodValue = animal.GetFoodValue()
+	meat.position = animal.position
 	meat.connect("Eaten", OnEatenConsumable)
+	var deadAnimalIndex = _getAnimalIndex(animal)
+	_currentAnimals.remove_at(deadAnimalIndex)
 	_dynamicElements.call_deferred("add_child",  meat)
 	GenerateAnimals(1)
 
+func _getAnimalIndex(animal : Animal):
+	for i in _currentAnimals.size():
+		if (_currentAnimals[i] == animal):
+			return i 
+	return -1
 func OnPlayerDeath():
 	var tree = get_tree()
 	tree.paused = true

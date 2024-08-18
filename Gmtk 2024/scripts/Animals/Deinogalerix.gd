@@ -8,3 +8,4 @@ func _ready():
 	defaultScale = scale
 	sprite = get_node("Sprite2D")
 	UpdateSize()
+	UpdateIdleFactor()

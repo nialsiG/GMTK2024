@@ -20,7 +20,8 @@ var currentHealth = 2;
 
 
 func _process(delta):
-	var hitAnimals = GetCollidingAnimals()
+	var collisionCount = get_slide_collision_count()
+	var hitAnimals = GetCollidingAnimals(collisionCount)
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
@@ -55,7 +56,8 @@ func eat(amount: int, foodType : enums.FoodType):
 	Fed.emit(amount * GetFoodCoef(foodType))
 
 func hit(amount : int):
-	AddHealth(-amount)
+	if (!_isInvincible):	
+		AddHealth(-amount)	
 	if (currentHealth <= 0):
 		Died.emit()
 	else:
@@ -121,5 +123,6 @@ func OnIFrameTimeOut():
 	_isInvincible = false
 
 func AddHealth(health : int):
+	print("Lost "+str(health)+" HP")
 	currentHealth = clamp(currentHealth + health, 0, maxHealth)
 	UpdatedHealth.emit(currentHealth, maxHealth)
