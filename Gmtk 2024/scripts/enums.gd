@@ -15,3 +15,5 @@ enum Relationship {NONE, PREY, PREDATOR }
 enum State {Still, Up, Down, Left, Right} 
 
 enum Diet { vegetarian, carnivore, omni}
+
+enum Direction { Up, Down, Left, Right }
