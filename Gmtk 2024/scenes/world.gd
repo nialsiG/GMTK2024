@@ -83,7 +83,8 @@ func StartGame():
 	_evolutionMenu.hide()
 	_pauseMenu.UnPause()
 	_cycleTimer.start()	
-	
+	get_tree().paused = false
+
 func GeneratePlants(numberOfPlants):
 	var plants = _plantGenerator.GeneratePlants(numberOfPlants, _width, _height, _margin)
 	for newPlant in plants:
