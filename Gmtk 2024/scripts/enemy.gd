@@ -6,7 +6,7 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 @onready var timer = 0
 
 @export var MAX_IDLE_TIME: float = 3
-@export var MAX_MOVE_TIME: float = 5
+@export var MAX_MOVE_TIME: float = 3
 @export var MAX_FLEEING_TIME: float = 8
 @export var MAX_CHASING_TIME: float = 6
 
@@ -35,7 +35,7 @@ func _process(delta):
 			var sizeValue = GetSizeValue()
 			var animalSizeValue = animal.GetSizeValue()
 			if (sizeValue < animalSizeValue && animal.diet != enums.Diet.vegetarian):
-				hit(animalSizeValue - sizeValue)
+				hit(clamp(1, (animalSizeValue - sizeValue) /2, sizeValue))
 			elif(sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	
@@ -140,10 +140,10 @@ func OnDetectionAreaEntered(body):
 		
 	
 func OnAreaEntered(area):
-	if (!(area.get_parent() is Consumable)):
+	if (!(area is Consumable)):
 		return
 		
-	var consumable = area.get_parent() as Consumable
+	var consumable = area as Consumable
 	if(diet != consumable.incompatibleDiet):
 		current_state = state.CHASING
 		relationToTarget = enums.Relationship.PREDATOR

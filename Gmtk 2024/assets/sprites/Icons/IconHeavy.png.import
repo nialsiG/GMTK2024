@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3akguwlhwel2"
-path="res://.godot/imported/Obelix_hamster.png-448e7726e832f0a4526bbb43a14bbf7e.ctex"
+uid="uid://dponsuo470dto"
+path="res://.godot/imported/IconHeavy.png-d20f5f66f5a0918f41917039c6304c36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Other/Obelix_hamster.png"
-dest_files=["res://.godot/imported/Obelix_hamster.png-448e7726e832f0a4526bbb43a14bbf7e.ctex"]
+source_file="res://assets/sprites/Icons/IconHeavy.png"
+dest_files=["res://.godot/imported/IconHeavy.png-d20f5f66f5a0918f41917039c6304c36.ctex"]
 
 [params]
 

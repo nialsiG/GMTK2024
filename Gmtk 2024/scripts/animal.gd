@@ -3,10 +3,13 @@ class_name Animal extends CharacterBody2D
 const enums = preload("res://scripts/enums.gd")
 
 var defaultSpeed : float = 500
+var _max_speed : float = 500
 var scaleCoeff : float = 1.0
 var speedCoeff : float = 1.0
 var hungerCoeff : float = 1.0
 var _isDead : bool
+
+const _speedEvolCoeff : float = 1.2
 
 @export var current_size = enums.Size.MEDIUM
 @export var current_speed = defaultSpeed
@@ -28,16 +31,16 @@ func _ready():
 	UpdateSize()
 	UpdateSprite()
 
-func UpdateSize():	
+func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
 			scaleCoeff = 0.2
 			hungerCoeff = 0.5
 		enums.Size.VERYSMALL:
-			scaleCoeff = 0.4
+			scaleCoeff = 0.3
 			hungerCoeff = 0.6
 		enums.Size.SMALL:
-			scaleCoeff = 0.6
+			scaleCoeff = 0.5
 			hungerCoeff = 0.7
 		enums.Size.MEDIUMSMALL:
 			scaleCoeff = 0.8
@@ -52,13 +55,13 @@ func UpdateSize():
 			scaleCoeff = 1.5
 			hungerCoeff = 1.4
 		enums.Size.VERYLARGE:
-			scaleCoeff = 1.9
-			hungerCoeff = 1.6			
+			scaleCoeff = 1.7
+			hungerCoeff = 1.6
 		enums.Size.MEGA:
-			scaleCoeff = 2.4
+			scaleCoeff = 2.2
 			hungerCoeff = 1.8
 		enums.Size.COLOSSAL:
-			scaleCoeff = 2.5
+			scaleCoeff = 2.8
 			hungerCoeff = 2.2
 		_:
 			scaleCoeff = 1
@@ -93,7 +96,7 @@ func apply_friction(amount):
 
 func apply_acceleration(amount):
 	velocity += amount
-	velocity = velocity.limit_length(current_speed)
+	velocity = velocity.limit_length(_max_speed)
 
 func ApplyEvolution(evol : enums.evolution):
 	match(evol):
@@ -113,6 +116,11 @@ func ApplyEvolution(evol : enums.evolution):
 				UpdateSize()
 		enums.evolution.COLOR:
 			UpdateColorRandomly()
+		enums.evolution.LIGHTNESS:
+			_max_speed *= _speedEvolCoeff
+		enums.evolution.HEAVYNESS:
+			_max_speed /= _speedEvolCoeff
+
 
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet

@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=9 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_sr5fs"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_jex88"]
+[ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="5_qj008"]
+[ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
+font = ExtResource("5_qj008")
+font_size = 50
+font_color = Color(0.301961, 0.0941176, 0.109804, 1)
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -26,6 +34,14 @@ offset_right = 399.0
 offset_bottom = 713.0
 texture = ExtResource("2_ago1e")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(990, 972)
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("6_2iajs")
+animation = &"Right"
+autoplay = "Right"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,6 +62,12 @@ text = "Gargano Island"
 label_settings = ExtResource("2_sr5fs")
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "7.000.000 B.C"
+label_settings = SubResource("LabelSettings_6q3vm")
+horizontal_alignment = 1
+
 [node name="start_button" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit_button2")
@@ -57,6 +79,33 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_jex88")
 text = "Quit  game"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+offset_left = 224.0
+offset_top = 155.0
+offset_right = 424.0
+offset_bottom = 455.0
+texture = ExtResource("2_ago1e")
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer"]
+offset_left = 1668.0
+offset_top = 412.0
+offset_right = 1868.0
+offset_bottom = 712.0
+texture = ExtResource("2_ago1e")
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+offset_left = 1574.0
+offset_top = 170.0
+offset_right = 1774.0
+offset_bottom = 470.0
+texture = ExtResource("2_ago1e")
+
+[node name="StartGoosePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wla5a")
+volume_db = 23.998
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/quit_button2" to="." method="_on_quit_button_2_pressed"]

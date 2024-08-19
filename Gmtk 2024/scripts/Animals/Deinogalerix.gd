@@ -9,3 +9,4 @@ func _ready():
 	UpdateSize()
 	UpdateIdleFactor()
 	DisplaySize()
+	_fleeingSoundPlayer = get_node("ChasingSoundPlayer")

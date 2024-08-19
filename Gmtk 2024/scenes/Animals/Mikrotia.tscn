@@ -6,13 +6,14 @@
 [ext_resource type="AudioStream" uid="uid://dn78ts73r2lw" path="res://assets/Sounds/mouse-2.ogg" id="4_bcon0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nilg"]
-radius = 600.0
+radius = 300.0
 
-[node name="deinogalerix" instance=ExtResource("1_qeo52")]
+[node name="deinogalerix3" instance=ExtResource("1_qeo52")]
 script = ExtResource("2_jqakm")
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_f4rfx")
+animation = &"Down"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_5nilg")

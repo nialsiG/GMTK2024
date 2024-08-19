@@ -144,11 +144,12 @@ func _getAnimalIndex(animal : Animal):
 		if (_currentAnimals[i] == animal):
 			return i 
 	return -1
+	
 func OnPlayerDeath():
 	var tree = get_tree()
 	tree.paused = true
 	_hud.DisplayDeath(true)
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(4).timeout
 	_hud.DisplayDeath(false)
 	tree.paused = false
 	tree.change_scene_to_file(start_menu)
