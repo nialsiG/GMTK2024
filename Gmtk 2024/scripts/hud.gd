@@ -9,16 +9,20 @@ var _iconCarni : PanelContainer
 var _iconHerbi : PanelContainer
 var _sizeLabel : Label
 var _deathContainer : PanelContainer
+var _death_label : Label
+var _score_label : Label
 var _dashOverlay : TextureRect
+var _score : int = 0
 
 func _ready():
 	_hungerbar = get_node("hungerbar")
-	
 	_lifebar = get_node("lifebar")
 	_iconCarni = get_node("CarniIcon")
 	_iconHerbi = get_node("HerbiIcon")
 	_sizeLabel = get_node("SizeLabel")
 	_deathContainer = get_node("DeathContainer")
+	_death_label = get_node("DeathContainer/DeathLabel")
+	_score_label = get_node("Score/ScoreLabel")
 	_dashOverlay = get_node("PanelContainer/DashOverlay")
 
 func _process(delta):
@@ -76,7 +80,7 @@ func GetSizeLabel(size : enums.Size):
 			return "Colossal"
 		_:
 			return "klmdsqklmdfds"
-			
+
 func Pause(pause : bool):
 	_hungerbar.Pause(pause)
 	if (pause):
@@ -93,3 +97,12 @@ func DisplayDeath(display : bool):
 func UpdateDeathModulate(value : float):
 	_deathContainer.modulate.a = value
 	_deathContainer.self_modulate.a = value
+
+func UpdateScore(amount):
+	_score += amount
+	var message = ""
+	if _score < 100:
+		message += "0"
+	if _score < 10:
+		message += "0"
+	_score_label.text = message + str(_score)

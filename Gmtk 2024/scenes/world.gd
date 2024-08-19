@@ -118,10 +118,15 @@ func OnPlayerUpdatedDashCoolDown(isAvailable : bool):
 
 func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_totalFoodValue += amount
+	_hud.UpdateScore(amount * 3)
 	if (foodType == enums.FoodType.Meat):
 		_totalMeatValue += amount
+		if _player.diet == enums.Diet.carnivore:
+			_hud.UpdateScore(amount * 2)
 	else:
 		_totalPlantValue += amount
+		if _player.diet == enums.Diet.vegetarian:
+			_hud.UpdateScore(amount * 2)
 		GeneratePlants(1)
 
 func OnAnimalDied(animal : Animal):
@@ -190,6 +195,7 @@ func OnCycleTimeOut():
 func OnEvolutionChosen(evol : enums.evolution):
 	_pickedEvolutions.append(evol)
 	_player.ApplyEvolution(evol)
+	_hud.UpdateScore(100 * _cycle)
 	Unpause()
 	_cycle+=1
 	_cycleTimer.start()
