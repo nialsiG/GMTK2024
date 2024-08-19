@@ -1,70 +1,68 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://drp6wlx62prm8"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://drp6wlx62prm8"]
 
-[ext_resource type="Texture2D" uid="uid://dxp25d4gwt8sp" path="res://assets/sprites/Animals/garganomis/Garganomis_down.png" id="1_fnnju"]
-[ext_resource type="Texture2D" uid="uid://bury58bocfen3" path="res://assets/sprites/Animals/garganomis/Garganomis_left.png" id="2_2ok38"]
-[ext_resource type="Texture2D" uid="uid://x8ew0ichucqw" path="res://assets/sprites/Animals/garganomis/Garganomis_Right.png" id="3_s00lh"]
-[ext_resource type="Texture2D" uid="uid://b36jc0pm0643m" path="res://assets/sprites/Animals/garganomis/Garganomis_still.png" id="4_wc31d"]
-[ext_resource type="Texture2D" uid="uid://ctcyv5lno2bfj" path="res://assets/sprites/Animals/garganomis/Garganomis_Up.png" id="5_ur5hj"]
+[ext_resource type="Texture2D" uid="uid://c2eyyr6x0ii60" path="res://assets/sprites/Animals/garganomis/Garganornis_down_01.png" id="1_q13ob"]
+[ext_resource type="Texture2D" uid="uid://c4xj5cg5tkktx" path="res://assets/sprites/Animals/garganomis/Garganornis_down_02.png" id="2_fuaa7"]
+[ext_resource type="Texture2D" uid="uid://cvdq07mgsvehe" path="res://assets/sprites/Animals/garganomis/Garganornis_right_01.png" id="3_yqaoy"]
+[ext_resource type="Texture2D" uid="uid://bevnif0qarnte" path="res://assets/sprites/Animals/garganomis/Garganornis_up_01.png" id="4_2f4ng"]
+[ext_resource type="Texture2D" uid="uid://caucxobavns3f" path="res://assets/sprites/Animals/garganomis/Garganornis_right_02.png" id="5_e0b4d"]
+[ext_resource type="Texture2D" uid="uid://kgqu40aaua72" path="res://assets/sprites/Animals/garganomis/Garganornis_up_02.png" id="6_pnkri"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_fnnju")
+"texture": ExtResource("1_q13ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fuaa7")
 }],
 "loop": true,
 "name": &"Down",
-"speed": 5.0
+"speed": 2.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q13ob")
+}],
 "loop": true,
 "name": &"Idle_Down",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"Idle_Left",
-"speed": 5.0
-}, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yqaoy")
+}],
 "loop": true,
 "name": &"Idle_Right",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2f4ng")
+}],
 "loop": true,
 "name": &"Idle_Up",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2ok38")
-}],
-"loop": true,
-"name": &"Left",
-"speed": 5.0
+"texture": ExtResource("3_yqaoy")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_s00lh")
+"texture": ExtResource("5_e0b4d")
 }],
 "loop": true,
 "name": &"Right",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_wc31d")
-}],
-"loop": true,
-"name": &"Still",
-"speed": 5.0
+"texture": ExtResource("4_2f4ng")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_ur5hj")
+"texture": ExtResource("6_pnkri")
 }],
 "loop": true,
 "name": &"Up",
-"speed": 5.0
+"speed": 2.0
 }]

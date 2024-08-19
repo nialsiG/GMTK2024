@@ -2,15 +2,15 @@ extends Node
 class_name AnimalGenerator
 
 var deinoPackedScene = preload("res://scenes/Animals/deinogalerix.tscn")
-var garganomisPackedScene = preload("res://scenes/Animals/Garganomis.tscn")
+var garganornisPackedScene = preload("res://scenes/Animals/Garganomis.tscn")
 var mikrotiaPackedScene = preload("res://scenes/Animals/Mikrotia.tscn")
 var prolagusPackedScene = preload("res://scenes/Animals/Prolagus.tscn")
 var tytoPackedScene = preload("res://scenes/Animals/Tyto.tscn")
 
 var animalsPSs : Array[PackedScene] = [deinoPackedScene,
 deinoPackedScene,
-prolagusPackedScene,
-garganomisPackedScene,
+#prolagusPackedScene,
+garganornisPackedScene,
 mikrotiaPackedScene,
 mikrotiaPackedScene,
 tytoPackedScene]

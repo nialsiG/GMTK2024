@@ -1,52 +1,46 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dd3wjt3p1xdvk"]
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://dd3wjt3p1xdvk"]
 
-[ext_resource type="Texture2D" uid="uid://b53vknlokr6mp" path="res://assets/sprites/Animals/Tyto/Tyto_Down.png" id="1_hebhh"]
-[ext_resource type="Texture2D" uid="uid://eu3jxr2eeqfd" path="res://assets/sprites/Animals/Tyto/Tyto_Left.png" id="2_nfcdp"]
-[ext_resource type="Texture2D" uid="uid://bcvfepsxu40j0" path="res://assets/sprites/Animals/Tyto/Tyto_Right.png" id="3_k3cw2"]
-[ext_resource type="Texture2D" uid="uid://b56sc4ul870f0" path="res://assets/sprites/Animals/Tyto/Tyto_Still.png" id="4_owh5v"]
-[ext_resource type="Texture2D" uid="uid://mu85hord07dl" path="res://assets/sprites/Animals/Tyto/Tyto_Up.png" id="5_2wbni"]
+[ext_resource type="Texture2D" uid="uid://ce1oenlfr8aid" path="res://assets/sprites/Animals/Tyto/Tyto_moving_down.png" id="1_uhl6s"]
+[ext_resource type="Texture2D" uid="uid://cxfed8nodc2y5" path="res://assets/sprites/Animals/Tyto/Tyto_moving_right.png" id="2_s6o63"]
+[ext_resource type="Texture2D" uid="uid://cho8xlrkd13t6" path="res://assets/sprites/Animals/Tyto/Tyto_moving_up.png" id="3_4o0mm"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_hebhh")
+"texture": ExtResource("1_uhl6s")
 }],
 "loop": true,
 "name": &"Down",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uhl6s")
+}],
 "loop": true,
 "name": &"Idle_Down",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"Idle_Left",
-"speed": 5.0
-}, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s6o63")
+}],
 "loop": true,
 "name": &"Idle_Right",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4o0mm")
+}],
 "loop": true,
 "name": &"Idle_Up",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_nfcdp")
-}],
-"loop": true,
-"name": &"Left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_k3cw2")
+"texture": ExtResource("2_s6o63")
 }],
 "loop": true,
 "name": &"Right",
@@ -54,15 +48,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_owh5v")
-}],
-"loop": true,
-"name": &"Still",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_2wbni")
+"texture": ExtResource("3_4o0mm")
 }],
 "loop": true,
 "name": &"Up",
