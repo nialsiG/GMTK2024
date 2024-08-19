@@ -133,6 +133,7 @@ func OnAnimalDied(animal : Animal):
 	var meat = meatPackedScene.instantiate()
 	meat.foodValue = animal.GetFoodValue()
 	meat.position = animal.position
+	meat.scale = Vector2.ONE * animal.GetFoodValue() / 25
 	meat.connect("Eaten", OnEatenConsumable)
 	var deadAnimalIndex = _getAnimalIndex(animal)
 	_currentAnimals.remove_at(deadAnimalIndex)

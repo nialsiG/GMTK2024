@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=7 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8cnlt"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
+[ext_resource type="AudioStream" uid="uid://cn6xb57qsdjot" path="res://assets/Sounds/DeathCry.mp3" id="5_du8i2"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
@@ -38,3 +39,7 @@ stream = ExtResource("7_7nei2")
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_adu8u")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_du8i2")
