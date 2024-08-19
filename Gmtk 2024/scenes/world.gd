@@ -152,6 +152,7 @@ func OnPlayerDeath():
 	if !_is_player_dead:
 		_is_player_dead = true
 		var tree = get_tree()
+		tree.paused = true
 		_hud.DisplayDeath(true)
 		await get_tree().create_timer(2.5).timeout
 		_hud.DisplayDeath(false)
