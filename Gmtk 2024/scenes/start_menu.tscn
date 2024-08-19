@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=12 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="5_qj008"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
+[ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="7_6ftc6"]
+[ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="8_bqtse"]
+[ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="9_o84i5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
@@ -35,8 +38,7 @@ offset_bottom = 713.0
 texture = ExtResource("2_ago1e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(990, 972)
+position = Vector2(950, 977)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("6_2iajs")
 animation = &"Right"
@@ -102,6 +104,36 @@ offset_top = 170.0
 offset_right = 1774.0
 offset_bottom = 470.0
 texture = ExtResource("2_ago1e")
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer"]
+offset_left = 533.0
+offset_top = 822.0
+offset_right = 775.0
+offset_bottom = 1020.0
+texture = ExtResource("7_6ftc6")
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer"]
+offset_left = 1000.0
+offset_top = 900.0
+offset_right = 1238.0
+offset_bottom = 970.0
+texture = ExtResource("8_bqtse")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 794.0
+offset_top = 899.0
+offset_right = 913.0
+offset_bottom = 961.0
+text = "Move"
+label_settings = ExtResource("9_o84i5")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 1256.0
+offset_top = 906.0
+offset_right = 1374.0
+offset_bottom = 968.0
+text = "Dash"
+label_settings = ExtResource("9_o84i5")
 
 [node name="StartGoosePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_wla5a")
