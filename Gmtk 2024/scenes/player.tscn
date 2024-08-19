@@ -1,119 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=5 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8cnlt"]
-[ext_resource type="Texture2D" uid="uid://dnmcfbn4lx22d" path="res://assets/sprites/Player/hamster_moving_down_01.png" id="3_bixbw"]
-[ext_resource type="Texture2D" uid="uid://bibprhb4qvxfn" path="res://assets/sprites/Player/hamster_moving_down_02.png" id="4_lhf52"]
-[ext_resource type="Texture2D" uid="uid://bpdhoxb4rmy08" path="res://assets/sprites/Player/hamster_idle_side_01.png" id="4_xvqug"]
-[ext_resource type="Texture2D" uid="uid://b1mi803js6jeg" path="res://assets/sprites/Player/hamster_side_moving_01.png" id="5_1unu8"]
-[ext_resource type="Texture2D" uid="uid://v6a3tt27udgp" path="res://assets/sprites/Player/hamster_idle_back_01.png" id="5_gx3ou"]
-[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="5_hf8so"]
-[ext_resource type="Texture2D" uid="uid://4kere5di28cw" path="res://assets/sprites/Player/hamster_moving_down_03.png" id="5_m54vq"]
-[ext_resource type="Texture2D" uid="uid://cowvmcpscyrea" path="res://assets/sprites/Player/hamster_moving_down_04.png" id="6_jjrqj"]
-[ext_resource type="Texture2D" uid="uid://ctqpc1x4kj4sr" path="res://assets/sprites/Player/hamster_side_moving_02.png" id="6_v41hh"]
-[ext_resource type="Texture2D" uid="uid://yhby1l8wmpvj" path="res://assets/sprites/Player/hamster_moving_down_05.png" id="7_5yfas"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
-[ext_resource type="Texture2D" uid="uid://bcxbtw1h8ic5x" path="res://assets/sprites/Player/hamster_side_moving_03.png" id="7_gavtk"]
-[ext_resource type="Texture2D" uid="uid://1wx722su63uy" path="res://assets/sprites/Player/hamster_moving_down_06.png" id="8_ke4c4"]
-[ext_resource type="Texture2D" uid="uid://dplakeg7qs6u2" path="res://assets/sprites/Player/hamster_side_moving_04.png" id="8_nabgh"]
-[ext_resource type="Texture2D" uid="uid://djdnvxqrgco4k" path="res://assets/sprites/Player/hamster_side_moving_05.png" id="9_6j7iy"]
-[ext_resource type="Texture2D" uid="uid://cr8yodg8smmiu" path="res://assets/sprites/Player/hamster_moving_down_07.png" id="9_sj8f7"]
-[ext_resource type="Texture2D" uid="uid://lufdcqd0nar" path="res://assets/sprites/Player/hamster_moving_down_08.png" id="10_414md"]
-[ext_resource type="Texture2D" uid="uid://ctkmr8xdb6enf" path="res://assets/sprites/Player/hamster_side_moving_06.png" id="10_tyavp"]
-[ext_resource type="Texture2D" uid="uid://dglap0318bct2" path="res://assets/sprites/Player/hamster_side_moving_07.png" id="11_isr48"]
-[ext_resource type="Texture2D" uid="uid://c15a3v6ute750" path="res://assets/sprites/Player/hamster_side_moving_08.png" id="12_uk50g"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_20df6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_bixbw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_lhf52")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_m54vq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_jjrqj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_5yfas")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_ke4c4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_sj8f7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_414md")
-}],
-"loop": true,
-"name": &"Down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_hf8so")
-}],
-"loop": true,
-"name": &"Idle_Down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_xvqug")
-}],
-"loop": true,
-"name": &"Idle_Right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_gx3ou")
-}],
-"loop": true,
-"name": &"Idle_Up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_1unu8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_v41hh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_gavtk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_nabgh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_6j7iy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_tyavp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_isr48")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_uk50g")
-}],
-"loop": true,
-"name": &"Right",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_gx3ou")
-}],
-"loop": true,
-"name": &"Up",
-"speed": 10.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
@@ -126,8 +15,8 @@ script = ExtResource("1_8cnlt")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-9.53674e-07, -1.81901)
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_20df6")
-animation = &"Up"
+sprite_frames = ExtResource("2_bg7yk")
+animation = &"Down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 51.4286)

@@ -9,11 +9,11 @@ var _enemyEvolutions : Array[EvolutionChoice]
 
 func _ready():
 	var nanism = CreateChoice("Nanism", 
-	"You become smaller. Your food needs are reduced and so is your speed. More animal are predators to you.",
+	"You become smaller. Your food needs are reduced but more animals are predators to you.",
 	 enums.evolution.NANISM, "res://assets/sprites/Icons/IconNanism.png")
 	
 	var gigantism = CreateChoice("Gigantism",
-	"You become bigger. Your food needs are increased and so is your speed. You can predate more animals.",
+	"You become bigger. Your food needs are increased and you can predate more animals.",
 	enums.evolution.GIGANTISM, "res://assets/sprites/Icons/IconGigantism.png")
 	
 	var dietCarni = CreateChoice("Carnivore",
@@ -46,11 +46,11 @@ func _ready():
 
 	var lightness = CreateChoice("Lightness",
 	"Your frame is lighter, you become faster",
-	enums.evolution.LIGHTNESS, "res://assets/sprites/Icons/IconEfficiency.png")
+	enums.evolution.LIGHTNESS, "res://assets/sprites/Icons/IconLightness.png")
 
 	var heavyness = CreateChoice("heavyness",
 	"Your frame becomes heavier, you become slower",
-	enums.evolution.HEAVYNESS, "res://assets/sprites/Icons/IconEfficiency.png")
+	enums.evolution.HEAVYNESS, "res://assets/sprites/Icons/IconHeavy.png")
 
 	var color = CreateChoice("Coat",
 	"Your coat evolved, maybe it was not the best color, but it is who you are now",
@@ -68,6 +68,8 @@ func _ready():
 	_allEvolutions.append(efficiency)
 	_allEvolutions.append(agility)
 	_allEvolutions.append(color)
+	_allEvolutions.append(heavyness)
+	_allEvolutions.append(lightness)
 	
 	_enemyEvolutions.append(nanism)
 	_enemyEvolutions.append(gigantism)
@@ -78,6 +80,8 @@ func _ready():
 	_enemyEvolutions.append(dietCarni)
 	_enemyEvolutions.append(color)
 	_enemyEvolutions.append(color)
+	_enemyEvolutions.append(heavyness)
+	_enemyEvolutions.append(lightness)
 
 func CreateChoice(evolName : String, description : String, evol : enums.evolution, path : String) -> EvolutionChoice:
 	var evolChoice = evolutionChoiceScript.new()

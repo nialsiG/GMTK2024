@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nywd"]
 radius = 400.0
 
-[node name="deinogalerix" instance=ExtResource("1_janl0")]
+[node name="deinogalerix4" instance=ExtResource("1_janl0")]
 scale = Vector2(1.2, 1.2)
 collision_layer = 2
 collision_mask = 2
@@ -16,7 +16,7 @@ script = ExtResource("2_ixd7v")
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("2_88tv6")
-animation = &"Down"
+animation = &"Idle_Up"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_0nywd")

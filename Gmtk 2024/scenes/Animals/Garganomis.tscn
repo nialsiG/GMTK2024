@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://di8qff821ygdf"]
+[gd_scene load_steps=8 format=3 uid="uid://di8qff821ygdf"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_p3d56"]
 [ext_resource type="Script" path="res://scripts/Animals/Garganomis.gd" id="2_h5ikr"]
 [ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="3_06okc"]
+[ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="4_byftv"]
+[ext_resource type="AudioStream" uid="uid://bqefseyajckvv" path="res://assets/Sounds/fleeing_goose.mp3" id="5_rmcm4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ke5"]
 radius = 25.0
@@ -11,7 +13,7 @@ height = 70.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxdnw"]
 radius = 120.0
 
-[node name="deinogalerix" instance=ExtResource("1_p3d56")]
+[node name="deinogalerix2" instance=ExtResource("1_p3d56")]
 script = ExtResource("2_h5ikr")
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -19,7 +21,16 @@ shape = SubResource("CapsuleShape2D_g3ke5")
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_06okc")
-animation = &"Up"
+animation = &"Idle_Up"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_xxdnw")
+
+[node name="ChasingSoundPlayer" parent="." index="3"]
+stream = ExtResource("4_byftv")
+volume_db = 24.0
+max_distance = 1000.0
+
+[node name="FleeingSoundPlayer" parent="." index="4"]
+stream = ExtResource("5_rmcm4")
+volume_db = 24.0
