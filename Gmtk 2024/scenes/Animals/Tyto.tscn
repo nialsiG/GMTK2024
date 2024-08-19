@@ -16,7 +16,7 @@ script = ExtResource("2_ixd7v")
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("2_88tv6")
-animation = &"Down"
+animation = &"Idle_Up"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_0nywd")
