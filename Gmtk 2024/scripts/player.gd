@@ -17,11 +17,13 @@ var blink_limit : float = 0.1
 var  _speedEvolCoef : float = 1.2
 var _eatingSoundPlayer : AudioStreamPlayer2D
 var _dashSoundPlayer : AudioStreamPlayer
+var _deathSoundPlayer : AudioStreamPlayer
 
 func _ready():
 	sprite = get_node("Sprite2D")
 	_eatingSoundPlayer = get_node("EatingSound")
 	_dashSoundPlayer = get_node("DashSound")
+	_deathSoundPlayer = get_node("DeathSound")
 	current_size = enums.Size.VERYSMALL
 	_invincibilityTimer = get_node("InvincibilityTimer")
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
@@ -142,6 +144,7 @@ func hit(amount : int):
 	if (!_isInvincible):
 		AddHealth(-amount)
 		if (currentHealth <= 0):
+			_deathSoundPlayer.play()
 			Died.emit()
 		else:
 			_isInvincible = true

@@ -31,5 +31,8 @@ func eat(amount):
 		current_hunger = max_value
 	value = current_hunger
 
+func Update(factor):
+	HUNGER_FACTOR = default_factor * factor
+
 func Pause(pause : bool):
 	_isPaused = pause

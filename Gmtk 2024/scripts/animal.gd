@@ -35,34 +35,34 @@ func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
 			scaleCoeff = 0.2
-			hungerCoeff = 0.5
+			hungerCoeff = 0.7
 		enums.Size.VERYSMALL:
 			scaleCoeff = 0.3
-			hungerCoeff = 0.6
+			hungerCoeff = 0.75
 		enums.Size.SMALL:
 			scaleCoeff = 0.5
-			hungerCoeff = 0.7
+			hungerCoeff = 0.8
 		enums.Size.MEDIUMSMALL:
 			scaleCoeff = 0.8
-			hungerCoeff = 0.8
+			hungerCoeff = 0.9
 		enums.Size.MEDIUM:
 			scaleCoeff = 1
 			hungerCoeff = 1
 		enums.Size.MEDIUMLARGE:
 			scaleCoeff = 1.2
-			hungerCoeff = 1.2
+			hungerCoeff = 4
 		enums.Size.LARGE:
 			scaleCoeff = 1.5
-			hungerCoeff = 1.4
+			hungerCoeff = 8
 		enums.Size.VERYLARGE:
 			scaleCoeff = 1.7
-			hungerCoeff = 1.6
+			hungerCoeff = 12
 		enums.Size.MEGA:
 			scaleCoeff = 2.2
-			hungerCoeff = 1.8
+			hungerCoeff = 18
 		enums.Size.COLOSSAL:
 			scaleCoeff = 2.8
-			hungerCoeff = 2.2
+			hungerCoeff = 22
 		_:
 			scaleCoeff = 1
 			hungerCoeff = 1

@@ -16,5 +16,6 @@ func OnBodyEntered(body):
 	var animal = body as Animal
 	if (animal.diet != incompatibleDiet):
 		animal.eat(foodValue, foodType)
-		Eaten.emit(foodValue, foodType)
+		if (animal is Player):
+			Eaten.emit(foodValue, foodType)
 		queue_free()	
