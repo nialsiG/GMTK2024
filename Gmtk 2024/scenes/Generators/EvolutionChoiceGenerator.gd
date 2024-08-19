@@ -44,7 +44,15 @@ func _ready():
 	"Your movements are more efficient, your dash cost less food",
 	enums.evolution.EFFICIENCY, "res://assets/sprites/Icons/IconEfficiency.png")
 
-	var color = CreateChoice("COAT",
+	var lightness = CreateChoice("Lightness",
+	"Your frame is lighter, you become faster",
+	enums.evolution.LIGHTNESS, "res://assets/sprites/Icons/IconEfficiency.png")
+
+	var heavyness = CreateChoice("heavyness",
+	"Your frame becomes heavier, you become slower",
+	enums.evolution.HEAVYNESS, "res://assets/sprites/Icons/IconEfficiency.png")
+
+	var color = CreateChoice("Coat",
 	"Your coat evolved, maybe it was not the best color, but it is who you are now",
 	enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
 

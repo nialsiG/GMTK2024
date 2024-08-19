@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://eywd4ny71022"]
+[gd_scene load_steps=10 format=3 uid="uid://eywd4ny71022"]
 
 [ext_resource type="PackedScene" uid="uid://bkxmx828vv8d8" path="res://scenes/Animals/Tyto.tscn" id="1_symas"]
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="2_fm5o0"]
@@ -6,41 +6,75 @@
 [ext_resource type="PackedScene" uid="uid://dqg7jad33ecwk" path="res://scenes/Animals/Mikrotia.tscn" id="4_8rjmj"]
 [ext_resource type="PackedScene" uid="uid://bdsqtikpmbisd" path="res://scenes/Animals/Prolagus.tscn" id="5_sx5rp"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="6_evm0s"]
+[ext_resource type="Script" path="res://scenes/Meat.gd" id="7_jkstp"]
 [ext_resource type="PackedScene" uid="uid://i8vmvgudegbb" path="res://scenes/Plants/plant_morelle.tscn" id="7_lt5kp"]
 [ext_resource type="PackedScene" uid="uid://dtbq6li2w18ix" path="res://scenes/Plants/plant_gland.tscn" id="8_5kjrj"]
 
 [node name="TestViewAnimals" type="Node2D"]
 
 [node name="Tyto" parent="." instance=ExtResource("1_symas")]
-position = Vector2(527, -70)
-
-[node name="deinogalerix2" parent="." instance=ExtResource("2_fm5o0")]
-position = Vector2(139, -132)
+position = Vector2(527, 0)
 
 [node name="deinogalerix" parent="." instance=ExtResource("2_fm5o0")]
-position = Vector2(139, -42)
+position = Vector2(-122, 0)
 
 [node name="Garganomis" parent="." instance=ExtResource("3_ig71k")]
-position = Vector2(765, -147)
+position = Vector2(933, 0)
 
 [node name="Mikrotia" parent="." instance=ExtResource("4_8rjmj")]
-position = Vector2(-42, -23)
+position = Vector2(-368.815, -0.0307922)
 
 [node name="Prolagus" parent="." instance=ExtResource("5_sx5rp")]
-position = Vector2(308, -46)
+position = Vector2(148, -2.27374e-13)
 scale = Vector2(0.8, 0.8)
 
-[node name="Player2" parent="." instance=ExtResource("6_evm0s")]
-position = Vector2(-97, -59)
+[node name="PlayerMicro" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-617.815, -419.031)
+scale = Vector2(0.2, 0.2)
 
-[node name="Player" parent="." instance=ExtResource("6_evm0s")]
-position = Vector2(-97, -23)
+[node name="PlayerVerySmall" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-604.815, -362.031)
+scale = Vector2(0.3, 0.3)
 
-[node name="Plant" parent="." instance=ExtResource("7_lt5kp")]
-position = Vector2(-240, -17)
+[node name="PlayerSmall" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-604.815, -280.031)
+scale = Vector2(0.6, 0.6)
+
+[node name="PlayerMediumSmall" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-604.815, -200.031)
+scale = Vector2(0.8, 0.8)
+
+[node name="PlayerMedium" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-605, -49)
+scale = Vector2(1, 1)
+
+[node name="PlayerMediumLarge" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-617.815, 123.969)
+scale = Vector2(1.2, 1.2)
+script = ExtResource("7_jkstp")
+foodValue = 20
+
+[node name="PlayerLarge" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-617.815, 297.969)
+scale = Vector2(1.5, 1.5)
+
+[node name="PlayerVeryLarge" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-630.815, 567.969)
+scale = Vector2(1.7, 1.7)
+
+[node name="PlayerMega" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-660.815, 835.969)
+scale = Vector2(2.2, 2.2)
+
+[node name="PlayerColossal" parent="." instance=ExtResource("6_evm0s")]
+position = Vector2(-668.815, 1155.97)
+scale = Vector2(2.8, 2.8)
 
 [node name="PlantGland" parent="." instance=ExtResource("8_5kjrj")]
-position = Vector2(-373, -20)
+position = Vector2(-669, -362)
+
+[node name="Plant" parent="." instance=ExtResource("7_lt5kp")]
+position = Vector2(-773, 0)
 
 [node name="PlantGland2" parent="." instance=ExtResource("8_5kjrj")]
-position = Vector2(-283, -102)
+position = Vector2(-848, 0)

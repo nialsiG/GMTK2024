@@ -14,7 +14,7 @@ var _dashFoodCost : int = 5
 var _dashAxis : Vector2
 var blink_timer : float = 0
 var blink_limit : float = 0.1
-
+var  _speedEvolCoef : float = 1.2
 var _eatingSoundPlayer : AudioStreamPlayer2D
 
 func _ready():
@@ -23,6 +23,7 @@ func _ready():
 	current_size = enums.Size.VERYSMALL
 	_invincibilityTimer = get_node("InvincibilityTimer")
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
+	UpdateSize()
 	
 signal Fed(amount : int)
 signal UpdatedDiet(diet : enums.Diet)
@@ -214,6 +215,10 @@ func ApplyEvolution(evol : enums.evolution):
 			var g = randi_range(50, 200)
 			var b = randi_range(50, 200)
 			modulate = Color8(r, g, b, 255)
+		enums.evolution.LIGHTNESS:
+			_max_speed *= _speedEvolCoeff
+		enums.evolution.HEAVYNESS:
+			_max_speed /= _speedEvolCoeff
 		
 func UpdateDiet(newDiet : enums.Diet):
 	diet = newDiet
