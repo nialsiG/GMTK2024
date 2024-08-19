@@ -6,6 +6,4 @@ func _ready():
 	current_size = enums.Size.SMALL
 	diet = enums.Diet.vegetarian
 	sprite = get_node("Sprite2D")
-	UpdateSize()
-	UpdateIdleFactor()
-	DisplaySize()
+	_initEnemy()

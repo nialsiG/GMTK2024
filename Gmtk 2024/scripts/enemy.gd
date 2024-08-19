@@ -14,6 +14,7 @@ var meatValue : int = 30
 var _name : String = "enemy"
 var _chasingSoundPlayer : AudioStreamPlayer2D
 var _fleeingSoundPlayer : AudioStreamPlayer2D
+var _lastPosition : Vector2
 @onready var _debugSizeLabel : Label= $SizeLabel
 @onready var _debugRegimLabel : Label = $DietLabel
 
@@ -23,9 +24,18 @@ var _lastCollidedItems : Array[Node2D] = []
 
 var _idleFactor : float = 1
 
+func _initEnemy():
+	sprite = get_node("Sprite2D")
+	UpdateSize()
+	UpdateIdleFactor()
+	DisplaySize()
+	_lastPosition = position
+
 func _process(delta):
 	if(_isDead):
 		return
+	
+	var isblockedOrIdle : bool = _lastPosition == position
 	
 	var numberOfCollisions = get_slide_collision_count()
 	var hitAnimals = GetCollidingAnimals(numberOfCollisions)
@@ -42,7 +52,20 @@ func _process(delta):
 	var array = GetCollidingNonAnimals(numberOfCollisions)
 	var collidedNewItem = array.size() > _lastCollidedItems.size()
 	_lastCollidedItems = array
-	
+
+	var margin = 50.0
+	if (position.x < margin * GetSizeValue() && axis.x < 0):
+		axis.x = 1
+
+	if (position.x > (2000 - margin * GetSizeValue()) && axis.x > 0):
+		axis.x = -1
+
+	if (position.y < margin * GetSizeValue() && axis.y > 0):
+		axis.y = 1
+
+	if (position.y > (2000 - margin  * GetSizeValue()) && axis.y > 0):
+		axis.y = -1
+			
 	if (target != null && current_state != state.CHASING && current_state != state.FLEEING):
 		if (relationToTarget == enums.Relationship.PREDATOR):
 			current_state = state.CHASING
@@ -68,7 +91,7 @@ func _process(delta):
 				current_state = state.MOVING
 				start_moving()
 				print(_name+" started moving")
-		state.MOVING:
+		state.MOVING:				
 			if timer > MAX_MOVE_TIME * _idleFactor || collidedNewItem:
 				stayIdle()
 		state.CHASING:
