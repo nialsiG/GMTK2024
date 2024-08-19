@@ -1,0 +1,202 @@
+[gd_scene load_steps=12 format=3 uid="uid://yfeq2kd77xiu"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
+[ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
+[ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
+[ext_resource type="Texture2D" uid="uid://bosl0vtd1dqst" path="res://assets/sprites/Icons/IconVegetarian.png" id="4_3ukey"]
+[ext_resource type="Texture2D" uid="uid://dljljj4i3yhoc" path="res://assets/sprites/Icons/IconDietCarnivore.png" id="5_o4yav"]
+[ext_resource type="Texture2D" uid="uid://c51wifsl3tke5" path="res://assets/sprites/Icons/IconDash.png" id="6_6kvow"]
+[ext_resource type="LabelSettings" uid="uid://cx2a532ok4y42" path="res://resources/labels/wasted.tres" id="7_70qvw"]
+[ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="8_8q417"]
+[ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="8_ao17w"]
+
+[sub_resource type="Gradient" id="Gradient_wctgb"]
+colors = PackedColorArray(0, 0, 0, 0.419608, 0, 0, 0, 0.898039)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dapuk"]
+gradient = SubResource("Gradient_wctgb")
+width = 40
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yiyiu")
+
+[node name="lifebar" parent="." instance=ExtResource("2_6hym2")]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = 452.0
+offset_bottom = 40.0
+tick_count = 0
+
+[node name="health_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 18.0
+offset_right = 517.0
+offset_bottom = 41.0
+text = "Health"
+
+[node name="hungerbar" parent="." instance=ExtResource("3_oa3di")]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 60.0
+offset_right = 452.0
+offset_bottom = 76.0
+tick_count = 0
+
+[node name="hunger_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 55.0
+offset_right = 523.0
+offset_bottom = 78.0
+text = "Hunger"
+
+[node name="HerbiIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 97.0
+offset_right = 83.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
+layout_mode = 2
+texture = ExtResource("4_3ukey")
+expand_mode = 2
+
+[node name="CarniIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 97.0
+offset_right = 139.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="CarniIcon"]
+layout_mode = 2
+texture = ExtResource("5_o4yav")
+expand_mode = 2
+
+[node name="SizeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 109.0
+offset_right = 190.0
+offset_bottom = 132.0
+text = "DefaultSize"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 256.0
+offset_top = 97.0
+offset_right = 296.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("6_6kvow")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+text = "Dash"
+
+[node name="DashOverlay" type="TextureRect" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture1D_dapuk")
+
+[node name="FinalScoreContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FinalScoreContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel2" type="Label" parent="FinalScoreContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("8_8q417")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrophyLabel" type="Label" parent="FinalScoreContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "You went extinct"
+label_settings = ExtResource("8_8q417")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="FinalScoreContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "You went extinct"
+label_settings = ExtResource("8_8q417")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="FinalScoreContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="FinalScoreContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="FinalScoreContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackToMenuButton" type="Button" parent="FinalScoreContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+theme = ExtResource("8_ao17w")
+text = "Back to menu"
+
+[node name="Score" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="ScoreLabel" type="Label" parent="Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.5
+offset_right = 162.5
+offset_bottom = 128.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("8_8q417")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathLabel" type="Label" parent="DeathContainer"]
+layout_mode = 2
+text = "You went extinct"
+label_settings = ExtResource("7_70qvw")
+horizontal_alignment = 1
+vertical_alignment = 1

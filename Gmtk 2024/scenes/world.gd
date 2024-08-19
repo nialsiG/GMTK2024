@@ -25,6 +25,7 @@ var _pauseMenu : PauseMenu
 var _evolutionMenu : EvolutionMenu
 enum gameState {Menu, Evolution, OnGoing }
 var currentState : gameState
+var _is_player_dead : bool
 
 var _cycle : int = 1
 var _cycleTimer : Timer
@@ -50,7 +51,6 @@ func _ready():
 	_player = get_node("GameElements/Player")
 	_pauseMenu = get_node("CanvasLayer/pause_menu")
 	_pauseMenu.connect("Resume", Unpause)
-	
 	_evolutionMenu = get_node("evolution_menu")
 	_evolutionMenu.connect("Chose", OnEvolutionChosen)
 	
@@ -65,6 +65,8 @@ func _ready():
 	_hud.UpdateDiet(_player.diet)
 	_hud.UpdateHealth(_player.currentHealth, _player.maxHealth)
 	_cycleTimer = get_node("Timer")
+	
+	_is_player_dead = false
 	
 	StartGame()
 
@@ -146,14 +148,14 @@ func _getAnimalIndex(animal : Animal):
 	return -1
 	
 func OnPlayerDeath():
-	var tree = get_tree()
-	tree.paused = true
-	_hud.DisplayDeath(true)
-	await get_tree().create_timer(4).timeout
-	_hud.DisplayDeath(false)
-	tree.paused = false
-	tree.change_scene_to_file(start_menu)
-
+	if !_is_player_dead:
+		_is_player_dead = true
+		var tree = get_tree()
+		_hud.DisplayDeath(true)
+		await get_tree().create_timer(2.5).timeout
+		_hud.DisplayDeath(false)
+		_hud.DisplayFinalScore(true)
+		_hud.UpdateFinalPanel(_pickedEvolutions)
 
 func OnFoodOverFlow():
 	_player.AddHealth(1)
