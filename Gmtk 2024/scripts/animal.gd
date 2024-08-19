@@ -40,7 +40,7 @@ func UpdateSize():
 			scaleCoeff = 0.3
 			hungerCoeff = 0.6
 		enums.Size.SMALL:
-			scaleCoeff = 0.6
+			scaleCoeff = 0.5
 			hungerCoeff = 0.7
 		enums.Size.MEDIUMSMALL:
 			scaleCoeff = 0.8

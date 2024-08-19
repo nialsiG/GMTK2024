@@ -65,7 +65,7 @@ func _ready():
 	_allEvolutions.append(dietOmni)
 	_allEvolutions.append(dietCarni)
 	_allEvolutions.append(fangs)
-	_allEvolutions.append(efficiency)
+	#_allEvolutions.append(efficiency)
 	_allEvolutions.append(agility)
 	_allEvolutions.append(color)
 	_allEvolutions.append(heavyness)

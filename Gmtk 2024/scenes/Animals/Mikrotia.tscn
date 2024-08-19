@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dn78ts73r2lw" path="res://assets/Sounds/mouse-2.ogg" id="4_bcon0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nilg"]
-radius = 600.0
+radius = 300.0
 
 [node name="deinogalerix3" instance=ExtResource("1_qeo52")]
 script = ExtResource("2_jqakm")

@@ -139,6 +139,7 @@ func _getAnimalIndex(animal : Animal):
 		if (_currentAnimals[i] == animal):
 			return i 
 	return -1
+	
 func OnPlayerDeath():
 	var tree = get_tree()
 	tree.paused = true

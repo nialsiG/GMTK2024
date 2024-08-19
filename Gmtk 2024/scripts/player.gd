@@ -16,10 +16,12 @@ var blink_timer : float = 0
 var blink_limit : float = 0.1
 var  _speedEvolCoef : float = 1.2
 var _eatingSoundPlayer : AudioStreamPlayer2D
+var _dashSoundPlayer : AudioStreamPlayer
 
 func _ready():
 	sprite = get_node("Sprite2D")
 	_eatingSoundPlayer = get_node("EatingSound")
+	_dashSoundPlayer = get_node("DashSound")
 	current_size = enums.Size.VERYSMALL
 	_invincibilityTimer = get_node("InvincibilityTimer")
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
@@ -44,17 +46,19 @@ func _process(delta):
 			var sizeValue = GetSizeValue()
 			var animalSizeValue= animal.GetSizeValue() 
 			if (sizeValue < animalSizeValue && !_isInvincible):
-				hit(animalSizeValue - sizeValue)
+				hit((animalSizeValue - sizeValue) /2)
 			elif (sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	ManageDashCoolDown(delta)
 	get_input_axis()
 	
-	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") && !(_isDashing || _isDashInRecovery)):
+	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") 
+	&& !(_isDashing || _isDashInRecovery)):
 		_isDashing = true
+		_dashSoundPlayer.play()
 		_dashAxis = axis
 		UpdatedDashCooldown.emit(false)
-		eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
+		#eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
 			
 	UpdateState(axis)
 	UpdateSprite()
@@ -133,6 +137,8 @@ func eat(amount: int, foodType : enums.FoodType):
 	Fed.emit(amount * GetFoodCoef(foodType))
 
 func hit(amount : int):
+	if (amount >= maxHealth && maxHealth > 1 && currentHealth == maxHealth):
+		amount = maxHealth - 1
 	if (!_isInvincible):
 		AddHealth(-amount)
 		if (currentHealth <= 0):
