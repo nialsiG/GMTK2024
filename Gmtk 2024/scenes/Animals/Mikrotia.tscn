@@ -20,3 +20,9 @@ shape = SubResource("CircleShape2D_5nilg")
 
 [node name="FleeingSoundPlayer" parent="." index="4"]
 stream = ExtResource("4_bcon0")
+
+[node name="SizeLabel" parent="." index="5"]
+visible = false
+
+[node name="DietLabel" parent="." index="6"]
+visible = false

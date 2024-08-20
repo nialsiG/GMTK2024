@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=13 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -7,14 +7,15 @@
 [ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="5_qj008"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
+[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="7_1ysxi"]
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="7_6ftc6"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="8_bqtse"]
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="9_o84i5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
-font_size = 50
-font_color = Color(0.301961, 0.0941176, 0.109804, 1)
+font_size = 60
+font_color = Color(0.501961, 0.207843, 0.00392157, 1)
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -74,9 +75,17 @@ horizontal_alignment = 1
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit_button2")
 theme = ExtResource("3_jex88")
+theme_override_colors/font_color = Color(0.498039, 0.2, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.231373, 0, 0, 1)
+theme_override_styles/normal = ExtResource("7_1ysxi")
+theme_override_styles/hover = ExtResource("7_1ysxi")
+theme_override_styles/pressed = ExtResource("7_1ysxi")
+theme_override_styles/disabled = ExtResource("7_1ysxi")
 text = "Start game"
 
 [node name="quit_button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_jex88")
