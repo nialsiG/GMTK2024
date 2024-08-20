@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=27 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://b01fqvnsq7xg5" path="res://assets/sprites/Icons/IconOmni.png" id="11_x6noh"]
 [ext_resource type="Texture2D" uid="uid://c6j5robnmycuh" path="res://assets/sprites/Icons/IconSturdy.png" id="12_ppxa0"]
 [ext_resource type="Texture2D" uid="uid://36d5gr1c5m7h" path="res://assets/sprites/Icons/IconVegetarism.png" id="13_d4dqn"]
+[ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="18_sj7dm"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="20_421p3"]
+[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="24_qu03e"]
 
 [sub_resource type="Gradient" id="Gradient_wctgb"]
 colors = PackedColorArray(0, 0, 0, 0.419608, 0, 0, 0, 0.898039)
@@ -134,7 +136,7 @@ offset_bottom = 128.0
 grow_horizontal = 2
 size_flags_vertical = 0
 text = "000"
-label_settings = ExtResource("8_8q417")
+label_settings = ExtResource("18_sj7dm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -200,7 +202,7 @@ offset_right = 1920.0
 offset_bottom = 99.0
 size_flags_vertical = 0
 text = "000"
-label_settings = ExtResource("8_8q417")
+label_settings = ExtResource("18_sj7dm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -248,6 +250,14 @@ offset_top = 912.0
 offset_right = 1215.0
 offset_bottom = 1007.0
 theme = ExtResource("8_ao17w")
+theme_override_colors/font_color = Color(0.439216, 0.176471, 0.00392157, 1)
+theme_override_colors/font_pressed_color = Color(0.988235, 0.882353, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.368627, 0.054902, 1)
+theme_override_colors/font_focus_color = Color(0.803922, 0.376471, 0.0470588, 1)
+theme_override_styles/normal = ExtResource("24_qu03e")
+theme_override_styles/hover = ExtResource("24_qu03e")
+theme_override_styles/pressed = ExtResource("24_qu03e")
+theme_override_styles/disabled = ExtResource("24_qu03e")
 text = "Back to menu"
 
 [connection signal="pressed" from="FinalScoreContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
