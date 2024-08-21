@@ -11,9 +11,3 @@ script = ExtResource("2_csrou")
 scale = Vector2(1, 1)
 sprite_frames = ExtResource("3_ttf2r")
 animation = &"Right"
-
-[node name="SizeLabel" parent="." index="5"]
-visible = false
-
-[node name="DietLabel" parent="." index="6"]
-visible = false

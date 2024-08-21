@@ -118,7 +118,6 @@ offset_bottom = 132.0
 text = "DefaultSize"
 
 [node name="Score" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

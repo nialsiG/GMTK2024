@@ -34,9 +34,3 @@ max_distance = 1000.0
 [node name="FleeingSoundPlayer" parent="." index="4"]
 stream = ExtResource("5_rmcm4")
 volume_db = 24.0
-
-[node name="SizeLabel" parent="." index="5"]
-visible = false
-
-[node name="DietLabel" parent="." index="6"]
-visible = false
