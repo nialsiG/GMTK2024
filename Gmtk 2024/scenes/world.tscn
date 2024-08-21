@@ -58,16 +58,17 @@ script = ExtResource("7_ioev3")
 [node name="AnimalGenerator" type="Node" parent="."]
 script = ExtResource("7_qbf2g")
 
-[node name="GameElements" type="Node" parent="."]
+[node name="GameElements" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="DynamicElements" type="Node" parent="GameElements"]
+[node name="DynamicElements" type="Node2D" parent="GameElements"]
 
 [node name="Player" parent="GameElements" instance=ExtResource("2_7khj7")]
 position = Vector2(393, 369)
 collision_layer = 3
 collision_mask = 3
 
-[node name="Bounds" type="Node" parent="GameElements"]
+[node name="Bounds" type="Node2D" parent="GameElements"]
 
 [node name="Rock1" type="StaticBody2D" parent="GameElements/Bounds"]
 position = Vector2(495, 1403)

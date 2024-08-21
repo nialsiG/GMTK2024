@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmnerimdrbfb8"]
+[gd_scene load_steps=6 format=3 uid="uid://bmnerimdrbfb8"]
 
 [ext_resource type="Script" path="res://scripts/evolution_button.gd" id="1_x0plb"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="2_bt2p2"]
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="2_m0min"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="3_bi4fj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loqrg"]
+bg_color = Color(0.976471, 0.941176, 0.941176, 1)
 
 [node name="evolution_button" type="Button"]
 anchors_preset = 8
@@ -17,6 +20,7 @@ offset_right = 296.0
 offset_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_loqrg")
 script = ExtResource("1_x0plb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
