@@ -14,6 +14,7 @@ var _name : String = "enemy"
 var _chasingSoundPlayer : AudioStreamPlayer2D
 var _fleeingSoundPlayer : AudioStreamPlayer2D
 var _lastPosition : Vector2
+var _isDead : bool
 
 var _isBlockedLeft : bool = false
 var _isBlockedRight : bool = false
@@ -51,7 +52,7 @@ func _process(delta):
 			var sizeValue = GetSizeValue()
 			var animalSizeValue = animal.GetSizeValue()
 			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
-				hit(clamp(1, (animalSizeValue - sizeValue) /2, sizeValue))
+				hit(clamp(1, int((animalSizeValue - sizeValue) /2.0), sizeValue))
 			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	
@@ -136,7 +137,7 @@ func stayIdle():
 	current_state = state.IDLE
 	axis = Vector2.ZERO
 
-func hit(amount):
+func hit(_amount):
 	if (_isDead):
 		return
 	
@@ -144,10 +145,10 @@ func hit(amount):
 	Died.emit(self)
 	queue_free()
 
-func GetRadius() -> int:
+func GetRadius() -> float:
 	return _scaleCoeff * 60
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func start_moving():

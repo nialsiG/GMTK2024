@@ -41,7 +41,7 @@ func _ready():
 	_finalScoreContainer = get_node("FinalScoreContainer")
 	_dashOverlay = get_node("PanelContainer/DashOverlay")
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func eat(amount):
@@ -67,12 +67,12 @@ func UpdateDiet(diet : enums.Diet):
 	else:
 		_iconCarni.hide()
 
-func UpdateSize(size : enums.Size, hungerCoeff : float):
-	_sizeLabel.text = GetSizeLabel(size)
+func UpdateSize(newSize : enums.Size, hungerCoeff : float):
+	_sizeLabel.text = GetSizeLabel(newSize)
 	_hungerbar.HUNGER_FACTOR = hungerCoeff
 
-func GetSizeLabel(size : enums.Size):
-	match(size):
+func GetSizeLabel(sizeToTranslate : enums.Size):
+	match(sizeToTranslate):
 		enums.Size.MICRO:
 			return "Micro"
 		enums.Size.VERYSMALL:

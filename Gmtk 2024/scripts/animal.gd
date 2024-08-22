@@ -7,7 +7,6 @@ var _max_speed : float = 500
 var _scaleCoeff : float = 1.0
 var _speedCoeff : float = 1.0
 var _hungerCoeff : float = 1.0
-var _isDead : bool
 var current_size = enums.Size.MEDIUM
 
 const _speedEvolCoeff : float = 1.2
@@ -95,7 +94,7 @@ func move(delta):
 	else:
 		apply_acceleration(acceleration * axis * delta)
 
-func eat(amount: int, foodType: enums.FoodType):
+func eat(_amount: int, _foodType: enums.FoodType):
 	pass
 
 func apply_friction(amount):
@@ -118,11 +117,11 @@ func ApplyEvolution(evol : enums.evolution):
 			UpdateDiet(enums.Diet.omni)
 		enums.evolution.NANISM:
 			if(current_size != enums.Size.MICRO):
-				current_size += -1
+				current_size = current_size - 1 as enums.Size 
 				UpdateSize()
 		enums.evolution.GIGANTISM:
 			if (current_size != enums.Size.COLOSSAL):
-				current_size +=1
+				current_size = current_size + 1 as enums.Size
 				UpdateSize()
 		enums.evolution.COLOR:
 			UpdateColorRandomly()

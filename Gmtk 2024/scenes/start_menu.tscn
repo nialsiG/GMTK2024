@@ -16,9 +16,9 @@
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="9_o84i5"]
 [ext_resource type="Texture2D" uid="uid://ol0k8jj34cgk" path="res://assets/sprites/Other/Steps2.png" id="11_1th13"]
 [ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="15_50dkx"]
-[ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
-[ext_resource type="LabelSettings" uid="uid://b41oa5u17ggre" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
-[ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
+[ext_resource type="LabelSettings" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
+[ext_resource type="LabelSettings" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
+[ext_resource type="Theme" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")

@@ -24,7 +24,6 @@ func _on_start_button_pressed():
 	_has_started = true
 	focus_button.disabled = true
 	startGoosePlayer.play()
-	_gooseSprite
 	_loadingSprite.play("Right")
 	_gooseSprite.play("Right")
 	await get_tree().create_timer(1.5).timeout

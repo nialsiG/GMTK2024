@@ -10,11 +10,10 @@ var _dashMaxDuration : float = 0.2
 var _dashRecoveryTime : float = 3
 var _dashSizeBonus : int = 1
 var _dashSpeedBonus : float = 4
-var _dashFoodCost : int = 5
+var _dashFoodCost : float = 5
 var _dashAxis : Vector2
 var blink_timer : float = 0
 var blink_limit : float = 0.1
-var  _speedEvolCoef : float = 1.2
 var _eatingSoundPlayer : AudioStreamPlayer2D
 var _dashSoundPlayer : AudioStreamPlayer
 var _deathSoundPlayer : AudioStreamPlayer
@@ -48,7 +47,7 @@ func _process(delta):
 			var sizeValue = GetSizeValue()
 			var animalSizeValue= animal.GetSizeValue() 
 			if (sizeValue < animalSizeValue && !_isInvincible):
-				hit((animalSizeValue - sizeValue) /2)
+				hit(int((animalSizeValue - sizeValue) /2.0))
 			elif (sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	ManageDashCoolDown(delta)
@@ -118,7 +117,7 @@ func GetSizeValue() -> int:
 
 	return sizeValue
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func get_input_axis():
@@ -200,12 +199,12 @@ func ApplyEvolution(evol : enums.evolution):
 			UpdateDiet(enums.Diet.omni)
 		enums.evolution.NANISM:
 			if(current_size != enums.Size.MICRO):
-				current_size += -1
+				current_size = current_size - 1 as enums.Size
 				UpdateSize()
 				RaiseUpdateSize()
 		enums.evolution.GIGANTISM:
 			if(current_size != enums.Size.COLOSSAL):
-				current_size +=1
+				current_size = current_size + 1 as enums.Size
 				UpdateSize()
 				RaiseUpdateSize()
 		enums.evolution.HEALTH:
@@ -213,12 +212,10 @@ func ApplyEvolution(evol : enums.evolution):
 			AddHealth(1)
 		enums.evolution.AGILITY:
 			_dashRecoveryTime *= 0.8
-			print("RecoveryTime: "+str(_dashRecoveryTime))
 		enums.evolution.FANG:
 			_dashSizeBonus += 1
 		enums.evolution.EFFICIENCY:
-			_dashFoodCost *= 0.8	
-			print("Foodcost: "+str(_dashFoodCost))
+			_dashFoodCost *= 0.8
 		enums.evolution.COLOR:
 			var r = randi_range(50, 200)
 			var g = randi_range(50, 200)
