@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3mp8p0p305a3"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_8cnlt"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
 [ext_resource type="AudioStream" uid="uid://cn6xb57qsdjot" path="res://assets/Sounds/DeathCry.mp3" id="5_du8i2"]
@@ -12,7 +12,7 @@ height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.35, 0.35)
-script = ExtResource("1_8cnlt")
+script = ExtResource("1_8tpfr")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-9.53674e-07, -1.81901)

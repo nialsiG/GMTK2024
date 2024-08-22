@@ -14,7 +14,7 @@ func OnBodyEntered(body):
 		return
 	
 	var animal = body as Animal
-	if (animal.diet != incompatibleDiet):
+	if (animal._diet != incompatibleDiet):
 		animal.eat(foodValue, foodType)
 		if !(animal is Player):
 			foodValue = 0

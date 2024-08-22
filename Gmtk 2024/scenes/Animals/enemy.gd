@@ -10,11 +10,16 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 @export var MAX_FLEEING_TIME: float = 8
 @export var MAX_CHASING_TIME: float = 6
 
-var meatValue : int = 30
 var _name : String = "enemy"
 var _chasingSoundPlayer : AudioStreamPlayer2D
 var _fleeingSoundPlayer : AudioStreamPlayer2D
 var _lastPosition : Vector2
+
+var _isBlockedLeft : bool = false
+var _isBlockedRight : bool = false
+var _isBlockedTop : bool = false
+var _isBlockedBottom : bool = false
+
 @onready var _debugSizeLabel : Label= $SizeLabel
 @onready var _debugRegimLabel : Label = $DietLabel
 
@@ -24,19 +29,20 @@ var _lastCollidedItems : Array[Node2D] = []
 
 var _idleFactor : float = 1
 
-func _initEnemy():
-	sprite = get_node("Sprite2D")
-	UpdateSize()
-	UpdateIdleFactor()
-	DisplaySize()
+func _initialize():
+	UpdateIdleFactor()	
 	_lastPosition = position
+	_fleeingSoundPlayer = get_node("FleeingSoundPlayer")
+	_chasingSoundPlayer = get_node("ChasingSoundPlayer")
+
+
+func UpdateIdleFactor():
+	_idleFactor = randf_range(0.5, 2)
 
 func _process(delta):
 	if(_isDead):
 		return
-	
-	var isblockedOrIdle : bool = _lastPosition == position
-	
+		
 	var numberOfCollisions = get_slide_collision_count()
 	var hitAnimals = GetCollidingAnimals(numberOfCollisions)
 	if (hitAnimals.size() > 0):
@@ -44,9 +50,9 @@ func _process(delta):
 			var animal = hitAnimals[i]
 			var sizeValue = GetSizeValue()
 			var animalSizeValue = animal.GetSizeValue()
-			if (sizeValue < animalSizeValue && animal.diet != enums.Diet.vegetarian):
+			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
 				hit(clamp(1, (animalSizeValue - sizeValue) /2, sizeValue))
-			elif(sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
+			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	
 	var array = GetCollidingNonAnimals(numberOfCollisions)
@@ -54,29 +60,21 @@ func _process(delta):
 	_lastCollidedItems = array
 
 	var margin = 50.0
-	if (position.x < margin * GetSizeValue() && axis.x < 0):
-		axis.x = 1
-
-	if (position.x > (2000 - margin * GetSizeValue()) && axis.x > 0):
-		axis.x = -1
-
-	if (position.y < margin * GetSizeValue() && axis.y > 0):
-		axis.y = 1
-
-	if (position.y > (2000 - margin  * GetSizeValue()) && axis.y > 0):
-		axis.y = -1
-			
+	_isBlockedLeft = position.x - GetRadius() < margin
+	_isBlockedRight = position.x  + GetRadius() > (2000 - -margin) && axis.x > 0
+	_isBlockedTop = position.y - GetRadius() < margin
+	_isBlockedBottom = position.y + GetRadius() > 2000 - margin 
+	var isBlocked = _isBlockedLeft || _isBlockedRight || _isBlockedTop || _isBlockedBottom
+						
 	if (target != null && current_state != state.CHASING && current_state != state.FLEEING):
 		if (relationToTarget == enums.Relationship.PREDATOR):
 			current_state = state.CHASING
 			if(_chasingSoundPlayer != null):
 				_chasingSoundPlayer.play()
-			print(_name+" started chasing")
 		else:
 			current_state = state.FLEEING
 			if (_fleeingSoundPlayer != null):
 				_fleeingSoundPlayer.play()
-			print(_name+" started fleeing")
 		timer = 0
 
 	if (target == null && (current_state == state.CHASING || current_state == state.FLEEING)):
@@ -91,7 +89,9 @@ func _process(delta):
 				current_state = state.MOVING
 				start_moving()
 				print(_name+" started moving")
-		state.MOVING:				
+		state.MOVING:
+			if(isBlocked):
+				start_moving()
 			if timer > MAX_MOVE_TIME * _idleFactor || collidedNewItem:
 				stayIdle()
 		state.CHASING:
@@ -109,7 +109,16 @@ func _process(delta):
 				timer = 0
 				current_state = state.MOVING
 			else:
-				axis = (position - target.position).normalized()
+				var direction = (position - target.position).normalized()
+				if (_isBlockedLeft):
+					direction += Vector2.RIGHT
+				if(_isBlockedRight):
+					direction += Vector2.LEFT
+				if(_isBlockedBottom):
+					direction += Vector2.UP
+				if(_isBlockedTop):
+					direction += Vector2.DOWN
+				axis = direction.normalized()
 		state.WOUNDED:
 			pass
 		state.DEAD:
@@ -127,9 +136,6 @@ func stayIdle():
 	current_state = state.IDLE
 	axis = Vector2.ZERO
 
-func UpdateIdleFactor():
-	_idleFactor = randf_range(0.5, 2)
-
 func hit(amount):
 	if (_isDead):
 		return
@@ -138,11 +144,34 @@ func hit(amount):
 	Died.emit(self)
 	queue_free()
 
+func GetRadius() -> int:
+	return _scaleCoeff * 60
+
 func _physics_process(delta):
 	move_and_slide()
 
 func start_moving():
-	var my_array = [Vector2(1,0), Vector2(1,1), Vector2(0,1), Vector2(-1,1), Vector2(-1,0), Vector2(-1,-1), Vector2(0,-1), Vector2(1,-1)]
+	var my_array = []
+	if (!_isBlockedLeft):
+		my_array.append(Vector2(-1,0))
+		if (!_isBlockedBottom):
+			my_array.append(Vector2(-1, 1))
+		if (!_isBlockedTop):
+			my_array.append(Vector2(-1, -1))
+
+	if (!_isBlockedRight):
+		my_array.append(Vector2(1,0))
+		if (!_isBlockedBottom):
+			my_array.append(Vector2(1, 1))
+		if (!_isBlockedTop):
+			my_array.append(Vector2(1, -1))
+			
+	if (!_isBlockedBottom):
+		my_array.append(Vector2(0, 1))
+		
+	if (!_isBlockedTop):
+		my_array.append(Vector2(0, -1))
+
 	axis = my_array.pick_random()
 
 func OnDetectionAreaEntered(body):
@@ -153,11 +182,11 @@ func OnDetectionAreaEntered(body):
 	var sizeValue = GetSizeValue()
 	var targetSizeValue = detectedTarget.GetSizeValue()
 
-	if (targetSizeValue > sizeValue && detectedTarget.diet != enums.Diet.vegetarian):
+	if (targetSizeValue > sizeValue && detectedTarget._diet != enums.Diet.vegetarian):
 		target = detectedTarget
 		relationToTarget = enums.Relationship.PREY
 		
-	if (diet != enums.Diet.vegetarian && sizeValue > targetSizeValue):
+	if (_diet != enums.Diet.vegetarian && sizeValue > targetSizeValue):
 		target = detectedTarget
 		relationToTarget = enums.Relationship.PREDATOR
 		
@@ -167,7 +196,7 @@ func OnAreaEntered(area):
 		return
 		
 	var consumable = area as Consumable
-	if(diet != consumable.incompatibleDiet):
+	if(_diet != consumable.incompatibleDiet):
 		current_state = state.CHASING
 		relationToTarget = enums.Relationship.PREDATOR
 		target = consumable
@@ -177,6 +206,6 @@ func DisplaySize():
 		_debugSizeLabel.text = "Size "+str(current_size)
 
 func UpdateDiet(newDiet : enums.Diet):
-	diet = newDiet
+	_diet = newDiet
 	if (_debugRegimLabel != null):
 		_debugRegimLabel.text = "Diet: "+str(newDiet)

@@ -4,70 +4,77 @@ const enums = preload("res://scripts/enums.gd")
 
 var defaultSpeed : float = 500
 var _max_speed : float = 500
-var scaleCoeff : float = 1.0
-var speedCoeff : float = 1.0
-var hungerCoeff : float = 1.0
+var _scaleCoeff : float = 1.0
+var _speedCoeff : float = 1.0
+var _hungerCoeff : float = 1.0
 var _isDead : bool
+var current_size = enums.Size.MEDIUM
 
 const _speedEvolCoeff : float = 1.2
-
-@export var current_size = enums.Size.MEDIUM
+@export var initial_size : enums.Size = enums.Size.MEDIUM
 @export var current_speed = defaultSpeed
 @export var acceleration = 1500
 @export var friction = 1500
+@export var meatValue : int = 30
+@export var animalName : String = "Undefined"
+@export var startingDiet : enums.Diet = enums.Diet.omni
 
 @onready var axis = Vector2.ZERO
 @onready var current_direction = enums.Direction.Down
 
 var target : Node2D
 var relationToTarget : enums.Relationship
-var sprite : AnimatedSprite2D
+@onready var sprite : AnimatedSprite2D = get_node("Sprite2D")
 
 var currentState = enums.State.Still
-var diet : enums.Diet = enums.Diet.omni
+var _diet : enums.Diet = enums.Diet.omni
 
 func _ready():
-	sprite = get_node("Sprite2D")
+	_diet = startingDiet
+	current_size = initial_size
 	UpdateSize()
 	UpdateSprite()
+
+func _initialize():
+	pass
 
 func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
-			scaleCoeff = 0.2
-			hungerCoeff = 0.7
+			_scaleCoeff = 0.2
+			_hungerCoeff = 0.7
 		enums.Size.VERYSMALL:
-			scaleCoeff = 0.3
-			hungerCoeff = 0.75
+			_scaleCoeff = 0.3
+			_hungerCoeff = 0.75
 		enums.Size.SMALL:
-			scaleCoeff = 0.5
-			hungerCoeff = 0.8
+			_scaleCoeff = 0.5
+			_hungerCoeff = 0.8
 		enums.Size.MEDIUMSMALL:
-			scaleCoeff = 0.8
-			hungerCoeff = 0.9
+			_scaleCoeff = 0.8
+			_hungerCoeff = 0.9
 		enums.Size.MEDIUM:
-			scaleCoeff = 1
-			hungerCoeff = 1
+			_scaleCoeff = 1
+			_hungerCoeff = 1
 		enums.Size.MEDIUMLARGE:
-			scaleCoeff = 1.2
-			hungerCoeff = 4
+			_scaleCoeff = 1.2
+			_hungerCoeff = 4
 		enums.Size.LARGE:
-			scaleCoeff = 1.5
-			hungerCoeff = 8
+			_scaleCoeff = 1.5
+			_hungerCoeff = 8
 		enums.Size.VERYLARGE:
-			scaleCoeff = 1.7
-			hungerCoeff = 12
+			_scaleCoeff = 1.7
+			_hungerCoeff = 12
 		enums.Size.MEGA:
-			scaleCoeff = 2.2
-			hungerCoeff = 18
+			_scaleCoeff = 2.2
+			_hungerCoeff = 18
 		enums.Size.COLOSSAL:
-			scaleCoeff = 2.8
-			hungerCoeff = 22
+			_scaleCoeff = 2.8
+			_hungerCoeff = 22
 		_:
-			scaleCoeff = 1
-			hungerCoeff = 1
-	scale = Vector2.ONE * scaleCoeff
-	current_speed = current_speed * speedCoeff
+			_scaleCoeff = 1
+			_hungerCoeff = 1
+	scale = Vector2.ONE * _scaleCoeff
+	current_speed = current_speed * _speedCoeff
 	DisplaySize()
 
 func DisplaySize():
@@ -75,6 +82,9 @@ func DisplaySize():
 	
 func GetFoodValue() -> int:
 	return GetSizeValue() * 5
+
+func CanEatMeat() -> bool:
+	return _diet == enums.Diet.carnivore || _diet == enums.Diet.omni
 
 func RaiseHungerChange():
 	pass
@@ -123,7 +133,7 @@ func ApplyEvolution(evol : enums.evolution):
 
 
 func UpdateDiet(newDiet : enums.Diet):
-	diet = newDiet
+	_diet = newDiet
 
 func UpdateState(currentAxis : Vector2):
 	if currentAxis == Vector2.ZERO:

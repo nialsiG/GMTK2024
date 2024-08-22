@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqg7jad33ecwk"]
+[gd_scene load_steps=5 format=3 uid="uid://dqg7jad33ecwk"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_qeo52"]
-[ext_resource type="Script" path="res://scripts/Animals/Mikrotia.gd" id="2_jqakm"]
 [ext_resource type="SpriteFrames" uid="uid://barpun0yigmsb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia.tres" id="3_f4rfx"]
 [ext_resource type="AudioStream" uid="uid://dn78ts73r2lw" path="res://assets/Sounds/mouse-2.ogg" id="4_bcon0"]
 
@@ -9,7 +8,7 @@
 radius = 300.0
 
 [node name="deinogalerix3" instance=ExtResource("1_qeo52")]
-script = ExtResource("2_jqakm")
+initial_size = 1
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_f4rfx")

@@ -49,7 +49,7 @@ func _process(delta):
 			var animalSizeValue= animal.GetSizeValue() 
 			if (sizeValue < animalSizeValue && !_isInvincible):
 				hit((animalSizeValue - sizeValue) /2)
-			elif (sizeValue > animalSizeValue && diet != enums.Diet.vegetarian):
+			elif (sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
 				animal.hit(sizeValue - animalSizeValue)
 	ManageDashCoolDown(delta)
 	get_input_axis()
@@ -163,13 +163,13 @@ func blink(delta):
 			false: sprite.show()
 
 func GetFoodCoef(foodType : enums.FoodType) -> float :
-	if (diet == enums.Diet.omni):
+	if (_diet == enums.Diet.omni):
 		return 0.75;
-	if (diet == enums.Diet.carnivore):
+	if (_diet == enums.Diet.carnivore):
 		if (foodType == enums.FoodType.Plant):
 			return 0.2
 		return 1.5
-	if (diet == enums.Diet.vegetarian):
+	if (_diet == enums.Diet.vegetarian):
 		if (foodType == enums.FoodType.Plant):
 			return 1.5
 		return 0.2
@@ -177,11 +177,11 @@ func GetFoodCoef(foodType : enums.FoodType) -> float :
 
 func GetForbiddenEvols() -> Array[enums.evolution]:
 	var evols : Array[enums.evolution] = []
-	if (diet == enums.Diet.carnivore):
+	if (_diet == enums.Diet.carnivore):
 		evols.append(enums.evolution.DIET_CARNI)
-	elif (diet == enums.Diet.omni):
+	elif (_diet == enums.Diet.omni):
 		evols.append(enums.evolution.DIET_OMNI)
-	elif (diet == enums.Diet.vegetarian):
+	elif (_diet == enums.Diet.vegetarian):
 		evols.append(enums.evolution.DIET_HERBI)	
 	if (current_size == enums.Size.MICRO):
 		evols.append(enums.evolution.NANISM)
@@ -230,11 +230,11 @@ func ApplyEvolution(evol : enums.evolution):
 			_max_speed /= _speedEvolCoeff
 		
 func UpdateDiet(newDiet : enums.Diet):
-	diet = newDiet
-	UpdatedDiet.emit(diet)
+	_diet = newDiet
+	UpdatedDiet.emit(_diet)
 
 func RaiseUpdateSize():
-	UpdatedSize.emit(current_size, hungerCoeff)
+	UpdatedSize.emit(current_size, _hungerCoeff)
 
 func OnIFrameTimeOut():
 	_isInvincible = false

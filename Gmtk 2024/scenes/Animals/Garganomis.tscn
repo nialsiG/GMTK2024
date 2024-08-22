@@ -1,25 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://di8qff821ygdf"]
+[gd_scene load_steps=7 format=3 uid="uid://di8qff821ygdf"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_p3d56"]
-[ext_resource type="Script" path="res://scripts/Animals/Garganomis.gd" id="2_h5ikr"]
 [ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="3_06okc"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="4_byftv"]
 [ext_resource type="AudioStream" uid="uid://bqefseyajckvv" path="res://assets/Sounds/fleeing_goose.mp3" id="5_rmcm4"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3ke5"]
-radius = 50.0
-height = 150.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c7s0e"]
+radius = 60.0
+height = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxdnw"]
 radius = 170.0
 
 [node name="deinogalerix2" instance=ExtResource("1_p3d56")]
-script = ExtResource("2_h5ikr")
+initial_size = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CapsuleShape2D_g3ke5")
+shape = SubResource("CapsuleShape2D_c7s0e")
 
 [node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -47)
 sprite_frames = ExtResource("3_06okc")
 animation = &"Idle_Up"
 

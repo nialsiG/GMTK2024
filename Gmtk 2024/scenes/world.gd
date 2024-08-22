@@ -61,8 +61,8 @@ func _ready():
 	_player.connect("Died", OnPlayerDeath)
 	_player.connect("UpdatedDashCooldown", OnPlayerUpdatedDashCoolDown)
 	
-	_hud.UpdateSize(_player.current_size, _player.hungerCoeff)
-	_hud.UpdateDiet(_player.diet)
+	_hud.UpdateSize(_player.current_size, _player._hungerCoeff)
+	_hud.UpdateDiet(_player._diet)
 	_hud.UpdateHealth(_player.currentHealth, _player.maxHealth)
 	_cycleTimer = get_node("Timer")
 	
@@ -123,11 +123,11 @@ func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_hud.UpdateScore(amount * 3)
 	if (foodType == enums.FoodType.Meat):
 		_totalMeatValue += amount
-		if _player.diet == enums.Diet.carnivore:
+		if _player._diet == enums.Diet.carnivore:
 			_hud.UpdateScore(amount * 2)
 	else:
 		_totalPlantValue += amount
-		if _player.diet == enums.Diet.vegetarian:
+		if _player._diet == enums.Diet.vegetarian:
 			_hud.UpdateScore(amount * 2)
 		GeneratePlants(1)
 
