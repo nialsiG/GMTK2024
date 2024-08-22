@@ -8,6 +8,8 @@ extends Node
 @onready var _has_started : bool = false
 @onready var _main_container : VBoxContainer = $CanvasLayer/Buttons/VBoxContainer
 @onready var _wiki_panel : Panel = $CanvasLayer/Buttons/WikiContainer
+@onready var _show_credits_button : TextureButton = $CanvasLayer/Buttons/ShowCreditsButton
+@onready var _hide_credits_button : TextureButton = $CanvasLayer/Buttons/HideCreditsButtonBack
 
 func _ready():
 	focus_button.grab_focus()
@@ -38,3 +40,11 @@ func _on_quit_button_pressed():
 func _on_back_button_pressed():
 	_wiki_panel.hide()
 	_main_container.show()
+
+func _on_show_credits_button_pressed():
+	_show_credits_button.hide()
+	_hide_credits_button.show()
+
+func _on_hide_credits_button_back_pressed():
+	_show_credits_button.show()
+	_hide_credits_button.hide()

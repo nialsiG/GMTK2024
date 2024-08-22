@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://jbgfdqi76xl4"]
+
+[ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="1_ip4aj"]
+
+[resource]
+line_spacing = 20.0
+font = ExtResource("1_ip4aj")
+font_size = 40
+font_color = Color(0.831373, 0.776471, 0.756863, 0.568627)
+outline_size = 11
+outline_color = Color(0.278431, 0.278431, 0.278431, 0.537255)
