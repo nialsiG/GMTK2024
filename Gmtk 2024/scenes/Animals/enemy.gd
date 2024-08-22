@@ -45,27 +45,10 @@ func _process(delta):
 		return
 		
 	var numberOfCollisions = get_slide_collision_count()
-	var hitAnimals = GetCollidingAnimals(numberOfCollisions)
-	if (hitAnimals.size() > 0):
-		for i in hitAnimals.size():
-			var animal = hitAnimals[i]
-			var sizeValue = GetSizeValue()
-			var animalSizeValue = animal.GetSizeValue()
-			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
-				hit(clamp(1, int((animalSizeValue - sizeValue) /2.0), sizeValue))
-			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
-				animal.hit(sizeValue - animalSizeValue)
-	
-	var array = GetCollidingNonAnimals(numberOfCollisions)
-	var collidedNewItem = array.size() > _lastCollidedItems.size()
-	_lastCollidedItems = array
+	_checkHitByAnimal(numberOfCollisions)	
+	var collidedNewItem = _checkHitByNonAnimal(numberOfCollisions)
 
-	var margin = 50.0
-	_isBlockedLeft = position.x - GetRadius() < margin
-	_isBlockedRight = position.x  + GetRadius() > (2000 - -margin) && axis.x > 0
-	_isBlockedTop = position.y - GetRadius() < margin
-	_isBlockedBottom = position.y + GetRadius() > 2000 - margin 
-	var isBlocked = _isBlockedLeft || _isBlockedRight || _isBlockedTop || _isBlockedBottom
+	var isBlocked = _isBlocked()
 						
 	if (target != null && current_state != state.CHASING && current_state != state.FLEEING):
 		if (relationToTarget == enums.Relationship.PREDATOR):
@@ -131,11 +114,37 @@ func _process(delta):
 	UpdateSprite()	
 	move(delta)
 
+func _isBlocked():
+	var margin = 50.0
+	_isBlockedLeft = position.x - GetRadius() < margin
+	_isBlockedRight = position.x  + GetRadius() > (2000 - margin) && axis.x > 0
+	_isBlockedTop = position.y - GetRadius() < margin
+	_isBlockedBottom = position.y + GetRadius() > 2000 - margin 
+	return _isBlockedLeft || _isBlockedRight || _isBlockedTop || _isBlockedBottom
+	
 func stayIdle():
 	timer = 0
 	UpdateIdleFactor()
 	current_state = state.IDLE
 	axis = Vector2.ZERO
+
+func _checkHitByAnimal(numberOfCollisions : int):
+	var hitAnimals = GetCollidingAnimals(numberOfCollisions)
+	if (hitAnimals.size() > 0):
+		for i in hitAnimals.size():
+			var animal = hitAnimals[i]
+			var sizeValue = GetSizeValue()
+			var animalSizeValue = animal.GetSizeValue()
+			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
+				hit(clamp(1, int((animalSizeValue - sizeValue) /2.0), sizeValue))
+			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
+				animal.hit(sizeValue - animalSizeValue)
+
+func _checkHitByNonAnimal(numberOfCollisions : int) -> bool:
+	var array = GetCollidingNonAnimals(numberOfCollisions)
+	_lastCollidedItems = array
+	return array.size() > _lastCollidedItems.size()
+
 
 func hit(_amount):
 	if (_isDead):
@@ -154,24 +163,24 @@ func _physics_process(_delta):
 func start_moving():
 	var my_array = []
 	if (!_isBlockedLeft):
-		my_array.append(Vector2(-1,0))
+		my_array.append(Vector2.LEFT)
 		if (!_isBlockedBottom):
-			my_array.append(Vector2(-1, 1))
+			my_array.append((Vector2.LEFT + Vector2.DOWN).normalized())
 		if (!_isBlockedTop):
-			my_array.append(Vector2(-1, -1))
+			my_array.append((Vector2.LEFT + Vector2.UP).normalized())
 
 	if (!_isBlockedRight):
-		my_array.append(Vector2(1,0))
+		my_array.append(Vector2.RIGHT)
 		if (!_isBlockedBottom):
-			my_array.append(Vector2(1, 1))
+			my_array.append((Vector2.RIGHT + Vector2.DOWN).normalized())
 		if (!_isBlockedTop):
-			my_array.append(Vector2(1, -1))
+			my_array.append((Vector2.RIGHT + Vector2.UP).normalized())
 			
 	if (!_isBlockedBottom):
-		my_array.append(Vector2(0, 1))
+		my_array.append(Vector2.DOWN)
 		
 	if (!_isBlockedTop):
-		my_array.append(Vector2(0, -1))
+		my_array.append(Vector2.UP)
 
 	axis = my_array.pick_random()
 

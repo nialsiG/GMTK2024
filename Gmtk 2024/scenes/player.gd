@@ -177,11 +177,11 @@ func GetFoodCoef(foodType : enums.FoodType) -> float :
 func GetForbiddenEvols() -> Array[enums.evolution]:
 	var evols : Array[enums.evolution] = []
 	if (_diet == enums.Diet.carnivore):
-		evols.append(enums.evolution.DIET_CARNI)
+		evols.append([enums.evolution.DIET_CARNI, enums.evolution.DIET_HERBI])
 	elif (_diet == enums.Diet.omni):
 		evols.append(enums.evolution.DIET_OMNI)
 	elif (_diet == enums.Diet.vegetarian):
-		evols.append(enums.evolution.DIET_HERBI)	
+		evols.append([enums.evolution.DIET_HERBI, enums.evolution.DIET_CARNI])	
 	if (current_size == enums.Size.MICRO):
 		evols.append(enums.evolution.NANISM)
 	elif (current_size == enums.Size.COLOSSAL):
@@ -217,9 +217,9 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.EFFICIENCY:
 			_dashFoodCost *= 0.8
 		enums.evolution.COLOR:
-			var r = randi_range(50, 200)
-			var g = randi_range(50, 200)
-			var b = randi_range(50, 200)
+			var r = randi_range(00, 250)
+			var g = randi_range(0, 250)
+			var b = randi_range(0, 250)
 			modulate = Color8(r, g, b, 255)
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
