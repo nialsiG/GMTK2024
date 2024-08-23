@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://wcyaghprcf7y"]
 
 [ext_resource type="PackedScene" uid="uid://dl3h88axna2uq" path="res://assets/Tilemaps/Tilemap.tscn" id="1_5jtrb"]
-[ext_resource type="Script" path="res://scenes/Maps/Map1.gd" id="1_or264"]
+[ext_resource type="Script" path="res://scenes/Maps/Map.gd" id="1_yts5u"]
 [ext_resource type="Texture2D" uid="uid://b4xbbay4fxyv4" path="res://assets/sprites/Other/Rock1.png" id="2_fuwti"]
 [ext_resource type="Texture2D" uid="uid://e20wtyeo5a8" path="res://assets/sprites/Other/Rock2.png" id="3_r8ucg"]
 [ext_resource type="Texture2D" uid="uid://dqpaxd0crfrrq" path="res://assets/sprites/Other/Rock3.png" id="4_m2aqg"]
@@ -19,7 +19,7 @@ size = Vector2(269, 2050)
 size = Vector2(2093, 61)
 
 [node name="Map1" type="Node2D"]
-script = ExtResource("1_or264")
+script = ExtResource("1_yts5u")
 
 [node name="Tilemap" parent="." instance=ExtResource("1_5jtrb")]
 position = Vector2(-699, 605)

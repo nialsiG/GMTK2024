@@ -48,6 +48,8 @@ func _ready():
 	
 	var map : GameMap = mapPackedScene.instantiate()
 	var mapDimensions : Vector2 = map.GetMapDimensions()
+	var startingPoint = map.GetMapStartingPoint()
+	_player.position = startingPoint
 	_width = mapDimensions.x
 	_height = mapDimensions.y
 	_staticElements.add_child(map)

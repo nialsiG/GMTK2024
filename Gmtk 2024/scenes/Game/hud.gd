@@ -2,7 +2,7 @@ extends Control
 class_name hud
 
 const enums = preload("res://scripts/enums.gd")
-const start_menu : String = "res://scenes/start_menu.tscn"
+const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 
 var _deathContainer : PanelContainer
 var _finalScoreContainer : Panel
