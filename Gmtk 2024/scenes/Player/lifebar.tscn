@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://344q25c6djbv"]
-
-[ext_resource type="Script" path="res://scripts/lifebar.gd" id="1_u2ygi"]
+[gd_scene load_steps=3 format=3 uid="uid://344q25c6djbv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjn0i"]
 bg_color = Color(0.56, 0.14, 0.301, 1)
@@ -18,4 +16,3 @@ value = 2.0
 editable = false
 scrollable = false
 tick_count = 5
-script = ExtResource("1_u2ygi")

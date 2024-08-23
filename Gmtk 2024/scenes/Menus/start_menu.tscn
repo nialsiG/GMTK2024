@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://f0jqo5i07ilx"]
 
-[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_riksi"]
+[ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
 [ext_resource type="Texture2D" uid="uid://csggghfx5m080" path="res://assets/sprites/UI/StartMenuUi.png" id="2_cp1jw"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_sr5fs"]

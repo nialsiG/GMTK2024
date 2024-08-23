@@ -6,7 +6,6 @@ var defaultSpeed : float = 500
 var _max_speed : float = 500
 var _scaleCoeff : float = 1.0
 var _speedCoeff : float = 1.0
-var _hungerCoeff : float = 1.0
 var current_size = enums.Size.MEDIUM
 
 const _speedEvolCoeff : float = 1.2
@@ -41,37 +40,26 @@ func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:
 			_scaleCoeff = 0.2
-			_hungerCoeff = 0.7
 		enums.Size.VERYSMALL:
 			_scaleCoeff = 0.3
-			_hungerCoeff = 0.75
 		enums.Size.SMALL:
 			_scaleCoeff = 0.5
-			_hungerCoeff = 0.8
 		enums.Size.MEDIUMSMALL:
 			_scaleCoeff = 0.8
-			_hungerCoeff = 0.9
 		enums.Size.MEDIUM:
 			_scaleCoeff = 1
-			_hungerCoeff = 1
 		enums.Size.MEDIUMLARGE:
 			_scaleCoeff = 1.2
-			_hungerCoeff = 4
 		enums.Size.LARGE:
 			_scaleCoeff = 1.5
-			_hungerCoeff = 8
 		enums.Size.VERYLARGE:
 			_scaleCoeff = 1.7
-			_hungerCoeff = 12
 		enums.Size.MEGA:
 			_scaleCoeff = 2.2
-			_hungerCoeff = 18
 		enums.Size.COLOSSAL:
 			_scaleCoeff = 2.8
-			_hungerCoeff = 22
 		_:
 			_scaleCoeff = 1
-			_hungerCoeff = 1
 	scale = Vector2.ONE * _scaleCoeff
 	current_speed = current_speed * _speedCoeff
 	DisplaySize()

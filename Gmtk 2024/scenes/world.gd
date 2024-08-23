@@ -2,7 +2,7 @@ extends Node2D
 
 const enums = preload("res://scripts/enums.gd")
 const start_menu : String = "res://scenes/start_menu.tscn"
-var meatPackedScene = preload("res://scenes/Meat.tscn")
+var meatPackedScene = preload("res://scenes/Consumables/Meat.tscn")
 
 var _width : float = 2000
 var _height : float = 2000
@@ -19,7 +19,6 @@ var _gameElements : Node
 var _player : Player
 
 var _hud : hud
-var _hungerbar : hungerbar
 
 var _pauseMenu : PauseMenu
 var _evolutionMenu : EvolutionMenu
@@ -37,9 +36,6 @@ var _currentAnimals : Array[Animal] = []
 
 func _ready():
 	_hud = get_node("CanvasLayer/hud")
-	_hungerbar = get_node("CanvasLayer/hud/hungerbar")
-	_hungerbar.connect("DiedOfHunger", OnPlayerDeath)
-	_hungerbar.connect("FoodOverflowed", OnFoodOverFlow)
 	
 	_gameElements = get_node("GameElements")
 	_dynamicElements = (get_node("GameElements/DynamicElements")) as Node
@@ -55,15 +51,8 @@ func _ready():
 	_evolutionMenu.connect("Chose", OnEvolutionChosen)
 	
 	_player.connect("Fed", OnPlayerAte)
-	_player.connect("UpdatedDiet", OnPlayerUpdatedDiet)
-	_player.connect("UpdatedSize", OnPlayerUpdatedSize)
-	_player.connect("UpdatedHealth", OnPlayerUpdatedHealth)
 	_player.connect("Died", OnPlayerDeath)
-	_player.connect("UpdatedDashCooldown", OnPlayerUpdatedDashCoolDown)
 	
-	_hud.UpdateSize(_player.current_size, _player._hungerCoeff)
-	_hud.UpdateDiet(_player._diet)
-	_hud.UpdateHealth(_player.currentHealth, _player.maxHealth)
 	_cycleTimer = get_node("Timer")
 	
 	_is_player_dead = false
@@ -81,7 +70,6 @@ func StartGame():
 	GeneratePlants(10)
 	GenerateAnimals(5)
 	currentState = gameState.OnGoing
-	_hud.Pause(false);
 	_evolutionMenu.hide()
 	_pauseMenu.UnPause()
 	_cycleTimer.start()	
@@ -105,19 +93,7 @@ func GenerateAnimals(numberOfAnimals):
 
 func OnPlayerAte(amount : int):
 	_hud.eat(amount)
-
-func OnPlayerUpdatedDiet(diet : enums.Diet):
-	_hud.UpdateDiet(diet)
 	
-func OnPlayerUpdatedSize(size : enums.Size, hungerCoeff : float):
-	_hud.UpdateSize(size, hungerCoeff)
-	
-func OnPlayerUpdatedHealth(currentHealth : int, maxHealth : int):
-	_hud.UpdateHealth(currentHealth, maxHealth)
-
-func OnPlayerUpdatedDashCoolDown(isAvailable : bool):
-	_hud.UpdateDashCooldown(isAvailable)
-
 func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_totalFoodValue += amount
 	_hud.UpdateScore(amount * 3)
@@ -135,7 +111,7 @@ func OnAnimalDied(animal : Animal):
 	var meat = meatPackedScene.instantiate()
 	meat.foodValue = animal.GetFoodValue()
 	meat.position = animal.position
-	meat.scale = Vector2.ONE * animal.GetFoodValue() / 25
+	meat.scale = Vector2.ONE * animal.GetFoodValue() / 10
 	meat.connect("Eaten", OnEatenConsumable)
 	var deadAnimalIndex = _getAnimalIndex(animal)
 	_currentAnimals.remove_at(deadAnimalIndex)
@@ -159,27 +135,21 @@ func OnPlayerDeath():
 		_hud.DisplayFinalScore(true)
 		_hud.UpdateFinalPanel(_pickedEvolutions)
 
-func OnFoodOverFlow():
-	_player.AddHealth(1)
-
 func Pause():
 	currentState = gameState.Menu
 	get_tree().paused = true
 	_pauseMenu.Pause()
-	_hud.Pause(true)
 	_evolutionMenu.hide()
 
 func Unpause():
 	currentState = gameState.OnGoing
 	get_tree().paused = false
 	_pauseMenu.hide()
-	_hud.Pause(false)
 	_evolutionMenu.hide()
 	
 func Evolve():
 	currentState = gameState.Evolution
 	_cycleTimer.stop()
-	_hud.Pause(true)
 	_pauseMenu.UnPause()
 	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())	
 	_evolutionMenu.DisplayChoice(choices)
@@ -189,7 +159,7 @@ func Evolve():
 	get_tree().paused = true
 
 func _applyEnemyEvolForCycle(animal : Animal):
-	for i in _cycle - 1:
+	for i in int(_cycle / 2):
 		var evol = _evolutionChoiceGenerator.GetEnemyEvol()
 		animal.ApplyEvolution(evol)
 

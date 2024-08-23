@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=9 format=3 uid="uid://c3mp8p0p305a3"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_8tpfr"]
+[ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
+[ext_resource type="Script" path="res://scenes/Player/HungerManager.gd" id="3_xx7rb"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
 [ext_resource type="AudioStream" uid="uid://cn6xb57qsdjot" path="res://assets/Sounds/DeathCry.mp3" id="5_du8i2"]
+[ext_resource type="PackedScene" uid="uid://bv85c7lwx4d3b" path="res://scenes/Player/playerHud.tscn" id="6_v0wdp"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
@@ -13,6 +15,8 @@ height = 120.0
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_8tpfr")
+initial_size = 2
+current_speed = 500.0
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-9.53674e-07, -1.81901)
@@ -29,7 +33,8 @@ shape = SubResource("CapsuleShape2D_ifsr4")
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Node" type="Node" parent="."]
+[node name="HungerManager" type="Node" parent="."]
+script = ExtResource("3_xx7rb")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
@@ -43,3 +48,7 @@ stream = ExtResource("4_adu8u")
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_du8i2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hud" parent="CanvasLayer" instance=ExtResource("6_v0wdp")]

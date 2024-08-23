@@ -1,6 +1,5 @@
 class_name Player extends Animal
 
-var _invincibilityTimer : Timer
 var _isInvincible : bool
 
 var _isDashing : bool = false
@@ -12,28 +11,29 @@ var _dashSizeBonus : int = 1
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : float = 5
 var _dashAxis : Vector2
+
 var blink_timer : float = 0
 var blink_limit : float = 0.1
-var _eatingSoundPlayer : AudioStreamPlayer2D
-var _dashSoundPlayer : AudioStreamPlayer
-var _deathSoundPlayer : AudioStreamPlayer
+
+@onready var _dashSoundPlayer : AudioStreamPlayer = $DashSound
+@onready var _eatingSoundPlayer : AudioStreamPlayer2D = $EatingSound
+@onready var _deathSoundPlayer : AudioStreamPlayer = $DeathSound
+@onready var _invincibilityTimer : Timer = $InvincibilityTimer
+@onready var _hud : PlayerHud = $CanvasLayer/hud
+@onready var _hungerManager : HungerManager = $HungerManager
 
 func _ready():
-	sprite = get_node("Sprite2D")
-	_eatingSoundPlayer = get_node("EatingSound")
-	_dashSoundPlayer = get_node("DashSound")
-	_deathSoundPlayer = get_node("DeathSound")
-	current_size = enums.Size.VERYSMALL
-	_invincibilityTimer = get_node("InvincibilityTimer")
+	current_size = initial_size
+	_hungerManager.connect("DiedOfHunger", OnDeathFromHunger)
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
-	UpdateSize()
+	_hud.UpdateHealth(currentHealth, maxHealth)
+	RaiseUpdateSize()
 	
 signal Fed(amount : int)
 signal UpdatedDiet(diet : enums.Diet)
 signal UpdatedSize(size : enums.Size, newhungerCoeff : float)
 signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
-signal UpdatedDashCooldown(isAvailable: bool)
 
 var maxHealth = 2;
 var currentHealth = 2;
@@ -58,13 +58,14 @@ func _process(delta):
 		_isDashing = true
 		_dashSoundPlayer.play()
 		_dashAxis = axis
-		UpdatedDashCooldown.emit(false)
-		#eat(-_dashFoodCost * GetSizeValue(), enums.FoodType.Consumed)
+		_hud.UpdateDashCooldown(false)
 			
 	UpdateState(axis)
 	UpdateSprite()
 	blink(delta)
 	move(delta)
+	
+	_hud.UpdateHunger(_hungerManager.current_hunger)
 
 func ManageDashCoolDown(delta : float):
 	if(_isDashInRecovery):
@@ -72,7 +73,7 @@ func ManageDashCoolDown(delta : float):
 		if (_dashDuration > _dashRecoveryTime):
 			_isDashInRecovery = false
 			_dashDuration = 0
-			UpdatedDashCooldown.emit(true)
+			_hud.UpdateDashCooldown(true)
 	
 	if (_isDashing):
 		_dashDuration += delta
@@ -135,7 +136,8 @@ func apply_acceleration(amount):
 
 func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
-	Fed.emit(amount * GetFoodCoef(foodType))
+	var newHungerValue = _hungerManager.eat(amount * GetFoodCoef(foodType))
+	_hud.UpdateHunger(newHungerValue)
 
 func hit(amount : int):
 	if (amount >= maxHealth && maxHealth > 1 && currentHealth == maxHealth):
@@ -161,6 +163,9 @@ func blink(delta):
 			true: sprite.hide()
 			false: sprite.show()
 
+func OnDeathFromHunger():
+	Died.emit()
+
 func GetFoodCoef(foodType : enums.FoodType) -> float :
 	if (_diet == enums.Diet.omni):
 		return 0.75;
@@ -177,11 +182,11 @@ func GetFoodCoef(foodType : enums.FoodType) -> float :
 func GetForbiddenEvols() -> Array[enums.evolution]:
 	var evols : Array[enums.evolution] = []
 	if (_diet == enums.Diet.carnivore):
-		evols.append([enums.evolution.DIET_CARNI, enums.evolution.DIET_HERBI])
+		evols.append_array([enums.evolution.DIET_CARNI, enums.evolution.DIET_HERBI])
 	elif (_diet == enums.Diet.omni):
 		evols.append(enums.evolution.DIET_OMNI)
 	elif (_diet == enums.Diet.vegetarian):
-		evols.append([enums.evolution.DIET_HERBI, enums.evolution.DIET_CARNI])	
+		evols.append_array([enums.evolution.DIET_HERBI, enums.evolution.DIET_CARNI])	
 	if (current_size == enums.Size.MICRO):
 		evols.append(enums.evolution.NANISM)
 	elif (current_size == enums.Size.COLOSSAL):
@@ -200,12 +205,10 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.NANISM:
 			if(current_size != enums.Size.MICRO):
 				current_size = current_size - 1 as enums.Size
-				UpdateSize()
 				RaiseUpdateSize()
 		enums.evolution.GIGANTISM:
 			if(current_size != enums.Size.COLOSSAL):
 				current_size = current_size + 1 as enums.Size
-				UpdateSize()
 				RaiseUpdateSize()
 		enums.evolution.HEALTH:
 			maxHealth +=1
@@ -228,14 +231,16 @@ func ApplyEvolution(evol : enums.evolution):
 		
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
-	UpdatedDiet.emit(_diet)
+	_hud.UpdateDiet(newDiet)
 
 func RaiseUpdateSize():
-	UpdatedSize.emit(current_size, _hungerCoeff)
+	UpdateSize()
+	_hud.UpdateSize(current_size)
+	_hungerManager.UpdateHungerFactor(current_size)
 
 func OnIFrameTimeOut():
 	_isInvincible = false
 
 func AddHealth(health : int):
 	currentHealth = clamp(currentHealth + health, 0, maxHealth)
-	UpdatedHealth.emit(currentHealth, maxHealth)
+	_hud.UpdateHealth(currentHealth, maxHealth)

@@ -1,15 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=20 format=3 uid="uid://yfeq2kd77xiu"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_yiyiu"]
-[ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/lifebar.tscn" id="2_6hym2"]
+[ext_resource type="Script" path="res://scenes/Game/hud.gd" id="1_yiyiu"]
 [ext_resource type="Texture2D" uid="uid://4kaotfvphojc" path="res://assets/sprites/Icons/IconAgility.png" id="2_j7806"]
-[ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/hungerbar.tscn" id="3_oa3di"]
 [ext_resource type="Texture2D" uid="uid://bxi4756sx5d6t" path="res://assets/sprites/Icons/IconCarnivore.png" id="3_teftq"]
-[ext_resource type="Texture2D" uid="uid://bosl0vtd1dqst" path="res://assets/sprites/Icons/IconVegetarian.png" id="4_3ukey"]
 [ext_resource type="Texture2D" uid="uid://c6fpiupc46l76" path="res://assets/sprites/Icons/IconColor.png" id="4_geamd"]
 [ext_resource type="Texture2D" uid="uid://6buyhy4sv1wd" path="res://assets/sprites/Icons/IconEfficiency.png" id="5_57k51"]
-[ext_resource type="Texture2D" uid="uid://dljljj4i3yhoc" path="res://assets/sprites/Icons/IconDietCarnivore.png" id="5_o4yav"]
-[ext_resource type="Texture2D" uid="uid://c51wifsl3tke5" path="res://assets/sprites/Icons/IconDash.png" id="6_6kvow"]
 [ext_resource type="Texture2D" uid="uid://cx4ajykwhrli3" path="res://assets/sprites/Icons/IconFang.png" id="6_ktiui"]
 [ext_resource type="LabelSettings" uid="uid://cx2a532ok4y42" path="res://resources/labels/wasted.tres" id="7_70qvw"]
 [ext_resource type="Texture2D" uid="uid://dptfqe428q264" path="res://assets/sprites/Icons/IconGigantism.png" id="7_kipwg"]
@@ -24,13 +19,6 @@
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="18_sj7dm"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="20_421p3"]
 [ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="24_qu03e"]
-
-[sub_resource type="Gradient" id="Gradient_wctgb"]
-colors = PackedColorArray(0, 0, 0, 0.419608, 0, 0, 0, 0.898039)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dapuk"]
-gradient = SubResource("Gradient_wctgb")
-width = 40
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -53,70 +41,6 @@ icon_omni = ExtResource("11_x6noh")
 icon_sturdy = ExtResource("12_ppxa0")
 icon_vegetarian = ExtResource("13_d4dqn")
 
-[node name="lifebar" parent="." instance=ExtResource("2_6hym2")]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 24.0
-offset_right = 452.0
-offset_bottom = 40.0
-tick_count = 0
-
-[node name="health_label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 465.0
-offset_top = 18.0
-offset_right = 517.0
-offset_bottom = 41.0
-text = "Health"
-
-[node name="hungerbar" parent="." instance=ExtResource("3_oa3di")]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 60.0
-offset_right = 452.0
-offset_bottom = 76.0
-tick_count = 0
-
-[node name="hunger_label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 465.0
-offset_top = 55.0
-offset_right = 523.0
-offset_bottom = 78.0
-text = "Hunger"
-
-[node name="HerbiIcon" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 97.0
-offset_right = 83.0
-offset_bottom = 137.0
-
-[node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
-layout_mode = 2
-texture = ExtResource("4_3ukey")
-expand_mode = 2
-
-[node name="CarniIcon" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 99.0
-offset_top = 97.0
-offset_right = 139.0
-offset_bottom = 137.0
-
-[node name="TextureRect" type="TextureRect" parent="CarniIcon"]
-layout_mode = 2
-texture = ExtResource("5_o4yav")
-expand_mode = 2
-
-[node name="SizeLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 109.0
-offset_right = 190.0
-offset_bottom = 132.0
-text = "DefaultSize"
-
 [node name="Score" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -138,29 +62,6 @@ text = "000"
 label_settings = ExtResource("18_sj7dm")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
-clip_children = 1
-layout_mode = 0
-offset_left = 256.0
-offset_top = 97.0
-offset_right = 296.0
-offset_bottom = 137.0
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
-layout_mode = 2
-texture = ExtResource("6_6kvow")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer"]
-visible = false
-layout_mode = 2
-text = "Dash"
-
-[node name="DashOverlay" type="TextureRect" parent="PanelContainer"]
-visible = false
-layout_mode = 2
-texture = SubResource("GradientTexture1D_dapuk")
 
 [node name="DeathContainer" type="PanelContainer" parent="."]
 process_mode = 3

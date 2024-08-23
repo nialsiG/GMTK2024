@@ -1,9 +1,9 @@
 extends Node
 class_name PlantGenerator
 
-var glandPackedScene = preload("res://scenes/Plants/plant_gland.tscn")
-var morellePackedScene = preload("res://scenes/Plants/plant_morelle.tscn")
-var spindaceaPackedScene = preload("res://scenes/Plants/plant_spindacea.tscn")
+var glandPackedScene = preload("res://scenes/Consumables/plant_gland.tscn")
+var morellePackedScene = preload("res://scenes/Consumables/plant_morelle.tscn")
+var spindaceaPackedScene = preload("res://scenes/Consumables/plant_spindacea.tscn")
 
 var plantPSs : Array[PackedScene] = [glandPackedScene, glandPackedScene, morellePackedScene, morellePackedScene, morellePackedScene, spindaceaPackedScene]
 

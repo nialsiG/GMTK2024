@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qub1bvnm1g0"]
-
-[ext_resource type="Script" path="res://scripts/hungerbar.gd" id="1_qx0kb"]
+[gd_scene load_steps=3 format=3 uid="uid://5qub1bvnm1g0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6ggv"]
 bg_color = Color(0.901961, 0.807843, 0.0980392, 1)
@@ -17,4 +15,3 @@ value = 100.0
 editable = false
 scrollable = false
 tick_count = 11
-script = ExtResource("1_qx0kb")

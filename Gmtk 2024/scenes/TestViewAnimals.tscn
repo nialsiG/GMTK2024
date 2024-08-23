@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://di8qff821ygdf" path="res://scenes/Animals/Garganomis.tscn" id="3_ig71k"]
 [ext_resource type="PackedScene" uid="uid://dqg7jad33ecwk" path="res://scenes/Animals/Mikrotia.tscn" id="4_8rjmj"]
 [ext_resource type="PackedScene" uid="uid://bdsqtikpmbisd" path="res://scenes/Animals/Prolagus.tscn" id="5_sx5rp"]
-[ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/player.tscn" id="6_evm0s"]
-[ext_resource type="Script" path="res://scenes/Meat.gd" id="7_jkstp"]
-[ext_resource type="PackedScene" uid="uid://i8vmvgudegbb" path="res://scenes/Plants/plant_morelle.tscn" id="7_lt5kp"]
-[ext_resource type="PackedScene" uid="uid://dtbq6li2w18ix" path="res://scenes/Plants/plant_gland.tscn" id="8_5kjrj"]
+[ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/Player/player.tscn" id="6_evm0s"]
+[ext_resource type="Script" path="res://scenes/Consumables/Meat.gd" id="7_jkstp"]
+[ext_resource type="PackedScene" uid="uid://i8vmvgudegbb" path="res://scenes/Consumables/plant_morelle.tscn" id="7_lt5kp"]
+[ext_resource type="PackedScene" uid="uid://dtbq6li2w18ix" path="res://scenes/Consumables/plant_gland.tscn" id="8_5kjrj"]
 
 [node name="TestViewAnimals" type="Node2D"]
 

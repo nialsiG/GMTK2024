@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://y4j8wtgf7p6k"]
 
-[ext_resource type="Script" path="res://scripts/evolution_menu.gd" id="1_8kr84"]
+[ext_resource type="Script" path="res://scenes/Game/evolution_menu.gd" id="1_8kr84"]
 [ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="1_o2ad0"]
 [ext_resource type="LabelSettings" uid="uid://dekxbv782otfp" path="res://resources/labels/text1.tres" id="2_oqhmj"]
-[ext_resource type="PackedScene" uid="uid://bmnerimdrbfb8" path="res://scenes/evolution_button.tscn" id="3_g3mq4"]
+[ext_resource type="PackedScene" uid="uid://bmnerimdrbfb8" path="res://scenes/Game/evolution_button.tscn" id="3_g3mq4"]
 
 [node name="evolution_menu" type="Node"]
 script = ExtResource("1_8kr84")
