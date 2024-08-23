@@ -1,7 +1,7 @@
 extends Control
 class_name PauseMenu
 
-@onready var start_menu = "res://scenes/start_menu.tscn"
+@onready var start_menu = "res://scenes/Menus/start_menu.tscn"
 
 static var is_paused: bool
 

@@ -15,6 +15,8 @@ var _dashAxis : Vector2
 var blink_timer : float = 0
 var blink_limit : float = 0.1
 
+var _isDead : bool = false
+
 @onready var _dashSoundPlayer : AudioStreamPlayer = $DashSound
 @onready var _eatingSoundPlayer : AudioStreamPlayer2D = $EatingSound
 @onready var _deathSoundPlayer : AudioStreamPlayer = $DeathSound
@@ -44,8 +46,8 @@ func _process(delta):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = GetSizeValue()
-			var animalSizeValue= animal.GetSizeValue() 
+			var sizeValue = int(current_size)
+			var animalSizeValue= int(animal.current_size) 
 			if (sizeValue < animalSizeValue && !_isInvincible):
 				hit(int((animalSizeValue - sizeValue) /2.0))
 			elif (sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
@@ -144,8 +146,9 @@ func hit(amount : int):
 		amount = maxHealth - 1
 	if (!_isInvincible):
 		AddHealth(-amount)
-		if (currentHealth <= 0):
-			_deathSoundPlayer.play()
+		if (currentHealth <= 0 && !_isDead):
+			_isDead = true
+			_deathSoundPlayer.play()			
 			Died.emit()
 		else:
 			_isInvincible = true
@@ -164,6 +167,9 @@ func blink(delta):
 			false: sprite.show()
 
 func OnDeathFromHunger():
+	if (_isDead):
+		pass
+	_isDead = true
 	Died.emit()
 
 func GetFoodCoef(foodType : enums.FoodType) -> float :

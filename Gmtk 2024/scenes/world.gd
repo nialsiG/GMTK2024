@@ -1,33 +1,35 @@
 extends Node2D
 
 const enums = preload("res://scripts/enums.gd")
-const start_menu : String = "res://scenes/start_menu.tscn"
+const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 var meatPackedScene = preload("res://scenes/Consumables/Meat.tscn")
+var mapPackedScene = preload("res://scenes/Maps/Map1.tscn")
 
 var _width : float = 2000
 var _height : float = 2000
 var _margin : float = 30
 
-var _plantGenerator : PlantGenerator
-var _animalGenerator : AnimalGenerator
-var _evolutionChoiceGenerator : EvolutionChoiceGenerator
-
 var _pickedEvolutions : Array[enums.evolution] = []
 
-var _dynamicElements : Node
-var _gameElements : Node
-var _player : Player
 
-var _hud : hud
+@onready var _hud : hud = $CanvasLayer/hud
+@onready var _dynamicElements : Node2D = $GameElements/DynamicElements
+@onready var _staticElements : Node2D = $GameElements/StaticElements
+@onready var _player : Player = $GameElements/DynamicElements/Player
 
-var _pauseMenu : PauseMenu
-var _evolutionMenu : EvolutionMenu
+@onready var _plantGenerator : PlantGenerator = $PlantGenerator
+@onready var _animalGenerator : AnimalGenerator = $AnimalGenerator
+@onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
+
+@onready var _pauseMenu : PauseMenu = $CanvasLayer/pause_menu
+@onready var _evolutionMenu : EvolutionMenu  = $evolution_menu
+
+@onready var _cycleTimer : Timer
+
 enum gameState {Menu, Evolution, OnGoing }
 var currentState : gameState
-var _is_player_dead : bool
 
 var _cycle : int = 1
-var _cycleTimer : Timer
 var _totalFoodValue : int = 0
 var _totalMeatValue : int = 0
 var _totalPlantValue : int = 0
@@ -35,28 +37,14 @@ var _safetySpawnRadius : float = 300
 var _currentAnimals : Array[Animal] = []
 
 func _ready():
-	_hud = get_node("CanvasLayer/hud")
-	
-	_gameElements = get_node("GameElements")
-	_dynamicElements = (get_node("GameElements/DynamicElements")) as Node
-
-	_plantGenerator = get_node("PlantGenerator")
-	_animalGenerator = get_node("AnimalGenerator")
-	_evolutionChoiceGenerator = get_node("EvolutionChoiceGenerator")
-
-	_player = get_node("GameElements/Player")
-	_pauseMenu = get_node("CanvasLayer/pause_menu")
 	_pauseMenu.connect("Resume", Unpause)
-	_evolutionMenu = get_node("evolution_menu")
-	_evolutionMenu.connect("Chose", OnEvolutionChosen)
-	
+	_evolutionMenu.connect("Chose", OnEvolutionChosen)	
 	_player.connect("Fed", OnPlayerAte)
-	_player.connect("Died", OnPlayerDeath)
-	
+	_player.connect("Died", OnPlayerDeath)	
 	_cycleTimer = get_node("Timer")
 	
-	_is_player_dead = false
-	
+	var map = mapPackedScene.instantiate()
+	_staticElements.add_child(map)
 	StartGame()
 
 func _process(_delta):
@@ -125,15 +113,13 @@ func _getAnimalIndex(animal : Animal):
 	return -1
 	
 func OnPlayerDeath():
-	if !_is_player_dead:
-		_is_player_dead = true
-		var tree = get_tree()
-		tree.paused = true
-		_hud.DisplayDeath(true)
-		await get_tree().create_timer(2.5).timeout
-		_hud.DisplayDeath(false)
-		_hud.DisplayFinalScore(true)
-		_hud.UpdateFinalPanel(_pickedEvolutions)
+	var tree = get_tree()
+	tree.paused = true
+	_hud.DisplayDeath(true)
+	await get_tree().create_timer(2.5).timeout
+	_hud.DisplayDeath(false)
+	_hud.DisplayFinalScore(true)
+	_hud.UpdateFinalPanel(_pickedEvolutions)
 
 func Pause():
 	currentState = gameState.Menu
