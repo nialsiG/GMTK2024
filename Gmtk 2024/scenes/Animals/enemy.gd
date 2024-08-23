@@ -133,8 +133,8 @@ func _checkHitByAnimal(numberOfCollisions : int):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = GetSizeValue()
-			var animalSizeValue = animal.GetSizeValue()
+			var sizeValue = int(current_size)
+			var animalSizeValue = int(animal.current_size)
 			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
 				hit(clamp(1, int((animalSizeValue - sizeValue) /2.0), sizeValue))
 			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
@@ -145,6 +145,11 @@ func _checkHitByNonAnimal(numberOfCollisions : int) -> bool:
 	_lastCollidedItems = array
 	return array.size() > _lastCollidedItems.size()
 
+func getMaxSpeed() -> float:
+	if (current_state == state.MOVING):
+		return _max_speed / 2
+	else:
+		return _max_speed
 
 func hit(_amount):
 	if (_isDead):
@@ -189,8 +194,8 @@ func OnDetectionAreaEntered(body):
 		return
 		
 	var detectedTarget = body as Animal
-	var sizeValue = GetSizeValue()
-	var targetSizeValue = detectedTarget.GetSizeValue()
+	var sizeValue = int(current_size)
+	var targetSizeValue = int(detectedTarget.current_size)
 
 	if (targetSizeValue > sizeValue && detectedTarget._diet != enums.Diet.vegetarian):
 		target = detectedTarget

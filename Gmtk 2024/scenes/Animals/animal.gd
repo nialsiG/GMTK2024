@@ -68,7 +68,7 @@ func DisplaySize():
 	pass
 	
 func GetFoodValue() -> int:
-	return GetSizeValue() * 5
+	return int(current_size) * 5
 
 func CanEatMeat() -> bool:
 	return _diet == enums.Diet.carnivore || _diet == enums.Diet.omni
@@ -93,7 +93,10 @@ func apply_friction(amount):
 
 func apply_acceleration(amount):
 	velocity += amount
-	velocity = velocity.limit_length(_max_speed)
+	velocity = velocity.limit_length(getMaxSpeed())
+
+func getMaxSpeed() -> float:
+	return _max_speed
 
 func ApplyEvolution(evol : enums.evolution):
 	match(evol):
@@ -189,31 +192,6 @@ func GetCollidingNonAnimals(collisionCount : int) -> Array[Node2D]:
 			array.append(collider)
 		
 	return array
-
-func GetSizeValue() -> int:
-	match(current_size):
-		enums.Size.MICRO:
-			return 1
-		enums.Size.VERYSMALL:
-			return 2
-		enums.Size.SMALL:
-			return 3
-		enums.Size.MEDIUMSMALL:
-			return 4
-		enums.Size.MEDIUM:
-			return 5
-		enums.Size.MEDIUMLARGE:
-			return 6
-		enums.Size.LARGE:
-			return 7
-		enums.Size.VERYLARGE:
-			return 8
-		enums.Size.MEGA:
-			return 9
-		enums.Size.COLOSSAL:
-			return 10
-		_:
-			return 0
 
 func UpdateColorRandomly():
 	var r = randi_range(50, 200)
