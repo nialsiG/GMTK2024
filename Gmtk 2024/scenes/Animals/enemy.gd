@@ -10,6 +10,8 @@ enum state { IDLE, MOVING, CHASING, ATTACKING, FLEEING, WOUNDED, DEAD }
 @export var MAX_FLEEING_TIME: float = 8
 @export var MAX_CHASING_TIME: float = 6
 
+var _margin : float = 50
+
 var _name : String = "enemy"
 var _chasingSoundPlayer : AudioStreamPlayer2D
 var _fleeingSoundPlayer : AudioStreamPlayer2D
@@ -35,6 +37,7 @@ func _initialize():
 	_lastPosition = position
 	_fleeingSoundPlayer = get_node("FleeingSoundPlayer")
 	_chasingSoundPlayer = get_node("ChasingSoundPlayer")
+
 
 
 func UpdateIdleFactor():
@@ -115,11 +118,10 @@ func _process(delta):
 	move(delta)
 
 func _isBlocked():
-	var margin = 50.0
-	_isBlockedLeft = position.x - GetRadius() < margin
-	_isBlockedRight = position.x  + GetRadius() > (2000 - margin) && axis.x > 0
-	_isBlockedTop = position.y - GetRadius() < margin
-	_isBlockedBottom = position.y + GetRadius() > 2000 - margin 
+	_isBlockedLeft = position.x - GetRadius() < _margin
+	_isBlockedRight = position.x  + GetRadius() > (_width - _margin) && axis.x > 0
+	_isBlockedTop = position.y - GetRadius() < _margin
+	_isBlockedBottom = position.y + GetRadius() > _height - _margin 
 	return _isBlockedLeft || _isBlockedRight || _isBlockedTop || _isBlockedBottom
 	
 func stayIdle():

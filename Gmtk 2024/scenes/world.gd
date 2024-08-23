@@ -29,6 +29,9 @@ var _pickedEvolutions : Array[enums.evolution] = []
 enum gameState {Menu, Evolution, OnGoing }
 var currentState : gameState
 
+const _meatValueToScale : float = 0.1
+const _deathScreenDuration : float = 2.5
+
 var _cycle : int = 1
 var _totalFoodValue : int = 0
 var _totalMeatValue : int = 0
@@ -43,7 +46,10 @@ func _ready():
 	_player.connect("Died", OnPlayerDeath)	
 	_cycleTimer = get_node("Timer")
 	
-	var map = mapPackedScene.instantiate()
+	var map : GameMap = mapPackedScene.instantiate()
+	var mapDimensions : Vector2 = map.GetMapDimensions()
+	_width = mapDimensions.x
+	_height = mapDimensions.y
 	_staticElements.add_child(map)
 	StartGame()
 
@@ -75,6 +81,7 @@ func GenerateAnimals(numberOfAnimals):
 		if ((animal.position - _player.position).length() < _safetySpawnRadius):
 			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
 		_applyEnemyEvolForCycle(animal)
+		animal.SetupBounds(_width, _height)
 		animal.connect("Died", OnAnimalDied)
 		_currentAnimals.append(animal)
 		_dynamicElements.call_deferred("add_child", animal)
@@ -99,7 +106,7 @@ func OnAnimalDied(animal : Animal):
 	var meat = meatPackedScene.instantiate()
 	meat.foodValue = animal.GetFoodValue()
 	meat.position = animal.position
-	meat.scale = Vector2.ONE * animal.GetFoodValue() / 10
+	meat.scale = Vector2.ONE * animal.GetFoodValue() * _meatValueToScale
 	meat.connect("Eaten", OnEatenConsumable)
 	var deadAnimalIndex = _getAnimalIndex(animal)
 	_currentAnimals.remove_at(deadAnimalIndex)
@@ -116,7 +123,7 @@ func OnPlayerDeath():
 	var tree = get_tree()
 	tree.paused = true
 	_hud.DisplayDeath(true)
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(_deathScreenDuration).timeout
 	_hud.DisplayDeath(false)
 	_hud.DisplayFinalScore(true)
 	_hud.UpdateFinalPanel(_pickedEvolutions)

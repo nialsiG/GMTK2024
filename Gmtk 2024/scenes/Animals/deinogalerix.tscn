@@ -16,6 +16,10 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ple3s")
 initial_size = 3
+current_speed = 0.0
+acceleration = 1500
+friction = 1500
+animalName = "Deino"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_85bkv")

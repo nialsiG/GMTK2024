@@ -5,20 +5,22 @@ const enums = preload("res://scripts/enums.gd")
 var defaultSpeed : float = 500
 var _max_speed : float = 500
 var _scaleCoeff : float = 1.0
-var _speedCoeff : float = 1.0
 var current_size = enums.Size.MEDIUM
+
+var _width : float = 2000
+var _height : float = 2000
 
 const _speedEvolCoeff : float = 1.2
 @export var initial_size : enums.Size = enums.Size.MEDIUM
-@export var current_speed = defaultSpeed
-@export var acceleration = 1500
-@export var friction = 1500
+@export var current_speed : float = defaultSpeed
+@export var acceleration : float = 1500
+@export var friction : float = 1500
 @export var meatValue : int = 30
 @export var animalName : String = "Undefined"
 @export var startingDiet : enums.Diet = enums.Diet.omni
 
 @onready var axis = Vector2.ZERO
-@onready var current_direction = enums.Direction.Down
+@onready var current_direction : enums.Direction = enums.Direction.Down
 
 var target : Node2D
 var relationToTarget : enums.Relationship
@@ -61,8 +63,11 @@ func UpdateSize():
 		_:
 			_scaleCoeff = 1
 	scale = Vector2.ONE * _scaleCoeff
-	current_speed = current_speed * _speedCoeff
 	DisplaySize()
+
+func SetupBounds(levelWidth : float, levelHeight : float):
+	_width = levelWidth
+	_height = levelHeight	
 
 func DisplaySize():
 	pass
