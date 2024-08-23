@@ -13,7 +13,7 @@ height = 120.0
 radius = 170.0
 
 [node name="deinogalerix2" instance=ExtResource("1_p3d56")]
-initial_size = 5
+initial_size = 6
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CapsuleShape2D_c7s0e")

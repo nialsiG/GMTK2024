@@ -8,7 +8,6 @@
 radius = 300.0
 
 [node name="deinogalerix3" instance=ExtResource("1_qeo52")]
-initial_size = 1
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_f4rfx")
