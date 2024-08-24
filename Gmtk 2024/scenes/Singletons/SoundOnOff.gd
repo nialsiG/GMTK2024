@@ -6,9 +6,12 @@ class_name soundOnOffButton
 
 var _isOn = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	icon = onImage
+	setValue(WorldSettings.IsSoundOn())
+	subscribe()
+
+func OnSoundUpdated(value : float):
+	setValue(value > 0)
 
 func setValue(value : bool):
 	_isOn = value
@@ -20,4 +23,12 @@ func setValue(value : bool):
 
 func OnSoundButtonPressed():
 	setValue(!_isOn)
+	unsubscribe()
 	WorldSettings.UpdateSoundOnOff(_isOn)
+	subscribe()
+
+func subscribe():
+	WorldSettings.connect("SoundChanged", OnSoundUpdated)
+	
+func unsubscribe():
+	WorldSettings.disconnect("SoundChanged", OnSoundUpdated)
