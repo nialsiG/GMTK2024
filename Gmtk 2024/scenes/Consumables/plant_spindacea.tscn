@@ -35,6 +35,7 @@ animations = [{
 
 [node name="Plant" instance=ExtResource("1_bd775")]
 script = ExtResource("2_rbc7y")
+foodValue = 15
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_q2hf0")
