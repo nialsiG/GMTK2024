@@ -40,9 +40,9 @@ func _ready():
 	"Your tooth become bigger, during your dash, you gain a temporary size",
 	enums.evolution.FANG, "res://assets/sprites/Icons/IconFang.png")
 
-	var efficiency = CreateChoice("Efficiency",
-	"Your movements are more efficient, your dash cost less food",
-	enums.evolution.EFFICIENCY, "res://assets/sprites/Icons/IconEfficiency.png")
+	#var efficiency = CreateChoice("Efficiency",
+	#"Your movements are more efficient, your dash cost less food",
+	#enums.evolution.EFFICIENCY, "res://assets/sprites/Icons/IconEfficiency.png")
 
 	var lightness = CreateChoice("Lightness",
 	"Your frame is lighter, you become faster",

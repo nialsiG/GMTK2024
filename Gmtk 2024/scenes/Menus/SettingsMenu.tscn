@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bihcqbrqqb7t3"]
+
+[ext_resource type="Texture2D" uid="uid://clx7lk0n673vg" path="res://assets/sprites/Other/SoundOn.png" id="1_6763h"]
+[ext_resource type="Script" path="res://scenes/Menus/SettingsMenu.gd" id="1_rjfxp"]
+[ext_resource type="Script" path="res://scenes/Singletons/SoundOnOff.gd" id="2_47bsx"]
+[ext_resource type="Script" path="res://scenes/Menus/SoundSlider.gd" id="2_tkbpd"]
+[ext_resource type="Texture2D" uid="uid://doyyrao6byycc" path="res://assets/sprites/Other/SoundOff.png" id="3_lihi0"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1870.0
+offset_bottom = -1030.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjfxp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="SoundSlider" type="VSlider" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(40, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+script = ExtResource("2_tkbpd")
+
+[node name="SoundOnOff" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+icon = ExtResource("1_6763h")
+script = ExtResource("2_47bsx")
+onImage = ExtResource("1_6763h")
+offImage = ExtResource("3_lihi0")
+
+[connection signal="mouse_entered" from="VBoxContainer" to="." method="OnSoundContainerEntered"]
+[connection signal="mouse_exited" from="VBoxContainer" to="." method="OnSoundContainerExited"]
+[connection signal="value_changed" from="VBoxContainer/SoundSlider" to="VBoxContainer/SoundSlider" method="OnValueChanged"]
+[connection signal="pressed" from="VBoxContainer/SoundOnOff" to="VBoxContainer/SoundOnOff" method="OnSoundButtonPressed"]

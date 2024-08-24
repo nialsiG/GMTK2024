@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://ck8srhg3sw0ut"]
+
+[ext_resource type="PackedScene" uid="uid://drb7ykpkbtr74" path="res://scenes/Consumables/plant.tscn" id="1_bd775"]
+[ext_resource type="Script" path="res://scenes/Consumables/plant_spindacea.gd" id="2_rbc7y"]
+[ext_resource type="Texture2D" uid="uid://conhg3bc44hcm" path="res://assets/sprites/Plants/Spindacea.png" id="3_nv311"]
+[ext_resource type="Texture2D" uid="uid://btk36cgplykr4" path="res://assets/sprites/Plants/Spindacea_2.png" id="4_u3sop"]
+[ext_resource type="Texture2D" uid="uid://c2ji6r8teahr0" path="res://assets/sprites/Plants/Spindacea_3.png" id="5_py5ka"]
+[ext_resource type="Texture2D" uid="uid://cmi0toiluxlrx" path="res://assets/sprites/Plants/Spindacea_4.png" id="6_1opga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2hf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nv311")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u3sop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_py5ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1opga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_py5ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u3sop")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Plant" instance=ExtResource("1_bd775")]
+script = ExtResource("2_rbc7y")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_q2hf0")
+autoplay = "default"
+frame_progress = 0.0911874

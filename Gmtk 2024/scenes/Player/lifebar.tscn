@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://344q25c6djbv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjn0i"]
+bg_color = Color(0.56, 0.14, 0.301, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gchm0"]
+bg_color = Color(0.560784, 0.141176, 0.301961, 1)
+
+[node name="lifebar" type="HSlider"]
+offset_right = 409.0
+offset_bottom = 16.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_jjn0i")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_gchm0")
+max_value = 4.0
+value = 2.0
+editable = false
+scrollable = false
+tick_count = 5

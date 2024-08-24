@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv85c7lwx4d3b"]
+
+[ext_resource type="Script" path="res://scenes/Player/playerHud.gd" id="1_al6k2"]
+[ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/Player/lifebar.tscn" id="14_jlcup"]
+[ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/Player/hungerbar.tscn" id="15_yeu5o"]
+[ext_resource type="Texture2D" uid="uid://bosl0vtd1dqst" path="res://assets/sprites/Icons/IconVegetarian.png" id="16_p66i6"]
+[ext_resource type="Texture2D" uid="uid://dljljj4i3yhoc" path="res://assets/sprites/Icons/IconDietCarnivore.png" id="17_lhjv4"]
+[ext_resource type="Texture2D" uid="uid://c51wifsl3tke5" path="res://assets/sprites/Icons/IconDash.png" id="19_j6dbo"]
+
+[sub_resource type="Gradient" id="Gradient_wctgb"]
+colors = PackedColorArray(0, 0, 0, 0.419608, 0, 0, 0, 0.898039)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dapuk"]
+gradient = SubResource("Gradient_wctgb")
+width = 40
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_al6k2")
+
+[node name="lifebar" parent="." instance=ExtResource("14_jlcup")]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = 452.0
+offset_bottom = 40.0
+tick_count = 0
+
+[node name="health_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 18.0
+offset_right = 517.0
+offset_bottom = 41.0
+text = "Health"
+
+[node name="hungerbar" parent="." instance=ExtResource("15_yeu5o")]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 60.0
+offset_right = 452.0
+offset_bottom = 76.0
+tick_count = 0
+
+[node name="hunger_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 55.0
+offset_right = 523.0
+offset_bottom = 78.0
+text = "Hunger"
+
+[node name="HerbiIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 97.0
+offset_right = 83.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
+layout_mode = 2
+texture = ExtResource("16_p66i6")
+expand_mode = 2
+
+[node name="CarniIcon" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 97.0
+offset_right = 139.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="CarniIcon"]
+layout_mode = 2
+texture = ExtResource("17_lhjv4")
+expand_mode = 2
+
+[node name="SizeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 109.0
+offset_right = 190.0
+offset_bottom = 132.0
+text = "DefaultSize"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 256.0
+offset_top = 97.0
+offset_right = 296.0
+offset_bottom = 137.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("19_j6dbo")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+text = "Dash"
+
+[node name="DashOverlay" type="TextureRect" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture1D_dapuk")
