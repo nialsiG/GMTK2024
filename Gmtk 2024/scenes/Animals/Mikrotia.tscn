@@ -8,15 +8,8 @@
 radius = 300.0
 
 [node name="deinogalerix3" instance=ExtResource("1_qeo52")]
-MAX_IDLE_TIME = null
-MAX_MOVE_TIME = null
-MAX_FLEEING_TIME = null
-MAX_CHASING_TIME = null
-acceleration = null
-friction = null
-meatValue = null
-animalName = null
-startingDiet = null
+initial_size = 2
+animalName = "Undefined"
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_f4rfx")

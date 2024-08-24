@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://q25xtiarjdfc"]
+[gd_scene load_steps=7 format=3 uid="uid://q25xtiarjdfc"]
 
 [ext_resource type="Script" path="res://scenes/Animals/enemy.gd" id="1_ple3s"]
 [ext_resource type="SpriteFrames" uid="uid://buigqoc3hk2n4" path="res://assets/sprites/Animals/Deino/deinogalerix.tres" id="2_noffp"]
 [ext_resource type="AudioStream" uid="uid://dbkaq5vwsv2er" path="res://assets/Sounds/Meow1.mp3" id="3_0k1gt"]
+[ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer2D.gd" id="3_rd25u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85bkv"]
 radius = 60.0
@@ -17,8 +18,6 @@ collision_mask = 3
 script = ExtResource("1_ple3s")
 initial_size = 3
 current_speed = 0.0
-acceleration = 1500
-friction = 1500
 animalName = "Deino"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -36,9 +35,11 @@ shape = SubResource("CircleShape2D_mvwy3")
 
 [node name="ChasingSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 max_distance = 500.0
+script = ExtResource("3_rd25u")
 
 [node name="FleeingSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_0k1gt")
+script = ExtResource("3_rd25u")
 
 [node name="SizeLabel" type="Label" parent="."]
 visible = false

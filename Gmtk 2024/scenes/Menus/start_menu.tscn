@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=26 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -19,6 +19,8 @@
 [ext_resource type="LabelSettings" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
 [ext_resource type="LabelSettings" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
 [ext_resource type="Theme" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
+[ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
+[ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
@@ -368,9 +370,23 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_jif0o")
 text = "Text"
 alignment = 0
 
+[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("19_lkmx4")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -26.0
+offset_top = -28.0
+offset_right = -26.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
 [node name="StartGoosePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_wla5a")
 volume_db = 23.998
+script = ExtResource("21_j3qwn")
 
 [connection signal="pressed" from="CanvasLayer/Buttons/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/VBoxContainer/wiki_button" to="." method="_on_wiki_button_pressed"]

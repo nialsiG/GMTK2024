@@ -13,16 +13,10 @@ height = 120.0
 radius = 170.0
 
 [node name="deinogalerix2" instance=ExtResource("1_p3d56")]
-MAX_IDLE_TIME = null
-MAX_MOVE_TIME = null
-MAX_FLEEING_TIME = null
-MAX_CHASING_TIME = null
 initial_size = 6
-acceleration = null
-friction = null
-meatValue = null
-animalName = null
-startingDiet = null
+acceleration = 1500.0
+friction = 1500.0
+animalName = "Undefined"
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CapsuleShape2D_c7s0e")

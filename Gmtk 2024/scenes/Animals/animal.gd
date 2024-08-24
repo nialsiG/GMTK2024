@@ -11,6 +11,7 @@ var _width : float = 2000
 var _height : float = 2000
 
 const _speedEvolCoeff : float = 1.2
+
 @export var initial_size : enums.Size = enums.Size.MEDIUM
 @export var current_speed : float = defaultSpeed
 @export var acceleration : float = 1500
@@ -21,10 +22,10 @@ const _speedEvolCoeff : float = 1.2
 
 @onready var axis = Vector2.ZERO
 @onready var current_direction : enums.Direction = enums.Direction.Down
+@onready var sprite : AnimatedSprite2D = get_node("Sprite2D")
 
 var target : Node2D
 var relationToTarget : enums.Relationship
-@onready var sprite : AnimatedSprite2D = get_node("Sprite2D")
 
 var currentState = enums.State.Still
 var _diet : enums.Diet = enums.Diet.omni

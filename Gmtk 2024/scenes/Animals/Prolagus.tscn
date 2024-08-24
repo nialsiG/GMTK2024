@@ -4,15 +4,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dkw3d75fcqhkx" path="res://assets/sprites/Animals/Prolagus/Prolagus.tres" id="3_ttf2r"]
 
 [node name="deinogalerix" instance=ExtResource("1_d7v0i")]
-MAX_IDLE_TIME = null
-MAX_MOVE_TIME = null
-MAX_FLEEING_TIME = null
-MAX_CHASING_TIME = null
-acceleration = null
-friction = null
-meatValue = null
-animalName = null
-startingDiet = null
+acceleration = 1500.0
+friction = 1500.0
+animalName = "Undefined"
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(1, 1)

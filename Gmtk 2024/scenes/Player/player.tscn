@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=10 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
 [ext_resource type="Script" path="res://scenes/Player/HungerManager.gd" id="3_xx7rb"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
 [ext_resource type="AudioStream" uid="uid://cn6xb57qsdjot" path="res://assets/Sounds/DeathCry.mp3" id="5_du8i2"]
+[ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer2D.gd" id="5_wulpb"]
 [ext_resource type="PackedScene" uid="uid://bv85c7lwx4d3b" path="res://scenes/Player/playerHud.tscn" id="6_v0wdp"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
 
@@ -42,13 +43,16 @@ current = true
 
 [node name="EatingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_7nei2")
+script = ExtResource("5_wulpb")
 
-[node name="DashSound" type="AudioStreamPlayer" parent="."]
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_adu8u")
+script = ExtResource("5_wulpb")
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("5_du8i2")
+script = ExtResource("5_wulpb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

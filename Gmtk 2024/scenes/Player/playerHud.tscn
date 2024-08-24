@@ -30,7 +30,6 @@ offset_top = 24.0
 offset_right = 452.0
 offset_bottom = 40.0
 tick_count = 0
-script = null
 
 [node name="health_label" type="Label" parent="."]
 layout_mode = 0
@@ -47,7 +46,6 @@ offset_top = 60.0
 offset_right = 452.0
 offset_bottom = 76.0
 tick_count = 0
-script = null
 
 [node name="hunger_label" type="Label" parent="."]
 layout_mode = 0

@@ -17,9 +17,9 @@ var blink_limit : float = 0.1
 
 var _isDead : bool = false
 
-@onready var _dashSoundPlayer : AudioStreamPlayer = $DashSound
+@onready var _dashSoundPlayer : AudioStreamPlayer2D = $DashSound
 @onready var _eatingSoundPlayer : AudioStreamPlayer2D = $EatingSound
-@onready var _deathSoundPlayer : AudioStreamPlayer = $DeathSound
+@onready var _deathSoundPlayer : AudioStreamPlayer2D = $DeathSound
 @onready var _invincibilityTimer : Timer = $InvincibilityTimer
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
