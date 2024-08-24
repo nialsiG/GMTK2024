@@ -11,4 +11,4 @@ func _ready():
 func UpdateSound(adjustedValue : float):
 	# make it rock
 	#volume_db = initialValue - 124 * (1 - adjustedValue)
-	volume_db = initialValue  + (12 - 40 * (1 - adjustedValue))
+	volume_db = initialValue  + (12 - 50 * (1 - adjustedValue))

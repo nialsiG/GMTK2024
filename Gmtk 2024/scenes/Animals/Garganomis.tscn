@@ -14,8 +14,6 @@ radius = 170.0
 
 [node name="deinogalerix2" instance=ExtResource("1_p3d56")]
 initial_size = 6
-acceleration = 1500.0
-friction = 1500.0
 animalName = "Undefined"
 
 [node name="CollisionShape2D" parent="." index="0"]

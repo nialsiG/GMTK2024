@@ -116,3 +116,9 @@ func GetTwoRandomEvolsExcludingSome(excludedEvols : Array[enums.evolution]) -> A
 func GetEnemyEvol() -> enums.evolution:
 	var index = randi_range(0, _enemyEvolutions.size()-1)
 	return _enemyEvolutions[index].evolution
+
+func GetEvolutionForChoice(evol : enums.evolution) -> EvolutionChoice:
+	for i in _allEvolutions.size():
+		if _allEvolutions[i].evolution == evol:
+			return _allEvolutions[i]
+	return null
