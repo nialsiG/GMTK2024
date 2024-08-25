@@ -4,8 +4,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dkw3d75fcqhkx" path="res://assets/sprites/Animals/Prolagus/Prolagus.tres" id="3_ttf2r"]
 
 [node name="deinogalerix" instance=ExtResource("1_d7v0i")]
-acceleration = 1500.0
-friction = 1500.0
 animalName = "Undefined"
 
 [node name="Sprite2D" parent="." index="1"]

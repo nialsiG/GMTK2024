@@ -7,7 +7,7 @@ var _isDashInRecovery : bool = false
 var _dashDuration : float = 0
 var _dashMaxDuration : float = 0.2
 var _dashRecoveryTime : float = 3
-var _dashSizeBonus : int = 1
+var _dashSizeBonus : int = 0
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : float = 5
 var _dashAxis : Vector2
@@ -28,6 +28,7 @@ var _isDead : bool = false
 func _ready():
 	current_size = initial_size
 	_hungerManager.connect("DiedOfHunger", OnDeathFromHunger)
+	_hungerManager.connect("FoodOverflowed", OnFoodOverflow)
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	RaiseUpdateSize()
@@ -148,6 +149,9 @@ func eat(amount: int, foodType : enums.FoodType):
 	var newHungerValue = _hungerManager.eat(amount * GetFoodCoef(foodType))
 	_hud.UpdateHunger(newHungerValue)
 
+func OnFoodOverflow():
+	AddHealth(1)	
+
 func hit(amount : int):
 	if (amount >= maxHealth && maxHealth > 1 && currentHealth == maxHealth):
 		amount = maxHealth - 1
@@ -160,7 +164,6 @@ func hit(amount : int):
 		else:
 			_isInvincible = true
 			_invincibilityTimer.start()
-
 # A function to blink while invincible
 func blink(delta):
 	if !_isInvincible and !sprite.is_visible_in_tree():
