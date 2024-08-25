@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv85c7lwx4d3b"]
+[gd_scene load_steps=10 format=3 uid="uid://bv85c7lwx4d3b"]
 
 [ext_resource type="Script" path="res://scenes/Player/playerHud.gd" id="1_al6k2"]
+[ext_resource type="Texture2D" uid="uid://b0ylatkuha0ki" path="res://assets/sprites/Icons/IconFangLevel.png" id="6_fn2hl"]
 [ext_resource type="PackedScene" uid="uid://344q25c6djbv" path="res://scenes/Player/lifebar.tscn" id="14_jlcup"]
 [ext_resource type="PackedScene" uid="uid://5qub1bvnm1g0" path="res://scenes/Player/hungerbar.tscn" id="15_yeu5o"]
 [ext_resource type="Texture2D" uid="uid://bosl0vtd1dqst" path="res://assets/sprites/Icons/IconVegetarian.png" id="16_p66i6"]
@@ -25,75 +26,97 @@ script = ExtResource("1_al6k2")
 
 [node name="lifebar" parent="." instance=ExtResource("14_jlcup")]
 layout_mode = 0
-offset_left = 43.0
+offset_left = 40.0
 offset_top = 24.0
-offset_right = 452.0
+offset_right = 449.0
 offset_bottom = 40.0
 tick_count = 0
 
 [node name="health_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 465.0
-offset_top = 18.0
-offset_right = 517.0
-offset_bottom = 41.0
+offset_left = 464.0
+offset_top = 16.0
+offset_right = 516.0
+offset_bottom = 39.0
 text = "Health"
 
 [node name="hungerbar" parent="." instance=ExtResource("15_yeu5o")]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 60.0
-offset_right = 452.0
-offset_bottom = 76.0
+offset_left = 40.0
+offset_top = 56.0
+offset_right = 449.0
+offset_bottom = 72.0
 tick_count = 0
 
 [node name="hunger_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 465.0
-offset_top = 55.0
-offset_right = 523.0
-offset_bottom = 78.0
+offset_left = 464.0
+offset_top = 48.0
+offset_right = 522.0
+offset_bottom = 71.0
 text = "Hunger"
 
 [node name="HerbiIcon" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 97.0
-offset_right = 83.0
-offset_bottom = 137.0
+offset_left = 40.0
+offset_top = 96.0
+offset_right = 80.0
+offset_bottom = 136.0
 
 [node name="TextureRect" type="TextureRect" parent="HerbiIcon"]
 layout_mode = 2
 texture = ExtResource("16_p66i6")
 expand_mode = 2
 
+[node name="FangContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 256.0
+offset_top = 96.0
+offset_right = 296.0
+offset_bottom = 136.0
+
+[node name="TextureRect" type="TextureRect" parent="FangContainer"]
+layout_mode = 2
+texture = ExtResource("6_fn2hl")
+expand_mode = 2
+
+[node name="SizeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 104.0
+offset_right = 240.0
+offset_bottom = 127.0
+text = "DefaultSize"
+
+[node name="FangSizeLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 312.0
+offset_top = 104.0
+offset_right = 400.0
+offset_bottom = 127.0
+text = "DefaultSize"
+
 [node name="CarniIcon" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 97.0
-offset_right = 139.0
-offset_bottom = 137.0
+offset_left = 96.0
+offset_top = 96.0
+offset_right = 136.0
+offset_bottom = 136.0
 
 [node name="TextureRect" type="TextureRect" parent="CarniIcon"]
 layout_mode = 2
 texture = ExtResource("17_lhjv4")
 expand_mode = 2
 
-[node name="SizeLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 109.0
-offset_right = 190.0
-offset_bottom = 132.0
-text = "DefaultSize"
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 clip_children = 1
 layout_mode = 0
-offset_left = 256.0
-offset_top = 97.0
-offset_right = 296.0
-offset_bottom = 137.0
+offset_left = 448.0
+offset_top = 96.0
+offset_right = 488.0
+offset_bottom = 136.0
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2

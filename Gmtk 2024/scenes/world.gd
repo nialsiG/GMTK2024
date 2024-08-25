@@ -10,7 +10,7 @@ var _height : float = 2000
 var _margin : float = 30
 
 var _pickedEvolutions : Array[enums.evolution] = []
-
+var _score : int = 0
 
 @onready var _hud : hud = $CanvasLayer/hud
 @onready var _dynamicElements : Node2D = $GameElements/DynamicElements
@@ -39,6 +39,7 @@ var _totalPlantValue : int = 0
 var _safetySpawnRadius : float = 300
 var _currentAnimals : Array[Animal] = []
 
+
 func _ready():
 	_pauseMenu.connect("Resume", Unpause)
 	_evolutionMenu.connect("Chose", OnEvolutionChosen)	
@@ -53,6 +54,9 @@ func _ready():
 	_width = mapDimensions.x
 	_height = mapDimensions.y
 	_staticElements.add_child(map)
+	var blockPoints = map.GetPositionsForbidden()
+	_animalGenerator.SetupBounds(_margin, mapDimensions, blockPoints)
+	_plantGenerator.SetupBounds(_margin, mapDimensions, blockPoints)
 	StartGame()
 
 func _process(_delta):
@@ -69,16 +73,17 @@ func StartGame():
 	_evolutionMenu.hide()
 	_pauseMenu.UnPause()
 	_cycleTimer.start()	
+	_hud.UpdateCycle(_cycle)
 	get_tree().paused = false
 
 func GeneratePlants(numberOfPlants):
-	var plants = _plantGenerator.GeneratePlants(numberOfPlants, _width, _height, _margin)
+	var plants = _plantGenerator.Generate(numberOfPlants, _player.position)
 	for newPlant in plants:
 		newPlant.connect("Eaten", OnEatenConsumable)
 		_dynamicElements.call_deferred("add_child", newPlant)
 
 func GenerateAnimals(numberOfAnimals):
-	var animals = _animalGenerator.GenerateAnimals(numberOfAnimals, _width, _height, _margin)
+	var animals = _animalGenerator.Generate(numberOfAnimals, _player.position)
 	for animal in animals:
 		if ((animal.position - _player.position).length() < _safetySpawnRadius):
 			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
@@ -93,15 +98,15 @@ func OnPlayerAte(amount : int):
 	
 func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_totalFoodValue += amount
-	_hud.UpdateScore(amount * 3)
+	AddScore(amount * 3)
 	if (foodType == enums.FoodType.Meat):
 		_totalMeatValue += amount
 		if _player._diet == enums.Diet.carnivore:
-			_hud.UpdateScore(amount * 2)
+			AddScore(amount * 2)
 	else:
 		_totalPlantValue += amount
 		if _player._diet == enums.Diet.vegetarian:
-			_hud.UpdateScore(amount * 2)
+			AddScore(amount * 2)
 		GeneratePlants(1)
 
 func OnAnimalDied(animal : Animal):
@@ -128,10 +133,14 @@ func OnPlayerDeath():
 	await get_tree().create_timer(_deathScreenDuration).timeout
 	_hud.DisplayDeath(false)
 	_hud.DisplayFinalScore(true)
-	_hud.UpdateFinalPanel(_pickedEvolutions)
+	var choicesRecap : Array[EvolutionChoice] = []
+	for i in _pickedEvolutions.size():
+		choicesRecap.append(_evolutionChoiceGenerator.GetEvolutionForChoice(_pickedEvolutions[i]))
+	_hud.UpdateFinalPanel(choicesRecap, _score)
 
 func Pause():
 	currentState = gameState.Menu
+	_hud.hide()
 	get_tree().paused = true
 	_pauseMenu.Pause()
 	_evolutionMenu.hide()
@@ -139,6 +148,7 @@ func Pause():
 func Unpause():
 	currentState = gameState.OnGoing
 	get_tree().paused = false
+	_hud.show()
 	_pauseMenu.hide()
 	_evolutionMenu.hide()
 	
@@ -164,7 +174,12 @@ func OnCycleTimeOut():
 func OnEvolutionChosen(evol : enums.evolution):
 	_pickedEvolutions.append(evol)
 	_player.ApplyEvolution(evol)
-	_hud.UpdateScore(100 * _cycle)
+	AddScore(100 * _cycle)
 	Unpause()
 	_cycle+=1
+	_hud.UpdateCycle(_cycle)
 	_cycleTimer.start()
+
+func AddScore(amount : int):
+	_score += amount
+	_hud.UpdateScore(_score)
