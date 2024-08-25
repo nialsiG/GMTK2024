@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://cavv5dbltjqmp"]
+
+[ext_resource type="Script" path="res://scenes/Menus/FinalScoreContainer.gd" id="1_7sdrp"]
+[ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="1_ik67g"]
+[ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="2_0woby"]
+[ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="3_mg1wy"]
+[ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="4_r3b5x"]
+[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="5_poy3m"]
+
+[node name="FinalScoreContainer" type="Panel"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7sdrp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1917.0
+offset_bottom = 1081.0
+color = Color(1, 0.807843, 0.521569, 1)
+
+[node name="ScoreLabel2" type="Label" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 99.0
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("1_ik67g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrophyLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 249.0
+offset_top = 119.0
+offset_right = 1671.0
+offset_bottom = 256.0
+size_flags_vertical = 0
+text = "You went extinct"
+label_settings = ExtResource("2_0woby")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 299.0
+offset_top = 256.0
+offset_right = 1621.0
+offset_bottom = 557.0
+size_flags_vertical = 0
+text = "You went extinct"
+label_settings = ExtResource("3_mg1wy")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_left = 121.0
+offset_top = 653.0
+offset_right = 1853.0
+offset_bottom = 887.0
+
+[node name="GridContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BackToMenuButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 730.0
+offset_top = 912.0
+offset_right = 1215.0
+offset_bottom = 1007.0
+theme = ExtResource("4_r3b5x")
+theme_override_colors/font_color = Color(0.439216, 0.176471, 0.00392157, 1)
+theme_override_colors/font_pressed_color = Color(0.988235, 0.882353, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(0.756863, 0.368627, 0.054902, 1)
+theme_override_colors/font_focus_color = Color(0.803922, 0.376471, 0.0470588, 1)
+theme_override_styles/normal = ExtResource("5_poy3m")
+theme_override_styles/hover = ExtResource("5_poy3m")
+theme_override_styles/pressed = ExtResource("5_poy3m")
+theme_override_styles/disabled = ExtResource("5_poy3m")
+text = "Back to menu"
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

@@ -1,24 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=7 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scenes/Game/hud.gd" id="1_yiyiu"]
-[ext_resource type="Texture2D" uid="uid://4kaotfvphojc" path="res://assets/sprites/Icons/IconAgility.png" id="2_j7806"]
-[ext_resource type="Texture2D" uid="uid://bxi4756sx5d6t" path="res://assets/sprites/Icons/IconCarnivore.png" id="3_teftq"]
-[ext_resource type="Texture2D" uid="uid://c6fpiupc46l76" path="res://assets/sprites/Icons/IconColor.png" id="4_geamd"]
-[ext_resource type="Texture2D" uid="uid://6buyhy4sv1wd" path="res://assets/sprites/Icons/IconEfficiency.png" id="5_57k51"]
-[ext_resource type="Texture2D" uid="uid://cx4ajykwhrli3" path="res://assets/sprites/Icons/IconFang.png" id="6_ktiui"]
 [ext_resource type="LabelSettings" uid="uid://cx2a532ok4y42" path="res://resources/labels/wasted.tres" id="7_70qvw"]
-[ext_resource type="Texture2D" uid="uid://dptfqe428q264" path="res://assets/sprites/Icons/IconGigantism.png" id="7_kipwg"]
-[ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="8_8q417"]
-[ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="8_ao17w"]
-[ext_resource type="Texture2D" uid="uid://dponsuo470dto" path="res://assets/sprites/Icons/IconHeavy.png" id="8_f5b41"]
-[ext_resource type="Texture2D" uid="uid://c8ld21tgj7vcx" path="res://assets/sprites/Icons/IconLightness.png" id="9_0bjxa"]
-[ext_resource type="Texture2D" uid="uid://xbs7u7sg8fl7" path="res://assets/sprites/Icons/IconNanism.png" id="10_antwr"]
-[ext_resource type="Texture2D" uid="uid://b01fqvnsq7xg5" path="res://assets/sprites/Icons/IconOmni.png" id="11_x6noh"]
-[ext_resource type="Texture2D" uid="uid://c6j5robnmycuh" path="res://assets/sprites/Icons/IconSturdy.png" id="12_ppxa0"]
-[ext_resource type="Texture2D" uid="uid://36d5gr1c5m7h" path="res://assets/sprites/Icons/IconVegetarism.png" id="13_d4dqn"]
+[ext_resource type="PackedScene" uid="uid://cavv5dbltjqmp" path="res://scenes/Menus/FinalScoreContainer.tscn" id="16_tbswg"]
+[ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="17_viypj"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="18_sj7dm"]
-[ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="20_421p3"]
-[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="24_qu03e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_disly"]
+font = ExtResource("17_viypj")
+font_size = 30
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -28,18 +18,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yiyiu")
-icon_agility = ExtResource("2_j7806")
-icon_carnivore = ExtResource("3_teftq")
-icon_color = ExtResource("4_geamd")
-icon_efficiency = ExtResource("5_57k51")
-icon_fang = ExtResource("6_ktiui")
-icon_gigantism = ExtResource("7_kipwg")
-icon_heavy = ExtResource("8_f5b41")
-icon_light = ExtResource("9_0bjxa")
-icon_nanism = ExtResource("10_antwr")
-icon_omni = ExtResource("11_x6noh")
-icon_sturdy = ExtResource("12_ppxa0")
-icon_vegetarian = ExtResource("13_d4dqn")
 
 [node name="Score" type="Control" parent="."]
 layout_mode = 1
@@ -80,84 +58,22 @@ label_settings = ExtResource("7_70qvw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FinalScoreContainer" type="Panel" parent="."]
-process_mode = 3
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="FinalScoreContainer"]
+[node name="FinalScoreContainer" parent="." instance=ExtResource("16_tbswg")]
 layout_mode = 0
-offset_right = 1917.0
-offset_bottom = 1081.0
-color = Color(1, 0.807843, 0.521569, 1)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="ScoreLabel2" type="Label" parent="FinalScoreContainer"]
-layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 99.0
-size_flags_vertical = 0
-text = "000"
-label_settings = ExtResource("18_sj7dm")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TrophyLabel" type="Label" parent="FinalScoreContainer"]
-layout_mode = 2
-offset_left = 249.0
-offset_top = 119.0
-offset_right = 1671.0
-offset_bottom = 256.0
-size_flags_vertical = 0
-text = "You went extinct"
-label_settings = ExtResource("8_8q417")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DescriptionLabel" type="Label" parent="FinalScoreContainer"]
-layout_mode = 2
-offset_left = 299.0
-offset_top = 256.0
-offset_right = 1621.0
-offset_bottom = 557.0
-size_flags_vertical = 0
-text = "You went extinct"
-label_settings = ExtResource("20_421p3")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="FinalScoreContainer"]
-layout_mode = 2
-offset_left = 121.0
-offset_top = 653.0
-offset_right = 1853.0
-offset_bottom = 887.0
-
-[node name="GridContainer" type="HBoxContainer" parent="FinalScoreContainer/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="BackToMenuButton" type="Button" parent="FinalScoreContainer"]
-layout_mode = 2
-offset_left = 730.0
-offset_top = 912.0
-offset_right = 1215.0
-offset_bottom = 1007.0
-theme = ExtResource("8_ao17w")
-theme_override_colors/font_color = Color(0.439216, 0.176471, 0.00392157, 1)
-theme_override_colors/font_pressed_color = Color(0.988235, 0.882353, 0.823529, 1)
-theme_override_colors/font_hover_color = Color(0.756863, 0.368627, 0.054902, 1)
-theme_override_colors/font_focus_color = Color(0.803922, 0.376471, 0.0470588, 1)
-theme_override_styles/normal = ExtResource("24_qu03e")
-theme_override_styles/hover = ExtResource("24_qu03e")
-theme_override_styles/pressed = ExtResource("24_qu03e")
-theme_override_styles/disabled = ExtResource("24_qu03e")
-text = "Back to menu"
-
-[connection signal="pressed" from="FinalScoreContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[node name="CycleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Cycle 9999
+"
+label_settings = SubResource("LabelSettings_disly")
