@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://eywd4ny71022"]
+[gd_scene load_steps=11 format=3 uid="uid://eywd4ny71022"]
 
 [ext_resource type="PackedScene" uid="uid://bkxmx828vv8d8" path="res://scenes/Animals/Tyto.tscn" id="1_symas"]
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="2_fm5o0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/Consumables/Meat.gd" id="7_jkstp"]
 [ext_resource type="PackedScene" uid="uid://i8vmvgudegbb" path="res://scenes/Consumables/plant_morelle.tscn" id="7_lt5kp"]
 [ext_resource type="PackedScene" uid="uid://dtbq6li2w18ix" path="res://scenes/Consumables/plant_gland.tscn" id="8_5kjrj"]
+[ext_resource type="PackedScene" uid="uid://cywd70131l8lq" path="res://scenes/Consumables/Meat.tscn" id="10_216ao"]
 
 [node name="TestViewAnimals" type="Node2D"]
 
@@ -80,3 +81,26 @@ initial_size = 4
 [node name="deinogalerix3" parent="." instance=ExtResource("5_sx5rp")]
 position = Vector2(790, 28)
 initial_size = 4
+
+[node name="Meat" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1022, -403)
+scale = Vector2(0.5, 0.5)
+
+[node name="Meat2" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1024, -352)
+
+[node name="Meat3" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1024, -293)
+scale = Vector2(1.5, 1.5)
+
+[node name="Meat4" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1018, -211)
+scale = Vector2(2.5, 2.5)
+
+[node name="Meat5" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1024, -58)
+scale = Vector2(3, 3)
+
+[node name="Meat6" parent="." instance=ExtResource("10_216ao")]
+position = Vector2(-1027, 91)
+scale = Vector2(3.5, 3.5)
