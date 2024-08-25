@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtvf1kbb85s3j"]
+
+[ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="1_leecr"]
+[ext_resource type="Script" path="res://scenes/Menus/WikiButton.gd" id="2_bo7jf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8bt5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rr0bt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nv8q8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chyqr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qcgj"]
+
+[node name="WikiButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_leecr")
+theme_override_colors/font_color = Color(0.611765, 0.203922, 0.282353, 1)
+theme_override_colors/font_pressed_color = Color(0.921605, 0.668287, 0.702018, 1)
+theme_override_colors/font_hover_color = Color(0.92, 0.874, 0.880133, 1)
+theme_override_colors/font_focus_color = Color(0.92, 0.874, 0.880133, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8bt5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rr0bt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nv8q8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_chyqr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4qcgj")
+text = "Wiki button"
+alignment = 0
+script = ExtResource("2_bo7jf")
