@@ -23,6 +23,7 @@ var _isDead : bool = false
 @onready var _invincibilityTimer : Timer = $InvincibilityTimer
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
+@onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
 
 func _ready():
 	current_size = initial_size
@@ -31,6 +32,12 @@ func _ready():
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	RaiseUpdateSize()
+	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
+	
+func _setShaderColor(color1 : Vector4, color2 : Vector4):
+	var shaderMaterial = (sprite.material as ShaderMaterial)
+	shaderMaterial.set_shader_parameter("Color1", color1)
+	shaderMaterial.set_shader_parameter("Color2", color2)
 	
 signal Fed(amount : int)
 signal UpdatedDiet(diet : enums.Diet)
@@ -229,10 +236,7 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.EFFICIENCY:
 			_dashFoodCost *= 0.8
 		enums.evolution.COLOR:
-			var r = randi_range(00, 250)
-			var g = randi_range(0, 250)
-			var b = randi_range(0, 250)
-			modulate = Color8(r, g, b, 255)
+			_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetRandomColor2())
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:

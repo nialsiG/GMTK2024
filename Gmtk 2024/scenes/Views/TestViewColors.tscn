@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=3 uid="uid://dnul0lae3qojt"]
+
+[ext_resource type="Material" uid="uid://1boi3pusyxu3" path="res://assets/Shaders/AnimalShader.tres" id="1_ukccb"]
+[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="2_mbcwx"]
+[ext_resource type="Shader" path="res://assets/Shaders/AnimalShader.gdshader" id="3_jv6ao"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ytee"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.95, 0.95, 0.95, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5x857"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.45, 0.3, 0.2, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mww0g"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.2, 0.2, 0.2, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b16a0"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.7, 0.7, 0.7, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwr4v"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.5, 0.686, 0.2, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4frw"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.4, 0.2, 0.9, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chibj"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.9, 0.4, 0.2, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nv7kq"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.2, 0.6, 0.6, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uripc"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.9, 0.3, 0.8, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70rib"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.1, 0.1, 0.9, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6c0sl"]
+shader = ExtResource("3_jv6ao")
+shader_parameter/Color1 = Vector4(0.8, 0.2, 0.3, 1)
+shader_parameter/Color2 = Vector4(0.85, 0.9, 0.9, 1)
+
+[node name="TestViewColors" type="Node2D"]
+position = Vector2(-37, -6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_ukccb")
+position = Vector2(-728, 54)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3ytee")
+position = Vector2(-447, 59)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5x857")
+position = Vector2(-161, 69)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mww0g")
+position = Vector2(138, 71)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_b16a0")
+position = Vector2(439, 90)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bwr4v")
+position = Vector2(749, 105)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_j4frw")
+position = Vector2(1047, 104)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_chibj")
+position = Vector2(1349, 109)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nv7kq")
+position = Vector2(1656, 111)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_uripc")
+position = Vector2(1970, 106)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_70rib")
+position = Vector2(2261, 103)
+texture = ExtResource("2_mbcwx")
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6c0sl")
+position = Vector2(2516, 109)
+texture = ExtResource("2_mbcwx")
