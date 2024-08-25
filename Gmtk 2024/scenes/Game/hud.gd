@@ -62,7 +62,10 @@ func UpdateFinalPanel(pickedEvolutions):
 	var trophy_label = $FinalScoreContainer/TrophyLabel
 	var description_label = $FinalScoreContainer/DescriptionLabel
 	var grid = $FinalScoreContainer/ScrollContainer/GridContainer
+	
+	_score_label.hide()
 	_score_label_2.text = str(_score)
+	
 	if _score < 700: 
 		trophy_label.text = "Meg-what?"
 		description_label.text = "You won't go down the fossil record... Try again!"

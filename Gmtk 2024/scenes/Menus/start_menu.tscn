@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=36 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -16,11 +16,23 @@
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="9_o84i5"]
 [ext_resource type="Texture2D" uid="uid://ol0k8jj34cgk" path="res://assets/sprites/Other/Steps2.png" id="11_1th13"]
 [ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="15_50dkx"]
-[ext_resource type="LabelSettings" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
-[ext_resource type="LabelSettings" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
-[ext_resource type="Theme" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
+[ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
+[ext_resource type="Script" path="res://scenes/Menus/WikiContainer.gd" id="16_2gkxj"]
+[ext_resource type="LabelSettings" uid="uid://b41oa5u17ggre" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
+[ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="18_di3cn"]
+[ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
+[ext_resource type="Texture2D" uid="uid://pcse7r81lgcx" path="res://assets/sprites/Animals/Deino/Deinogalerix_moving_right.png" id="19_rsu41"]
+[ext_resource type="StyleBox" uid="uid://cl4hfcpntbfjs" path="res://resources/separators/wiki_separator.tres" id="19_wlh74"]
+[ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="20_7m6mi"]
+[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="20_652tj"]
+[ext_resource type="Texture2D" uid="uid://caucxobavns3f" path="res://assets/sprites/Animals/garganomis/Garganornis_right_02.png" id="21_4t224"]
+[ext_resource type="PackedScene" uid="uid://dtvf1kbb85s3j" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
+[ext_resource type="Texture2D" uid="uid://ll1ov2li5vb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_moving_right_01.png" id="21_ment8"]
+[ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="22_8pmt2"]
+[ext_resource type="Texture2D" uid="uid://cdmenn5rhrsrd" path="res://assets/sprites/Animals/Prolagus/Prolagus_Top.png" id="25_0twsy"]
+[ext_resource type="Texture2D" uid="uid://ce1oenlfr8aid" path="res://assets/sprites/Animals/Tyto/Tyto_moving_down.png" id="26_8u6xl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
@@ -29,11 +41,6 @@ font_color = Color(0.670588, 0.764706, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lqv6"]
 texture = ExtResource("8_0vaqb")
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_2ddwe"]
-color = Color(0.611765, 0.203922, 0.282353, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jif0o"]
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -243,7 +250,7 @@ GMTK game jam 2024
 label_settings = ExtResource("15_jujkx")
 horizontal_alignment = 1
 
-[node name="WikiContainer" type="Panel" parent="CanvasLayer/Buttons"]
+[node name="WikiContainer" type="Panel" parent="CanvasLayer/Buttons" node_paths=PackedStringArray("button_array")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -251,51 +258,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="back_button" type="Button" parent="CanvasLayer/Buttons/WikiContainer"]
-layout_mode = 2
-offset_left = 101.0
-offset_top = 928.0
-offset_right = 540.0
-offset_bottom = 1025.0
-theme_override_colors/font_color = Color(0.203922, 0.0352941, 0.0509804, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.913925, 0.536685, 0.125707, 1)
-theme_override_colors/font_focus_color = Color(0.913925, 0.536685, 0.125707, 1)
-theme_override_fonts/font = ExtResource("15_50dkx")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = ExtResource("7_1ysxi")
-theme_override_styles/hover = ExtResource("7_1ysxi")
-theme_override_styles/pressed = ExtResource("7_1ysxi")
-theme_override_styles/disabled = ExtResource("7_1ysxi")
-text = "Back"
-
-[node name="RightPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -448.0
-offset_right = 905.0
-offset_bottom = 455.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.984314, 0.764706, 0.647059, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/RightPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 47.0
-offset_top = 34.0
-offset_right = -34.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 2
+script = ExtResource("16_2gkxj")
+button_array = [NodePath("LeftPanel/VBoxContainer/WikiButton"), NodePath("LeftPanel/VBoxContainer/WikiButton2"), NodePath("LeftPanel/VBoxContainer/WikiButton3"), NodePath("LeftPanel/VBoxContainer/WikiButton4"), NodePath("LeftPanel/VBoxContainer/WikiButton5"), NodePath("LeftPanel/VBoxContainer/WikiButton6"), NodePath("LeftPanel/VBoxContainer/WikiButton7")]
 
 [node name="LeftPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
@@ -332,43 +296,190 @@ label_settings = ExtResource("17_7a77u")
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
-theme_override_styles/separator = SubResource("StyleBoxLine_2ddwe")
+theme_override_styles/separator = ExtResource("19_wlh74")
 
-[node name="ButtonMegacricetodon" type="Button" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+[node name="WikiButton" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-theme = ExtResource("18_xu14w")
-theme_override_colors/font_color = Color(0.611765, 0.203922, 0.282353, 1)
-theme_override_colors/font_pressed_color = Color(0.721569, 0.682353, 0.690196, 1)
-theme_override_colors/font_hover_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_colors/font_focus_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_fonts/font = ExtResource("15_50dkx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_jif0o")
-text = "Megacricetodon"
-alignment = 0
+_texture = ExtResource("19_rsu41")
+_title = "Deinogalerix koenigswaldi"
+_text = "With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene."
 
-[node name="ButtonGarganornis" type="Button" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+[node name="WikiButton2" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-theme = ExtResource("18_xu14w")
-theme_override_colors/font_color = Color(0.611765, 0.203922, 0.282353, 1)
-theme_override_colors/font_pressed_color = Color(0.721569, 0.682353, 0.690196, 1)
-theme_override_colors/font_hover_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_colors/font_focus_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_fonts/font = ExtResource("15_50dkx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_jif0o")
-text = "Garganornis"
-alignment = 0
+_texture = ExtResource("21_4t224")
+_title = "Garganornis ballmani"
+_text = "[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae."
 
-[node name="Button" type="Button" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+[node name="WikiButton3" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+_texture = ExtResource("22_8pmt2")
+_title = "Hoplitomeryx matthei"
+_text = "Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to Gargano Island. It is famous for its five horns, as well as protruding canines reminiscent of the extant musk deer. They showed a huge diversity of sizes and morphologies: it could be explained by the lack of predators on the island, with the exception of the giant owl Tyto."
+
+[node name="WikiButton4" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+layout_mode = 2
+_texture = ExtResource("20_652tj")
+_title = "Megacricetodon sp."
+_text = "The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!"
+
+[node name="WikiButton5" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+layout_mode = 2
+_texture = ExtResource("21_ment8")
+_title = "Mikrotia magna"
+_text = "An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory."
+
+[node name="WikiButton6" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+layout_mode = 2
+_texture = ExtResource("25_0twsy")
+_title = "Prolagus imperialis"
+_text = "Prolagus is an extinct genus of pika - the same family as rabbits. Prolagus emerged during the early Miocene but survived on several Mediterranean islands until Roman times. Prolagus imperialis was endemic to Gargano Island, and it weighed about 5 kilograms - making it the largest pika ever described."
+
+[node name="WikiButton7" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+layout_mode = 2
+_texture = ExtResource("26_8u6xl")
+_title = "Tyto gigantea"
+_text = "This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves."
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+text = "Plants"
+label_settings = ExtResource("17_7a77u")
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="HSeparator4" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="Label3" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+text = "Adaptations"
+label_settings = ExtResource("17_7a77u")
+
+[node name="HSeparator5" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="HSeparator6" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="Label4" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+text = "Epochs"
+label_settings = ExtResource("17_7a77u")
+
+[node name="HSeparator7" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="HSeparator8" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="Label5" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+text = "Gargano Island"
+label_settings = ExtResource("17_7a77u")
+
+[node name="HSeparator9" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="RightPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -448.0
+offset_right = 905.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.984314, 0.764706, 0.647059, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 85.0
+offset_top = 34.0
+offset_right = -72.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("18_xu14w")
-theme_override_colors/font_color = Color(0.611765, 0.203922, 0.282353, 1)
-theme_override_colors/font_pressed_color = Color(0.721569, 0.682353, 0.690196, 1)
-theme_override_colors/font_hover_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_colors/font_focus_color = Color(0.941176, 0.941176, 0.941176, 1)
+
+[node name="WikiRightTitleLabel" type="Label" parent="CanvasLayer/Buttons/WikiContainer/RightPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title"
+label_settings = ExtResource("18_di3cn")
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/RightPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("19_wlh74")
+
+[node name="WikiRightTexture2D" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer/RightPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 4
+
+[node name="WikiRightTextLabel" type="RichTextLabel" parent="CanvasLayer/Buttons/WikiContainer/RightPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0.611765, 0.203922, 0.282353, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("15_50dkx")
+theme_override_fonts/italics_font = ExtResource("20_7m6mi")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "This is a description"
+fit_content = true
+autowrap_mode = 2
+selection_enabled = true
+
+[node name="back_button" type="Button" parent="CanvasLayer/Buttons/WikiContainer"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 928.0
+offset_right = 540.0
+offset_bottom = 1025.0
+theme_override_colors/font_color = Color(0.203922, 0.0352941, 0.0509804, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.913925, 0.536685, 0.125707, 1)
+theme_override_colors/font_focus_color = Color(0.913925, 0.536685, 0.125707, 1)
 theme_override_fonts/font = ExtResource("15_50dkx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_jif0o")
-text = "Text"
-alignment = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("7_1ysxi")
+theme_override_styles/hover = ExtResource("7_1ysxi")
+theme_override_styles/pressed = ExtResource("7_1ysxi")
+theme_override_styles/disabled = ExtResource("7_1ysxi")
+text = "Back"
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("19_lkmx4")]
 anchors_preset = 3
