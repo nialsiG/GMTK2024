@@ -55,7 +55,7 @@ func _process(delta):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
 			var sizeValue = int(current_size)
-			var animalSizeValue= int(animal.current_size) 
+			var animalSizeValue= int(animal.current_size) + _dashSizeBonus
 			if (sizeValue < animalSizeValue && !_isInvincible):
 				hit(int((animalSizeValue - sizeValue) /2.0))
 			elif (sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
