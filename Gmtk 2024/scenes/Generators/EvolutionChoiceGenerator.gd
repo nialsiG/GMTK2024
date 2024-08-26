@@ -105,7 +105,7 @@ func GetTwoRandomEvolsExcludingSome(excludedEvols : Array[enums.evolution]) -> A
 	var indexChoice1 = randi_range(0, allowedEvols.size()-1)
 	var indexChoice2 = randi_range(0, allowedEvols.size()-1)
 	
-	while (indexChoice2 == indexChoice1 && allowedEvols[indexChoice2] == allowedEvols[indexChoice1]):
+	while (allowedEvols[indexChoice2] == allowedEvols[indexChoice1]):
 		indexChoice2 = randi_range(0, allowedEvols.size()-1)
 	
 	var pickedEvol : Array[EvolutionChoice] = []

@@ -54,12 +54,12 @@ func _process(delta):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = int(current_size)
-			var animalSizeValue= int(animal.current_size) + _dashSizeBonus
-			if (sizeValue < animalSizeValue && !_isInvincible):
-				hit(int((animalSizeValue - sizeValue) /2.0))
-			elif (sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
-				animal.hit(sizeValue - animalSizeValue)
+			var power = getPower()
+			var enemyPower = animal.getPower()
+			if (power < enemyPower && !_isInvincible):
+				hit(int((enemyPower - power) /2.0))
+			elif (power > enemyPower && _diet != enums.Diet.vegetarian):
+				animal.hit(power - enemyPower)
 	ManageDashCoolDown(delta)
 	get_input_axis()
 	
@@ -76,6 +76,9 @@ func _process(delta):
 	move(delta)
 	
 	_hud.UpdateHunger(_hungerManager.current_hunger)
+
+func getPower() -> int:
+	return int(current_size) + _dashSizeBonus
 
 func ManageDashCoolDown(delta : float):
 	if(_isDashInRecovery):

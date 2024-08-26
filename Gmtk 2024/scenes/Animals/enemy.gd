@@ -135,12 +135,12 @@ func _checkHitByAnimal(numberOfCollisions : int):
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
 			var animal = hitAnimals[i]
-			var sizeValue = int(current_size)
-			var animalSizeValue = int(animal.current_size)
-			if (sizeValue < animalSizeValue && animal._diet != enums.Diet.vegetarian):
-				hit(clamp(1, int((animalSizeValue - sizeValue) /2.0), sizeValue))
-			elif(sizeValue > animalSizeValue && _diet != enums.Diet.vegetarian):
-				animal.hit(sizeValue - animalSizeValue)
+			var power = getPower()
+			var enemyPower = animal.getPower()
+			if (power < enemyPower && animal._diet != enums.Diet.vegetarian):
+				hit(clamp(1, int((enemyPower - power) /2.0), power))
+			elif(power > enemyPower && _diet != enums.Diet.vegetarian):
+				animal.hit(power - enemyPower)
 
 func _checkHitByNonAnimal(numberOfCollisions : int) -> bool:
 	var array = GetCollidingNonAnimals(numberOfCollisions)
