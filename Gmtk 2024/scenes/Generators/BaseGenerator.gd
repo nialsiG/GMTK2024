@@ -14,10 +14,14 @@ func SetupBounds(margin : float, dimensions : Vector2, blockedPositions : Array[
 	_height = dimensions.y
 	_blockedPositions = blockedPositions
 
-func Generate(numberOfItems: int, playerPosition : Vector2):
-	var generatedItems := []
-	for i in numberOfItems:
+func _updatePackedScenesLevel(cycleNumber : int):
+	pass
 
+func Generate(cycleNumber : int, numberOfItems: int, playerPosition : Vector2):
+	var generatedItems := []
+	_updatePackedScenesLevel(cycleNumber)
+	
+	for i in numberOfItems:
 		var newPosition = _getRandomPositionWithinBounds()
 		while(!_isPositionAcceptable(newPosition, playerPosition)):
 			newPosition = _getRandomPositionWithinBounds()

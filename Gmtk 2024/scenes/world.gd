@@ -77,13 +77,13 @@ func StartGame():
 	get_tree().paused = false
 
 func GeneratePlants(numberOfPlants):
-	var plants = _plantGenerator.Generate(numberOfPlants, _player.position)
+	var plants = _plantGenerator.Generate(_cycle, numberOfPlants, _player.position)
 	for newPlant in plants:
 		newPlant.connect("Eaten", OnEatenConsumable)
 		_dynamicElements.call_deferred("add_child", newPlant)
 
 func GenerateAnimals(numberOfAnimals):
-	var animals = _animalGenerator.Generate(numberOfAnimals, _player.position)
+	var animals = _animalGenerator.Generate(_cycle, numberOfAnimals, _player.position)
 	for animal in animals:
 		if ((animal.position - _player.position).length() < _safetySpawnRadius):
 			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
@@ -164,7 +164,7 @@ func Evolve():
 	get_tree().paused = true
 
 func _applyEnemyEvolForCycle(animal : Animal):
-	for i in int(_cycle / 2):
+	for i in clamp(int(_cycle/3), 1, 5):
 		var evol = _evolutionChoiceGenerator.GetEnemyEvol()
 		animal.ApplyEvolution(evol)
 
