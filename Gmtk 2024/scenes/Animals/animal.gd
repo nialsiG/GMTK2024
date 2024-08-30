@@ -104,6 +104,9 @@ func apply_acceleration(amount):
 func getMaxSpeed() -> float:
 	return _max_speed
 
+func getPower() -> int:
+	return int(current_size)
+
 func ApplyEvolution(evol : enums.evolution):
 	match(evol):
 		enums.evolution.DIET_CARNI:
