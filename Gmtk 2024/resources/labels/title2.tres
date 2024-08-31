@@ -6,4 +6,4 @@
 line_spacing = 0.0
 font = ExtResource("1_loupu")
 font_size = 140
-font_color = Color(0.423529, 0.160784, 0, 1)
+font_color = Color(0.427451, 0.305882, 0.266667, 1)

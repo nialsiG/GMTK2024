@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://y4j8wtgf7p6k"]
+[gd_scene load_steps=7 format=3 uid="uid://y4j8wtgf7p6k"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_menu.gd" id="1_8kr84"]
 [ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="1_o2ad0"]
 [ext_resource type="Texture2D" uid="uid://cgt4yru6si2qf" path="res://assets/sprites/UI/map_empty.png" id="2_42xj1"]
 [ext_resource type="LabelSettings" uid="uid://dekxbv782otfp" path="res://resources/labels/text1.tres" id="2_oqhmj"]
+[ext_resource type="Texture2D" uid="uid://ctrhed72h7juu" path="res://assets/sprites/UI/pachinko.png" id="3_1fo4i"]
 [ext_resource type="PackedScene" uid="uid://bmnerimdrbfb8" path="res://scenes/Game/evolution_button.tscn" id="3_g3mq4"]
 
 [node name="evolution_menu" type="Control"]
@@ -25,36 +26,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_42xj1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 263.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="Title" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Evolution"
-label_settings = ExtResource("1_o2ad0")
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Choose an evolutive innovation:"
-label_settings = ExtResource("2_oqhmj")
-horizontal_alignment = 1
-
 [node name="evolution_button_1" parent="." instance=ExtResource("3_g3mq4")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
 anchor_bottom = 0.0
-offset_left = -565.0
-offset_top = 303.0
-offset_right = -15.0
-offset_bottom = 953.0
+offset_left = -453.0
+offset_top = 383.0
+offset_right = -53.0
+offset_bottom = 783.0
 grow_vertical = 1
 
 [node name="evolution_button_2" parent="." instance=ExtResource("3_g3mq4")]
@@ -63,8 +44,43 @@ layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
 anchor_bottom = 0.0
-offset_left = 106.0
-offset_top = 303.0
-offset_right = 656.0
-offset_bottom = 953.0
+offset_left = 33.0
+offset_top = 388.0
+offset_right = 433.0
+offset_bottom = 788.0
 grow_vertical = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_1fo4i")
+
+[node name="Title" type="Label" parent="TextureRect2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 596.0
+offset_top = 150.0
+offset_right = -580.0
+offset_bottom = -758.0
+text = "ADAPT!"
+label_settings = ExtResource("1_o2ad0")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 286.0
+offset_top = 802.0
+offset_right = -310.0
+offset_bottom = -54.0
+text = "Choose a single innovation"
+label_settings = ExtResource("2_oqhmj")
+horizontal_alignment = 1
+vertical_alignment = 1

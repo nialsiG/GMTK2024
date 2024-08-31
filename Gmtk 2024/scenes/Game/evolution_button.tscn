@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmnerimdrbfb8"]
+[gd_scene load_steps=5 format=3 uid="uid://bmnerimdrbfb8"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_button.gd" id="1_5f5df"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="2_bt2p2"]
-[ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="2_m0min"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="3_bi4fj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loqrg"]
@@ -16,8 +15,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -296.0
 offset_top = -364.0
-offset_right = 296.0
-offset_bottom = 364.0
+offset_right = 104.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_loqrg")
@@ -45,7 +44,7 @@ stretch_mode = 4
 [node name="title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "This is the title"
-label_settings = ExtResource("2_m0min")
+label_settings = ExtResource("3_bi4fj")
 horizontal_alignment = 1
 
 [node name="content" type="Label" parent="VBoxContainer"]
