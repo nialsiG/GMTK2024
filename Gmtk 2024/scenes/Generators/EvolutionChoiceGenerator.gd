@@ -56,6 +56,10 @@ func _ready():
 	"Your coat evolved, maybe it was not the best color, but it is who you are now",
 	enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
 
+	var guerillero = CreateChoice("Guerilla",
+	"Your active ability becomes Throw, the last thing you ate is stored in your mouth and can be hurled at other animals, damaging them.",
+	enums.evolution.THROW, "res://assets/sprites/icon.svg")
+
 	_allEvolutions.append(nanism)
 	_allEvolutions.append(gigantism)
 	_allEvolutions.append(nanism)
@@ -70,6 +74,8 @@ func _ready():
 	_allEvolutions.append(color)
 	_allEvolutions.append(heavyness)
 	_allEvolutions.append(lightness)
+	if(SecretOptions.IsUziActived()):
+		_allEvolutions.append(guerillero)
 	
 	_enemyEvolutions.append(nanism)
 	_enemyEvolutions.append(gigantism)

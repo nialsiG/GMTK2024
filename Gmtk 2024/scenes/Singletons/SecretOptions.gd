@@ -1,6 +1,7 @@
 extends Node
 
 const _uziCode : String = "LRLRDUDA"
+const _cheatCodeLength : int = 8
 
 var _isCodeAllowed : bool = false
 var _activatedUzi : bool = false
@@ -23,10 +24,10 @@ func _process(delta):
 	if(Input.is_action_just_pressed("attack")):
 		_lastCommands.append("A")
 
-	while(_lastCommands.size() > 8):
+	while(_lastCommands.size() > _cheatCodeLength):
 		_lastCommands.remove_at(0)
 		
-	if (_lastCommands.size() == 8):
+	if (_lastCommands.size() == _cheatCodeLength):
 		var code = ""
 		for i in _lastCommands.size():
 			code+= _lastCommands[i]

@@ -20,7 +20,8 @@ enum evolution
 	EFFICIENCY = 9,
 	COLOR = 10,
 	LIGHTNESS = 11,
-	HEAVYNESS = 12
+	HEAVYNESS = 12,
+	THROW = 13
 }
 
 enum Size

@@ -2,15 +2,7 @@ class_name Player extends Animal
 
 var _isInvincible : bool
 
-var _isDashing : bool = false
-var _isDashInRecovery : bool = false
-var _dashDuration : float = 0
-var _dashMaxDuration : float = 0.2
-var _dashRecoveryTime : float = 3
-var _dashSizeBonus : int = 0
-var _dashSpeedBonus : float = 4
-var _dashFoodCost : float = 5
-var _dashAxis : Vector2
+var _actionAxis : Vector2
 
 var blink_timer : float = 0
 var blink_limit : float = 0.1
@@ -24,6 +16,7 @@ var _isDead : bool = false
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
 @onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
+@onready var _dashManager : DashManager = $DashManager
 
 func _ready():
 	current_size = initial_size
@@ -31,6 +24,7 @@ func _ready():
 	_hungerManager.connect("FoodOverflowed", OnFoodOverflow)
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
+	_dashManager.Initialize(_hud)
 	RaiseUpdateSize()
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
 	
@@ -60,15 +54,14 @@ func _process(delta):
 				hit(int((enemyPower - power) /2.0))
 			elif (power > enemyPower && _diet != enums.Diet.vegetarian):
 				animal.hit(power - enemyPower)
-	ManageDashCoolDown(delta)
+
 	get_input_axis()
 	
 	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") 
-	&& !(_isDashing || _isDashInRecovery)):
-		_isDashing = true
+	&& _dashManager.CanDash()):
+		_dashManager.Dash()
 		_dashSoundPlayer.play()
-		_dashAxis = axis
-		_hud.UpdateDashCooldown(false)
+		_actionAxis = axis
 			
 	UpdateState(axis)
 	UpdateSprite()
@@ -78,27 +71,13 @@ func _process(delta):
 	_hud.UpdateHunger(_hungerManager.current_hunger)
 
 func getPower() -> int:
-	return int(current_size) + _dashSizeBonus
-
-func ManageDashCoolDown(delta : float):
-	if(_isDashInRecovery):
-		_dashDuration += delta
-		if (_dashDuration > _dashRecoveryTime):
-			_isDashInRecovery = false
-			_dashDuration = 0
-			_hud.UpdateDashCooldown(true)
-	
-	if (_isDashing):
-		_dashDuration += delta
-		if (_dashDuration > _dashMaxDuration):
-			_isDashing = false
-			_isDashInRecovery = true
+	return int(current_size) + _dashManager.GetDashAttackBonus()
 
 func GetDashSpeed() -> float:
-	if (!_isDashing):
+	if (!_dashManager.IsDashing()):
 		return 1
 	else:
-		return _dashSpeedBonus
+		return _dashManager.GetDashSpeedBonus()
 
 func GetSizeValue() -> int:
 	var sizeValue = 0;
@@ -126,8 +105,7 @@ func GetSizeValue() -> int:
 		_:
 			return 0
 
-	if (_isDashing):
-		sizeValue += _dashSizeBonus
+	sizeValue += _dashManager.GetDashSizeBonus()
 
 	return sizeValue
 
@@ -135,8 +113,8 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func get_input_axis():
-	if (_isDashing):
-		axis = _dashAxis
+	if (_dashManager.IsDashing()):
+		axis = _actionAxis
 	else :
 		axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 		axis.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
@@ -144,8 +122,6 @@ func get_input_axis():
 func apply_acceleration(amount):
 	velocity += amount * GetDashSpeed()
 	velocity = velocity.limit_length(current_speed * GetDashSpeed())
-	if (_isDashing):
-		print(velocity)
 
 func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
@@ -233,17 +209,19 @@ func ApplyEvolution(evol : enums.evolution):
 			maxHealth +=1
 			AddHealth(1)
 		enums.evolution.AGILITY:
-			_dashRecoveryTime *= 0.8
+			_dashManager.UpdateDashRecoveryTime(0.8)
 		enums.evolution.FANG:
-			_dashSizeBonus += 1
+			_dashManager.AddDashAttackBonus(1)
 		enums.evolution.EFFICIENCY:
-			_dashFoodCost *= 0.8
+			_dashManager.UpdateDashFoodCost(0.8)
 		enums.evolution.COLOR:
 			_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetRandomColor2())
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
+		enums.evolution.THROW:
+			_dashManager.Di
 		
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
