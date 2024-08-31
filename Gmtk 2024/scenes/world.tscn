@@ -55,19 +55,14 @@ autoplay = true
 script = ExtResource("6_sorw8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="hud" parent="CanvasLayer" instance=ExtResource("1_4a0xm")]
 
 [node name="ScoreLabel" parent="CanvasLayer/hud/Score" index="0"]
 label_settings = SubResource("LabelSettings_kc3dl")
 
-[node name="FinalScoreContainer" parent="CanvasLayer/hud" index="2"]
-visible = false
-
 [node name="pause_menu" parent="CanvasLayer/hud" index="4"]
-visible = false
-
-[node name="evolution_menu" parent="CanvasLayer/hud" index="5"]
 visible = false
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("8_4xdi8")]

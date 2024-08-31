@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=37 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -19,6 +19,7 @@
 [ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
 [ext_resource type="Script" path="res://scenes/Menus/WikiContainer.gd" id="16_2gkxj"]
 [ext_resource type="LabelSettings" uid="uid://b41oa5u17ggre" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
+[ext_resource type="Texture2D" uid="uid://cgt4yru6si2qf" path="res://assets/sprites/UI/map_empty.png" id="17_fkgfx"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="18_di3cn"]
 [ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
@@ -65,26 +66,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_cp1jw")
 
-[node name="Title" type="Label" parent="CanvasLayer/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.228
-offset_bottom = -0.240021
-grow_horizontal = 2
+anchor_right = 0.998
+anchor_bottom = 1.0
+offset_right = 0.839966
+offset_bottom = -571.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Background/VBoxContainer"]
+layout_mode = 2
 text = "Gargano Island"
 label_settings = ExtResource("2_sr5fs")
 horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="Subtitle" type="Label" parent="CanvasLayer/Background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.266
-anchor_right = 1.0
-anchor_bottom = 0.403
-offset_top = -0.279999
-offset_bottom = -0.240021
-grow_horizontal = 2
+[node name="Subtitle" type="Label" parent="CanvasLayer/Background/VBoxContainer"]
+layout_mode = 2
 text = "7.000.000 B.C"
 label_settings = SubResource("LabelSettings_6q3vm")
 horizontal_alignment = 1
@@ -262,7 +262,7 @@ grow_vertical = 2
 script = ExtResource("16_2gkxj")
 button_array = [NodePath("LeftPanel/VBoxContainer/WikiButton"), NodePath("LeftPanel/VBoxContainer/WikiButton2"), NodePath("LeftPanel/VBoxContainer/WikiButton3"), NodePath("LeftPanel/VBoxContainer/WikiButton4"), NodePath("LeftPanel/VBoxContainer/WikiButton5"), NodePath("LeftPanel/VBoxContainer/WikiButton6"), NodePath("LeftPanel/VBoxContainer/WikiButton7")]
 
-[node name="LeftPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
+[node name="LeftPanel" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -275,7 +275,8 @@ offset_right = -418.0
 offset_bottom = 345.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.984314, 0.764706, 0.647059, 1)
+texture = ExtResource("17_fkgfx")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel"]
 layout_mode = 1
@@ -402,7 +403,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 theme_override_styles/separator = ExtResource("19_wlh74")
 
-[node name="RightPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
+[node name="RightPanel" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -415,7 +416,8 @@ offset_right = 905.0
 offset_bottom = 455.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.984314, 0.764706, 0.647059, 1)
+texture = ExtResource("17_fkgfx")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/RightPanel"]
 layout_mode = 1

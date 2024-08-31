@@ -3,5 +3,6 @@
 [ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="1_bm3e0"]
 
 [resource]
+line_spacing = 0.0
 font = ExtResource("1_bm3e0")
 font_size = 140
