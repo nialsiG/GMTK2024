@@ -24,6 +24,7 @@ var _isDead : bool = false
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
 @onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
+@onready var _triggerEvolutionSprite: AnimatedSprite2D = $TriggerEvolutionSprite2D
 
 func _ready():
 	current_size = initial_size
@@ -207,9 +208,8 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 		evols.append(enums.evolution.NANISM)
 	elif (current_size == enums.Size.COLOSSAL):
 		evols.append(enums.evolution.GIGANTISM)
-		
 	return evols
-	
+
 func ApplyEvolution(evol : enums.evolution):
 	match (evol):
 		enums.evolution.DIET_CARNI:
@@ -219,10 +219,12 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.DIET_OMNI:
 			UpdateDiet(enums.Diet.omni)
 		enums.evolution.NANISM:
+			_triggerEvolutionSprite.play("Cloud")
 			if(current_size != enums.Size.MICRO):
 				current_size = current_size - 1 as enums.Size
 				RaiseUpdateSize()
 		enums.evolution.GIGANTISM:
+			_triggerEvolutionSprite.play("Cloud")
 			if(current_size != enums.Size.COLOSSAL):
 				current_size = current_size + 1 as enums.Size
 				RaiseUpdateSize()
@@ -236,12 +238,13 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.EFFICIENCY:
 			_dashFoodCost *= 0.8
 		enums.evolution.COLOR:
+			_triggerEvolutionSprite.play("Cloud")
 			_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetRandomColor2())
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
-		
+
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
 	_hud.UpdateDiet(newDiet)

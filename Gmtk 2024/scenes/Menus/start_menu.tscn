@@ -22,17 +22,17 @@
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="18_di3cn"]
 [ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
-[ext_resource type="Texture2D" uid="uid://pcse7r81lgcx" path="res://assets/sprites/Animals/Deino/Deinogalerix_moving_right.png" id="19_rsu41"]
 [ext_resource type="StyleBox" uid="uid://cl4hfcpntbfjs" path="res://resources/separators/wiki_separator.tres" id="19_wlh74"]
 [ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="20_7m6mi"]
-[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="20_652tj"]
-[ext_resource type="Texture2D" uid="uid://caucxobavns3f" path="res://assets/sprites/Animals/garganomis/Garganornis_right_02.png" id="21_4t224"]
+[ext_resource type="Texture2D" uid="uid://bm0juns0aqtyh" path="res://assets/sprites/Wiki/size_chart_deinogalerix.png" id="20_n5nc3"]
 [ext_resource type="PackedScene" uid="uid://dtvf1kbb85s3j" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
+[ext_resource type="Texture2D" uid="uid://cstovv4avjtd5" path="res://assets/sprites/Wiki/size_chart_garganomis.png" id="21_dkofh"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
-[ext_resource type="Texture2D" uid="uid://ll1ov2li5vb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_moving_right_01.png" id="21_ment8"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="22_8pmt2"]
+[ext_resource type="Texture2D" uid="uid://cmky1tytmvbgy" path="res://assets/sprites/Wiki/size_chart_megacricetodon.png" id="23_o5gup"]
+[ext_resource type="Texture2D" uid="uid://c75o0d8ytcgs6" path="res://assets/sprites/Wiki/size_chart_mikrotia.png" id="24_xb3lk"]
 [ext_resource type="Texture2D" uid="uid://cdmenn5rhrsrd" path="res://assets/sprites/Animals/Prolagus/Prolagus_Top.png" id="25_0twsy"]
-[ext_resource type="Texture2D" uid="uid://ce1oenlfr8aid" path="res://assets/sprites/Animals/Tyto/Tyto_moving_down.png" id="26_8u6xl"]
+[ext_resource type="Texture2D" uid="uid://bmpggoosvq4hw" path="res://assets/sprites/Wiki/size_chart_tyto.png" id="26_okgcs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
@@ -173,6 +173,7 @@ grow_vertical = 2
 theme_override_constants/separation = 40
 
 [node name="start_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit_button")
 theme = ExtResource("3_jex88")
@@ -299,14 +300,15 @@ theme_override_constants/separation = 5
 theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="WikiButton" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+unique_name_in_owner = true
 layout_mode = 2
-_texture = ExtResource("19_rsu41")
+_texture = ExtResource("20_n5nc3")
 _title = "Deinogalerix koenigswaldi"
 _text = "With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene."
 
 [node name="WikiButton2" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("21_4t224")
+_texture = ExtResource("21_dkofh")
 _title = "Garganornis ballmani"
 _text = "[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae."
 
@@ -318,13 +320,13 @@ _text = "Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to
 
 [node name="WikiButton4" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("20_652tj")
+_texture = ExtResource("23_o5gup")
 _title = "Megacricetodon sp."
 _text = "The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!"
 
 [node name="WikiButton5" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("21_ment8")
+_texture = ExtResource("24_xb3lk")
 _title = "Mikrotia magna"
 _text = "An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory."
 
@@ -336,7 +338,7 @@ _text = "Prolagus is an extinct genus of pika - the same family as rabbits. Prol
 
 [node name="WikiButton7" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("26_8u6xl")
+_texture = ExtResource("26_okgcs")
 _title = "Tyto gigantea"
 _text = "This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves."
 
@@ -486,9 +488,9 @@ anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 offset_left = -39.0
-offset_top = -234.0
+offset_top = -132.0
 offset_right = -39.0
-offset_bottom = -234.0
+offset_bottom = -132.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8

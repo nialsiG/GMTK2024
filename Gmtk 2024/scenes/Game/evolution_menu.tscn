@@ -5,12 +5,18 @@
 [ext_resource type="LabelSettings" uid="uid://dekxbv782otfp" path="res://resources/labels/text1.tres" id="2_oqhmj"]
 [ext_resource type="PackedScene" uid="uid://bmnerimdrbfb8" path="res://scenes/Game/evolution_button.tscn" id="3_g3mq4"]
 
-[node name="evolution_menu" type="Node"]
+[node name="evolution_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8kr84")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.807843, 0.521569, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -26,22 +32,20 @@ offset_bottom = 263.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Evolution"
 label_settings = ExtResource("1_o2ad0")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Choose an evolutive innovation:"
 label_settings = ExtResource("2_oqhmj")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="evolution_button_1" parent="CanvasLayer/ColorRect" instance=ExtResource("3_g3mq4")]
+[node name="evolution_button_1" parent="ColorRect" instance=ExtResource("3_g3mq4")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
@@ -52,7 +56,8 @@ offset_right = -15.0
 offset_bottom = 953.0
 grow_vertical = 1
 
-[node name="evolution_button_2" parent="CanvasLayer/ColorRect" instance=ExtResource("3_g3mq4")]
+[node name="evolution_button_2" parent="ColorRect" instance=ExtResource("3_g3mq4")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
