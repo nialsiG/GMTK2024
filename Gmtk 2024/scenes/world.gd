@@ -149,7 +149,7 @@ func Unpause():
 	currentState = gameState.OnGoing
 	get_tree().paused = false
 	_hud.show()
-	_pauseMenu.hide()
+	_pauseMenu.UnPause()
 	_evolutionMenu.hide()
 	
 func Evolve():
