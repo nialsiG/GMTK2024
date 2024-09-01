@@ -1,13 +1,13 @@
-extends Control
+extends Panel
 class_name FinalScoreContainer
 
 const enums = preload("res://scripts/enums.gd")
 const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 
-@onready var _score_label_2 = %FinalScoreLabel
-@onready var trophy_label = %FinalTrophyLabel
-@onready var description_label = %FinalTrophyDescriptionLabel
-@onready var grid = %FinalEvolutionsGridContainer
+@onready var _score_label_2 = $ScoreLabel2
+@onready var trophy_label = $TrophyLabel
+@onready var description_label = $DescriptionLabel
+@onready var grid = $ScrollContainer/GridContainer
 
 func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 	_score_label_2.text = str(score)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=14 format=3 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/Game/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_ip67v"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/Player/player.tscn" id="2_7khj7"]
+[ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/Game/pause_menu.tscn" id="2_uunlj"]
+[ext_resource type="PackedScene" uid="uid://y4j8wtgf7p6k" path="res://scenes/Game/evolution_menu.tscn" id="5_h40nj"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="6_sorw8"]
 [ext_resource type="Script" path="res://scenes/Generators/EvolutionChoiceGenerator.gd" id="7_ioev3"]
 [ext_resource type="Script" path="res://scenes/Generators/PlantGenerator.gd" id="7_ne5ik"]
@@ -55,27 +57,29 @@ autoplay = true
 script = ExtResource("6_sorw8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
 
 [node name="hud" parent="CanvasLayer" instance=ExtResource("1_4a0xm")]
 
 [node name="ScoreLabel" parent="CanvasLayer/hud/Score" index="0"]
 label_settings = SubResource("LabelSettings_kc3dl")
 
-[node name="pause_menu" parent="CanvasLayer/hud" index="4"]
-visible = false
-
-[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("8_4xdi8")]
-visible = false
+[node name="SettingsMenu" parent="CanvasLayer/hud" instance=ExtResource("8_4xdi8")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-offset_left = -39.0
-offset_top = -134.0
-offset_right = -39.0
-offset_bottom = -134.0
+offset_left = -35.0
+offset_top = -219.0
+offset_right = -35.0
+offset_bottom = -219.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("2_uunlj")]
+process_mode = 3
+
+[node name="evolution_menu" parent="." instance=ExtResource("5_h40nj")]
+process_mode = 3
 
 [connection signal="timeout" from="Timer" to="." method="OnCycleTimeOut"]
 

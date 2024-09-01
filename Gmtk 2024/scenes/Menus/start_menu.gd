@@ -1,7 +1,7 @@
 extends Node
 
 @onready var game = "res://scenes/world.tscn"
-@onready var focus_button = %start_button
+@onready var focus_button = $CanvasLayer/Buttons/VBoxContainer/start_button
 @onready var startGoosePlayer : AudioStreamPlayer = $StartGoosePlayer
 @onready var _loadingSprite : AnimatedSprite2D = $CanvasLayer/Background/HamsterSprite2D
 @onready var _gooseSprite : AnimatedSprite2D = $CanvasLayer/Background/GooseSprite2D
@@ -32,7 +32,6 @@ func _on_start_button_pressed():
 func _on_wiki_button_pressed():
 	_wiki_panel.show()
 	_main_container.hide()
-	%WikiButton.grab_focus()
 
 func _on_quit_button_pressed():
 	get_tree().quit()
@@ -40,7 +39,6 @@ func _on_quit_button_pressed():
 func _on_back_button_pressed():
 	_wiki_panel.hide()
 	_main_container.show()
-	focus_button.grab_focus()
 
 func _on_show_credits_button_pressed():
 	_show_credits_button.hide()

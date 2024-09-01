@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmnerimdrbfb8"]
+[gd_scene load_steps=6 format=3 uid="uid://bmnerimdrbfb8"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_button.gd" id="1_5f5df"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="2_bt2p2"]
+[ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="2_m0min"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="3_bi4fj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loqrg"]
@@ -15,8 +16,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -296.0
 offset_top = -364.0
-offset_right = 104.0
-offset_bottom = 36.0
+offset_right = 296.0
+offset_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_loqrg")
@@ -27,14 +28,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 21.0
-offset_right = -15.0
-offset_bottom = -21.0
+offset_left = 55.0
+offset_top = 62.0
+offset_right = -55.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
-alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
@@ -45,19 +45,15 @@ stretch_mode = 4
 [node name="title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "This is the title"
-label_settings = ExtResource("3_bi4fj")
+label_settings = ExtResource("2_m0min")
 horizontal_alignment = 1
 
 [node name="content" type="Label" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
-text = "Size and hunger decrease
-Speed increase"
+text = "You become smaller. Your food needs are increased and so is your speed. You can predate more animals."
 label_settings = ExtResource("3_bi4fj")
-horizontal_alignment = 1
+horizontal_alignment = 3
 autowrap_mode = 2
-justification_flags = 162
+justification_flags = 170
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

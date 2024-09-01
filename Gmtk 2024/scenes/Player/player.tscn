@@ -1,54 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=12 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
 [ext_resource type="Material" uid="uid://1boi3pusyxu3" path="res://assets/Shaders/AnimalShader.tres" id="2_m7fec"]
-[ext_resource type="Texture2D" uid="uid://djwlbhjbcbj06" path="res://assets/sprites/Player/cloud_poof_00.png" id="2_wespl"]
 [ext_resource type="Script" path="res://scenes/Player/HungerManager.gd" id="3_xx7rb"]
-[ext_resource type="Texture2D" uid="uid://c8iyqt8fkuwjc" path="res://assets/sprites/Player/cloud_poof_01.png" id="3_yqt3o"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
-[ext_resource type="Texture2D" uid="uid://cgjj4ac8x4y5n" path="res://assets/sprites/Player/cloud_poof_02.png" id="4_ffbr3"]
 [ext_resource type="AudioStream" uid="uid://cn6xb57qsdjot" path="res://assets/Sounds/DeathCry.mp3" id="5_du8i2"]
-[ext_resource type="Texture2D" uid="uid://c8ygbde1303x0" path="res://assets/sprites/Player/cloud_poof_03.png" id="5_iffny"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer2D.gd" id="5_wulpb"]
-[ext_resource type="Texture2D" uid="uid://8d8re4r4ml1q" path="res://assets/sprites/Player/cloud_poof_04.png" id="6_erspu"]
 [ext_resource type="PackedScene" uid="uid://bv85c7lwx4d3b" path="res://scenes/Player/playerHud.tscn" id="6_v0wdp"]
-[ext_resource type="Texture2D" uid="uid://cvs4goubfqdct" path="res://assets/sprites/Player/cloud_poof_05.png" id="7_02kot"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
-[ext_resource type="Texture2D" uid="uid://b6lcu1anaebmi" path="res://assets/sprites/Player/cloud_poof_06.png" id="8_0v887"]
 [ext_resource type="Script" path="res://scenes/Player/PlayerColorGenerator.gd" id="10_6h0r7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8i2mb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_wespl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_yqt3o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_ffbr3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_iffny")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_erspu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_02kot")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_0v887")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_wespl")
-}],
-"loop": false,
-"name": &"Cloud",
-"speed": 12.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
@@ -67,13 +28,6 @@ position = Vector2(-9.53674e-07, -1.81901)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bg7yk")
 animation = &"Down"
-
-[node name="TriggerEvolutionSprite2D" type="AnimatedSprite2D" parent="."]
-process_mode = 3
-sprite_frames = SubResource("SpriteFrames_8i2mb")
-animation = &"Cloud"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

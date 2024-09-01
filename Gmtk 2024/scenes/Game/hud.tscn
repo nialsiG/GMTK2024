@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://yfeq2kd77xiu"]
+[gd_scene load_steps=7 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scenes/Game/hud.gd" id="1_yiyiu"]
-[ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/Game/pause_menu.tscn" id="6_1lw7w"]
-[ext_resource type="PackedScene" uid="uid://y4j8wtgf7p6k" path="res://scenes/Game/evolution_menu.tscn" id="7_0yy7y"]
 [ext_resource type="LabelSettings" uid="uid://cx2a532ok4y42" path="res://resources/labels/wasted.tres" id="7_70qvw"]
 [ext_resource type="PackedScene" uid="uid://cavv5dbltjqmp" path="res://scenes/Menus/FinalScoreContainer.tscn" id="16_tbswg"]
 [ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="17_viypj"]
@@ -19,16 +17,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("1_yiyiu")
 
 [node name="Score" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ScoreLabel" type="Label" parent="Score"]
 layout_mode = 1
@@ -63,25 +59,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FinalScoreContainer" parent="." instance=ExtResource("16_tbswg")]
-visible = false
-layout_mode = 1
-mouse_filter = 2
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="CycleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
-offset_bottom = 34.0
+offset_left = -82.0
+offset_bottom = 23.0
 grow_horizontal = 0
 text = "Cycle 9999
 "
 label_settings = SubResource("LabelSettings_disly")
-
-[node name="pause_menu" parent="." instance=ExtResource("6_1lw7w")]
-layout_mode = 1
-
-[node name="evolution_menu" parent="." instance=ExtResource("7_0yy7y")]
-visible = false
-layout_mode = 1
