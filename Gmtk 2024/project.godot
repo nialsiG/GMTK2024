@@ -18,6 +18,7 @@ config/icon="res://assets/sprites/icon.svg"
 [autoload]
 
 WorldSettings="*res://scenes/Singletons/WorldSettings.tscn"
+SecretOptions="*res://scenes/Singletons/secretOptions.tscn"
 
 [display]
 

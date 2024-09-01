@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsoanb3nbxqhi"]
+
+[ext_resource type="PackedScene" uid="uid://cajj03cqqaq5q" path="res://scenes/Player/Projectiles/Projectile.tscn" id="1_p21b3"]
+[ext_resource type="Texture2D" uid="uid://cdbtigfw7k8s4" path="res://assets/sprites/Projectiles/MeatProjectile.png" id="2_msvpt"]
+
+[node name="Projectile" instance=ExtResource("1_p21b3")]
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_msvpt")

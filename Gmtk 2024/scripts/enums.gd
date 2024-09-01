@@ -20,7 +20,10 @@ enum evolution
 	EFFICIENCY = 9,
 	COLOR = 10,
 	LIGHTNESS = 11,
-	HEAVYNESS = 12
+	HEAVYNESS = 12,
+	THROW = 13,
+	DASH = 14,
+	CHEEKY = 15
 }
 
 enum Size
@@ -66,4 +69,10 @@ enum Direction
 	Down = 2, 
 	Left = 3, 
 	Right = 4 
+}
+
+enum Ability
+{
+	Dash = 1,
+	Throw = 2
 }

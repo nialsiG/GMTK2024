@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6l4w61rf18jd"]
+[gd_scene load_steps=9 format=3 uid="uid://6l4w61rf18jd"]
 
 [ext_resource type="Script" path="res://scenes/Game/pause_menu.gd" id="1_4dify"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_iwr68"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="4_ahtax"]
 [ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="4_cxnfk"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="5_y5yq5"]
+[ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="8_3wmev"]
 
 [node name="pause_menu" type="Control"]
 layout_mode = 3
@@ -103,6 +104,29 @@ stretch_mode = 4
 layout_mode = 2
 texture = ExtResource("5_y5yq5")
 stretch_mode = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 300
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Very long description here and over there"
+label_settings = ExtResource("8_3wmev")
+autowrap_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]

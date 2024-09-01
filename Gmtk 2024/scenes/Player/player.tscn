@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=14 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bv85c7lwx4d3b" path="res://scenes/Player/playerHud.tscn" id="6_v0wdp"]
 [ext_resource type="AudioStream" uid="uid://w8jgorboi33h" path="res://assets/Sounds/Ate.wav" id="7_7nei2"]
 [ext_resource type="Script" path="res://scenes/Player/PlayerColorGenerator.gd" id="10_6h0r7"]
+[ext_resource type="Script" path="res://scenes/Player/DashManager.gd" id="11_73y5c"]
+[ext_resource type="Script" path="res://scenes/Player/ThrowManager.gd" id="12_awghw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
@@ -64,3 +66,9 @@ script = ExtResource("5_wulpb")
 
 [node name="ColorGenerator" type="Node" parent="."]
 script = ExtResource("10_6h0r7")
+
+[node name="DashManager" type="Node" parent="."]
+script = ExtResource("11_73y5c")
+
+[node name="ThrowManager" type="Node" parent="."]
+script = ExtResource("12_awghw")

@@ -24,6 +24,8 @@ const _speedEvolCoeff : float = 1.2
 @onready var current_direction : enums.Direction = enums.Direction.Down
 @onready var sprite : AnimatedSprite2D = get_node("Sprite2D")
 
+
+
 var target : Node2D
 var relationToTarget : enums.Relationship
 
