@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://6l4w61rf18jd"]
+[gd_scene load_steps=9 format=3 uid="uid://6l4w61rf18jd"]
 
 [ext_resource type="Script" path="res://scenes/Game/pause_menu.gd" id="1_4dify"]
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_iwr68"]
+[ext_resource type="Texture2D" uid="uid://cgt4yru6si2qf" path="res://assets/sprites/UI/map_empty.png" id="2_ley5v"]
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="3_4uvse"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_e0r3w"]
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="4_ahtax"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="5_y5yq5"]
 
 [node name="pause_menu" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,28 +19,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4dify")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.807843, 0.521569, 0.329412)
+texture = ExtResource("2_ley5v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = -33.0
-offset_right = 58.5
-offset_bottom = 33.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 901.5
+offset_top = 507.0
+offset_right = -901.5
+offset_bottom = -507.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/separation = 40
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -92,6 +94,7 @@ label_settings = ExtResource("3_4uvse")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="TextureRect5" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]

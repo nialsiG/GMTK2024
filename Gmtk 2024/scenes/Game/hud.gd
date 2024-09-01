@@ -7,24 +7,44 @@ var _score : int = 0
 
 @onready var _deathContainer : PanelContainer = $DeathContainer
 @onready var _finalScoreContainer : FinalScoreContainer = $FinalScoreContainer
+@onready var _evolutionMenu : EvolutionMenu = $evolution_menu
+@onready var _pauseMenu : PauseMenu = $pause_menu
 @onready var _scoreLabel : Label  = $Score/ScoreLabel
 @onready var _cycleLabel : Label  = $CycleLabel
 
-func DisplayDeath(display : bool):
-	if (display):
-		_deathContainer.show()
-	else:
-		_deathContainer.hide()
+func _ready():
+	DisplayPause(false)
+	DisplayDeath(false)
+	DisplayFinalScore(false)
+	DisplayEvolutionMenu(false)
 
+#region Display
+func Display(panel: Control, display: bool):
+	if (display):
+		panel.show()
+	else:
+		panel.hide()
+
+func DisplayDeath(display : bool):
+	Display(_deathContainer, display)
+
+func DisplayFinalScore(display : bool):
+	Display(_finalScoreContainer, display)
+
+func DisplayEvolutionMenu(display: bool, choices: Array[EvolutionChoice] = []):
+	if display:
+		_evolutionMenu.DisplayChoice(choices)
+	Display(_evolutionMenu, display)
+
+func DisplayPause(display: bool):
+	Display(_pauseMenu, display)
+	Display(_scoreLabel, !display)
+#endregion
+
+#region Update
 func UpdateDeathModulate(value : float):
 	_deathContainer.modulate.a = value
 	_deathContainer.self_modulate.a = value
-
-func DisplayFinalScore(display : bool):
-	if (display):
-		_finalScoreContainer.show()
-	else:
-		_finalScoreContainer.hide()
 
 func UpdateScore(score : int):
 	_scoreLabel.text = "%0*d" % [4, score]
@@ -34,5 +54,6 @@ func UpdateCycle(cycle : int):
 
 func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 	_finalScoreContainer.UpdateFinalPanel(pickedEvolutions, score)
+#endregion
 
 
