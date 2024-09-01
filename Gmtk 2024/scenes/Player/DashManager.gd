@@ -1,4 +1,4 @@
-extends Node
+extends AbilityManager
 class_name DashManager
 
 var _isDashing : bool = false
@@ -9,21 +9,9 @@ var _dashRecoveryTime : float = 3
 var _dashSizeBonus : int = 0
 var _dashSpeedBonus : float = 4
 var _dashFoodCost : float = 5
-var _isActive : bool = true
 
-var _playerHud : PlayerHud
-
-func Initialize(hud : PlayerHud):
-	_playerHud = hud
-
-func CanDash() -> bool:
+func CanPerform() -> bool:
 	return _isActive && !(_isDashing || _isDashInRecovery)
-
-func Enable():
-	_isActive = true
-
-func Disable():
-	_isActive = false
 
 func IsDashing() -> bool:
 	return _isDashing

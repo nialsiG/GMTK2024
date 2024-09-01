@@ -17,6 +17,9 @@ var _isDead : bool = false
 @onready var _hungerManager : HungerManager = $HungerManager
 @onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
 @onready var _dashManager : DashManager = $DashManager
+@onready var _throwManager : ThrowManager = $ThrowManager
+
+@onready var _lastDirection = Vector2.ZERO
 
 func _ready():
 	current_size = initial_size
@@ -25,6 +28,7 @@ func _ready():
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	_dashManager.Initialize(_hud)
+	_dashManager.Enable()
 	RaiseUpdateSize()
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
 	
@@ -38,6 +42,7 @@ signal UpdatedDiet(diet : enums.Diet)
 signal UpdatedSize(size : enums.Size, newhungerCoeff : float)
 signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
+signal Throw(type : enums.FoodType, axis : Vector2, position : Vector2)
 
 var maxHealth = 2;
 var currentHealth = 2;
@@ -56,12 +61,20 @@ func _process(delta):
 				animal.hit(power - enemyPower)
 
 	get_input_axis()
+
+	if(axis != Vector2.ZERO):
+		_lastDirection = axis
 	
-	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack") 
-	&& _dashManager.CanDash()):
-		_dashManager.Dash()
-		_dashSoundPlayer.play()
-		_actionAxis = axis
+	if (axis != Vector2.ZERO && Input.is_action_just_pressed("attack")): 
+		if (_dashManager.CanPerform()):
+			_dashManager.Dash()
+			_dashSoundPlayer.play()
+			_actionAxis = axis
+			
+		elif (_throwManager.CanPerform()):
+			_actionAxis = axis
+			var foodToThrow = _throwManager.GetFoodToThrow()
+			Throw.emit(foodToThrow.type, _actionAxis, position + _lastDirection * 60 * _scaleCoeff)
 			
 	UpdateState(axis)
 	UpdateSprite()
@@ -127,6 +140,7 @@ func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
 	var newHungerValue = _hungerManager.eat(amount * GetFoodCoef(foodType))
 	_hud.UpdateHunger(newHungerValue)
+	_throwManager.Store(amount, foodType)
 
 func OnFoodOverflow():
 	AddHealth(1)	
@@ -221,8 +235,10 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
 		enums.evolution.THROW:
-			_dashManager.Di
-		
+			_dashManager.Disable()
+			_throwManager.Enable()
+			_throwManager.AddStorageSize(1)
+
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
 	_hud.UpdateDiet(newDiet)

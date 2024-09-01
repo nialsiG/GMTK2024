@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxwlg7bgf331q"]
+
+[ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="1_n484h"]
+[ext_resource type="Script" path="res://scenes/Player/Projectile.gd" id="1_wi42t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75ff1"]
+radius = 20.0
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_wi42t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_75ff1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_n484h")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -4,6 +4,7 @@ const enums = preload("res://scripts/enums.gd")
 const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 var meatPackedScene = preload("res://scenes/Consumables/Meat.tscn")
 var mapPackedScene = preload("res://scenes/Maps/Map1.tscn")
+var projectilePackedScene = preload("res://scenes/Player/Projectile.tscn")
 
 var _width : float = 2000
 var _height : float = 2000
@@ -44,7 +45,8 @@ func _ready():
 	_pauseMenu.connect("Resume", Unpause)
 	_evolutionMenu.connect("Chose", OnEvolutionChosen)	
 	_player.connect("Fed", OnPlayerAte)
-	_player.connect("Died", OnPlayerDeath)	
+	_player.connect("Died", OnPlayerDeath)
+	_player.connect("Throw", OnPlayerThrow)
 	_cycleTimer = get_node("Timer")
 	
 	var map : GameMap = mapPackedScene.instantiate()
@@ -137,6 +139,12 @@ func OnPlayerDeath():
 	for i in _pickedEvolutions.size():
 		choicesRecap.append(_evolutionChoiceGenerator.GetEvolutionForChoice(_pickedEvolutions[i]))
 	_hud.UpdateFinalPanel(choicesRecap, _score)
+
+func OnPlayerThrow(type : enums.FoodType, axis : Vector2, position : Vector2):
+	var projectile : Projectile = projectilePackedScene.instantiate()
+	projectile.SetAxis(axis)
+	projectile.position = position + position.normalized() * 30
+	add_child(projectile)
 
 func Pause():
 	currentState = gameState.Menu

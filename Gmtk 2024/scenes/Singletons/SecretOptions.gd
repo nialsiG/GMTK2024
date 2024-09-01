@@ -32,9 +32,9 @@ func _process(delta):
 		for i in _lastCommands.size():
 			code+= _lastCommands[i]
 		if (code == _uziCode):
+			_lastCommands.clear()
 			_activatedUzi = true
 			UnlockedOptions.emit("You unlocked \"Throw\" mutation, allowing to replace your dash by capability to throw eaten food to concurrents, damaging them")
-		code = ""
 		
 func IsUziActived() -> bool:
 	return _activatedUzi
