@@ -36,6 +36,9 @@ func _ready():
 	UpdateSize()
 	UpdateSprite()
 
+func _initialize():
+	pass
+
 func UpdateSize():
 	match current_size:
 		enums.Size.MICRO:

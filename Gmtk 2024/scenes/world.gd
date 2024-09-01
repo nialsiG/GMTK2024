@@ -13,9 +13,6 @@ var _pickedEvolutions : Array[enums.evolution] = []
 var _score : int = 0
 
 @onready var _hud : hud = $CanvasLayer/hud
-@onready var _pauseMenu : PauseMenu = $CanvasLayer/hud/pause_menu
-@onready var _evolutionMenu : EvolutionMenu  = $CanvasLayer/hud/evolution_menu
-
 @onready var _dynamicElements : Node2D = $GameElements/DynamicElements
 @onready var _staticElements : Node2D = $GameElements/StaticElements
 @onready var _player : Player = $GameElements/DynamicElements/Player
@@ -23,6 +20,9 @@ var _score : int = 0
 @onready var _plantGenerator : PlantGenerator = $PlantGenerator
 @onready var _animalGenerator : AnimalGenerator = $AnimalGenerator
 @onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
+
+@onready var _pauseMenu : PauseMenu = $CanvasLayer/pause_menu
+@onready var _evolutionMenu : EvolutionMenu  = $evolution_menu
 
 @onready var _cycleTimer : Timer
 
@@ -42,7 +42,7 @@ var _currentAnimals : Array[Animal] = []
 
 func _ready():
 	_pauseMenu.connect("Resume", Unpause)
-	_evolutionMenu.connect("Chose", OnEvolutionChosen)
+	_evolutionMenu.connect("Chose", OnEvolutionChosen)	
 	_player.connect("Fed", OnPlayerAte)
 	_player.connect("Died", OnPlayerDeath)	
 	_cycleTimer = get_node("Timer")
@@ -69,9 +69,12 @@ func _process(_delta):
 func StartGame():
 	GeneratePlants(10)
 	GenerateAnimals(5)
-	AddCycle(0)
-	Unpause()
 	currentState = gameState.OnGoing
+	_evolutionMenu.hide()
+	_pauseMenu.UnPause()
+	_cycleTimer.start()	
+	_hud.UpdateCycle(_cycle)
+	get_tree().paused = false
 
 func GeneratePlants(numberOfPlants):
 	var plants = _plantGenerator.Generate(_cycle, numberOfPlants, _player.position)
@@ -92,7 +95,7 @@ func GenerateAnimals(numberOfAnimals):
 
 func OnPlayerAte(amount : int):
 	_hud.eat(amount)
-
+	
 func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 	_totalFoodValue += amount
 	AddScore(amount * 3)
@@ -124,37 +127,41 @@ func _getAnimalIndex(animal : Animal):
 	return -1
 	
 func OnPlayerDeath():
-	get_tree().paused = true
-	#region Death screen
+	var tree = get_tree()
+	tree.paused = true
 	_hud.DisplayDeath(true)
 	await get_tree().create_timer(_deathScreenDuration).timeout
 	_hud.DisplayDeath(false)
-	#endregion
-	#region Final screen
+	_hud.DisplayFinalScore(true)
 	var choicesRecap : Array[EvolutionChoice] = []
 	for i in _pickedEvolutions.size():
 		choicesRecap.append(_evolutionChoiceGenerator.GetEvolutionForChoice(_pickedEvolutions[i]))
-	_hud.DisplayFinalScore(true)
 	_hud.UpdateFinalPanel(choicesRecap, _score)
-	#endregion
 
 func Pause():
 	currentState = gameState.Menu
+	_hud.hide()
 	get_tree().paused = true
-	_hud.DisplayPause(true)
+	_pauseMenu.Pause()
+	_evolutionMenu.hide()
 
 func Unpause():
-	get_tree().paused = false
 	currentState = gameState.OnGoing
-	_hud.DisplayPause(false)
-
+	get_tree().paused = false
+	_hud.show()
+	_pauseMenu.hide()
+	_evolutionMenu.hide()
+	
 func Evolve():
 	currentState = gameState.Evolution
-	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())
-	print(choices)
-	_hud.DisplayEvolutionMenu(true, choices)
+	_cycleTimer.stop()
+	_pauseMenu.UnPause()
+	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())	
+	_evolutionMenu.DisplayChoice(choices)
 	for i in _currentAnimals.size():
 		_applyEnemyEvolForCycle(_currentAnimals[i])
+		
+	get_tree().paused = true
 
 func _applyEnemyEvolForCycle(animal : Animal):
 	for i in clamp(int(_cycle/3), 1, 5):
@@ -162,28 +169,17 @@ func _applyEnemyEvolForCycle(animal : Animal):
 		animal.ApplyEvolution(evol)
 
 func OnCycleTimeOut():
-	_cycleTimer.stop()
-	#_pauseMenu.UnPause()
-	get_tree().paused = true
 	Evolve()
 	
 func OnEvolutionChosen(evol : enums.evolution):
-	_hud.DisplayEvolutionMenu(false)
 	_pickedEvolutions.append(evol)
-	_player.PROCESS_MODE_ALWAYS
-	await get_tree().create_timer(0.2).timeout
 	_player.ApplyEvolution(evol)
-	await get_tree().create_timer(0.8).timeout
-	_player.PROCESS_MODE_INHERIT
 	AddScore(100 * _cycle)
-	AddCycle(1)
 	Unpause()
-
-func AddCycle(amount: int):
-	_cycle += amount
+	_cycle+=1
 	_hud.UpdateCycle(_cycle)
 	_cycleTimer.start()
 
-func AddScore(amount: int):
+func AddScore(amount : int):
 	_score += amount
 	_hud.UpdateScore(_score)

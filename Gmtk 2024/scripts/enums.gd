@@ -53,13 +53,6 @@ enum State
 	Right = 5
 } 
 
-enum PachinkoState
-{
-	Still = 1,
-	Spinning = 2,
-	Stop = 3
-}
-
 enum Diet
 { 
 	vegetarian = 1, 
