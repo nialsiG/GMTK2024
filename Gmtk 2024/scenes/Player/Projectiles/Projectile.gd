@@ -12,7 +12,7 @@ func _process(delta):
 func SetAxis(axis :Vector2):
 	_axis = axis
 
-func OnBodyEntered(body):
+func OnBodyEntered(body : Node2D):
 	if (body is Player):
 		return
 	

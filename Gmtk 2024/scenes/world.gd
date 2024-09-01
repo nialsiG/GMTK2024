@@ -2,9 +2,6 @@ extends Node2D
 
 const enums = preload("res://scripts/enums.gd")
 const start_menu : String = "res://scenes/Menus/start_menu.tscn"
-var meatPackedScene = preload("res://scenes/Consumables/Meat.tscn")
-var mapPackedScene = preload("res://scenes/Maps/Map1.tscn")
-var projectilePackedScene = preload("res://scenes/Player/Projectile.tscn")
 
 var _width : float = 2000
 var _height : float = 2000
@@ -21,6 +18,7 @@ var _score : int = 0
 @onready var _plantGenerator : PlantGenerator = $PlantGenerator
 @onready var _animalGenerator : AnimalGenerator = $AnimalGenerator
 @onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
+@onready var _elementFactory : ElementFactory = $ElementFactory
 
 @onready var _pauseMenu : PauseMenu = $CanvasLayer/pause_menu
 @onready var _evolutionMenu : EvolutionMenu  = $evolution_menu
@@ -30,7 +28,7 @@ var _score : int = 0
 enum gameState {Menu, Evolution, OnGoing }
 var currentState : gameState
 
-const _meatValueToScale : float = 0.1
+
 const _deathScreenDuration : float = 2.5
 
 var _cycle : int = 1
@@ -48,8 +46,12 @@ func _ready():
 	_player.connect("Died", OnPlayerDeath)
 	_player.connect("Throw", OnPlayerThrow)
 	_cycleTimer = get_node("Timer")
-	
-	var map : GameMap = mapPackedScene.instantiate()
+
+	_loadMap(1)
+	StartGame()
+
+func _loadMap(mapNumber : int):
+	var map : GameMap = _elementFactory.GetMap(mapNumber)
 	var mapDimensions : Vector2 = map.GetMapDimensions()
 	var startingPoint = map.GetMapStartingPoint()
 	_player.position = startingPoint
@@ -59,7 +61,6 @@ func _ready():
 	var blockPoints = map.GetPositionsForbidden()
 	_animalGenerator.SetupBounds(_margin, mapDimensions, blockPoints)
 	_plantGenerator.SetupBounds(_margin, mapDimensions, blockPoints)
-	StartGame()
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("pause_unpause")):
@@ -112,11 +113,9 @@ func OnEatenConsumable(amount : int, foodType : enums.FoodType):
 		GeneratePlants(1)
 
 func OnAnimalDied(animal : Animal):
-	var meat = meatPackedScene.instantiate()
-	meat.foodValue = animal.GetFoodValue()
-	meat.position = animal.position
-	meat.scale = Vector2.ONE * animal.GetFoodValue() * _meatValueToScale
+	var meat = _elementFactory.GetMeat(animal.GetFoodValue(), animal.position)
 	meat.connect("Eaten", OnEatenConsumable)
+
 	var deadAnimalIndex = _getAnimalIndex(animal)
 	_currentAnimals.remove_at(deadAnimalIndex)
 	_dynamicElements.call_deferred("add_child",  meat)
@@ -141,9 +140,7 @@ func OnPlayerDeath():
 	_hud.UpdateFinalPanel(choicesRecap, _score)
 
 func OnPlayerThrow(type : enums.FoodType, axis : Vector2, position : Vector2):
-	var projectile : Projectile = projectilePackedScene.instantiate()
-	projectile.SetAxis(axis)
-	projectile.position = position + position.normalized() * 30
+	var projectile : Projectile = _elementFactory.GetProjectile(type, axis, position + position.normalized() * 30)
 	add_child(projectile)
 
 func Pause():

@@ -11,6 +11,8 @@ func GetFoodToThrow() -> StoredFood:
 	if (_storedFood.size() > 0):
 		var thrownFood = _storedFood[_storedFood.size() - 1]
 		_storedFood.remove_at(_storedFood.size() - 1)
+		if (_storedFood.size() == 0):
+			_playerHud.UpdateDashCooldown(false)
 		return thrownFood
 
 	return null
@@ -29,4 +31,4 @@ func Store(amount: int, foodType : enums.FoodType):
 		_storedFood.remove_at(0)
 	
 	_storedFood.append(newStoredFood)
-	
+	_playerHud.UpdateDashCooldown(true)

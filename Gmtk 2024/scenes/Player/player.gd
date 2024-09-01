@@ -8,6 +8,7 @@ var blink_timer : float = 0
 var blink_limit : float = 0.1
 
 var _isDead : bool = false
+var _currentAbility : enums.Ability = enums.Ability.Dash
 
 @onready var _dashSoundPlayer : AudioStreamPlayer2D = $DashSound
 @onready var _eatingSoundPlayer : AudioStreamPlayer2D = $EatingSound
@@ -29,6 +30,7 @@ func _ready():
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	_dashManager.Initialize(_hud)
 	_dashManager.Enable()
+	_throwManager.Initialize(_hud)
 	RaiseUpdateSize()
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
 	
@@ -200,6 +202,14 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 		evols.append(enums.evolution.NANISM)
 	elif (current_size == enums.Size.COLOSSAL):
 		evols.append(enums.evolution.GIGANTISM)
+	
+	if (_currentAbility == enums.Ability.Dash):
+		evols.append(enums.evolution.DASH)
+		evols.append(enums.evolution.CHEEKY)
+	elif (_currentAbility == enums.Ability.Throw):
+		evols.append(enums.evolution.THROW)
+		evols.append(enums.evolution.AGILITY)
+		evols.append(enums.evolution.FANG)
 		
 	return evols
 	
@@ -234,9 +244,16 @@ func ApplyEvolution(evol : enums.evolution):
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
+		enums.evolution.DASH:
+			_currentAbility = enums.Ability.Dash
+			_dashManager.Enable()
+			_throwManager.Disable()
 		enums.evolution.THROW:
+			_currentAbility = enums.Ability.Throw
 			_dashManager.Disable()
 			_throwManager.Enable()
+			_throwManager.AddStorageSize(1)
+		enums.evolution.CHEEKY:
 			_throwManager.AddStorageSize(1)
 
 func UpdateDiet(newDiet : enums.Diet):

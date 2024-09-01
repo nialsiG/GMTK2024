@@ -20,7 +20,9 @@ var _fangs : EvolutionChoice
 var _lightness : EvolutionChoice
 var _heavyness : EvolutionChoice
 var _color : EvolutionChoice
-var _guerillero : EvolutionChoice
+var _thrower : EvolutionChoice
+var _speedster : EvolutionChoice
+var _bigCheeks : EvolutionChoice
 
 func _ready():
 	SecretOptions.connect("UnlockedOptions", OnCheatCodeUnlocked)
@@ -72,9 +74,17 @@ func _ready():
 	"Your coat evolved, maybe it was not the best color, but it is who you are now",
 	enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
 
-	_guerillero = CreateChoice("Guerilla",
+	_thrower = CreateChoice("Throw",
 	"Your active ability becomes Throw, the last thing you ate is stored in your mouth and can be hurled at other animals, damaging them.",
-	enums.evolution.THROW, "res://assets/sprites/icon.svg")
+	enums.evolution.THROW, "res://assets/sprites/Icons/IconLearnThrow.png")
+	
+	_bigCheeks = CreateChoice("Big cheeks",
+	"You can store one more food into your cheeks, augmenting the number of your max ammunitions.",
+	enums.evolution.CHEEKY, "res://assets/sprites/Icons/IconCheeky.png")
+	
+	_speedster = CreateChoice("Dash",
+	"Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals",
+	enums.evolution.THROW, "res://assets/sprites/Icons/IconAgility.png")
 
 	_allEvolutions.append(_nanism)
 	_allEvolutions.append(_gigantism)
@@ -93,7 +103,7 @@ func _ready():
 
 	if(SecretOptions.IsUziActived()):
 		_addedUzi = true
-		_allEvolutions.append(_guerillero)
+		_allEvolutions.append(_thrower)
 	
 	_enemyEvolutions.append(_nanism)
 	_enemyEvolutions.append(_gigantism)
@@ -151,5 +161,6 @@ func OnCheatCodeUnlocked(description : String):
 	if (SecretOptions.IsUziActived() && !_addedUzi):
 		_addedUzi = true
 		#_allEvolutions.clear()
-		_allEvolutions.append(_guerillero)
+		_allEvolutions.append(_thrower)
+		_allEvolutions.append(_bigCheeks)
 		#_allEvolutions.append(_lightness)
