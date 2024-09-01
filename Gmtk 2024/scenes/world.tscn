@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=13 format=3 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/Game/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_ip67v"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/Player/player.tscn" id="2_7khj7"]
-[ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/Game/pause_menu.tscn" id="2_uunlj"]
-[ext_resource type="PackedScene" uid="uid://y4j8wtgf7p6k" path="res://scenes/Game/evolution_menu.tscn" id="5_h40nj"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="6_sorw8"]
 [ext_resource type="Script" path="res://scenes/Generators/EvolutionChoiceGenerator.gd" id="7_ioev3"]
 [ext_resource type="Script" path="res://scenes/Generators/PlantGenerator.gd" id="7_ne5ik"]
@@ -69,18 +67,12 @@ layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-offset_left = -35.0
-offset_top = -219.0
-offset_right = -35.0
-offset_bottom = -219.0
+offset_left = -44.0
+offset_top = -241.0
+offset_right = -44.0
+offset_bottom = -241.0
 grow_horizontal = 0
 grow_vertical = 0
-
-[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("2_uunlj")]
-process_mode = 3
-
-[node name="evolution_menu" parent="." instance=ExtResource("5_h40nj")]
-process_mode = 3
 
 [node name="ElementFactory" type="Node" parent="."]
 script = ExtResource("12_4xpkq")

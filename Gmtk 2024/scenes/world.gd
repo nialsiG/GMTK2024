@@ -11,6 +11,8 @@ var _pickedEvolutions : Array[enums.evolution] = []
 var _score : int = 0
 
 @onready var _hud : hud = $CanvasLayer/hud
+@onready var _pauseMenu : PauseMenu = $CanvasLayer/hud/pause_menu
+@onready var _evolutionMenu : EvolutionMenu  = $CanvasLayer/hud/evolution_menu
 @onready var _dynamicElements : Node2D = $GameElements/DynamicElements
 @onready var _staticElements : Node2D = $GameElements/StaticElements
 @onready var _player : Player = $GameElements/DynamicElements/Player
@@ -19,9 +21,6 @@ var _score : int = 0
 @onready var _animalGenerator : AnimalGenerator = $AnimalGenerator
 @onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
 @onready var _elementFactory : ElementFactory = $ElementFactory
-
-@onready var _pauseMenu : PauseMenu = $CanvasLayer/pause_menu
-@onready var _evolutionMenu : EvolutionMenu  = $evolution_menu
 
 @onready var _cycleTimer : Timer
 
@@ -46,7 +45,6 @@ func _ready():
 	_player.connect("Died", OnPlayerDeath)
 	_player.connect("Throw", OnPlayerThrow)
 	_cycleTimer = get_node("Timer")
-
 	_loadMap(1)
 	StartGame()
 
@@ -72,12 +70,8 @@ func _process(_delta):
 func StartGame():
 	GeneratePlants(10)
 	GenerateAnimals(5)
-	currentState = gameState.OnGoing
-	_evolutionMenu.hide()
-	_pauseMenu.UnPause()
-	_cycleTimer.start()	
-	_hud.UpdateCycle(_cycle)
-	get_tree().paused = false
+	AddCycle(0)
+	Unpause()
 
 func GeneratePlants(numberOfPlants):
 	var plants = _plantGenerator.Generate(_cycle, numberOfPlants, _player.position)
@@ -130,13 +124,15 @@ func _getAnimalIndex(animal : Animal):
 func OnPlayerDeath():
 	var tree = get_tree()
 	tree.paused = true
+	# Death screen
 	_hud.DisplayDeath(true)
-	await get_tree().create_timer(_deathScreenDuration).timeout
+	await tree.create_timer(_deathScreenDuration).timeout
 	_hud.DisplayDeath(false)
-	_hud.DisplayFinalScore(true)
+	# Final screen
 	var choicesRecap : Array[EvolutionChoice] = []
 	for i in _pickedEvolutions.size():
 		choicesRecap.append(_evolutionChoiceGenerator.GetEvolutionForChoice(_pickedEvolutions[i]))
+	_hud.DisplayFinalScore(true)
 	_hud.UpdateFinalPanel(choicesRecap, _score)
 
 func OnPlayerThrow(type : enums.FoodType, axis : Vector2, position : Vector2):
@@ -145,28 +141,21 @@ func OnPlayerThrow(type : enums.FoodType, axis : Vector2, position : Vector2):
 
 func Pause():
 	currentState = gameState.Menu
-	_hud.hide()
 	get_tree().paused = true
-	_pauseMenu.Pause()
-	_evolutionMenu.hide()
+	_hud.DisplayPause(true)
 
 func Unpause():
 	currentState = gameState.OnGoing
 	get_tree().paused = false
-	_hud.show()
-	_pauseMenu.UnPause()
-	_evolutionMenu.hide()
+	_hud.DisplayPause(false)
 	
 func Evolve():
 	currentState = gameState.Evolution
-	_cycleTimer.stop()
-	_pauseMenu.UnPause()
-	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())	
-	_evolutionMenu.DisplayChoice(choices)
+	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())
+	print(choices)
+	_hud.DisplayEvolutionMenu(true, choices)
 	for i in _currentAnimals.size():
 		_applyEnemyEvolForCycle(_currentAnimals[i])
-		
-	get_tree().paused = true
 
 func _applyEnemyEvolForCycle(animal : Animal):
 	for i in clamp(int(_cycle/3), 1, 5):
@@ -174,14 +163,24 @@ func _applyEnemyEvolForCycle(animal : Animal):
 		animal.ApplyEvolution(evol)
 
 func OnCycleTimeOut():
+	_cycleTimer.stop()
+	get_tree().paused = true
 	Evolve()
 	
 func OnEvolutionChosen(evol : enums.evolution):
+	_hud.DisplayEvolutionMenu(false)
 	_pickedEvolutions.append(evol)
+	_player.PROCESS_MODE_ALWAYS
+	await get_tree().create_timer(0.2).timeout
 	_player.ApplyEvolution(evol)
+	await get_tree().create_timer(0.8).timeout
+	_player.PROCESS_MODE_INHERIT
 	AddScore(100 * _cycle)
+	AddCycle(1)
 	Unpause()
-	_cycle+=1
+
+func AddCycle(amount: int):
+	_cycle += amount
 	_hud.UpdateCycle(_cycle)
 	_cycleTimer.start()
 

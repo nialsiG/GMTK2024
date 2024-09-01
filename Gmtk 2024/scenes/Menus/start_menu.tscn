@@ -75,6 +75,7 @@ grow_horizontal = 2
 text = "Gargano Island"
 label_settings = ExtResource("2_sr5fs")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Subtitle" type="Label" parent="CanvasLayer/Background"]
 layout_mode = 1
@@ -90,14 +91,14 @@ label_settings = SubResource("LabelSettings_6q3vm")
 horizontal_alignment = 1
 
 [node name="HamsterSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(912, 466)
+position = Vector2(926, 470)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("6_2iajs")
 animation = &"Idle_Up"
 autoplay = "Right"
 
 [node name="GooseSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(-141, 389)
+position = Vector2(-127, 393)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("5_2ab6e")
 animation = &"Idle_Right"
@@ -115,62 +116,81 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 760.0
+offset_left = 1336.0
 offset_top = 662.0
 offset_right = -6.0
-offset_bottom = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
 
 [node name="MoveImage" type="TextureRect" parent="CanvasLayer/Buttons/Tutorial"]
-layout_mode = 0
-offset_left = 729.0
-offset_top = 46.0
-offset_right = 971.0
-offset_bottom = 244.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -14.0
+offset_right = -274.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("7_6ftc6")
 
 [node name="DashImage" type="TextureRect" parent="CanvasLayer/Buttons/Tutorial"]
-layout_mode = 0
-offset_left = 733.0
-offset_top = 286.0
-offset_right = 971.0
-offset_bottom = 356.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 267.0
+offset_right = -253.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("8_bqtse")
 
 [node name="MoveLabel" type="Label" parent="CanvasLayer/Buttons/Tutorial"]
-layout_mode = 0
-offset_left = 991.0
-offset_top = 126.0
-offset_right = 1110.0
-offset_bottom = 188.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.902
+anchor_top = -2.736
+anchor_right = 1.006
+anchor_bottom = 1.0
+offset_left = 856.356
+offset_top = 1227.91
+offset_right = -55.468
+offset_bottom = -231.0
 text = "Move"
 label_settings = ExtResource("9_o84i5")
 
 [node name="DashLabel" type="Label" parent="CanvasLayer/Buttons/Tutorial"]
-layout_mode = 0
-offset_left = 991.0
-offset_top = 293.0
-offset_right = 1109.0
-offset_bottom = 355.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.913
+anchor_top = -2.795
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 872.714
+offset_top = 1393.52
+offset_right = -44.0
+offset_bottom = -90.0
 text = "Dash"
 label_settings = ExtResource("9_o84i5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -309.0
-offset_top = 139.0
-offset_right = 313.0
-offset_bottom = 484.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 642.0
+offset_top = 571.0
+offset_right = -634.0
+offset_bottom = -67.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
+alignment = 1
 
 [node name="start_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
@@ -214,11 +234,16 @@ theme_override_styles/disabled = ExtResource("7_1ysxi")
 text = "Quit  game"
 
 [node name="ShowCreditsButton" type="TextureButton" parent="CanvasLayer/Buttons"]
-layout_mode = 0
-offset_left = 364.0
-offset_top = 608.0
-offset_right = 564.0
-offset_bottom = 908.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 389.0
+offset_top = 615.0
+offset_right = -1331.0
+offset_bottom = -165.0
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 0.598648
 texture_normal = ExtResource("2_ago1e")
 texture_pressed = ExtResource("11_1th13")
@@ -226,20 +251,26 @@ texture_hover = ExtResource("11_1th13")
 
 [node name="HideCreditsButtonBack" type="TextureButton" parent="CanvasLayer/Buttons"]
 visible = false
-layout_mode = 0
-offset_left = 211.0
-offset_top = 637.0
-offset_right = 509.0
-offset_bottom = 978.0
-
-[node name="Credits" type="Label" parent="CanvasLayer/Buttons/HideCreditsButtonBack"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_right = 53.0
-offset_bottom = 2.0
+offset_left = 211.0
+offset_top = 637.0
+offset_right = -1411.0
+offset_bottom = -102.0
+
+[node name="Credits" type="Label" parent="CanvasLayer/Buttons/HideCreditsButtonBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.691
+anchor_top = -1.865
+anchor_right = 5.731
+anchor_bottom = 1.295
+offset_left = 171.918
+offset_top = 617.965
+offset_right = -1337.84
+offset_bottom = -116.595
 grow_horizontal = 2
 grow_vertical = 2
 text = "Developed by
@@ -263,15 +294,14 @@ button_array = [NodePath("LeftPanel/VBoxContainer/WikiButton"), NodePath("LeftPa
 
 [node name="LeftPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -860.0
-offset_top = -448.0
-offset_right = -418.0
-offset_bottom = 345.0
+anchors_preset = -1
+anchor_top = 0.002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 25.84
+offset_right = -1454.0
+offset_bottom = -205.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.984314, 0.764706, 0.647059, 1)
@@ -402,15 +432,14 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="RightPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -448.0
-offset_right = 905.0
-offset_bottom = 455.0
+anchors_preset = -1
+anchor_top = 0.002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 508.0
+offset_top = 26.2
+offset_right = -41.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.984314, 0.764706, 0.647059, 1)
@@ -420,9 +449,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 85.0
+offset_left = 53.0
 offset_top = 34.0
-offset_right = -72.0
+offset_right = -40.0
 offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -464,11 +493,14 @@ autowrap_mode = 2
 selection_enabled = true
 
 [node name="back_button" type="Button" parent="CanvasLayer/Buttons/WikiContainer"]
-layout_mode = 0
-offset_left = 101.0
-offset_top = 928.0
-offset_right = 540.0
-offset_bottom = 1025.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 908.0
+offset_right = -1454.0
+offset_bottom = -35.0
 theme_override_colors/font_color = Color(0.203922, 0.0352941, 0.0509804, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.913925, 0.536685, 0.125707, 1)

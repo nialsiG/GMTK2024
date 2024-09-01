@@ -5,21 +5,27 @@ const enums = preload("res://scripts/enums.gd")
 var evol : enums.evolution
 var textureRec : TextureRect
 var title : Label
-var content : Label
+var tooltip : String
 
 signal Chose(evol : enums.evolution)
+signal Tooltip(tooltip: String)
 
 func _ready():
 	textureRec = get_node("VBoxContainer/TextureRect")
 	title = get_node("VBoxContainer/title")
-	content = get_node("VBoxContainer/content")
 
 func SetChoice(evolChoice : EvolutionChoice):
 	title.text = evolChoice.Name
-	content.text = evolChoice.Description
+	tooltip = evolChoice.Description
 	textureRec.texture = evolChoice.Texture()
 	evol = evolChoice.evolution	
 	pass
 
 func _on_pressed():
 	Chose.emit(evol)
+
+func _on_mouse_entered():
+	Tooltip.emit(tooltip)
+
+func _on_mouse_exited():
+	Tooltip.emit("")
