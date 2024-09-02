@@ -295,7 +295,6 @@ label_settings = ExtResource("15_jujkx")
 horizontal_alignment = 1
 
 [node name="WikiContainer" type="Panel" parent="CanvasLayer/Buttons" node_paths=PackedStringArray("button_array")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -305,7 +304,7 @@ grow_vertical = 2
 script = ExtResource("16_2gkxj")
 button_array = [NodePath("LeftPanel/VBoxContainer/WikiButton"), NodePath("LeftPanel/VBoxContainer/WikiButton2"), NodePath("LeftPanel/VBoxContainer/WikiButton3"), NodePath("LeftPanel/VBoxContainer/WikiButton4"), NodePath("LeftPanel/VBoxContainer/WikiButton5"), NodePath("LeftPanel/VBoxContainer/WikiButton6"), NodePath("LeftPanel/VBoxContainer/WikiButton7")]
 
-[node name="LeftPanel" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer"]
+[node name="LeftPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.002
@@ -317,8 +316,7 @@ offset_right = -1454.0
 offset_bottom = -205.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_j0g5s")
-expand_mode = 1
+color = Color(0.968627, 0.866667, 0.741176, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel"]
 layout_mode = 1

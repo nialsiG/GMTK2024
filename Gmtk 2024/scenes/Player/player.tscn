@@ -61,6 +61,7 @@ stream = ExtResource("5_du8i2")
 script = ExtResource("5_wulpb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="hud" parent="CanvasLayer" instance=ExtResource("6_v0wdp")]
 
