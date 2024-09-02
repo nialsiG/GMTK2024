@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=38 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_sr5fs"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_jex88"]
 [ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="5_2ab6e"]
+[ext_resource type="Texture2D" uid="uid://du1d8e7q1j3j7" path="res://assets/sprites/UI/StartMenuUiRocks.png" id="5_pg0bt"]
 [ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="5_qj008"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
@@ -20,19 +21,20 @@
 [ext_resource type="Script" path="res://scenes/Menus/WikiContainer.gd" id="16_2gkxj"]
 [ext_resource type="LabelSettings" uid="uid://b41oa5u17ggre" path="res://resources/labels/wiki_label_settings.tres" id="17_7a77u"]
 [ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="18_di3cn"]
+[ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="18_j0g5s"]
 [ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="18_xu14w"]
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
-[ext_resource type="Texture2D" uid="uid://pcse7r81lgcx" path="res://assets/sprites/Animals/Deino/Deinogalerix_moving_right.png" id="19_rsu41"]
 [ext_resource type="StyleBox" uid="uid://cl4hfcpntbfjs" path="res://resources/separators/wiki_separator.tres" id="19_wlh74"]
 [ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="20_7m6mi"]
-[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="20_652tj"]
-[ext_resource type="Texture2D" uid="uid://caucxobavns3f" path="res://assets/sprites/Animals/garganomis/Garganornis_right_02.png" id="21_4t224"]
 [ext_resource type="PackedScene" uid="uid://dtvf1kbb85s3j" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
-[ext_resource type="Texture2D" uid="uid://ll1ov2li5vb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia_moving_right_01.png" id="21_ment8"]
+[ext_resource type="Texture2D" uid="uid://cgn735uj6u4tv" path="res://assets/sprites/Wikis/size_chart_deinogalerix.png" id="22_4jb3s"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="22_8pmt2"]
+[ext_resource type="Texture2D" uid="uid://bqirhll6h55qx" path="res://assets/sprites/Wikis/size_chart_garganomis.png" id="23_hajxm"]
 [ext_resource type="Texture2D" uid="uid://cdmenn5rhrsrd" path="res://assets/sprites/Animals/Prolagus/Prolagus_Top.png" id="25_0twsy"]
-[ext_resource type="Texture2D" uid="uid://ce1oenlfr8aid" path="res://assets/sprites/Animals/Tyto/Tyto_moving_down.png" id="26_8u6xl"]
+[ext_resource type="Texture2D" uid="uid://8nxei4cjwswd" path="res://assets/sprites/Wikis/size_chart_megacricetodon.png" id="25_1brhj"]
+[ext_resource type="Texture2D" uid="uid://bhh2h2pvq7bjx" path="res://assets/sprites/Wikis/size_chart_mikrotia.png" id="26_k376f"]
+[ext_resource type="Texture2D" uid="uid://bf6adg71yvf77" path="res://assets/sprites/Wikis/size_chart_tyto.png" id="28_dms26"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q3vm"]
 font = ExtResource("5_qj008")
@@ -65,6 +67,28 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_cp1jw")
 
+[node name="HamsterSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
+position = Vector2(917, 476)
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("6_2iajs")
+animation = &"Idle_Up"
+autoplay = "Right"
+
+[node name="GooseSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
+position = Vector2(-129, 424)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("5_2ab6e")
+animation = &"Right"
+
+[node name="BackgroundImage2" type="TextureRect" parent="CanvasLayer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_pg0bt")
+
 [node name="Title" type="Label" parent="CanvasLayer/Background"]
 layout_mode = 1
 anchors_preset = -1
@@ -89,19 +113,6 @@ grow_horizontal = 2
 text = "7.000.000 B.C"
 label_settings = SubResource("LabelSettings_6q3vm")
 horizontal_alignment = 1
-
-[node name="HamsterSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(926, 470)
-scale = Vector2(0.2, 0.2)
-sprite_frames = ExtResource("6_2iajs")
-animation = &"Idle_Up"
-autoplay = "Right"
-
-[node name="GooseSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(-127, 393)
-scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("5_2ab6e")
-animation = &"Idle_Right"
 
 [node name="Buttons" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -259,6 +270,8 @@ offset_left = 211.0
 offset_top = 637.0
 offset_right = -1411.0
 offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Credits" type="Label" parent="CanvasLayer/Buttons/HideCreditsButtonBack"]
 layout_mode = 1
@@ -292,7 +305,7 @@ grow_vertical = 2
 script = ExtResource("16_2gkxj")
 button_array = [NodePath("LeftPanel/VBoxContainer/WikiButton"), NodePath("LeftPanel/VBoxContainer/WikiButton2"), NodePath("LeftPanel/VBoxContainer/WikiButton3"), NodePath("LeftPanel/VBoxContainer/WikiButton4"), NodePath("LeftPanel/VBoxContainer/WikiButton5"), NodePath("LeftPanel/VBoxContainer/WikiButton6"), NodePath("LeftPanel/VBoxContainer/WikiButton7")]
 
-[node name="LeftPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
+[node name="LeftPanel" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.002
@@ -304,7 +317,8 @@ offset_right = -1454.0
 offset_bottom = -205.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.984314, 0.764706, 0.647059, 1)
+texture = ExtResource("18_j0g5s")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel"]
 layout_mode = 1
@@ -330,17 +344,18 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="WikiButton" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("19_rsu41")
+_texture = ExtResource("22_4jb3s")
 _title = "Deinogalerix koenigswaldi"
 _text = "With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene."
 
 [node name="WikiButton2" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("21_4t224")
+_texture = ExtResource("23_hajxm")
 _title = "Garganornis ballmani"
 _text = "[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae."
 
 [node name="WikiButton3" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+visible = false
 layout_mode = 2
 _texture = ExtResource("22_8pmt2")
 _title = "Hoplitomeryx matthei"
@@ -348,17 +363,18 @@ _text = "Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to
 
 [node name="WikiButton4" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("20_652tj")
+_texture = ExtResource("25_1brhj")
 _title = "Megacricetodon sp."
 _text = "The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!"
 
 [node name="WikiButton5" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("21_ment8")
+_texture = ExtResource("26_k376f")
 _title = "Mikrotia magna"
 _text = "An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory."
 
 [node name="WikiButton6" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
+visible = false
 layout_mode = 2
 _texture = ExtResource("25_0twsy")
 _title = "Prolagus imperialis"
@@ -366,7 +382,7 @@ _text = "Prolagus is an extinct genus of pika - the same family as rabbits. Prol
 
 [node name="WikiButton7" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
-_texture = ExtResource("26_8u6xl")
+_texture = ExtResource("28_dms26")
 _title = "Tyto gigantea"
 _text = "This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves."
 
@@ -430,7 +446,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 theme_override_styles/separator = ExtResource("19_wlh74")
 
-[node name="RightPanel" type="ColorRect" parent="CanvasLayer/Buttons/WikiContainer"]
+[node name="RightPanel" type="TextureRect" parent="CanvasLayer/Buttons/WikiContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.002
@@ -442,7 +458,8 @@ offset_right = -41.0
 offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.984314, 0.764706, 0.647059, 1)
+texture = ExtResource("18_j0g5s")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons/WikiContainer/RightPanel"]
 layout_mode = 1
