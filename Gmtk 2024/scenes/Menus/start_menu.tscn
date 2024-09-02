@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=36 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -10,12 +10,11 @@
 [ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="5_qj008"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
-[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="7_1ysxi"]
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="7_6ftc6"]
-[ext_resource type="Texture2D" uid="uid://b2btcse5urg53" path="res://assets/sprites/UI/button.png" id="8_0vaqb"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="8_bqtse"]
 [ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="9_o84i5"]
 [ext_resource type="Texture2D" uid="uid://ol0k8jj34cgk" path="res://assets/sprites/Other/Steps2.png" id="11_1th13"]
+[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="12_vy6tl"]
 [ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="15_50dkx"]
 [ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="15_jujkx"]
 [ext_resource type="Script" path="res://scenes/Menus/WikiContainer.gd" id="16_2gkxj"]
@@ -41,9 +40,6 @@ font = ExtResource("5_qj008")
 font_size = 120
 font_color = Color(0.670588, 0.764706, 1, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lqv6"]
-texture = ExtResource("8_0vaqb")
-
 [node name="start_menu" type="Node"]
 process_mode = 3
 script = ExtResource("1_riksi")
@@ -68,15 +64,14 @@ grow_vertical = 2
 texture = ExtResource("2_cp1jw")
 
 [node name="HamsterSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(917, 476)
+position = Vector2(975, 469)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("6_2iajs")
 animation = &"Idle_Up"
 autoplay = "Right"
 
 [node name="GooseSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Background"]
-position = Vector2(-129, 424)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-260, 458)
 sprite_frames = ExtResource("5_2ab6e")
 animation = &"Right"
 
@@ -127,36 +122,38 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1336.0
-offset_top = 662.0
-offset_right = -6.0
-offset_bottom = -1.0
+offset_left = 182.0
+offset_top = 611.0
+offset_right = -1160.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
 
 [node name="MoveImage" type="TextureRect" parent="CanvasLayer/Buttons/Tutorial"]
+modulate = Color(0.701961, 0.0980392, 0.0980392, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = -14.0
-offset_right = -274.0
-offset_bottom = -195.0
+offset_left = 59.0
+offset_top = -61.0
+offset_right = -277.0
+offset_bottom = -280.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_6ftc6")
 
 [node name="DashImage" type="TextureRect" parent="CanvasLayer/Buttons/Tutorial"]
+modulate = Color(0.701961, 0.0980392, 0.0980392, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 67.0
-offset_top = 267.0
-offset_right = -253.0
-offset_bottom = -59.0
+offset_left = 54.0
+offset_top = 255.0
+offset_right = -286.0
+offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_bqtse")
@@ -168,10 +165,10 @@ anchor_left = -0.902
 anchor_top = -2.736
 anchor_right = 1.006
 anchor_bottom = 1.0
-offset_left = 856.356
-offset_top = 1227.91
-offset_right = -55.468
-offset_bottom = -231.0
+offset_left = 606.356
+offset_top = 1271.91
+offset_right = -305.468
+offset_bottom = -187.0
 text = "Move"
 label_settings = ExtResource("9_o84i5")
 
@@ -182,10 +179,10 @@ anchor_left = -0.913
 anchor_top = -2.795
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 872.714
-offset_top = 1393.52
-offset_right = -44.0
-offset_bottom = -90.0
+offset_left = 621.714
+offset_top = 1480.52
+offset_right = -295.0
+offset_bottom = -3.0
 text = "Dash"
 label_settings = ExtResource("9_o84i5")
 
@@ -194,57 +191,63 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 642.0
-offset_top = 571.0
-offset_right = -634.0
-offset_bottom = -67.0
+offset_left = 579.0
+offset_top = 613.0
+offset_right = -599.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = -30
 alignment = 1
 
 [node name="start_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../quit_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_color = Color(0.203922, 0.0352941, 0.0509804, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.784314, 0.666667, 1)
 theme_override_colors/font_hover_color = Color(0.498039, 0.2, 0, 1)
 theme_override_colors/font_focus_color = Color(0.498039, 0.2, 0, 1)
-theme_override_styles/normal = ExtResource("7_1ysxi")
-theme_override_styles/hover = ExtResource("7_1ysxi")
-theme_override_styles/pressed = ExtResource("7_1ysxi")
-theme_override_styles/disabled = ExtResource("7_1ysxi")
-theme_override_styles/focus = SubResource("StyleBoxTexture_0lqv6")
+theme_override_styles/normal = ExtResource("12_vy6tl")
+theme_override_styles/hover = ExtResource("12_vy6tl")
+theme_override_styles/pressed = ExtResource("12_vy6tl")
+theme_override_styles/disabled = ExtResource("12_vy6tl")
+theme_override_styles/focus = ExtResource("12_vy6tl")
 text = "Start game"
 
 [node name="wiki_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_color = Color(0.23, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.992157, 0.776471, 0.658824, 1)
 theme_override_colors/font_hover_color = Color(0.498039, 0.2, 0, 1)
-theme_override_styles/normal = ExtResource("7_1ysxi")
-theme_override_styles/hover = ExtResource("7_1ysxi")
-theme_override_styles/pressed = ExtResource("7_1ysxi")
-theme_override_styles/disabled = ExtResource("7_1ysxi")
+theme_override_styles/normal = ExtResource("12_vy6tl")
+theme_override_styles/hover = ExtResource("12_vy6tl")
+theme_override_styles/pressed = ExtResource("12_vy6tl")
+theme_override_styles/disabled = ExtResource("12_vy6tl")
+theme_override_styles/focus = ExtResource("12_vy6tl")
 text = "Wiki"
 
 [node name="quit_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_color = Color(0.23, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.992157, 0.776471, 0.658824, 1)
 theme_override_colors/font_hover_color = Color(0.498039, 0.2, 0, 1)
-theme_override_styles/normal = ExtResource("7_1ysxi")
-theme_override_styles/hover = ExtResource("7_1ysxi")
-theme_override_styles/pressed = ExtResource("7_1ysxi")
-theme_override_styles/disabled = ExtResource("7_1ysxi")
+theme_override_styles/normal = ExtResource("12_vy6tl")
+theme_override_styles/hover = ExtResource("12_vy6tl")
+theme_override_styles/pressed = ExtResource("12_vy6tl")
+theme_override_styles/disabled = ExtResource("12_vy6tl")
+theme_override_styles/focus = ExtResource("12_vy6tl")
 text = "Quit  game"
 
 [node name="ShowCreditsButton" type="TextureButton" parent="CanvasLayer/Buttons"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -295,6 +298,7 @@ label_settings = ExtResource("15_jujkx")
 horizontal_alignment = 1
 
 [node name="WikiContainer" type="Panel" parent="CanvasLayer/Buttons" node_paths=PackedStringArray("button_array")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -522,10 +526,10 @@ theme_override_colors/font_hover_color = Color(0.913925, 0.536685, 0.125707, 1)
 theme_override_colors/font_focus_color = Color(0.913925, 0.536685, 0.125707, 1)
 theme_override_fonts/font = ExtResource("15_50dkx")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = ExtResource("7_1ysxi")
-theme_override_styles/hover = ExtResource("7_1ysxi")
-theme_override_styles/pressed = ExtResource("7_1ysxi")
-theme_override_styles/disabled = ExtResource("7_1ysxi")
+theme_override_styles/normal = ExtResource("12_vy6tl")
+theme_override_styles/hover = ExtResource("12_vy6tl")
+theme_override_styles/pressed = ExtResource("12_vy6tl")
+theme_override_styles/focus = ExtResource("12_vy6tl")
 text = "Back"
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("19_lkmx4")]
