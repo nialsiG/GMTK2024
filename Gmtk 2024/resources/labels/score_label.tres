@@ -5,3 +5,5 @@
 [resource]
 font = ExtResource("1_imjox")
 font_size = 100
+shadow_color = Color(0.819608, 0.498039, 0.294118, 0.627451)
+shadow_offset = Vector2(5, 5)
