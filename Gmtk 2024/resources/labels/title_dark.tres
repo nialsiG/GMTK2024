@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://drad3o45r73yq"]
+
+[ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="1_u65xr"]
+
+[resource]
+line_spacing = 20.0
+font = ExtResource("1_u65xr")
+font_size = 80
+font_color = Color(0.329412, 0.117647, 0.129412, 1)
+shadow_color = Color(0.329412, 0.117647, 0.129412, 1)
