@@ -1,7 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d0xafy67rfe8g"]
-
-[ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="1_bm3e0"]
-
-[resource]
-font = ExtResource("1_bm3e0")
-font_size = 160

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://y4j8wtgf7p6k"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_menu.gd" id="1_8kr84"]
-[ext_resource type="LabelSettings" uid="uid://coadgxydvrogy" path="res://resources/labels/title2.tres" id="1_o2ad0"]
-[ext_resource type="LabelSettings" uid="uid://dekxbv782otfp" path="res://resources/labels/text1.tres" id="2_oqhmj"]
 [ext_resource type="Texture2D" uid="uid://ce7m8ixtl414c" path="res://assets/sprites/UI/pachinko.png" id="3_g1kog"]
 [ext_resource type="PackedScene" uid="uid://bmnerimdrbfb8" path="res://scenes/Game/evolution_button.tscn" id="3_g3mq4"]
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="3_gik5q"]
+[ext_resource type="LabelSettings" uid="uid://drad3o45r73yq" path="res://resources/labels/title_dark.tres" id="5_mlsv5"]
+[ext_resource type="LabelSettings" uid="uid://c2phbu3uyqars" path="res://resources/labels/pachinko_tooltip.tres" id="6_lac5d"]
 
 [node name="evolution_menu" type="Control"]
 process_mode = 3
@@ -62,7 +62,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_g1kog")
-expand_mode = 1
 stretch_mode = 5
 
 [node name="TitleLabel" type="Label" parent="TextureRectPachinko"]
@@ -76,7 +75,7 @@ offset_bottom = -751.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "ADAPT!"
-label_settings = ExtResource("1_o2ad0")
+label_settings = ExtResource("5_mlsv5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -89,7 +88,7 @@ offset_left = 482.0
 offset_top = 843.0
 offset_right = -492.0
 offset_bottom = -102.0
-label_settings = ExtResource("2_oqhmj")
+label_settings = ExtResource("6_lac5d")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

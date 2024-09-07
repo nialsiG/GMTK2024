@@ -26,6 +26,8 @@ func _on_pressed():
 
 func _on_mouse_entered():
 	Tooltip.emit(tooltip)
+	textureRec.scale *= 1.5 
 
 func _on_mouse_exited():
 	Tooltip.emit("")
+	textureRec.scale /= 1.5

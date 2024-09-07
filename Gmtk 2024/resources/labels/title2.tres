@@ -1,9 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://coadgxydvrogy"]
-
-[ext_resource type="FontFile" uid="uid://cu62feaxfcqk8" path="res://assets/fonts/FrederickatheGreat-Regular.ttf" id="1_loupu"]
-
-[resource]
-line_spacing = 20.0
-font = ExtResource("1_loupu")
-font_size = 80
-font_color = Color(0.309804, 0.211765, 0.176471, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://yfeq2kd77xiu"]
 
 [ext_resource type="Script" path="res://scenes/Game/hud.gd" id="1_yiyiu"]
-[ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="2_v1rh6"]
+[ext_resource type="LabelSettings" uid="uid://gdgprb5anwb8" path="res://resources/labels/score_label.tres" id="2_kjjj0"]
 [ext_resource type="PackedScene" uid="uid://y4j8wtgf7p6k" path="res://scenes/Game/evolution_menu.tscn" id="6_6nf15"]
 [ext_resource type="LabelSettings" uid="uid://cx2a532ok4y42" path="res://resources/labels/wasted.tres" id="7_70qvw"]
 [ext_resource type="PackedScene" uid="uid://6l4w61rf18jd" path="res://scenes/Game/pause_menu.tscn" id="7_tqej1"]
@@ -43,7 +43,7 @@ offset_bottom = 128.0
 grow_horizontal = 2
 size_flags_vertical = 0
 text = "000"
-label_settings = ExtResource("2_v1rh6")
+label_settings = ExtResource("2_kjjj0")
 horizontal_alignment = 1
 vertical_alignment = 1
 

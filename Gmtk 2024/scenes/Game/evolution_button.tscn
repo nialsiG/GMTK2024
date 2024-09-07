@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmnerimdrbfb8"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_button.gd" id="1_5f5df"]
-[ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="2_bt2p2"]
-[ext_resource type="LabelSettings" uid="uid://csfqvnijlr80y" path="res://resources/labels/text2.tres" id="3_bi4fj"]
+[ext_resource type="LabelSettings" uid="uid://g1uwe3241j5k" path="res://resources/labels/pachinko_button.tres" id="2_i7gu5"]
+[ext_resource type="Texture2D" uid="uid://c6fpiupc46l76" path="res://assets/sprites/Icons/IconColor.png" id="3_coqf0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loqrg"]
 bg_color = Color(0.976471, 0.941176, 0.941176, 1)
@@ -19,25 +19,25 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 18.0
-offset_top = 17.0
+offset_top = 42.0
 offset_right = -18.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
-alignment = 1
+
+[node name="title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Innovation"
+label_settings = ExtResource("2_i7gu5")
+horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("2_bt2p2")
-stretch_mode = 4
-
-[node name="title" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "This is the title"
-label_settings = ExtResource("3_bi4fj")
-horizontal_alignment = 1
+size_flags_vertical = 4
+texture = ExtResource("3_coqf0")
+stretch_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

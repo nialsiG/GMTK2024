@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c2phbu3uyqars"]
+
+[ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="1_7r3p5"]
+
+[resource]
+font = ExtResource("1_7r3p5")
+font_size = 40
+font_color = Color(0.419608, 0.231373, 0.113725, 1)
+outline_size = 25
+outline_color = Color(0.866667, 0.741176, 0.635294, 1)

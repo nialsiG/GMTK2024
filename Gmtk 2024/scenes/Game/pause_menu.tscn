@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://6l4w61rf18jd"]
+[gd_scene load_steps=10 format=3 uid="uid://6l4w61rf18jd"]
 
 [ext_resource type="Script" path="res://scenes/Game/pause_menu.gd" id="1_4dify"]
-[ext_resource type="LabelSettings" uid="uid://d0xafy67rfe8g" path="res://resources/labels/title1.tres" id="2_iwr68"]
-[ext_resource type="LabelSettings" uid="uid://bn0y2ipsuysdl" path="res://resources/labels/title3.tres" id="3_4uvse"]
+[ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="2_vgesb"]
+[ext_resource type="LabelSettings" uid="uid://drad3o45r73yq" path="res://resources/labels/title_dark.tres" id="3_af1p4"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_e0r3w"]
-[ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="4_ahtax"]
-[ext_resource type="StyleBox" uid="uid://by586e7gx5rdv" path="res://resources/buttons/new_style_box_texture.tres" id="4_cxnfk"]
-[ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="5_y5yq5"]
-[ext_resource type="LabelSettings" uid="uid://jbgfdqi76xl4" path="res://resources/labels/textOnRocks.tres" id="8_3wmev"]
+[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="4_nm8fq"]
+[ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="6_0h7t1"]
+[ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="7_jo5ep"]
+[ext_resource type="LabelSettings" uid="uid://g1uwe3241j5k" path="res://resources/labels/pachinko_button.tres" id="8_vwgp1"]
+[ext_resource type="LabelSettings" uid="uid://dvfaskmp1p84m" path="res://resources/labels/text_label.tres" id="9_cld0h"]
 
 [node name="pause_menu" type="Control"]
 layout_mode = 3
@@ -18,26 +19,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4dify")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.807843, 0.521569, 0.329412)
+texture = ExtResource("2_vgesb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = -33.0
-offset_right = 58.5
-offset_bottom = 33.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 622.0
+offset_top = 130.0
+offset_right = -622.0
+offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
@@ -45,65 +44,88 @@ theme_override_constants/separation = 40
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "PAUSE"
-label_settings = ExtResource("2_iwr68")
+label_settings = ExtResource("3_af1p4")
 horizontal_alignment = 1
 
-[node name="resume_button" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -3
+
+[node name="resume_button" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../back_to_menu_button")
 theme = ExtResource("3_e0r3w")
-theme_override_colors/font_color = Color(0.423529, 0.160784, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.792157, 0.376471, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.815686, 0.415686, 0.0823529, 1)
-theme_override_styles/normal = ExtResource("4_cxnfk")
-theme_override_styles/hover = ExtResource("4_cxnfk")
-theme_override_styles/pressed = ExtResource("4_cxnfk")
-theme_override_styles/disabled = ExtResource("4_cxnfk")
+theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = ExtResource("4_nm8fq")
+theme_override_styles/hover = ExtResource("4_nm8fq")
+theme_override_styles/pressed = ExtResource("4_nm8fq")
+theme_override_styles/disabled = ExtResource("4_nm8fq")
+theme_override_styles/focus = ExtResource("4_nm8fq")
 text = "Resume game"
 
-[node name="back_to_menu_button" type="Button" parent="VBoxContainer"]
+[node name="back_to_menu_button" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../resume_button")
 theme = ExtResource("3_e0r3w")
-theme_override_colors/font_color = Color(0.423529, 0.160784, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.792157, 0.376471, 0.0627451, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.815686, 0.415686, 0.0823529, 1)
-theme_override_styles/normal = ExtResource("4_cxnfk")
-theme_override_styles/hover = ExtResource("4_cxnfk")
-theme_override_styles/pressed = ExtResource("4_cxnfk")
-theme_override_styles/disabled = ExtResource("4_cxnfk")
+theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = ExtResource("4_nm8fq")
+theme_override_styles/hover = ExtResource("4_nm8fq")
+theme_override_styles/pressed = ExtResource("4_nm8fq")
+theme_override_styles/disabled = ExtResource("4_nm8fq")
+theme_override_styles/focus = ExtResource("4_nm8fq")
 text = "Back to menu"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Tutorial" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+size_flags_vertical = 8
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="MoveImage" type="TextureRect" parent="VBoxContainer/Tutorial"]
 layout_mode = 2
+texture = ExtResource("6_0h7t1")
+stretch_mode = 2
+
+[node name="MoveLabel" type="Label" parent="VBoxContainer/Tutorial/MoveImage"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.413
+offset_left = 60.0
+offset_top = 198.0
+offset_right = -43.0
+offset_bottom = -18.774
 text = "Move"
-label_settings = ExtResource("3_4uvse")
+label_settings = ExtResource("8_vwgp1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="DashImage" type="TextureRect" parent="VBoxContainer/Tutorial"]
 layout_mode = 2
+texture = ExtResource("7_jo5ep")
+stretch_mode = 2
+
+[node name="DashLabel" type="Label" parent="VBoxContainer/Tutorial/DashImage"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.702
+offset_left = 58.0
+offset_top = 76.0
+offset_right = -47.0
+offset_bottom = 0.0039978
 text = "Dash"
-label_settings = ExtResource("3_4uvse")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("4_ahtax")
-stretch_mode = 4
-
-[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("5_y5yq5")
-stretch_mode = 4
+label_settings = ExtResource("8_vwgp1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 visible = false
@@ -125,8 +147,8 @@ theme_override_constants/margin_bottom = 300
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 text = "Very long description here and over there"
-label_settings = ExtResource("8_3wmev")
+label_settings = ExtResource("9_cld0h")
 autowrap_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]

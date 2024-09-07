@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://gdgprb5anwb8"]
+
+[ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="1_imjox"]
+
+[resource]
+font = ExtResource("1_imjox")
+font_size = 100
+shadow_color = Color(0.819608, 0.498039, 0.294118, 0.627451)
+shadow_offset = Vector2(5, 5)
