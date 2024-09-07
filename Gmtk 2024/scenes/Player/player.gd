@@ -16,13 +16,13 @@ var _currentAbility : enums.Ability = enums.Ability.Dash
 @onready var _invincibilityTimer : Timer = $InvincibilityTimer
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
-@onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
 @onready var _dashManager : DashManager = $DashManager
 @onready var _throwManager : ThrowManager = $ThrowManager
 
 @onready var _lastDirection = Vector2.ZERO
 
 func _ready():
+	_colorGenerator = get_node("ColorGenerator")
 	current_size = initial_size
 	_hungerManager.connect("DiedOfHunger", OnDeathFromHunger)
 	_hungerManager.connect("FoodOverflowed", OnFoodOverflow)
@@ -31,8 +31,11 @@ func _ready():
 	_dashManager.Initialize(_hud)
 	_dashManager.Enable()
 	_throwManager.Initialize(_hud)
-	RaiseUpdateSize()
+	RaiseUpdateSize()	
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
+
+func _useShaderColor() -> bool:
+	return false 
 	
 func _setShaderColor(color1 : Vector4, color2 : Vector4):
 	var shaderMaterial = (sprite.material as ShaderMaterial)

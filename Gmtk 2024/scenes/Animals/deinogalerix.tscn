@@ -1,13 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://q25xtiarjdfc"]
+[gd_scene load_steps=10 format=3 uid="uid://q25xtiarjdfc"]
 
 [ext_resource type="Script" path="res://scenes/Animals/enemy.gd" id="1_ple3s"]
+[ext_resource type="Shader" path="res://assets/Shaders/deinogalerix.gdshader" id="2_0fsyt"]
 [ext_resource type="SpriteFrames" uid="uid://buigqoc3hk2n4" path="res://assets/sprites/Animals/Deino/deinogalerix.tres" id="2_noffp"]
 [ext_resource type="AudioStream" uid="uid://dbkaq5vwsv2er" path="res://assets/Sounds/Meow1.mp3" id="3_0k1gt"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer2D.gd" id="3_rd25u"]
+[ext_resource type="Script" path="res://scenes/Animals/ColorGenerators/DeinoGolorGenerator.gd" id="6_8hjnx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85bkv"]
 radius = 60.0
 height = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xxxp"]
+resource_local_to_scene = true
+shader = ExtResource("2_0fsyt")
+shader_parameter/Color1 = Vector4(0.49, 0.525, 0.596, 1)
+shader_parameter/Color2 = null
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvwy3"]
 radius = 300.0
@@ -19,16 +27,20 @@ script = ExtResource("1_ple3s")
 initial_size = 3
 current_speed = 0.0
 animalName = "Deino"
+useShader = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_85bkv")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_4xxxp")
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_noffp")
 animation = &"Idle_Down"
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_mvwy3")
@@ -57,6 +69,9 @@ offset_right = -5.71428
 offset_bottom = -47.0
 text = "Diet
 "
+
+[node name="ColorGenerator" type="Node" parent="."]
+script = ExtResource("6_8hjnx")
 
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
 [connection signal="body_entered" from="Area2D" to="." method="OnDetectionAreaEntered"]

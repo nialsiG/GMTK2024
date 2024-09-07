@@ -157,7 +157,7 @@ func GetEvolutionForChoice(evol : enums.evolution) -> EvolutionChoice:
 			return _allEvolutions[i]
 	return null
 
-func OnCheatCodeUnlocked(description : String):
+func OnCheatCodeUnlocked(_description : String):
 	if (SecretOptions.IsUziActived() && !_addedUzi):
 		_addedUzi = true
 		#_allEvolutions.clear()

@@ -25,7 +25,7 @@ func Store(amount: int, foodType : enums.FoodType):
 		return
 
 	var newStoredFood = StoredFood.new()
-	newStoredFood.foodCost = amount / 2
+	newStoredFood.foodCost = int(amount / 2)
 	newStoredFood.type = foodType
 	if (_storedFood.size() > 0):
 		_storedFood.remove_at(0)

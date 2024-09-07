@@ -84,11 +84,11 @@ func GenerateAnimals(numberOfAnimals):
 	for animal in animals:
 		if ((animal.position - _player.position).length() < _safetySpawnRadius):
 			animal.position = Vector2(_width - _player.position.x, _height - _player.position.y)
-		_applyEnemyEvolForCycle(animal)
 		animal.SetupBounds(_width, _height)
 		animal.connect("Died", OnAnimalDied)
 		_currentAnimals.append(animal)
 		_dynamicElements.call_deferred("add_child", animal)
+		call_deferred("_applyEnemyEvolForCycle", animal)
 
 func OnPlayerAte(amount : int):
 	_hud.eat(amount)
@@ -135,8 +135,8 @@ func OnPlayerDeath():
 	_hud.DisplayFinalScore(true)
 	_hud.UpdateFinalPanel(choicesRecap, _score)
 
-func OnPlayerThrow(type : enums.FoodType, axis : Vector2, position : Vector2):
-	var projectile : Projectile = _elementFactory.GetProjectile(type, axis, position + position.normalized() * 30)
+func OnPlayerThrow(type : enums.FoodType, axis : Vector2, throwPosition : Vector2):
+	var projectile : Projectile = _elementFactory.GetProjectile(type, axis, throwPosition + throwPosition.normalized() * 30)
 	add_child(projectile)
 
 func Pause():
@@ -158,6 +158,9 @@ func Evolve():
 		_applyEnemyEvolForCycle(_currentAnimals[i])
 
 func _applyEnemyEvolForCycle(animal : Animal):
+	if (_cycle == 1):
+		return
+		
 	for i in clamp(int(_cycle/3), 1, 5):
 		var evol = _evolutionChoiceGenerator.GetEnemyEvol()
 		animal.ApplyEvolution(evol)

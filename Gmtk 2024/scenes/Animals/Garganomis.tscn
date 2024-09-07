@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://di8qff821ygdf"]
+[gd_scene load_steps=10 format=3 uid="uid://di8qff821ygdf"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_p3d56"]
+[ext_resource type="Shader" path="res://assets/Shaders/Garganomis.gdshader" id="2_qqdkf"]
 [ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="3_06okc"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="4_byftv"]
 [ext_resource type="AudioStream" uid="uid://bqefseyajckvv" path="res://assets/Sounds/fleeing_goose.mp3" id="5_rmcm4"]
+[ext_resource type="Script" path="res://scenes/Animals/ColorGenerators/GarganoColorGenerator.gd" id="6_fh2ec"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c7s0e"]
 radius = 60.0
 height = 120.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccitx"]
+shader = ExtResource("2_qqdkf")
+shader_parameter/Color1 = Vector4(0.251, 0.245, 0.231, 1)
+shader_parameter/Color2 = null
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxdnw"]
 radius = 170.0
@@ -20,9 +27,10 @@ animalName = "Undefined"
 shape = SubResource("CapsuleShape2D_c7s0e")
 
 [node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_ccitx")
 position = Vector2(0, -47)
 sprite_frames = ExtResource("3_06okc")
-animation = &"Idle_Up"
+animation = &"Up"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_xxdnw")
@@ -35,3 +43,6 @@ max_distance = 1000.0
 [node name="FleeingSoundPlayer" parent="." index="4"]
 stream = ExtResource("5_rmcm4")
 volume_db = 24.0
+
+[node name="ColorGenerator" parent="." index="7"]
+script = ExtResource("6_fh2ec")

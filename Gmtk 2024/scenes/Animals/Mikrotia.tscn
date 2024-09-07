@@ -1,22 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqg7jad33ecwk"]
+[gd_scene load_steps=8 format=3 uid="uid://dqg7jad33ecwk"]
 
 [ext_resource type="PackedScene" uid="uid://q25xtiarjdfc" path="res://scenes/Animals/deinogalerix.tscn" id="1_qeo52"]
+[ext_resource type="Shader" path="res://assets/Shaders/Mikrotia.gdshader" id="2_247he"]
 [ext_resource type="SpriteFrames" uid="uid://barpun0yigmsb" path="res://assets/sprites/Animals/Mikrotia/Mikrotia.tres" id="3_f4rfx"]
 [ext_resource type="AudioStream" uid="uid://dn78ts73r2lw" path="res://assets/Sounds/mouse-2.ogg" id="4_bcon0"]
+[ext_resource type="Script" path="res://scenes/Animals/ColorGenerators/MikroGolorGenerator.gd" id="5_athm7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6q2mj"]
+resource_local_to_scene = true
+shader = ExtResource("2_247he")
+shader_parameter/Color1 = Vector4(0.686, 0.702, 0.537, 1)
+shader_parameter/Color2 = null
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nilg"]
 radius = 300.0
 
 [node name="deinogalerix3" instance=ExtResource("1_qeo52")]
 initial_size = 2
-animalName = "Undefined"
+animalName = "Mikrotia"
 
 [node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_6q2mj")
 sprite_frames = ExtResource("3_f4rfx")
-animation = &"Down"
+animation = &"Up"
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_5nilg")
 
 [node name="FleeingSoundPlayer" parent="." index="4"]
 stream = ExtResource("4_bcon0")
+
+[node name="ColorGenerator" parent="." index="7"]
+script = ExtResource("5_athm7")

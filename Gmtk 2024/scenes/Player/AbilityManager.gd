@@ -6,8 +6,8 @@ const enums = preload("res://scripts/enums.gd")
 var _isActive : bool
 var _playerHud : PlayerHud
 
-func Initialize(hud : PlayerHud):
-	_playerHud = hud
+func Initialize(playerHud : PlayerHud):
+	_playerHud = playerHud
 
 func CanPerform() -> bool:
 	return true
