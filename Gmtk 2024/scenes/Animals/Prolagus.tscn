@@ -5,8 +5,10 @@
 
 [node name="deinogalerix" instance=ExtResource("1_d7v0i")]
 animalName = "Undefined"
+useShader = false
 
 [node name="Sprite2D" parent="." index="1"]
+material = null
 scale = Vector2(1, 1)
 sprite_frames = ExtResource("3_ttf2r")
 animation = &"Right"

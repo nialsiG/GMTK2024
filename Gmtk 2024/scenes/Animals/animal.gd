@@ -19,11 +19,12 @@ const _speedEvolCoeff : float = 1.2
 @export var meatValue : int = 30
 @export var animalName : String = "Undefined"
 @export var startingDiet : enums.Diet = enums.Diet.omni
+@export var useShader : bool = false
 
 @onready var axis = Vector2.ZERO
 @onready var current_direction : enums.Direction = enums.Direction.Down
 @onready var sprite : AnimatedSprite2D = get_node("Sprite2D")
-
+@onready var _colorGenerator : PlayerColorGenerator = $ColorGenerator
 
 
 var target : Node2D
@@ -126,12 +127,19 @@ func ApplyEvolution(evol : enums.evolution):
 				current_size = current_size + 1 as enums.Size
 				UpdateSize()
 		enums.evolution.COLOR:
-			UpdateColorRandomly()
+			if (useShader):
+				_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetDefaultColor2())
+			else:
+				UpdateColorRandomly()
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
-
+	
+func _setShaderColor(color1 : Vector4, color2 : Vector4):
+	var shaderMaterial = (sprite.material as ShaderMaterial)
+	shaderMaterial.set_shader_parameter("Color1", color1)
+	shaderMaterial.set_shader_parameter("Color2", color2)
 
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet

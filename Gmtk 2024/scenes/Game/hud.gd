@@ -3,8 +3,6 @@ class_name hud
 
 const enums = preload("res://scripts/enums.gd")
 
-var _score : int = 0
-
 @onready var _deathContainer : PanelContainer = $DeathContainer
 @onready var _finalScoreContainer : FinalScoreContainer = $FinalScoreContainer
 @onready var _evolutionMenu : EvolutionMenu = $evolution_menu

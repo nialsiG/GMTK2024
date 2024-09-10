@@ -9,7 +9,7 @@ var _lastCommands : Array[String] = []
 
 signal UnlockedOptions(description : String)
 
-func _process(delta):
+func _process(_delta):
 	if(!_isCodeAllowed):
 		return
 	

@@ -14,7 +14,7 @@ func SetupBounds(margin : float, dimensions : Vector2, blockedPositions : Array[
 	_height = dimensions.y
 	_blockedPositions = blockedPositions
 
-func _updatePackedScenesLevel(cycleNumber : int):
+func _updatePackedScenesLevel(_cycleNumber : int):
 	pass
 
 func Generate(cycleNumber : int, numberOfItems: int, playerPosition : Vector2):
