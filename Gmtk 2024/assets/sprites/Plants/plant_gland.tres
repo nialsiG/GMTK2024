@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cgl3d277y3c83"]
+
+[ext_resource type="Texture2D" uid="uid://bxfycytbcca8v" path="res://assets/sprites/Plants/gland.png" id="1_kufyd"]
+[ext_resource type="Texture2D" uid="uid://d2e6ey1d7v5rr" path="res://assets/sprites/Plants/gland _2.png" id="2_1112s"]
+[ext_resource type="Texture2D" uid="uid://chk2y1oheuf10" path="res://assets/sprites/Plants/gland_3.png" id="3_sye4d"]
+[ext_resource type="Texture2D" uid="uid://bhorhhawsqqcm" path="res://assets/sprites/Plants/gland_4.png" id="4_u2rch"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kufyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1112s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sye4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u2rch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sye4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1112s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -19,6 +19,8 @@ config/icon="res://assets/sprites/icon.svg"
 
 WorldSettings="*res://scenes/Singletons/WorldSettings.tscn"
 SecretOptions="*res://scenes/Singletons/secretOptions.tscn"
+GameLanguageSettings="*res://scenes/Singletons/GameLanguageSettings.tscn"
+PlayerStatistics="*res://scenes/Singletons/PlayerStatistics.tscn"
 
 [display]
 
@@ -84,6 +86,10 @@ pause_unpause={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/Translations/translations.en.translation", "res://assets/Translations/translations.fr.translation")
 
 [rendering]
 

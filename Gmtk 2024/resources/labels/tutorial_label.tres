@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://blo38f3vwhwsb"]
+
+[ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="1_vjep5"]
+
+[resource]
+line_spacing = 10.0
+font = ExtResource("1_vjep5")
+font_size = 40
+font_color = Color(0.419608, 0.231373, 0.113725, 1)

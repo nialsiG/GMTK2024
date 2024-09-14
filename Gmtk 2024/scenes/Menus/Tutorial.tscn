@@ -1,0 +1,287 @@
+[gd_scene load_steps=14 format=3 uid="uid://cc246xdwv0pbw"]
+
+[ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="1_tq562"]
+[ext_resource type="Script" path="res://scenes/Menus/Tutorial.gd" id="1_y6nut"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_4eb8u"]
+[ext_resource type="LabelSettings" uid="uid://blo38f3vwhwsb" path="res://resources/labels/tutorial_label.tres" id="4_bee8o"]
+[ext_resource type="SpriteFrames" uid="uid://cgl3d277y3c83" path="res://assets/sprites/Plants/plant_gland.tres" id="4_yl646"]
+[ext_resource type="SpriteFrames" uid="uid://cjaqh51ddhrij" path="res://assets/sprites/Plants/plant_morelle.tres" id="5_okkv2"]
+[ext_resource type="SpriteFrames" uid="uid://xrdj07w77dyr" path="res://assets/sprites/Plants/plant_spindacea.tres" id="6_38ow1"]
+[ext_resource type="Texture2D" uid="uid://b6yl3g72eph12" path="res://assets/sprites/Other/Meat.png" id="7_585ij"]
+[ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="8_j6xc0"]
+[ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="9_5fnmo"]
+[ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="10_cwff7"]
+[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="10_t2xhi"]
+[ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="11_xtohr"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_y6nut")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_tq562")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/PanelContainer"]
+position = Vector2(100, 78)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("2_4eb8u")
+animation = &"Right"
+autoplay = "Right"
+frame_progress = 0.0306471
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/PanelContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="PanelContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/PanelContainer2"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+theme_override_font_sizes/font_size = 14
+text = "TUTO_YOU"
+label_settings = ExtResource("4_bee8o")
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer3"]
+position = Vector2(102, 85.5)
+scale = Vector2(0.4, 0.4)
+sprite_frames = ExtResource("8_j6xc0")
+animation = &"Down"
+autoplay = "Down"
+frame_progress = 0.103064
+
+[node name="PanelContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+text = "TUTO_ESCAPE"
+label_settings = ExtResource("4_bee8o")
+autowrap_mode = 2
+
+[node name="PanelContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+text = "TUTO_EAT"
+label_settings = ExtResource("4_bee8o")
+autowrap_mode = 2
+
+[node name="PanelContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
+position = Vector2(89, 76)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("4_yl646")
+autoplay = "default"
+frame_progress = 0.0714279
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
+position = Vector2(18, 70)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("5_okkv2")
+autoplay = "default"
+frame_progress = 0.0169715
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
+position = Vector2(26, 146)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("6_38ow1")
+autoplay = "default"
+frame_progress = 0.637361
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
+position = Vector2(103, 133)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_585ij")
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="PanelContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="DirectionalKeys" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("10_cwff7")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="PanelContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/PanelContainer4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+text = "TUTO_MOVE"
+label_settings = ExtResource("4_bee8o")
+autowrap_mode = 2
+
+[node name="PanelContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 30
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/PanelContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+text = "TUTO_ACT"
+label_settings = ExtResource("4_bee8o")
+autowrap_mode = 2
+
+[node name="PanelContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("11_xtohr")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="PanelContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/PanelContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/PanelContainer/PanelContainer2"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+text = "TUTO_CYCLE"
+label_settings = ExtResource("4_bee8o")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer5/PanelContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme = ExtResource("9_5fnmo")
+theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_t2xhi")
+theme_override_styles/hover = ExtResource("10_t2xhi")
+theme_override_styles/pressed = ExtResource("10_t2xhi")
+theme_override_styles/disabled = ExtResource("10_t2xhi")
+theme_override_styles/focus = ExtResource("10_t2xhi")
+text = "BUTTON_SURVIVE"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer5/PanelContainer/Button" to="." method="OnPlay"]

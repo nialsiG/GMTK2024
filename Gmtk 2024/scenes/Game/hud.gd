@@ -16,6 +16,7 @@ func _ready():
 	DisplayFinalScore(false)
 	DisplayEvolutionMenu(false)
 
+
 #region Display
 func Display(panel: Control, display: bool):
 	if (display):
@@ -36,6 +37,8 @@ func DisplayEvolutionMenu(display: bool, choices: Array[EvolutionChoice] = []):
 
 func DisplayPause(display: bool):
 	Display(_pauseMenu, display)
+	if (display):
+		_pauseMenu.Pause()
 	Display(_scoreLabel, !display)
 #endregion
 

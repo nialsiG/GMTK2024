@@ -1,6 +1,8 @@
 extends Node
 
 @onready var game = "res://scenes/world.tscn"
+@onready var tutorial = "res://scenes/Menus/Tutorial.tscn"
+
 @onready var focus_button = $CanvasLayer/Buttons/VBoxContainer/start_button
 @onready var startGoosePlayer : AudioStreamPlayer = $StartGoosePlayer
 @onready var _loadingSprite : AnimatedSprite2D = $CanvasLayer/Background/HamsterSprite2D
@@ -27,8 +29,11 @@ func _on_start_button_pressed():
 	_loadingSprite.play("Right")
 	_gooseSprite.play("Right")
 	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file(game)
-
+	if(PlayerStatistics.HasSeenTutorial()):
+		get_tree().change_scene_to_file(game)
+	else:
+		get_tree().change_scene_to_file(tutorial)
+		
 func _on_wiki_button_pressed():
 	_wiki_panel.show()
 	_main_container.hide()
@@ -47,4 +52,5 @@ func _on_show_credits_button_pressed():
 func _on_hide_credits_button_back_pressed():
 	_show_credits_button.show()
 	_hide_credits_button.hide()
+
 

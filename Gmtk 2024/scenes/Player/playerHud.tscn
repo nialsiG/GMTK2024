@@ -38,7 +38,7 @@ offset_left = 464.0
 offset_top = 16.0
 offset_right = 516.0
 offset_bottom = 39.0
-text = "Health"
+text = "HEALTH"
 
 [node name="hungerbar" parent="." instance=ExtResource("15_yeu5o")]
 layout_mode = 0
@@ -54,7 +54,7 @@ offset_left = 464.0
 offset_top = 48.0
 offset_right = 522.0
 offset_bottom = 71.0
-text = "Hunger"
+text = "HUNGER"
 
 [node name="HerbiIcon" type="PanelContainer" parent="."]
 layout_mode = 0

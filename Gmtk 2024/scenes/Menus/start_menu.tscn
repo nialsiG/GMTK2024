@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=35 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
 [ext_resource type="StyleBox" uid="uid://cl4hfcpntbfjs" path="res://resources/separators/wiki_separator.tres" id="19_wlh74"]
 [ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="20_7m6mi"]
-[ext_resource type="PackedScene" uid="uid://dtvf1kbb85s3j" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
 [ext_resource type="Texture2D" uid="uid://cgn735uj6u4tv" path="res://assets/sprites/Wikis/size_chart_deinogalerix.png" id="22_4jb3s"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="22_8pmt2"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bhh2h2pvq7bjx" path="res://assets/sprites/Wikis/size_chart_mikrotia.png" id="26_k376f"]
 [ext_resource type="Texture2D" uid="uid://bf6adg71yvf77" path="res://assets/sprites/Wikis/size_chart_tyto.png" id="28_dms26"]
 [ext_resource type="LabelSettings" uid="uid://bop8dy30864cn" path="res://resources/labels/wiki_title.tres" id="28_lq5lg"]
+[ext_resource type="PackedScene" uid="uid://c8orq57mkxr34" path="res://LanguageControl.tscn" id="31_ikqsi"]
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -200,7 +201,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Start game"
+text = "START_GAME"
 
 [node name="wiki_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
@@ -216,7 +217,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Wiki"
+text = "WIKI_MENU"
 
 [node name="quit_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
@@ -232,7 +233,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Quit  game"
+text = "QUIT_GAME"
 
 [node name="ShowCreditsButton" type="TextureButton" parent="CanvasLayer/Buttons"]
 visible = false
@@ -520,6 +521,15 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
 text = "Back"
+
+[node name="LanguageControl" parent="CanvasLayer/Buttons" instance=ExtResource("31_ikqsi")]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 40.0
+grow_vertical = 1
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("19_lkmx4")]
 anchors_preset = 3

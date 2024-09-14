@@ -1,5 +1,11 @@
 extends Node
 
+enum Language
+{
+	English = 1,
+	French = 0
+}
+
 enum FoodType 
 {
 	Consumed = 0,
