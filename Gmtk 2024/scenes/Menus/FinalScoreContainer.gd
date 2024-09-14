@@ -12,23 +12,24 @@ const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 	_score_label_2.text = str(score)
 	if score < 700: 
-		trophy_label.text = "Meg-what?"
-		description_label.text = "You won't go down the fossil record... Try again!"
+		trophy_label.text = tr("TROPHY_0_NAME")
+		description_label.text = tr("TROPHY_0_DESC")
 	elif score >= 700 and score < 7000: 
-		trophy_label.text = "Meg-aneura"
-		description_label.text = "Only the most specialized paleontologists know the name of your lineage."
+		trophy_label.text = tr("TROPHY_1_NAME")
+		description_label.text = tr("TROPHY_1_DESC")
 	elif score >= 7000 and score < 70000: 
-		trophy_label.text = "Meg-atherium"
-		description_label.text = "Your lineage is known enough to have its Wikipedia page!"
+		trophy_label.text = tr("TROPHY_2_NAME")
+		description_label.text = tr("TROPHY_2_DESC")
 	elif score >= 70000 and score < 700000: 
-		trophy_label.text = "Meg-alodon"
-		description_label.text = "Kids all over the planet want to dig out your fossils. Good job!"
+		trophy_label.text = tr("TROPHY_3_NAME")
+		description_label.text = tr("TROPHY_3_DESC")
 	elif score >= 700000 and score < 7000000: 
-		trophy_label.text = "Meg-alosaurus"
-		description_label.text = "At this point, everybody knows what a Megacricetodon is. You're amazing!"
+		trophy_label.text = tr("TROPHY_4_NAME")
+		description_label.text = tr("TROPHY_4_DESC")
 	elif score > 7000000: 
-		trophy_label.text = "O-MEG-A"
-		description_label.text = "Welcome to the realm of extant species! Will you survive the Anthropocene?"
+		trophy_label.text = tr("TROPHY_5_NAME")
+		description_label.text = tr("TROPHY_5_DESC")
+		
 	for evol in pickedEvolutions:
 		var tuile = TextureRect.new()
 		tuile.texture = evol.Texture()

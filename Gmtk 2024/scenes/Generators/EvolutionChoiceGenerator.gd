@@ -26,65 +26,25 @@ var _bigCheeks : EvolutionChoice
 
 func _ready():
 	SecretOptions.connect("UnlockedOptions", OnCheatCodeUnlocked)
-	_nanism = CreateChoice("Nanism", 
-	"You become smaller. Your food needs are reduced but more animals are predators to you.",
-	 enums.evolution.NANISM, "res://assets/sprites/Icons/IconNanism.png")
-	
-	_gigantism = CreateChoice("Gigantism",
-	"You become bigger. Your food needs are increased and you can predate more animals.",
-	enums.evolution.GIGANTISM, "res://assets/sprites/Icons/IconGigantism.png")
-	
-	_dietCarni = CreateChoice("Carnivore",
-	"You become carnivore. You get better benefits from eating meat but cannot eat plants.",
-	enums.evolution.DIET_CARNI, "res://assets/sprites/Icons/IconCarnivore.png")
-	
-	_dietHerbi = CreateChoice("Herbivore",
-	"You become herbivore. You get better benefits from eating plants but cannot eat meat.",
-	enums.evolution.DIET_HERBI, "res://assets/sprites/Icons/IconVegetarism.png")
-	
-	_dietOmni =CreateChoice("Omnivore",
-	"You become omnivore. You can eat everything but get lesser benefits from all food.",
-	enums.evolution.DIET_OMNI, "res://assets/sprites/Icons/IconOmni.png")
-	
-	_healthBonus = CreateChoice("Sturdy",
-	"You become sturdier. You gain one more maximum hitpoint.",
-	enums.evolution.HEALTH, "res://assets/sprites/Icons/IconSturdy.png")
-	
-	_agility = CreateChoice("Agility",
-	"Your movements are sharper, your dash cooldown is reduced",
-	enums.evolution.AGILITY, "res://assets/sprites/Icons/IconAgility.png")
-	
-	_fangs = CreateChoice("Fang",
-	"Your tooth become bigger, during your dash, you gain a temporary size",
-	enums.evolution.FANG, "res://assets/sprites/Icons/IconFang.png")
+	_nanism = CreateChoice("EVOLUTION_NANISM", 	"EVOLUTION_NANISM_DESC", enums.evolution.NANISM, "res://assets/sprites/Icons/IconNanism.png")	
+	_gigantism = CreateChoice("EVOLUTION_GIGANTISM","EVOLUTION_GIGANTISM_DESC", enums.evolution.GIGANTISM, "res://assets/sprites/Icons/IconGigantism.png")	
+	_dietCarni = CreateChoice("EVOLUTION_CARNIVORE", "EVOLUTION_CARNIVORE_DESC", enums.evolution.DIET_CARNI, "res://assets/sprites/Icons/IconCarnivore.png")	
+	_dietHerbi = CreateChoice("EVOLUTION_HERVIBORE", "EVOLUTION_HERBIVORE_DESC", enums.evolution.DIET_HERBI, "res://assets/sprites/Icons/IconVegetarism.png")
+	_dietOmni =CreateChoice("EVOLUTION_OMNIVORE", "EVOLUTION_OMNIVORE_DESC", enums.evolution.DIET_OMNI, "res://assets/sprites/Icons/IconOmni.png")
+	_healthBonus = CreateChoice("EVOLUTION_STURDY", "EVOLUTION_STURDY_DESC", enums.evolution.HEALTH, "res://assets/sprites/Icons/IconSturdy.png")
+	_agility = CreateChoice("EVOLUTION_AGILITY", "EVOLUTION_AGILITY_DESC", enums.evolution.AGILITY, "res://assets/sprites/Icons/IconAgility.png")	
+	_fangs = CreateChoice("EVOLUTION_FANG","EVOLUTION_FANG_DESC", enums.evolution.FANG, "res://assets/sprites/Icons/IconFang.png")
 
 	#var efficiency = CreateChoice("Efficiency",
 	#"Your movements are more efficient, your dash cost less food",
 	#enums.evolution.EFFICIENCY, "res://assets/sprites/Icons/IconEfficiency.png")
 
-	_lightness = CreateChoice("Lightness",
-	"Your frame is lighter, you become faster",
-	enums.evolution.LIGHTNESS, "res://assets/sprites/Icons/IconLightness.png")
-
-	_heavyness = CreateChoice("heavyness",
-	"Your frame becomes heavier, you become slower",
-	enums.evolution.HEAVYNESS, "res://assets/sprites/Icons/IconHeavy.png")
-
-	_color = CreateChoice("Coat",
-	"Your coat evolved, maybe it was not the best color, but it is who you are now",
-	enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
-
-	_thrower = CreateChoice("Throw",
-	"Your active ability becomes Throw, the last thing you ate is stored in your mouth and can be hurled at other animals, damaging them.",
-	enums.evolution.THROW, "res://assets/sprites/Icons/IconLearnThrow.png")
-	
-	_bigCheeks = CreateChoice("Big cheeks",
-	"You can store one more food into your cheeks, augmenting the number of your max ammunitions.",
-	enums.evolution.CHEEKY, "res://assets/sprites/Icons/IconCheeky.png")
-	
-	_speedster = CreateChoice("Dash",
-	"Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals",
-	enums.evolution.THROW, "res://assets/sprites/Icons/IconAgility.png")
+	_lightness = CreateChoice("EVOLUTION_LIGHTNESS", "EVOLUTION_LIGHTNESS_DESC", enums.evolution.LIGHTNESS, "res://assets/sprites/Icons/IconLightness.png")
+	_heavyness = CreateChoice("EVOLUTION_HEAVYNESS", "EVOLUTION_HEAVYNESS_DESC", enums.evolution.HEAVYNESS, "res://assets/sprites/Icons/IconHeavy.png")
+	_color = CreateChoice("EVOLUTION_COAT", "EVOLUTION_COAT_DESC", enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
+	_thrower = CreateChoice("EVOLUTION_THROW", "EVOLUTION_THROW_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconLearnThrow.png")
+	_bigCheeks = CreateChoice("EVOLUTION_BIG_CHEEKS","EVOLUTION_BIG_CHEEKS_DESC", enums.evolution.CHEEKY, "res://assets/sprites/Icons/IconCheeky.png")
+	_speedster = CreateChoice("EVOLUTION_DASH", "EVOLUTION_DASH_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconAgility.png")
 
 	_allEvolutions.append(_nanism)
 	_allEvolutions.append(_gigantism)
@@ -160,7 +120,5 @@ func GetEvolutionForChoice(evol : enums.evolution) -> EvolutionChoice:
 func OnCheatCodeUnlocked(_description : String):
 	if (SecretOptions.IsUziActived() && !_addedUzi):
 		_addedUzi = true
-		#_allEvolutions.clear()
 		_allEvolutions.append(_thrower)
 		_allEvolutions.append(_bigCheeks)
-		#_allEvolutions.append(_lightness)

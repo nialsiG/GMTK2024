@@ -10,8 +10,10 @@ const enums = preload("res://scripts/enums.gd")
 @onready var _sizeLabel : Label = $SizeLabel
 @onready var _dashOverlay : TextureRect = $PanelContainer/DashOverlay
 
+var _currentSize : enums.Size = enums.Size.MEDIUM
+
 func _ready():
-	#_hungerbar = get_node("hungerbar")
+	GameLanguageSettings.connect("UpdatedLanguage", UpdateLanguage)
 	pass
 
 func UpdateHunger(amount):
@@ -39,29 +41,33 @@ func UpdateDiet(diet : enums.Diet):
 		_iconCarni.hide()
 
 func UpdateSize(newSize : enums.Size):
+	_currentSize = newSize
 	_sizeLabel.text = GetSizeLabel(newSize)
 
 func GetSizeLabel(sizeToTranslate : enums.Size):
 	match(sizeToTranslate):
 		enums.Size.MICRO:
-			return "Micro"
+			return "SIZE_MICRO"
 		enums.Size.VERYSMALL:
-			return "Very small" 
+			return "SIZE_VERY_SMALL"
 		enums.Size.SMALL:
-			return "Small"
+			return "SIZE_SMALL"
 		enums.Size.MEDIUMSMALL:
-			return "Medium small"
+			return "SIZE_MEDIUM_SMALL"
 		enums.Size.MEDIUM:
-			return "Medium"
+			return "SIZE_MEDIUM"
 		enums.Size.MEDIUMLARGE:
-			return "Medium large"
+			return "SIZE_MEDIUM_LARGE"
 		enums.Size.LARGE:
-			return "Large"
+			return "SIZE_LARGE"
 		enums.Size.VERYLARGE:
-			return "Very large"
+			return tr("SIZE_VERY_LARGE")
 		enums.Size.MEGA:
-			return "Mega"
+			return tr("SIZE_MEGA")
 		enums.Size.COLOSSAL:
-			return "Colossal"
+			return tr("SIZE_COLOSSAL")
 		_:
 			return "klmdsqklmdfds"
+
+func UpdateLanguage():
+	UpdateSize(_currentSize)

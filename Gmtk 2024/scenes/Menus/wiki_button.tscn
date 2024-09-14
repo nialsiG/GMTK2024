@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtvf1kbb85s3j"]
+[gd_scene load_steps=8 format=3 uid="uid://bpvv4t12bnjo7"]
 
 [ext_resource type="Theme" uid="uid://bjp6a1iwnrfix" path="res://resources/buttons/wiki_button_theme.tres" id="1_leecr"]
 [ext_resource type="Script" path="res://scenes/Menus/WikiButton.gd" id="2_bo7jf"]

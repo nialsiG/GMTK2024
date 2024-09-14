@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=35 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bihcqbrqqb7t3" path="res://scenes/Menus/SettingsMenu.tscn" id="19_lkmx4"]
 [ext_resource type="StyleBox" uid="uid://cl4hfcpntbfjs" path="res://resources/separators/wiki_separator.tres" id="19_wlh74"]
 [ext_resource type="FontFile" uid="uid://f20dv1ddhiyi" path="res://assets/fonts/AveriaSerifLibre-Italic.ttf" id="20_7m6mi"]
-[ext_resource type="PackedScene" uid="uid://dtvf1kbb85s3j" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
+[ext_resource type="PackedScene" uid="uid://bpvv4t12bnjo7" path="res://scenes/Menus/wiki_button.tscn" id="21_48d6r"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="21_j3qwn"]
 [ext_resource type="Texture2D" uid="uid://cgn735uj6u4tv" path="res://assets/sprites/Wikis/size_chart_deinogalerix.png" id="22_4jb3s"]
 [ext_resource type="Texture2D" uid="uid://djmcakjon4rh8" path="res://assets/sprites/icon.svg" id="22_8pmt2"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bhh2h2pvq7bjx" path="res://assets/sprites/Wikis/size_chart_mikrotia.png" id="26_k376f"]
 [ext_resource type="Texture2D" uid="uid://bf6adg71yvf77" path="res://assets/sprites/Wikis/size_chart_tyto.png" id="28_dms26"]
 [ext_resource type="LabelSettings" uid="uid://bop8dy30864cn" path="res://resources/labels/wiki_title.tres" id="28_lq5lg"]
+[ext_resource type="PackedScene" uid="uid://c8orq57mkxr34" path="res://LanguageControl.tscn" id="31_ikqsi"]
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -200,7 +201,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Start game"
+text = "START_GAME"
 
 [node name="wiki_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
@@ -216,7 +217,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Wiki"
+text = "WIKI_MENU"
 
 [node name="quit_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
@@ -232,7 +233,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/disabled = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Quit  game"
+text = "QUIT_GAME"
 
 [node name="ShowCreditsButton" type="TextureButton" parent="CanvasLayer/Buttons"]
 visible = false
@@ -325,7 +326,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-text = "Animals"
+text = "WIKI_ANIMALS_SECTION"
 label_settings = ExtResource("17_7a77u")
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
@@ -337,13 +338,13 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 layout_mode = 2
 _texture = ExtResource("22_4jb3s")
 _title = "Deinogalerix koenigswaldi"
-_text = "With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene."
+_text = "WIKI_DEINO_DESC"
 
 [node name="WikiButton2" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
 _texture = ExtResource("23_hajxm")
 _title = "Garganornis ballmani"
-_text = "[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae."
+_text = "WIKI_GARGANO_DESC"
 
 [node name="WikiButton3" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 visible = false
@@ -356,26 +357,26 @@ _text = "Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to
 layout_mode = 2
 _texture = ExtResource("25_1brhj")
 _title = "Megacricetodon sp."
-_text = "The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!"
+_text = "WIKI_MEG_DESC"
 
 [node name="WikiButton5" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
 _texture = ExtResource("26_k376f")
 _title = "Mikrotia magna"
-_text = "An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory."
+_text = "WIKI_MIKRO_DESC"
 
 [node name="WikiButton6" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 visible = false
 layout_mode = 2
 _texture = ExtResource("25_0twsy")
 _title = "Prolagus imperialis"
-_text = "Prolagus is an extinct genus of pika - the same family as rabbits. Prolagus emerged during the early Miocene but survived on several Mediterranean islands until Roman times. Prolagus imperialis was endemic to Gargano Island, and it weighed about 5 kilograms - making it the largest pika ever described."
+_text = "WIKI_PIKA_DESC"
 
 [node name="WikiButton7" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
 _texture = ExtResource("28_dms26")
 _title = "Tyto gigantea"
-_text = "This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves."
+_text = "WIKI_TYTO_DESC"
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
@@ -384,7 +385,7 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="Label2" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-text = "Plants"
+text = "WIKI_PLANTS_SECTION"
 label_settings = ExtResource("17_7a77u")
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
@@ -399,7 +400,7 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="Label3" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-text = "Adaptations"
+text = "WIKI_ADAPTATIONS_SECTION"
 label_settings = ExtResource("17_7a77u")
 
 [node name="HSeparator5" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
@@ -414,7 +415,7 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="Label4" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-text = "Epochs"
+text = "WIKI_EPOCHS_SECTION"
 label_settings = ExtResource("17_7a77u")
 
 [node name="HSeparator7" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
@@ -429,7 +430,7 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="Label5" type="Label" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
-text = "Gargano Island"
+text = "WIKI_GARGANO_SECTION"
 label_settings = ExtResource("17_7a77u")
 
 [node name="HSeparator9" type="HSeparator" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer"]
@@ -519,7 +520,19 @@ theme_override_styles/normal = ExtResource("12_vy6tl")
 theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/focus = ExtResource("12_vy6tl")
-text = "Back"
+text = "WIKI_BACK_BUTTON"
+
+[node name="LanguageControl" parent="CanvasLayer/Buttons" instance=ExtResource("31_ikqsi")]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_right = 648.0
+offset_bottom = 523.0
+grow_vertical = 1
+scale = Vector2(0.08, 0.08)
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("19_lkmx4")]
 anchors_preset = 3

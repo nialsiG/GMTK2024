@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cjaqh51ddhrij"]
+
+[ext_resource type="Texture2D" uid="uid://bdlrthjada7hb" path="res://assets/sprites/Plants/Morelles.png" id="1_f1bj4"]
+[ext_resource type="Texture2D" uid="uid://dr5oi0g81qbwe" path="res://assets/sprites/Plants/Morelles_2.png" id="2_yxcqo"]
+[ext_resource type="Texture2D" uid="uid://bc4kbk524w7wv" path="res://assets/sprites/Plants/Morelles_3.png" id="3_nkef5"]
+[ext_resource type="Texture2D" uid="uid://bit00a2dqpdep" path="res://assets/sprites/Plants/Morelles_4.png" id="4_kh3d3"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f1bj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yxcqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nkef5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kh3d3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nkef5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yxcqo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

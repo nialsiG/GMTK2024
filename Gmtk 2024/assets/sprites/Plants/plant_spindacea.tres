@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://xrdj07w77dyr"]
+
+[ext_resource type="Texture2D" uid="uid://conhg3bc44hcm" path="res://assets/sprites/Plants/Spindacea.png" id="1_v47od"]
+[ext_resource type="Texture2D" uid="uid://btk36cgplykr4" path="res://assets/sprites/Plants/Spindacea_2.png" id="2_62vs8"]
+[ext_resource type="Texture2D" uid="uid://c2ji6r8teahr0" path="res://assets/sprites/Plants/Spindacea_3.png" id="3_d6550"]
+[ext_resource type="Texture2D" uid="uid://cmi0toiluxlrx" path="res://assets/sprites/Plants/Spindacea_4.png" id="4_wumij"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v47od")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_62vs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d6550")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wumij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d6550")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_62vs8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

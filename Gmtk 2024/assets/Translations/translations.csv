@@ -1,0 +1,84 @@
+keys,fr,en
+START_GAME,Jouer,Play
+WIKI_MENU,Wiki,Wiki
+QUIT_GAME,Quitter,Quit
+HEALTH,Santé,Health
+HUNGER,Faim,Hunger
+PAUSE_MENU,PAUSE,PAUSE
+RESUME_GAME,Continuer,Resume
+BACK_TO_MAIN_MENU,Menu principal,Back to main menu
+DASH_ACTION,Bondir,Dash
+MOVE_ACTION,Bouger,Move
+EXTINCT_LABEL,Extinction,You went extinct
+TROPHY_0_NAME,Meq-quoi?,Meg-what?
+TROPHY_0_DESC,On ne retrouvera pas votre fossile... Essayer encore!,You won't go down the fossil record... Try again!
+TROPHY_1_NAME,Meg-aneura,Meg-aneura
+TROPHY_1_DESC,Seuls les paléontologistes les plus spécialistes connaissent votre lignée.,Only the most specialized paleontologists know the name of your lineage.
+TROPHY_2_NAME,Meg-atherium,Meg-atherium
+TROPHY_2_DESC,On ne retrouvera pas votre fossile... Essayer encore!,Your lineage is known enough to have its Wikipedia page!
+TROPHY_3_NAME,"Meg-alodon","Meg-alodon"
+TROPHY_3_DESC,"Des enfants sur toutes la planète veulent déterrer un de vos fossiles. Bon travail",Kids all over the planet want to dig out your fossils. Good job!
+TROPHY_4_NAME,"Meg-alosaure","Meg-alosaurus"
+TROPHY_4_DESC,"Tout le monde sait ce qu'est un Megacricetodon. Vous êtes super !","At this point, everybody knows what a Megacricetodon is. You're amazing!"
+TROPHY_5_NAME,"O-MEG-A","O-MEG-A"
+TROPHY_5_DESC,"Bienvenue dans la liste des espèces existantes ! Survivrez vous à l'anthropocène ?","Welcome to the realm of extant species! Will you survive the Anthropocene?"
+SIZE_MICRO,Micro,Micro
+SIZE_VERY_SMALL,Très petit,Very small
+SIZE_SMALL,Petit,Small
+SIZE_MEDIUM_SMALL,Assez petit,Medium small
+SIZE_MEDIUM,Moyen,Moyen
+SIZE_MEDIUM_LARGE,Moyen grand,Medium large
+SIZE_LARGE,Grand,Grand
+SIZE_VERY_LARGE,Très grand,Very large
+SIZE_MEGA,Mega,Mega
+SIZE_COLOSSAL,Colossal,Colossal
+EVOLUTION_NANISM,Nanisme,Nanism
+EVOLUTION_NANISM_DESC,"Votre lignée est plus petite. Vos besoins en nourriture sont réduits mais vous avez plus de prédateurs","You become smaller. Your food needs are reduced but more animals are predators to you."
+EVOLUTION_GIGANTISM,Gigantisme,Gigantism
+EVOLUTION_GIGANTISM_DESC,"Votre lignée est plus grande. Vos besoins en nourriture augmentent mais vous avez plus de proies","You become bigger. Your food needs are increased and you can predate more animals."
+EVOLUTION_CARNIVORE,Carnivore,Carnivore
+EVOLUTION_CARNIVORE_DESC,"Votre lignée devient carnivore. Vous obtenez plus de nutriments de la viande mais vous ne pouvez plus manger de plantes","You become carnivore. You get better benefits from eating meat but cannot eat plants."
+EVOLUTION_HERVIBORE,Herbivore,Herbivore
+EVOLUTION_HERBIVORE_DESC,"Votre lignée devient herbivore. Vous obtenez plus de nutriments des plantes mais vous ne pouvez plus manger de viande","You become herbivore. You get better benefits from eating plants but cannot eat meat."
+EVOLUTION_OMNIVORE,Omnivore,Omnivore
+EVOLUTION_OMNIVORE_DESC,"Votre lignée devient omnivore. Vous mangez de tout mais vous en tirez moins de nutriments","You become smaller. Your food needs are reduced but more animals are predators to you."
+EVOLUTION_STURDY,Résistance,Sturdy
+EVOLUTION_STURDY_DESC,"Votre lignée devient plus résistant. Votre santé maximale augmente d'un point","You become sturdier. You gain one more maximum hitpoint."
+EVOLUTION_AGILITY,Agilité,Agility
+EVOLUTION_AGILITY_DESC,"Votre lignée devient plus agile. Vous pouvez bondir plus souvent","Your movements are sharper, your dash cooldown is reduced"
+EVOLUTION_FANG,Crocs,Fangs
+EVOLUTION_FANG_DESC,"Vos dents deviennent plus grande. Bondir augmente temporairement votre taille d'un cran supplémentaire.","Your tooth become bigger, during your dash, you gain a temporary size."
+EVOLUTION_LIGHTNESS,Légéreté,Lightness
+EVOLUTION_LIGHTNESS_DESC,"La structure osseuse de votre lignée s'allège, vous devenez plus rapide","Your frame is lighter, you become faster"
+EVOLUTION_HEAVYNESS,Lourdeur,Heavyness
+EVOLUTION_HEAVYNESS_DESC,"La structure osseuse de votre lignée s'alourdit, vous devenez plus lent","Your frame becomes heavier, you become slower"
+EVOLUTION_COAT,Pelage,Coat
+EVOLUTION_COAT_DESC,"La couleur de votre pelage a évolué. Ce n'est peut-être pas celle que vous souhaitez mais c'est celle que vous avez. Arborez-la fièrement !","Your coat evolved, maybe it is not the best color, but it is who you are now. Be proud of it !"
+EVOLUTION_THROW,Lancer,Throw
+EVOLUTION_THROW_DESC,"Votre capacité devient Lancer. La dernière chose mangée est stockée dans vos bajoue et peu-être proprulser sur une proie pour la blesser au coût de la moitié de sa valeur en nourriture.", "Your active ability becomes Throw, the last thing you ate is stored in your mouth and can be hurled at other animals, damaging them, but costing you hal of the thrown food value."
+EVOLUTION_BIG_CHEEKS,Bajoues,Big cheeks
+EVOLUTION_BIG_CHEEKS_DESC,"Votre lignée peut stocker plus de nourriture dans ses bajoues, augementant le nombre de nourriture qui peut-être lancée.", "You can store one more food into your cheeks, augmenting the number of your max ammunitions."
+EVOLUTION_DASH,Bond,Dash
+EVOLUTION_DASH_DESC,"Votre capacité devient Bond. Vous pouvez bondir dans votre direction actuelle pour fuire ou éviter un animal.", "Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals"
+UNLOCK_THROW,"Vous avez débloqué l'évolution ""Lancer"" qui remplace votre dash par la capacité d'attaquer vos concurrents avec de la nourriture","You unlocked ""Throw"" mutation, allowing to replace your dash by capability to throw eaten food to concurrents, damaging them"
+TUTO_MOVE,"Bougez avec les touches directionnelles.","Move with directional keys"
+TUTO_ACT,"Bondissez avec la touche espace.","Dash with escape key"
+TUTO_YOU,"Vous êtes un membre de l'espèce des Megacricetodon. Votre lignée tente de survivre aux âges.","You are a member of Megacricetodon species. You are trying to survives to eras."
+TUTO_ESCAPE,"Evitez les prédateurs.","Escape your predators"
+TUTO_EAT,"Mangez pour survivre.","Eat to survive."
+TUTO_CYCLE,"A la fin de chaque cycle, votre lignée et les autres animaux évoluent.","At the end of each cycle, you and other animals evolve."
+BUTTON_SURVIVE,"Survivez","Survive"
+ADAPT_LABEL,"EVOLUEZ !","ADAPT !"
+WIKI_ANIMALS_SECTION,"Animaux","Animals"
+WIKI_DEINO_DESC,"With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene.","With a name meaning “Terrible Galerix”, [i]Deinogalerix[/i] is a gymnure, a cousin of hedgehogs with no quills. About 60 cm long, its long jaws and sharp teeth are perfectly adapted to eat small prey. It was only found on Gargano Island during the late Miocene."
+WIKI_GARGANO_DESC,"[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae.","[i]Garganornis[/i] (“Gargano bird”) was a large Anatidae (the family of swans, geese and ducks). Thicker leg bones and short and robust wings suggest that it was flightless. This lifestyle was likely the result of its size increase, which acted as a deterrent to predators. Its estimated weight ranged between 15 and 22 kilograms, larger than any living Anatidae."
+WIKI_HOPLI_DESC,"Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to Gargano Island. It is famous for its five horns, as well as protruding canines reminiscent of the extant musk deer. They showed a huge diversity of sizes and morphologies: it could be explained by the lack of predators on the island, with the exception of the giant owl Tyto.","Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to Gargano Island. It is famous for its five horns, as well as protruding canines reminiscent of the extant musk deer. They showed a huge diversity of sizes and morphologies: it could be explained by the lack of predators on the island, with the exception of the giant owl Tyto."
+WIKI_MEG_DESC,"The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!","The Megs belong to an extinct genus of hamsters that was found from Western Europe to China during the Miocene. It was remarkably diverse and abundant. Perhaps not as impressive as other Megs (which happens to be the nicknames for a large dinosaur Megalosaurus AND a gigantic shark Otodus megalodon), their adaptability was peerless!"
+WIKI_MIKRO_DESC,"An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory.","An extinct rodent from the mice family (the Muridae), Mikrotia was found everywhere in Gargano throughout the upper Miocene. The oldest Mikrotia species were small and had teeth similar to extant mice - suggesting an omnivorous diet. By the end of the Miocene, Mikrotia magna was much larger and had evolved high-crowned, ridged teeth adapted to herbivory."
+WIKI_PIKA_DESC,"Prolagus is an extinct genus of pika - the same family as rabbits. Prolagus emerged during the early Miocene but survived on several Mediterranean islands until Roman times. Prolagus imperialis was endemic to Gargano Island, and it weighed about 5 kilograms - making it the largest pika ever described.","Prolagus is an extinct genus of pika - the same family as rabbits. Prolagus emerged during the early Miocene but survived on several Mediterranean islands until Roman times. Prolagus imperialis was endemic to Gargano Island, and it weighed about 5 kilograms - making it the largest pika ever described."
+WIKI_TYTO_DESC,"This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves.","This cousin of the Western barn owl was twice as large. It is thought that the large size of Tyto gigantea was an adaptation to the larger preys on Gargano Island. Just like the extant eagle-owl, it may have been able to prey on the large pika Prolagus and even small ungulates such as Hoplitomeryx calves."
+WIKI_PLANTS_SECTION,"Plantes","Plants"
+WIKI_ADAPTATIONS_SECTION,"Adaptations","Adaptations"
+WIKI_EPOCHS_SECTION,"Eres","Epochs"
+WIKI_GARGANO_SECTION,"Île de Gargano","Gargano Island"
+WIKI_BACK_BUTTON,"Retour","Back"
