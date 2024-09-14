@@ -1,23 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8orq57mkxr34"]
+[gd_scene load_steps=4 format=3 uid="uid://c8orq57mkxr34"]
 
 [ext_resource type="Script" path="res://LanguageControl.gd" id="1_afcti"]
+[ext_resource type="Texture2D" uid="uid://b42b2t6ispyr0" path="res://assets/sprites/Flags/gb.svg" id="2_kvu5e"]
+[ext_resource type="Texture2D" uid="uid://duuc2j3c83tg" path="res://assets/sprites/Flags/fr.svg" id="2_rfb38"]
 
 [node name="VBoxContainer2" type="VBoxContainer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -1076.0
+offset_right = 688.0
+offset_bottom = -76.0
 grow_vertical = 0
 script = ExtResource("1_afcti")
 
-[node name="EnglishButton" type="Button" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-text = "English"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="FrenchButton" type="Button" parent="."]
+[node name="EnglishButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
-text = "French"
+icon = ExtResource("2_kvu5e")
+flat = true
 
-[connection signal="pressed" from="EnglishButton" to="." method="OnEnglishButtonPressed"]
-[connection signal="pressed" from="FrenchButton" to="." method="OnFrenchButtonPressed"]
+[node name="PanelContainer2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="FrenchButton" type="Button" parent="PanelContainer2"]
+layout_mode = 2
+icon = ExtResource("2_rfb38")
+flat = true
+
+[connection signal="pressed" from="MarginContainer/EnglishButton" to="." method="OnEnglishButtonPressed"]
+[connection signal="pressed" from="PanelContainer2/FrenchButton" to="." method="OnFrenchButtonPressed"]

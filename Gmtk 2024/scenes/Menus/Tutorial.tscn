@@ -60,7 +60,7 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("2_4eb8u")
 animation = &"Right"
 autoplay = "Right"
-frame_progress = 0.0306471
+frame_progress = 0.349679
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/PanelContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -104,7 +104,7 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("8_j6xc0")
 animation = &"Down"
 autoplay = "Down"
-frame_progress = 0.103064
+frame_progress = 0.566885
 
 [node name="PanelContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
 custom_minimum_size = Vector2(600, 0)
@@ -147,21 +147,21 @@ position = Vector2(89, 76)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("4_yl646")
 autoplay = "default"
-frame_progress = 0.0714279
+frame_progress = 0.230944
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
 position = Vector2(18, 70)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("5_okkv2")
 autoplay = "default"
-frame_progress = 0.0169715
+frame_progress = 0.176488
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
 position = Vector2(26, 146)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("6_38ow1")
 autoplay = "default"
-frame_progress = 0.637361
+frame_progress = 0.796876
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/PanelContainer"]
 position = Vector2(103, 133)

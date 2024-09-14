@@ -166,6 +166,7 @@ anchor_bottom = 0.0
 offset_top = 0.0
 offset_bottom = 40.0
 grow_vertical = 1
+scale = Vector2(0.08, 0.08)
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
