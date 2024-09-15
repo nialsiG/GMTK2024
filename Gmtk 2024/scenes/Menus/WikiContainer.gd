@@ -1,4 +1,4 @@
-extends Panel
+class_name  Wiki extends Panel
 
 @export var button_array: Array[WikiButton]
 
@@ -9,9 +9,11 @@ extends Panel
 func _ready():
 	for button in button_array:
 		button.focus_entered.connect(change_wiki.bind(button._title, button._text, button._texture))
-	button_array[0].grab_focus()
 
 func change_wiki(title: String, text: String, texture: Texture2D):
 	title_label.text = title
 	text_label.text = text
 	texture_rect.texture = texture
+
+func GrabFocus():
+	button_array[0].grab_focus()

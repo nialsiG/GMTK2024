@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://6l4w61rf18jd"]
+[gd_scene load_steps=11 format=3 uid="uid://6l4w61rf18jd"]
 
 [ext_resource type="Script" path="res://scenes/Game/pause_menu.gd" id="1_4dify"]
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="2_vgesb"]
 [ext_resource type="LabelSettings" uid="uid://drad3o45r73yq" path="res://resources/labels/title_dark.tres" id="3_af1p4"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="3_e0r3w"]
-[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="4_nm8fq"]
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="6_0h7t1"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="7_jo5ep"]
 [ext_resource type="LabelSettings" uid="uid://g1uwe3241j5k" path="res://resources/labels/pachinko_button.tres" id="8_vwgp1"]
@@ -57,37 +56,22 @@ size_flags_vertical = 3
 theme_override_constants/separation = -3
 
 [node name="resume_button" type="Button" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../back_to_menu_button")
+focus_neighbor_bottom = NodePath("../back_to_menu_button")
 theme = ExtResource("3_e0r3w")
-theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
-theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("4_nm8fq")
-theme_override_styles/hover = ExtResource("4_nm8fq")
-theme_override_styles/pressed = ExtResource("4_nm8fq")
-theme_override_styles/disabled = ExtResource("4_nm8fq")
-theme_override_styles/focus = ExtResource("4_nm8fq")
 text = "RESUME_GAME"
 
 [node name="back_to_menu_button" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../resume_button")
 focus_neighbor_bottom = NodePath("../resume_button")
 theme = ExtResource("3_e0r3w")
-theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
-theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("4_nm8fq")
-theme_override_styles/hover = ExtResource("4_nm8fq")
-theme_override_styles/pressed = ExtResource("4_nm8fq")
-theme_override_styles/disabled = ExtResource("4_nm8fq")
-theme_override_styles/focus = ExtResource("4_nm8fq")
 text = "BACK_TO_MAIN_MENU"
 
 [node name="Tutorial" type="HBoxContainer" parent="VBoxContainer"]

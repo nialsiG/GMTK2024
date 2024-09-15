@@ -272,16 +272,16 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 theme = ExtResource("9_5fnmo")
-theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
+theme_override_colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("10_t2xhi")
+theme_override_styles/focus = ExtResource("10_t2xhi")
+theme_override_styles/disabled = ExtResource("10_t2xhi")
 theme_override_styles/hover = ExtResource("10_t2xhi")
 theme_override_styles/pressed = ExtResource("10_t2xhi")
-theme_override_styles/disabled = ExtResource("10_t2xhi")
-theme_override_styles/focus = ExtResource("10_t2xhi")
+theme_override_styles/normal = ExtResource("10_t2xhi")
 text = "BUTTON_SURVIVE"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer5/PanelContainer/Button" to="." method="OnPlay"]

@@ -1,7 +1,24 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cy4ctfdd5em41"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cy4ctfdd5em41"]
 
+[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="1_jlig6"]
 [ext_resource type="FontFile" uid="uid://bxidviks1lwgv" path="res://assets/fonts/AveriaSerifLibre-Regular.ttf" id="1_mtu2m"]
+[ext_resource type="StyleBox" uid="uid://do6qp0tn45buq" path="res://resources/buttons/sand_button_white.tres" id="2_v6lxe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05yrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydcjq"]
 
 [resource]
 default_font = ExtResource("1_mtu2m")
 default_font_size = 40
+Button/colors/font_color = Color(0.419608, 0.231373, 0.113725, 1)
+Button/colors/font_focus_color = Color(0.329412, 0.117647, 0.129412, 1)
+Button/colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
+Button/colors/font_pressed_color = Color(0.792209, 0.480255, 0.291006, 1)
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_mtu2m")
+Button/styles/disabled = SubResource("StyleBoxEmpty_05yrt")
+Button/styles/focus = ExtResource("1_jlig6")
+Button/styles/hover = ExtResource("1_jlig6")
+Button/styles/normal = SubResource("StyleBoxEmpty_ydcjq")
+Button/styles/pressed = ExtResource("2_v6lxe")

@@ -8,6 +8,7 @@ const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 @onready var trophy_label = %TrophyLabel
 @onready var description_label = %TrophyDescriptionLabel
 @onready var grid = %SelectedEvolGridContainer
+@onready var _backToMenuButton = $BackToMenuButton
 
 func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 	_score_label_2.text = str(score)

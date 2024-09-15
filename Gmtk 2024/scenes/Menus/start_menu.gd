@@ -35,8 +35,9 @@ func _on_start_button_pressed():
 		get_tree().change_scene_to_file(tutorial)
 		
 func _on_wiki_button_pressed():
-	_wiki_panel.show()
 	_main_container.hide()
+	_wiki_panel.show()
+	_wiki_panel.GrabFocus()
 
 func _on_quit_button_pressed():
 	get_tree().quit()
@@ -44,6 +45,7 @@ func _on_quit_button_pressed():
 func _on_back_button_pressed():
 	_wiki_panel.hide()
 	_main_container.show()
+	focus_button.grab_focus()
 
 func _on_show_credits_button_pressed():
 	_show_credits_button.hide()
@@ -52,5 +54,3 @@ func _on_show_credits_button_pressed():
 func _on_hide_credits_button_back_pressed():
 	_show_credits_button.show()
 	_hide_credits_button.hide()
-
-

@@ -4,6 +4,7 @@ class_name PauseMenu
 @onready var start_menu = "res://scenes/Menus/start_menu.tscn"
 @onready var _secretLabel = $CenterContainer/MarginContainer/Label
 @onready var _secretContainer = $CenterContainer
+@onready var _resumeButton = %resume_button
 
 static var is_paused: bool
 
@@ -15,10 +16,12 @@ func _ready():
 
 func Pause():
 	show()
+	_resumeButton.grab_focus()
 	SecretOptions.AllowCode(true)
 
 func UnPause():
 	SecretOptions.AllowCode(false)
+	_resumeButton.release_focus()
 	hide()
 
 func _on_resume_button_pressed():

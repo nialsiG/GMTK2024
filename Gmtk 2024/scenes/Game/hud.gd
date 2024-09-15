@@ -29,10 +29,12 @@ func DisplayDeath(display : bool):
 
 func DisplayFinalScore(display : bool):
 	Display(_finalScoreContainer, display)
+	_finalScoreContainer._backToMenuButton.grab_focus()
 
 func DisplayEvolutionMenu(display: bool, choices: Array[EvolutionChoice] = []):
 	if display:
 		_evolutionMenu.DisplayChoice(choices)
+		_evolutionMenu.button_1.grab_focus()
 	Display(_evolutionMenu, display)
 
 func DisplayPause(display: bool):

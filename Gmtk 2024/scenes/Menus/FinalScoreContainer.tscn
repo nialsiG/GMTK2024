@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cavv5dbltjqmp"]
+[gd_scene load_steps=8 format=3 uid="uid://cavv5dbltjqmp"]
 
 [ext_resource type="Script" path="res://scenes/Menus/FinalScoreContainer.gd" id="1_7sdrp"]
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="2_3ix4m"]
@@ -6,7 +6,6 @@
 [ext_resource type="LabelSettings" uid="uid://drad3o45r73yq" path="res://resources/labels/title_dark.tres" id="4_kfvgx"]
 [ext_resource type="Theme" uid="uid://cy4ctfdd5em41" path="res://resources/buttons/button_theme.tres" id="4_r3b5x"]
 [ext_resource type="LabelSettings" uid="uid://dvfaskmp1p84m" path="res://resources/labels/text_label.tres" id="5_wgs23"]
-[ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="7_tid6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivrug"]
 bg_color = Color(1, 1, 1, 0.258824)
@@ -88,22 +87,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 761.0
-offset_top = 923.0
-offset_right = -761.0
-offset_bottom = -52.0
+offset_left = 686.0
+offset_top = 914.0
+offset_right = -686.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_r3b5x")
-theme_override_colors/font_color = Color(0.439216, 0.176471, 0.00392157, 1)
-theme_override_colors/font_pressed_color = Color(0.988235, 0.882353, 0.823529, 1)
-theme_override_colors/font_hover_color = Color(0.756863, 0.368627, 0.054902, 1)
-theme_override_colors/font_focus_color = Color(0.803922, 0.376471, 0.0470588, 1)
-theme_override_styles/normal = ExtResource("7_tid6b")
-theme_override_styles/hover = ExtResource("7_tid6b")
-theme_override_styles/pressed = ExtResource("7_tid6b")
-theme_override_styles/disabled = ExtResource("7_tid6b")
-theme_override_styles/focus = ExtResource("7_tid6b")
 text = "BACK_TO_MAIN_MENU"
 
 [connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
