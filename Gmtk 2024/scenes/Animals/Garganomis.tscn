@@ -12,6 +12,7 @@ radius = 60.0
 height = 120.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ccitx"]
+resource_local_to_scene = true
 shader = ExtResource("2_qqdkf")
 shader_parameter/Color1 = Vector4(0.251, 0.245, 0.231, 1)
 shader_parameter/Color2 = null

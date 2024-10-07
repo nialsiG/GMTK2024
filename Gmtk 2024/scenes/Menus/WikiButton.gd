@@ -6,4 +6,3 @@ class_name  WikiButton extends Button
 
 func _ready():
 	self.text = _title
-

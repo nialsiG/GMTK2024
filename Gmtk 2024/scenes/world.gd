@@ -140,16 +140,19 @@ func OnPlayerThrow(type : enums.FoodType, axis : Vector2, throwPosition : Vector
 	add_child(projectile)
 
 func Pause():
+	_player.SetPaused()
 	currentState = gameState.Menu
 	get_tree().paused = true
 	_hud.DisplayPause(true)
 
 func Unpause():
+	_player.SetUnpaused()
 	currentState = gameState.OnGoing
 	get_tree().paused = false
 	_hud.DisplayPause(false)
 	
 func Evolve():
+	_player.SetPaused()
 	currentState = gameState.Evolution
 	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())
 	print(choices)
@@ -167,6 +170,7 @@ func _applyEnemyEvolForCycle(animal : Animal):
 
 func OnCycleTimeOut():
 	_cycleTimer.stop()
+	_player.SetPaused()
 	get_tree().paused = true
 	Evolve()
 	
@@ -174,7 +178,6 @@ func OnEvolutionChosen(evol : enums.evolution):
 	_hud.DisplayEvolutionMenu(false)
 	_pickedEvolutions.append(evol)
 	_player.PROCESS_MODE_ALWAYS
-	await get_tree().create_timer(0.2).timeout
 	_player.ApplyEvolution(evol)
 	await get_tree().create_timer(0.8).timeout
 	_player.PROCESS_MODE_INHERIT

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=15 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
@@ -12,12 +12,14 @@
 [ext_resource type="Script" path="res://scenes/Player/PlayerColorGenerator.gd" id="10_6h0r7"]
 [ext_resource type="Script" path="res://scenes/Player/DashManager.gd" id="11_73y5c"]
 [ext_resource type="Script" path="res://scenes/Player/ThrowManager.gd" id="12_awghw"]
+[ext_resource type="SpriteFrames" uid="uid://dpmqrpsxtcjkq" path="res://assets/VFX/EvolSpriteFrame.tres" id="13_eb8oj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
 height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_8tpfr")
 initial_size = 2
@@ -29,7 +31,8 @@ material = ExtResource("2_m7fec")
 position = Vector2(-9.53674e-07, -1.81901)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bg7yk")
-animation = &"Down"
+animation = &"Idle_Down"
+autoplay = "Idle_Down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -73,3 +76,10 @@ script = ExtResource("11_73y5c")
 
 [node name="ThrowManager" type="Node" parent="."]
 script = ExtResource("12_awghw")
+
+[node name="EvolAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("13_eb8oj")
+frame = 6
+frame_progress = 1.0

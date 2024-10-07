@@ -8,6 +8,7 @@ const enums = preload("res://scripts/enums.gd")
 @onready var _iconCarni : PanelContainer = $CarniIcon
 @onready var _iconHerbi : PanelContainer = $HerbiIcon
 @onready var _sizeLabel : Label = $SizeLabel
+@onready var _fangSizeLabel : Label = $FangSizeLabel
 @onready var _dashOverlay : TextureRect = $PanelContainer/DashOverlay
 
 var _currentSize : enums.Size = enums.Size.MEDIUM
@@ -43,6 +44,13 @@ func UpdateDiet(diet : enums.Diet):
 func UpdateSize(newSize : enums.Size):
 	_currentSize = newSize
 	_sizeLabel.text = GetSizeLabel(newSize)
+
+func UpdateFangSizeLabel(fangSize : int):
+	if (fangSize > 0):
+		_fangSizeLabel.text = tr("FANG_SIZE")+tr(str(GetSizeLabel(_currentSize + fangSize)))
+		_fangSizeLabel.show()
+	else:
+		_fangSizeLabel.hide()
 
 func GetSizeLabel(sizeToTranslate : enums.Size):
 	match(sizeToTranslate):

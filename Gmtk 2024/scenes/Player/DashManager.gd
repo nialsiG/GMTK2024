@@ -25,6 +25,9 @@ func GetDashAttackBonus():
 		return 0
 	return _dashSizeBonus
 
+func GetStatAttackBonus():
+	return _dashSizeBonus
+
 func AddDashAttackBonus(bonus : int):
 	_dashSizeBonus += bonus
 

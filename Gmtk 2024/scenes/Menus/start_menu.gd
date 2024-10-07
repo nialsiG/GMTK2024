@@ -52,5 +52,3 @@ func _on_show_credits_button_pressed():
 func _on_hide_credits_button_back_pressed():
 	_show_credits_button.show()
 	_hide_credits_button.hide()
-
-

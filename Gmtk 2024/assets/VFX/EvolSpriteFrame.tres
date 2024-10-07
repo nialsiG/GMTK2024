@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dpmqrpsxtcjkq"]
+
+[ext_resource type="Texture2D" uid="uid://dtycccuhvkygo" path="res://assets/VFX/cloud_poof_00.png" id="1_mbm3f"]
+[ext_resource type="Texture2D" uid="uid://wsxbhmtcq0pi" path="res://assets/VFX/cloud_poof_01.png" id="2_47fvf"]
+[ext_resource type="Texture2D" uid="uid://dspvw32v4igso" path="res://assets/VFX/cloud_poof_02.png" id="3_jc7r0"]
+[ext_resource type="Texture2D" uid="uid://dxf6glq6itk6g" path="res://assets/VFX/cloud_poof_03.png" id="4_f0yb0"]
+[ext_resource type="Texture2D" uid="uid://drk2bqj3yy1e7" path="res://assets/VFX/cloud_poof_04.png" id="5_xhbd7"]
+[ext_resource type="Texture2D" uid="uid://b3bg05wrfdiwd" path="res://assets/VFX/cloud_poof_05.png" id="6_rxi2h"]
+[ext_resource type="Texture2D" uid="uid://dv8tswwb2lrw7" path="res://assets/VFX/cloud_poof_06.png" id="7_c27vb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mbm3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_47fvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jc7r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f0yb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xhbd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rxi2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_c27vb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]

@@ -92,9 +92,9 @@ text = "DefaultSize"
 [node name="FangSizeLabel" type="Label" parent="."]
 visible = false
 layout_mode = 2
-offset_left = 312.0
+offset_left = 272.0
 offset_top = 104.0
-offset_right = 400.0
+offset_right = 360.0
 offset_bottom = 127.0
 text = "DefaultSize"
 

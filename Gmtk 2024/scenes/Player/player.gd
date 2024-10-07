@@ -18,7 +18,7 @@ var _currentAbility : enums.Ability = enums.Ability.Dash
 @onready var _hungerManager : HungerManager = $HungerManager
 @onready var _dashManager : DashManager = $DashManager
 @onready var _throwManager : ThrowManager = $ThrowManager
-
+@onready var _evolutionAnimation : AnimatedSprite2D = $EvolAnimation
 @onready var _lastDirection = Vector2.ZERO
 
 func _ready():
@@ -33,6 +33,10 @@ func _ready():
 	_throwManager.Initialize(_hud)
 	RaiseUpdateSize()	
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
+	_evolutionAnimation.animation_finished.connect(OnEvolutionAnimationFinished)
+
+func OnEvolutionAnimationFinished():
+	_evolutionAnimation.hide()
 
 func _useShaderColor() -> bool:
 	return false 
@@ -51,8 +55,12 @@ signal Throw(type : enums.FoodType, axis : Vector2, position : Vector2)
 
 var maxHealth = 2;
 var currentHealth = 2;
+var _paused = false
 
 func _process(delta):
+	if(_paused):
+		return
+		
 	var collisionCount = get_slide_collision_count()
 	var hitAnimals = GetCollidingAnimals(collisionCount)
 	if (hitAnimals.size() > 0):
@@ -87,6 +95,14 @@ func _process(delta):
 	move(delta)
 	
 	_hud.UpdateHunger(_hungerManager.current_hunger)
+
+func SetPaused():
+	sprite.animation = "Idle_Down"
+	velocity = Vector2.ZERO
+	_paused = true
+
+func SetUnpaused():
+	_paused = false
 
 func getPower() -> int:
 	return int(current_size) + _dashManager.GetDashAttackBonus()
@@ -157,7 +173,8 @@ func hit(amount : int):
 		AddHealth(-amount)
 		if (currentHealth <= 0 && !_isDead):
 			_isDead = true
-			_deathSoundPlayer.play()			
+			_deathSoundPlayer.play()
+			SetPaused()
 			Died.emit()
 		else:
 			_isInvincible = true
@@ -217,6 +234,9 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 	return evols
 	
 func ApplyEvolution(evol : enums.evolution):
+	_evolutionAnimation.show()
+	_evolutionAnimation.play()
+	await get_tree().create_timer(0.5).timeout
 	match (evol):
 		enums.evolution.DIET_CARNI:
 			UpdateDiet(enums.Diet.carnivore)
@@ -239,6 +259,7 @@ func ApplyEvolution(evol : enums.evolution):
 			_dashManager.UpdateDashRecoveryTime(0.8)
 		enums.evolution.FANG:
 			_dashManager.AddDashAttackBonus(1)
+			_hud.UpdateFangSizeLabel(_dashManager.GetStatAttackBonus())
 		enums.evolution.EFFICIENCY:
 			_dashManager.UpdateDashFoodCost(0.8)
 		enums.evolution.COLOR:

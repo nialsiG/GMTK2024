@@ -10,6 +10,7 @@ radius = 60.0
 height = 120.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sctwg"]
+resource_local_to_scene = true
 shader = ExtResource("2_deb8g")
 shader_parameter/Color1 = Vector4(0.655, 0.31, 0.31, 1)
 shader_parameter/Color2 = null

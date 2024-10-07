@@ -27,6 +27,7 @@ func _process(delta):
 	UpdatedValue.emit(current_hunger)
 	if (current_hunger <= 0):
 		DiedOfHunger.emit()
+		_isPaused = true
 
 func eat(amount) -> float:
 	current_hunger += amount
