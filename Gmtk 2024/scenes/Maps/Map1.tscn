@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://wcyaghprcf7y"]
+[gd_scene load_steps=11 format=4 uid="uid://wcyaghprcf7y"]
 
 [ext_resource type="Script" path="res://scenes/Maps/Map.gd" id="1_yts5u"]
-[ext_resource type="Texture2D" uid="uid://b4xbbay4fxyv4" path="res://assets/sprites/Other/Rock1.png" id="2_fuwti"]
-[ext_resource type="Texture2D" uid="uid://e20wtyeo5a8" path="res://assets/sprites/Other/Rock2.png" id="3_r8ucg"]
 [ext_resource type="Texture2D" uid="uid://cefegkjkds0qh" path="res://assets/Tilemaps/BackgroundTilemap.png" id="3_rlwxy"]
-[ext_resource type="Texture2D" uid="uid://dqpaxd0crfrrq" path="res://assets/sprites/Other/Rock3.png" id="4_m2aqg"]
+[ext_resource type="PackedScene" uid="uid://dj3vb2xuedcbq" path="res://scenes/Obstacles/rock_1.tscn" id="3_wygif"]
+[ext_resource type="PackedScene" uid="uid://b7spgmsveyusn" path="res://scenes/Obstacles/rock_2.tscn" id="4_yp4d4"]
+[ext_resource type="PackedScene" uid="uid://cw525oa0psojq" path="res://scenes/Obstacles/rock_3.tscn" id="5_rrnr8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_suoj6"]
 texture = ExtResource("3_rlwxy")
@@ -244,9 +244,6 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_suoj6")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3ntaq"]
-radius = 100.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y10aq"]
 size = Vector2(2128, 80)
 
@@ -280,16 +277,6 @@ tile_set = SubResource("TileSet_b8nt5")
 
 [node name="Bounds" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Rock1" type="StaticBody2D" parent="Bounds"]
-y_sort_enabled = true
-position = Vector2(495, 1403)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Rock1"]
-shape = SubResource("CircleShape2D_3ntaq")
-
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Rock1"]
-texture = ExtResource("2_fuwti")
 
 [node name="BottomBounds" type="StaticBody2D" parent="Bounds"]
 position = Vector2(1016, 2027)
@@ -326,22 +313,8 @@ collision_mask = 3
 position = Vector2(-21.5, -9.5)
 shape = SubResource("RectangleShape2D_vi5ue")
 
-[node name="Rock2" type="StaticBody2D" parent="Bounds"]
-position = Vector2(908, 821)
+[node name="Rock1" parent="Bounds" instance=ExtResource("3_wygif")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Rock2"]
-shape = SubResource("CircleShape2D_3ntaq")
+[node name="Rock2" parent="Bounds" instance=ExtResource("4_yp4d4")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Rock2"]
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("3_r8ucg")
-
-[node name="Rock3" type="StaticBody2D" parent="Bounds"]
-position = Vector2(811, 1282)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Rock3"]
-shape = SubResource("CircleShape2D_3ntaq")
-
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Rock3"]
-scale = Vector2(2, 2)
-texture = ExtResource("4_m2aqg")
+[node name="Rock3" parent="Bounds" instance=ExtResource("5_rrnr8")]
