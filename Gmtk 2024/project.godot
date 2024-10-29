@@ -95,6 +95,15 @@ pause_unpause={
 
 locale/translations=PackedStringArray("res://assets/Translations/translations.en.translation", "res://assets/Translations/translations.fr.translation")
 
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_navigation/layer_1="Ground"
+2d_physics/layer_2="Sky"
+2d_navigation/layer_2="Sky"
+2d_physics/layer_3="Underground"
+2d_navigation/layer_3="Underground"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

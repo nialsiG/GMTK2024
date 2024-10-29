@@ -59,7 +59,9 @@ EVOLUTION_THROW_DESC,"Votre capacité devient Lancer. La dernière chose mangée
 EVOLUTION_BIG_CHEEKS,Bajoues,Big cheeks
 EVOLUTION_BIG_CHEEKS_DESC,"Votre lignée peut stocker plus de nourriture dans ses bajoues, augementant le nombre de nourriture qui peut-être lancée.", "You can store one more food into your cheeks, augmenting the number of your max ammunitions."
 EVOLUTION_DASH,Bond,Dash
-EVOLUTION_DASH_DESC,"Votre capacité devient Bond. Vous pouvez bondir dans votre direction actuelle pour fuire ou éviter un animal.", "Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals"
+EVOLUTION_DASH_DESC,"Votre capacité devient Bond. Vous pouvez bondir dans votre direction actuelle pour fuire ou éviter un animal à vitesse réduite.", "Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals at reduced speed."
+EVOLUTION_DIG,Creuser,Dig
+EVOLUTION_DIG_DESC,"Votre capacité devient Creuser. Vous vous déplacez dans le sol pour échapper au prédateur ou passer sous un obstacle à vitesse réduite pendant un temps limité.", "Your active ability becomes Dig, you can dig in the ground to escape predator or pass under obstacles at reduced speed."
 UNLOCK_THROW,"Vous avez débloqué l'évolution ""Lancer"" qui remplace votre dash par la capacité d'attaquer vos concurrents avec de la nourriture","You unlocked ""Throw"" mutation, allowing to replace your dash by capability to throw eaten food to concurrents, damaging them"
 TUTO_MOVE,"Bougez avec les touches directionnelles.","Move with directional keys"
 TUTO_ACT,"Bondissez avec la touche espace.","Dash with escape key"

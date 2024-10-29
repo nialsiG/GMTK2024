@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="1_tq562"]
 [ext_resource type="Script" path="res://scenes/Menus/Tutorial.gd" id="1_y6nut"]
-[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_4eb8u"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/Player/player.tres" id="2_4eb8u"]
 [ext_resource type="LabelSettings" uid="uid://blo38f3vwhwsb" path="res://resources/labels/tutorial_label.tres" id="4_bee8o"]
 [ext_resource type="SpriteFrames" uid="uid://cgl3d277y3c83" path="res://assets/sprites/Plants/plant_gland.tres" id="4_yl646"]
 [ext_resource type="SpriteFrames" uid="uid://cjaqh51ddhrij" path="res://assets/sprites/Plants/plant_morelle.tres" id="5_okkv2"]

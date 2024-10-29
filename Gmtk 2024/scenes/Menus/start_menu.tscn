@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://drp6wlx62prm8" path="res://assets/sprites/Animals/garganomis/Garganomis.tres" id="5_2ab6e"]
 [ext_resource type="Texture2D" uid="uid://du1d8e7q1j3j7" path="res://assets/sprites/UI/StartMenuUiRocks.png" id="5_pg0bt"]
 [ext_resource type="AudioStream" uid="uid://dpox0yxacwbcs" path="res://assets/Sounds/aggresive_goose.mp3" id="5_wla5a"]
-[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="6_2iajs"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/Player/player.tres" id="6_2iajs"]
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="7_6ftc6"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="8_bqtse"]
 [ext_resource type="LabelSettings" uid="uid://gdgprb5anwb8" path="res://resources/labels/score_label.tres" id="9_jlq8y"]

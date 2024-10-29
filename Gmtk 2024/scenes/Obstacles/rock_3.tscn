@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw525oa0psojq"]
+[gd_scene load_steps=3 format=3 uid="uid://cw525oa0psojq"]
 
+[ext_resource type="Script" path="res://scenes/Obstacles/obstacle.gd" id="1_puib3"]
 [ext_resource type="Texture2D" uid="uid://dqpaxd0crfrrq" path="res://assets/sprites/Other/Rock3.png" id="1_t3urm"]
 
 [node name="Rock3" type="StaticBody2D"]
-position = Vector2(811, 1282)
+script = ExtResource("1_puib3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -12,3 +13,14 @@ texture = ExtResource("1_t3urm")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(2, 2)
 polygon = PackedVector2Array(5, -43.5, -9, -47, -19.5, -46.5, -43, -28.5, -43.5, -3, -41.5, 9.5, -36.5, 25, -8, 44, 8, 47, 21.5, 46, 34.5, 40.5, 41.5, 34, 49, 20, 49.5, -2, 47, -3, 47.5, -27, 26.5, -29, 19.5, -33)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(5, -43.5, -9, -47, -19.5, -46.5, -43, -28.5, -43.5, -3, -41.5, 9.5, -36.5, 25, -8, 44, 8, 47, 21.5, 46, 34.5, 40.5, 41.5, 34, 49, 20, 49.5, -2, 47, -3, 47.5, -27, 26.5, -29, 19.5, -33)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_overlapping_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_overlapping_area_body_exited"]
