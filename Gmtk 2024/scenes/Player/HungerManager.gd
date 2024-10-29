@@ -13,6 +13,8 @@ var _maxValue = 100
 var HUNGER_FACTOR
 var current_hunger
 var _isPaused : bool
+var _isOverUsing : bool
+var OverUseFactor : int = 2
 
 func _ready():
 	if HUNGER_FACTOR == null:
@@ -23,7 +25,12 @@ func _ready():
 func _process(delta):
 	if (_isPaused):
 		pass;
-	current_hunger -= delta * HUNGER_FACTOR
+	
+	var factor = HUNGER_FACTOR
+	if (_isOverUsing):
+		factor *= OverUseFactor
+		
+	current_hunger -= delta * factor
 	UpdatedValue.emit(current_hunger)
 	if (current_hunger <= 0):
 		DiedOfHunger.emit()
@@ -35,6 +42,12 @@ func eat(amount) -> float:
 		FoodOverflowed.emit()
 		current_hunger = _maxValue
 	return current_hunger
+
+func SetOverUse():
+	_isOverUsing = true
+
+func ReleaseOverUse():
+	_isOverUsing = false
 
 func UpdateHungerFactor(size : enums.Size):
 	var newFactor : float = 1

@@ -160,7 +160,16 @@ func UpdateState(currentAxis : Vector2):
 		currentState = enums.State.Up
 		current_direction = enums.Direction.Up
 
+func CheckSpecialSpriteState() -> bool:
+	return false
+
 func UpdateSprite():
+	if (CheckSpecialSpriteState()):
+		return
+	if (!sprite.visible):
+		return
+
+	sprite.flip_v = false
 	if (currentState == enums.State.Still):
 		match current_direction:
 			enums.Direction.Down:

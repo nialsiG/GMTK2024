@@ -85,8 +85,7 @@ func _process(delta):
 			if timer > MAX_CHASING_TIME || target == null:
 				timer = 0
 				stayIdle()
-				target = null
-				relationToTarget = enums.Relationship.NONE
+				StopTracking()
 			else:
 				axis = (target.position - position).normalized()
 		state.ATTACKING:
@@ -206,6 +205,9 @@ func OnDetectionAreaEntered(body):
 	if (_diet != enums.Diet.vegetarian && sizeValue > targetSizeValue):
 		target = detectedTarget
 		relationToTarget = enums.Relationship.PREDATOR
+		if (target is Player):
+			target.Hid.connect(StopTracking)
+
 		
 	
 func OnAreaEntered(area):
@@ -217,6 +219,12 @@ func OnAreaEntered(area):
 		current_state = state.CHASING
 		relationToTarget = enums.Relationship.PREDATOR
 		target = consumable
+
+func StopTracking():
+	if (target != null && target is Player):
+		target.Hid.connect(StopTracking)
+	target = null
+	relationToTarget = enums.Relationship.NONE
 
 func DisplaySize():
 	if (_debugSizeLabel != null):

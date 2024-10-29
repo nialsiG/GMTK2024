@@ -17,3 +17,6 @@ func Enable():
 
 func Disable():
 	_isActive = false
+
+func GetAbilityAttackBonus() -> int:
+	return 0

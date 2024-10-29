@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=16 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
-[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/player.tres" id="2_bg7yk"]
+[ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/Player/player.tres" id="2_bg7yk"]
 [ext_resource type="Material" uid="uid://1boi3pusyxu3" path="res://assets/Shaders/AnimalShader.tres" id="2_m7fec"]
 [ext_resource type="Script" path="res://scenes/Player/HungerManager.gd" id="3_xx7rb"]
 [ext_resource type="AudioStream" uid="uid://b5jpn4ewu00v5" path="res://assets/Sounds/swing3.wav" id="4_adu8u"]
@@ -13,14 +13,16 @@
 [ext_resource type="Script" path="res://scenes/Player/DashManager.gd" id="11_73y5c"]
 [ext_resource type="Script" path="res://scenes/Player/ThrowManager.gd" id="12_awghw"]
 [ext_resource type="SpriteFrames" uid="uid://dpmqrpsxtcjkq" path="res://assets/VFX/EvolSpriteFrame.tres" id="13_eb8oj"]
+[ext_resource type="Script" path="res://scenes/Player/DigManager.gd" id="14_wbt1n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
 height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
-process_mode = 3
 scale = Vector2(0.35, 0.35)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_8tpfr")
 initial_size = 2
 current_speed = 500.0
@@ -31,8 +33,9 @@ material = ExtResource("2_m7fec")
 position = Vector2(-9.53674e-07, -1.81901)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bg7yk")
-animation = &"Idle_Down"
-autoplay = "Idle_Down"
+animation = &"Digging_Right"
+autoplay = "Digging_Idle"
+frame_progress = 0.406751
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -77,7 +80,11 @@ script = ExtResource("11_73y5c")
 [node name="ThrowManager" type="Node" parent="."]
 script = ExtResource("12_awghw")
 
+[node name="DigManager" type="Node" parent="."]
+script = ExtResource("14_wbt1n")
+
 [node name="EvolAnimation" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 visible = false
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("13_eb8oj")

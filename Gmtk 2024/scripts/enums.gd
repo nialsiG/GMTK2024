@@ -29,7 +29,12 @@ enum evolution
 	HEAVYNESS = 12,
 	THROW = 13,
 	DASH = 14,
-	CHEEKY = 15
+	CHEEKY = 15,
+	DIGGER = 16,
+	CLAWS = 17,
+	DIG_ATTACK_BONUS = 18,
+	DIG_COOLDOWN_BONUS = 19,
+	DIG_DURATION_BONUS = 20
 }
 
 enum Size
@@ -80,5 +85,6 @@ enum Direction
 enum Ability
 {
 	Dash = 1,
-	Throw = 2
+	Throw = 2,
+	Dig = 3
 }

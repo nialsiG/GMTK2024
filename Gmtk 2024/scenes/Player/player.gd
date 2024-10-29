@@ -6,9 +6,13 @@ var _actionAxis : Vector2
 
 var blink_timer : float = 0
 var blink_limit : float = 0.1
+var _digSpeedCoeff : float = 0.5
 
 var _isDead : bool = false
-var _currentAbility : enums.Ability = enums.Ability.Dash
+var _currentAbility : enums.Ability = enums.Ability.Dig
+var _waitingForOutOfGround : bool = false
+
+var _overlappingAreas : Array[Node2D] = []
 
 @onready var _dashSoundPlayer : AudioStreamPlayer2D = $DashSound
 @onready var _eatingSoundPlayer : AudioStreamPlayer2D = $EatingSound
@@ -17,6 +21,7 @@ var _currentAbility : enums.Ability = enums.Ability.Dash
 @onready var _hud : PlayerHud = $CanvasLayer/hud
 @onready var _hungerManager : HungerManager = $HungerManager
 @onready var _dashManager : DashManager = $DashManager
+@onready var _digManager : DigManager = $DigManager
 @onready var _throwManager : ThrowManager = $ThrowManager
 @onready var _evolutionAnimation : AnimatedSprite2D = $EvolAnimation
 @onready var _lastDirection = Vector2.ZERO
@@ -29,12 +34,21 @@ func _ready():
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	_dashManager.Initialize(_hud)
-	_dashManager.Enable()
+	if (_currentAbility == enums.Ability.Dash):
+		_dashManager.Enable()
 	_throwManager.Initialize(_hud)
+	if (_currentAbility == enums.Ability.Throw):
+		_throwManager.Enable()
+	_digManager.Initialize(_hud)
+	_digManager.DigTimeOut.connect(OnDigTimeOut)
+	if (_currentAbility == enums.Ability.Dig):
+		_digManager.Enable()
+		
 	RaiseUpdateSize()	
 	_setShaderColor(_colorGenerator.GetDefaultColor1(), _colorGenerator.GetDefaultColor2())
 	_evolutionAnimation.animation_finished.connect(OnEvolutionAnimationFinished)
-
+	
+	
 func OnEvolutionAnimationFinished():
 	_evolutionAnimation.hide()
 
@@ -52,6 +66,7 @@ signal UpdatedSize(size : enums.Size, newhungerCoeff : float)
 signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
 signal Throw(type : enums.FoodType, axis : Vector2, position : Vector2)
+signal Hid()
 
 var maxHealth = 2;
 var currentHealth = 2;
@@ -62,6 +77,11 @@ func _process(delta):
 		return
 		
 	var collisionCount = get_slide_collision_count()
+	if (_waitingForOutOfGround && _overlappingAreas.size() == 0):
+		LeaveUnderGround()
+		_waitingForOutOfGround = false
+		_hungerManager.ReleaseOverUse()
+		
 	var hitAnimals = GetCollidingAnimals(collisionCount)
 	if (hitAnimals.size() > 0):
 		for i in hitAnimals.size():
@@ -88,6 +108,11 @@ func _process(delta):
 			_actionAxis = axis
 			var foodToThrow = _throwManager.GetFoodToThrow()
 			Throw.emit(foodToThrow.type, _actionAxis, position + _lastDirection * 60 * _scaleCoeff)
+		elif (_digManager.CanPerform()):
+			if(_digManager.Dig()):
+				GoUnderGround()
+			else:
+				LeaveUnderGround()
 			
 	UpdateState(axis)
 	UpdateSprite()
@@ -95,6 +120,64 @@ func _process(delta):
 	move(delta)
 	
 	_hud.UpdateHunger(_hungerManager.current_hunger)
+
+func RegisterOverlappingArea(area : Node2D):
+	_overlappingAreas.append(area)
+	sprite.visible = false
+
+func UnregisterOverlappingArea(area : Node2D):
+	_overlappingAreas.erase(area)
+	if (_overlappingAreas.size() == 0):
+			sprite.show()
+	
+func OnDigTimeOut():
+	if(_overlappingAreas.size() > 0):
+		_waitingForOutOfGround = true
+		_hungerManager.SetOverUse()
+	else:
+		LeaveUnderGround()
+
+func GoUnderGround():
+	collision_layer = 4
+	collision_mask = 4
+	Hid.emit()
+
+func LeaveUnderGround():
+	collision_layer = 0x11
+	collision_mask = 0x11
+	
+func CheckSpecialSpriteState():
+	if (!sprite.visible):
+		return
+	
+	if (_digManager.IsDigging() || _waitingForOutOfGround):
+		if (currentState == enums.State.Still):
+			sprite.animation = "Digging_Idle"
+		else:
+			match current_direction:
+				enums.Direction.Down:
+					if (sprite.animation != "Digging_Down"):
+						sprite.animation = "Digging_Down"
+					sprite.flip_h = false
+					sprite.flip_v = false
+				enums.Direction.Left:
+					if (sprite.animation != "Digging_Right"):
+						sprite.animation = "Digging_Right"
+					sprite.flip_h = true
+					sprite.flip_v = true
+				enums.Direction.Right:
+					if (sprite.animation != "Digging_Right"):
+						sprite.animation = "Digging_Right"
+					sprite.flip_h = false
+					sprite.flip_v = false
+				enums.Direction.Up:
+					if (sprite.animation != "Digging_Down"):
+						sprite.animation = "Digging_Down"
+					sprite.flip_h = false
+					sprite.flip_v = true
+		return true
+		
+	return false
 
 func SetPaused():
 	sprite.animation = "Idle_Down"
@@ -105,13 +188,18 @@ func SetUnpaused():
 	_paused = false
 
 func getPower() -> int:
-	return int(current_size) + _dashManager.GetDashAttackBonus()
+	return int(current_size) + _dashManager.GetAbilityAttackBonus() + _digManager.GetAbilityAttackBonus()
 
 func GetDashSpeed() -> float:
 	if (!_dashManager.IsDashing()):
 		return 1
 	else:
 		return _dashManager.GetDashSpeedBonus()
+
+func GetDigSpeed() -> float:
+	if (_digManager.IsDigging()):
+		return _digSpeedCoeff
+	return 1
 
 func GetSizeValue() -> int:
 	var sizeValue = 0;
@@ -155,7 +243,7 @@ func get_input_axis():
 
 func apply_acceleration(amount):
 	velocity += amount * GetDashSpeed()
-	velocity = velocity.limit_length(current_speed * GetDashSpeed())
+	velocity = velocity.limit_length(current_speed * GetDashSpeed() * GetDigSpeed())
 
 func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
@@ -181,8 +269,6 @@ func hit(amount : int):
 			_invincibilityTimer.start()
 # A function to blink while invincible
 func blink(delta):
-	if !_isInvincible and !sprite.is_visible_in_tree():
-		sprite.show()
 	if _isInvincible:
 		blink_timer += delta
 	if blink_timer >= blink_limit:
@@ -230,7 +316,10 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 		evols.append(enums.evolution.THROW)
 		evols.append(enums.evolution.AGILITY)
 		evols.append(enums.evolution.FANG)
-		
+	elif (_currentAbility == enums.Ability.Dig):
+		evols.append(enums.evolution.DIGGER)
+		evols.append(enums.evolution.AGILITY)
+		evols.append(enums.evolution.CHEEKY)
 	return evols
 	
 func ApplyEvolution(evol : enums.evolution):
@@ -271,15 +360,30 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.DASH:
 			_currentAbility = enums.Ability.Dash
 			_dashManager.Enable()
+			_digManager.Disable()
 			_throwManager.Disable()
 		enums.evolution.THROW:
 			_currentAbility = enums.Ability.Throw
 			_dashManager.Disable()
+			_digManager.Disable()
 			_throwManager.Enable()
 			_throwManager.AddStorageSize(1)
+		enums.evolution.DIGGER:
+			_currentAbility = enums.Ability.Dig
+			_dashManager.Disable()
+			_digManager.Enable()
+			_throwManager.Disable()
 		enums.evolution.CHEEKY:
 			_throwManager.AddStorageSize(1)
-
+		enums.evolution.CLAWS:
+			_digSpeedCoeff += 0.15
+		enums.evolution.DIG_ATTACK_BONUS:
+			_digManager.AddDigAttackBonus(1)
+		enums.evolution.DIG_COOLDOWN_BONUS:
+			_digManager.AddDigCooldownBonus(1)
+		enums.evolution.DIG_DURATION_BONUS:
+			_digManager.AddDigDurationBonus(1)
+			
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
 	_hud.UpdateDiet(newDiet)
@@ -291,6 +395,7 @@ func RaiseUpdateSize():
 
 func OnIFrameTimeOut():
 	_isInvincible = false
+	sprite.show()
 
 func AddHealth(health : int):
 	currentHealth = clamp(currentHealth + health, 0, maxHealth)

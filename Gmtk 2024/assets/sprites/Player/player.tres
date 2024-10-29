@@ -1,0 +1,120 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://cgwmfc675gf35"]
+
+[ext_resource type="Texture2D" uid="uid://buj673q84nucb" path="res://assets/sprites/Player/hamster_dig_01.png" id="1_p58oo"]
+[ext_resource type="Texture2D" uid="uid://b3u6orfvkuhqw" path="res://assets/sprites/Player/hamster_dig_Bottom_01.png" id="1_vm40r"]
+[ext_resource type="Texture2D" uid="uid://61y76uxq6atj" path="res://assets/sprites/Player/hamster_idle_face_01.png" id="2_m27lx"]
+[ext_resource type="Texture2D" uid="uid://dijjys3mssujd" path="res://assets/sprites/Player/hamster_dig_Bottom_02.png" id="2_w0xgo"]
+[ext_resource type="Texture2D" uid="uid://bpdhoxb4rmy08" path="res://assets/sprites/Player/hamster_idle_side_01.png" id="3_7uu70"]
+[ext_resource type="Texture2D" uid="uid://copfoliyvrr0e" path="res://assets/sprites/Player/hamster_dig_right_01.png" id="4_fths8"]
+[ext_resource type="Texture2D" uid="uid://v6a3tt27udgp" path="res://assets/sprites/Player/hamster_idle_back_01.png" id="4_qdu6m"]
+[ext_resource type="Texture2D" uid="uid://b1mi803js6jeg" path="res://assets/sprites/Player/hamster_side_moving_01.png" id="5_odct6"]
+[ext_resource type="Texture2D" uid="uid://k38ttujsb2yd" path="res://assets/sprites/Player/hamster_dig_right_02 - Copie.png" id="5_qgs5s"]
+[ext_resource type="Texture2D" uid="uid://ctqpc1x4kj4sr" path="res://assets/sprites/Player/hamster_side_moving_02.png" id="6_24jgc"]
+[ext_resource type="Texture2D" uid="uid://bcxbtw1h8ic5x" path="res://assets/sprites/Player/hamster_side_moving_03.png" id="7_hok15"]
+[ext_resource type="Texture2D" uid="uid://dplakeg7qs6u2" path="res://assets/sprites/Player/hamster_side_moving_04.png" id="8_idod5"]
+[ext_resource type="Texture2D" uid="uid://djdnvxqrgco4k" path="res://assets/sprites/Player/hamster_side_moving_05.png" id="9_au64l"]
+[ext_resource type="Texture2D" uid="uid://ctkmr8xdb6enf" path="res://assets/sprites/Player/hamster_side_moving_06.png" id="10_18w56"]
+[ext_resource type="Texture2D" uid="uid://dglap0318bct2" path="res://assets/sprites/Player/hamster_side_moving_07.png" id="11_wmpjb"]
+[ext_resource type="Texture2D" uid="uid://c15a3v6ute750" path="res://assets/sprites/Player/hamster_side_moving_08.png" id="12_jiovf"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vm40r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w0xgo")
+}],
+"loop": true,
+"name": &"Digging_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p58oo")
+}],
+"loop": true,
+"name": &"Digging_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fths8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qgs5s")
+}],
+"loop": true,
+"name": &"Digging_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m27lx")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m27lx")
+}],
+"loop": true,
+"name": &"Idle_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7uu70")
+}],
+"loop": true,
+"name": &"Idle_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qdu6m")
+}],
+"loop": true,
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_odct6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_24jgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hok15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_idod5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_au64l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_18w56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wmpjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jiovf")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qdu6m")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

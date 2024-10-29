@@ -23,6 +23,11 @@ var _color : EvolutionChoice
 var _thrower : EvolutionChoice
 var _speedster : EvolutionChoice
 var _bigCheeks : EvolutionChoice
+var _digger : EvolutionChoice
+var _claws : EvolutionChoice
+var _digCooldownBonus : EvolutionChoice
+var _digAttackBonus : EvolutionChoice
+var _digDurationBonus : EvolutionChoice
 
 func _ready():
 	SecretOptions.connect("UnlockedOptions", OnCheatCodeUnlocked)
@@ -45,6 +50,11 @@ func _ready():
 	_thrower = CreateChoice("EVOLUTION_THROW", "EVOLUTION_THROW_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconLearnThrow.png")
 	_bigCheeks = CreateChoice("EVOLUTION_BIG_CHEEKS","EVOLUTION_BIG_CHEEKS_DESC", enums.evolution.CHEEKY, "res://assets/sprites/Icons/IconCheeky.png")
 	_speedster = CreateChoice("EVOLUTION_DASH", "EVOLUTION_DASH_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconAgility.png")
+	_digger = CreateChoice("EVOLUTION_DIG", "EVOLUTION_DASH_DESC", enums.evolution.DIGGER, "res://assets/sprites/Icons/IconDig.png")
+	_claws = CreateChoice("EVOLUTION_CLAWS", "EVOLUTION_CLAW_DESC", enums.evolution.DIG_SPEED_BONUS, "res://assets/sprites/Icons/IconDig.png")
+	_digCooldownBonus = CreateChoice("EVOLUTION_DIG_CD", "EVOLUTION_DIG_CD_DESC", enums.evolution.DIG_COOLDOWN_BONUS, "res://assets/sprites/Icons/IconDig.png")
+	_digAttackBonus = CreateChoice("EVOLUTION_DIG_ATTACK", "EVOLUTION_DIG_ATTACK_DESC", enums.evolution.DIG_ATTACK_BONUS, "res://assets/sprites/Icons/IconDig.png")
+	_digDurationBonus = CreateChoice("EVOLUTION_DIG_DURATION", "EVOLUTION_DIG_DURATION_DESC", enums.evolution.DIG_DURATION_BONUS, "res://assets/sprites/Icons/IconDig.png")
 
 	_allEvolutions.append(_nanism)
 	_allEvolutions.append(_gigantism)
@@ -60,6 +70,7 @@ func _ready():
 	_allEvolutions.append(_color)
 	_allEvolutions.append(_heavyness)
 	_allEvolutions.append(_lightness)
+	_allEvolutions.append(_digger)
 
 	if(SecretOptions.IsUziActived()):
 		_addedUzi = true

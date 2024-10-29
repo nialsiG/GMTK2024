@@ -20,7 +20,7 @@ func Dash():
 	_isDashing = true
 	_playerHud.UpdateDashCooldown(false)
 	
-func GetDashAttackBonus():
+func GetAbilityAttackBonus():
 	if (!_isDashing):
 		return 0
 	return _dashSizeBonus
