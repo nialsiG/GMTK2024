@@ -8,7 +8,7 @@ var _isSoundOn : bool
 var _soundValue : float
 
 func _ready():
-	_isSoundOn = false	
+	_isSoundOn = true	
 	_soundValue = 0.3
 	
 func GetSoundValue() -> float:

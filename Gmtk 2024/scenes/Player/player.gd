@@ -8,8 +8,11 @@ var blink_timer : float = 0
 var blink_limit : float = 0.1
 var _digSpeedCoeff : float = 0.5
 
+var _stepTimer : float = 0
+var _stepMaxTimer : float = 0.1
+
 var _isDead : bool = false
-var _currentAbility : enums.Ability = enums.Ability.Dig
+var _currentAbility : enums.Ability = enums.Ability.Dash
 var _waitingForOutOfGround : bool = false
 
 var _overlappingAreas : Array[Node2D] = []
@@ -67,6 +70,7 @@ signal Died()
 signal UpdatedHealth(health : int, maxHealth : int)
 signal Throw(type : enums.FoodType, axis : Vector2, position : Vector2)
 signal Hid()
+signal SpawnStep(stepType : enums.StepType, position : Vector2)
 
 var maxHealth = 2;
 var currentHealth = 2;
@@ -118,7 +122,12 @@ func _process(delta):
 	UpdateSprite()
 	blink(delta)
 	move(delta)
-	
+	if (axis.length() > 0):
+		_stepTimer += delta
+		if _stepTimer > _stepMaxTimer:
+			RaiseSpawnStep()
+			_stepTimer = 0
+			
 	_hud.UpdateHunger(_hungerManager.current_hunger)
 
 func RegisterOverlappingArea(area : Node2D):
@@ -312,10 +321,18 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 	if (_currentAbility == enums.Ability.Dash):
 		evols.append(enums.evolution.DASH)
 		evols.append(enums.evolution.CHEEKY)
+		evols.append(enums.evolution.DIG_ATTACK_BONUS)
+		evols.append(enums.evolution.DIG_COOLDOWN_BONUS)
+		evols.append(enums.evolution.DIG_DURATION_BONUS)
+		evols.append(enums.evolution.DIG_SPEED_BONUS)
 	elif (_currentAbility == enums.Ability.Throw):
 		evols.append(enums.evolution.THROW)
 		evols.append(enums.evolution.AGILITY)
 		evols.append(enums.evolution.FANG)
+		evols.append(enums.evolution.DIG_ATTACK_BONUS)
+		evols.append(enums.evolution.DIG_COOLDOWN_BONUS)
+		evols.append(enums.evolution.DIG_DURATION_BONUS)
+		evols.append(enums.evolution.DIG_SPEED_BONUS)
 	elif (_currentAbility == enums.Ability.Dig):
 		evols.append(enums.evolution.DIGGER)
 		evols.append(enums.evolution.AGILITY)
@@ -400,3 +417,6 @@ func OnIFrameTimeOut():
 func AddHealth(health : int):
 	currentHealth = clamp(currentHealth + health, 0, maxHealth)
 	_hud.UpdateHealth(currentHealth, maxHealth)
+
+func RaiseSpawnStep():
+	SpawnStep.emit(enums.StepType.Ground, global_position)

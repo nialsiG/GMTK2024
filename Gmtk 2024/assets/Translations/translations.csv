@@ -62,6 +62,14 @@ EVOLUTION_DASH,Bond,Dash
 EVOLUTION_DASH_DESC,"Votre capacité devient Bond. Vous pouvez bondir dans votre direction actuelle pour fuire ou éviter un animal à vitesse réduite.", "Your active ability becomes dash, you can jump toward your current direction to avoid or attack other animals at reduced speed."
 EVOLUTION_DIG,Creuser,Dig
 EVOLUTION_DIG_DESC,"Votre capacité devient Creuser. Vous vous déplacez dans le sol pour échapper au prédateur ou passer sous un obstacle à vitesse réduite pendant un temps limité.", "Your active ability becomes Dig, you can dig in the ground to escape predator or pass under obstacles at reduced speed."
+EVOLUTION_DIG_DURATION,Cavernicole,Cave-dweller
+EVOLUTION_DIG_DURATION_DESC,"Vous êtes de plus en plus à l'aise quand vous creusez. Vous pouvez rester plus longtemps sous terre.", "You're becoming more and more adapter to living underground, you can dig a longer time."
+EVOLUTION_DIG_SPEED,Griffes de taupe,Mole's claws
+EVOLUTION_DIG_SPEED_DESC,"Vos griffes s'adaptent de mieux en mieux au fouissage. Vous vous déplacez plus vite sous terre.", "Your claws are more efficient to dig, youe digging speed is higher."
+EVOLUTION_DIG_CD,"Taupe","Mole"
+EVOLUTION_DIG_CD_DESC,"Vous vous sentez mieux sous terre. Le temps nécessaire pour vous y réfugier est réduit.","You feel better underground. Times required before going underground again is reduced."
+EVOLUTION_DIG_ATTACK,"La mort venu d'en bas","Predator from the ground"
+EVOLUTION_DIG_CD_DESC,"Vous avez appris à chasser depuis le sol, vous obtenez une taille supplémentaire au moment où vous sortez du sol.","You learnt to hunt from the ground. you gain a bonus size to attack while digging out."
 UNLOCK_THROW,"Vous avez débloqué l'évolution ""Lancer"" qui remplace votre dash par la capacité d'attaquer vos concurrents avec de la nourriture","You unlocked ""Throw"" mutation, allowing to replace your dash by capability to throw eaten food to concurrents, damaging them"
 TUTO_MOVE,"Bougez avec les touches directionnelles.","Move with directional keys"
 TUTO_ACT,"Bondissez avec la touche espace.","Dash with escape key"

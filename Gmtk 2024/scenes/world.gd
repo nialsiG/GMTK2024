@@ -21,6 +21,7 @@ var _score : int = 0
 @onready var _animalGenerator : AnimalGenerator = $AnimalGenerator
 @onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
 @onready var _elementFactory : ElementFactory = $ElementFactory
+@onready var _stepSpawner : StepSpawner = $StepSpawner
 
 @onready var _cycleTimer : Timer
 
@@ -44,6 +45,8 @@ func _ready():
 	_player.connect("Fed", OnPlayerAte)
 	_player.connect("Died", OnPlayerDeath)
 	_player.connect("Throw", OnPlayerThrow)
+	_stepSpawner.Initialize(_player)
+	_stepSpawner.SpawnStep.connect(OnStepSpawn)
 	_cycleTimer = get_node("Timer")
 	_loadMap(1)
 	StartGame()
@@ -193,3 +196,6 @@ func AddCycle(amount: int):
 func AddScore(amount : int):
 	_score += amount
 	_hud.UpdateScore(_score)
+
+func OnStepSpawn(stepSprite : StepSprite):
+	_dynamicElements.add_child(stepSprite)

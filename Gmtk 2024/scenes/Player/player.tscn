@@ -33,9 +33,9 @@ material = ExtResource("2_m7fec")
 position = Vector2(-9.53674e-07, -1.81901)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bg7yk")
-animation = &"Digging_Right"
+animation = &"Digging_Down"
 autoplay = "Digging_Idle"
-frame_progress = 0.406751
+frame_progress = 0.508082
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

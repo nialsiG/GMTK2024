@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=13 format=4 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/Game/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_ip67v"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/Player/player.tscn" id="2_7khj7"]
+[ext_resource type="PackedScene" uid="uid://b4cu4fp1y8nhf" path="res://scenes/Player/StepSpawner/StepSpawner.tscn" id="5_1xr5c"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="6_sorw8"]
+[ext_resource type="PackedScene" uid="uid://b7ngfukn3rg38" path="res://scenes/Player/StepSpawner/StepSprite.tscn" id="7_7r2ho"]
 [ext_resource type="Script" path="res://scenes/Generators/EvolutionChoiceGenerator.gd" id="7_ioev3"]
 [ext_resource type="Script" path="res://scenes/Generators/PlantGenerator.gd" id="7_ne5ik"]
 [ext_resource type="Script" path="res://scenes/Generators/AnimalGenerator.gd" id="7_qbf2g"]
@@ -26,6 +28,8 @@ script = ExtResource("7_ioev3")
 [node name="AnimalGenerator" type="Node" parent="."]
 script = ExtResource("7_qbf2g")
 
+[node name="StepSpawner" parent="." instance=ExtResource("5_1xr5c")]
+
 [node name="GameElements" type="Node2D" parent="."]
 
 [node name="StaticElements" type="Node2D" parent="GameElements"]
@@ -36,6 +40,9 @@ y_sort_enabled = true
 [node name="Player" parent="GameElements/DynamicElements" instance=ExtResource("2_7khj7")]
 position = Vector2(400, 350)
 current_speed = null
+
+[node name="StepSprite" parent="GameElements/DynamicElements" instance=ExtResource("7_7r2ho")]
+position = Vector2(697, 372)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

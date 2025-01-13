@@ -34,7 +34,8 @@ enum evolution
 	CLAWS = 17,
 	DIG_ATTACK_BONUS = 18,
 	DIG_COOLDOWN_BONUS = 19,
-	DIG_DURATION_BONUS = 20
+	DIG_DURATION_BONUS = 20,
+	DIG_SPEED_BONUS = 21
 }
 
 enum Size
@@ -87,4 +88,11 @@ enum Ability
 	Dash = 1,
 	Throw = 2,
 	Dig = 3
+}
+
+enum StepType
+{
+	Ground,
+	Water,
+	Underground
 }
