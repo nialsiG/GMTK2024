@@ -1,6 +1,6 @@
 extends Control
 
-@onready var slider : VSlider = $VBoxContainer/SoundSlider
+@onready var slider : VSlider = $VBoxContainer2/VBoxContainer/SoundSlider
 
 func OnSoundContainerEntered():
 	slider.visible = true
