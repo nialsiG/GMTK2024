@@ -50,7 +50,7 @@ func _ready():
 	_color = CreateChoice("EVOLUTION_COAT", "EVOLUTION_COAT_DESC", enums.evolution.COLOR, "res://assets/sprites/Icons/IconColor.png")
 	_thrower = CreateChoice("EVOLUTION_THROW", "EVOLUTION_THROW_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconLearnThrow.png")
 	_bigCheeks = CreateChoice("EVOLUTION_BIG_CHEEKS","EVOLUTION_BIG_CHEEKS_DESC", enums.evolution.CHEEKY, "res://assets/sprites/Icons/IconCheeky.png")
-	_speedster = CreateChoice("EVOLUTION_DASH", "EVOLUTION_DASH_DESC", enums.evolution.THROW, "res://assets/sprites/Icons/IconAgility.png")
+	_speedster = CreateChoice("EVOLUTION_DASH", "EVOLUTION_DASH_DESC", enums.evolution.DASH, "res://assets/sprites/Icons/IconAgility.png")
 	_digger = CreateChoice("EVOLUTION_DIG", "EVOLUTION_DIG_DESC", enums.evolution.DIGGER, "res://assets/sprites/Icons/IconDig.png")
 	_claws = CreateChoice("EVOLUTION_CLAWS", "EVOLUTION_CLAW_DESC", enums.evolution.DIG_SPEED_BONUS, "res://assets/sprites/Icons/IconDig.png")
 	_digCooldownBonus = CreateChoice("EVOLUTION_DIG_CD", "EVOLUTION_DIG_CD_DESC", enums.evolution.DIG_COOLDOWN_BONUS, "res://assets/sprites/Icons/IconDig.png")
@@ -97,7 +97,7 @@ func _ready():
 func CreateChoice(evolName : String, description : String, evol : enums.evolution, path : String) -> EvolutionChoice:
 	var evolChoice = evolutionChoiceScript.new()
 	evolChoice.Name = evolName
-	evolChoice.Description = description	
+	evolChoice.Description = description
 	evolChoice.evolution = evol
 	evolChoice.InitializeTexture(path)
 	return evolChoice
