@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://cc2yitoqqnijk"]
+[gd_scene load_steps=14 format=4 uid="uid://cc2yitoqqnijk"]
 
 [ext_resource type="PackedScene" uid="uid://yfeq2kd77xiu" path="res://scenes/Game/hud.tscn" id="1_4a0xm"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_ip67v"]
 [ext_resource type="PackedScene" uid="uid://c3mp8p0p305a3" path="res://scenes/Player/player.tscn" id="2_7khj7"]
 [ext_resource type="PackedScene" uid="uid://b4cu4fp1y8nhf" path="res://scenes/Player/StepSpawner/StepSpawner.tscn" id="5_1xr5c"]
+[ext_resource type="PackedScene" uid="uid://ct3iijmrvvo0m" path="res://scenes/Player/ScoresEvent/ScoreEventSpawner.tscn" id="6_nonjj"]
 [ext_resource type="Script" path="res://scenes/Technicals/GameSoundPlayer.gd" id="6_sorw8"]
 [ext_resource type="PackedScene" uid="uid://b7ngfukn3rg38" path="res://scenes/Player/StepSpawner/StepSprite.tscn" id="7_7r2ho"]
 [ext_resource type="Script" path="res://scenes/Generators/EvolutionChoiceGenerator.gd" id="7_ioev3"]
@@ -29,6 +30,8 @@ script = ExtResource("7_ioev3")
 script = ExtResource("7_qbf2g")
 
 [node name="StepSpawner" parent="." instance=ExtResource("5_1xr5c")]
+
+[node name="ScoreEventSpawner" parent="." instance=ExtResource("6_nonjj")]
 
 [node name="GameElements" type="Node2D" parent="."]
 

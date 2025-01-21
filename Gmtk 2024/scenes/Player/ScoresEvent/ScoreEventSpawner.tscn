@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct3iijmrvvo0m"]
+
+[ext_resource type="Script" path="res://scenes/Player/ScoresEvent/score_event_spawner.gd" id="1_kkwys"]
+
+[node name="ScoreEventSpawner" type="Node"]
+script = ExtResource("1_kkwys")

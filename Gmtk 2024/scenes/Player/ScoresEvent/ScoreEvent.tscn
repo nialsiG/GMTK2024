@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://no8hrd86bv2f"]
+
+[ext_resource type="Script" path="res://scenes/Player/ScoresEvent/score_event.gd" id="1_glnlo"]
+
+[node name="ScoreEvent" type="Node2D"]
+script = ExtResource("1_glnlo")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0.226128, 0, 1)
+text = "+ 100"

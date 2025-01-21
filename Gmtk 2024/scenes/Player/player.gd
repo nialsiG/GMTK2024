@@ -256,6 +256,7 @@ func apply_acceleration(amount):
 
 func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
+	Fed.emit(amount)
 	var newHungerValue = _hungerManager.eat(amount * GetFoodCoef(foodType))
 	_hud.UpdateHunger(newHungerValue)
 	_throwManager.Store(amount, foodType)

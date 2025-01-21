@@ -22,6 +22,7 @@ var _score : int = 0
 @onready var _evolutionChoiceGenerator : EvolutionChoiceGenerator = $EvolutionChoiceGenerator
 @onready var _elementFactory : ElementFactory = $ElementFactory
 @onready var _stepSpawner : StepSpawner = $StepSpawner
+@onready var _scoreSpawner : ScoreEventSpawner = $ScoreEventSpawner
 
 @onready var _cycleTimer : Timer
 
@@ -42,13 +43,15 @@ var _currentAnimals : Array[Animal] = []
 func _ready():
 	_pauseMenu.connect("Resume", Unpause)
 	_evolutionMenu.connect("Chose", OnEvolutionChosen)	
-	_player.connect("Fed", OnPlayerAte)
+	#_player.connect("Fed", OnPlayerAte)
 	_player.connect("Died", OnPlayerDeath)
 	_player.connect("Throw", OnPlayerThrow)
 	_stepSpawner.Initialize(_player)
+	_scoreSpawner.Initialize(_player)
 	_stepSpawner.SpawnStep.connect(OnStepSpawn)
+	_scoreSpawner.DisplayScore.connect(OnScoreSpawn)
 	_cycleTimer = get_node("Timer")
-	_loadMap(1)
+	_loadMap(randi_range(1, 2))
 	StartGame()
 
 func _loadMap(mapNumber : int):
@@ -199,3 +202,7 @@ func AddScore(amount : int):
 
 func OnStepSpawn(stepSprite : StepSprite):
 	_dynamicElements.add_child(stepSprite)
+	
+func OnScoreSpawn(scoreEvent : ScoreEvent):
+	scoreEvent.position = _player.position
+	_dynamicElements.add_child(scoreEvent)
