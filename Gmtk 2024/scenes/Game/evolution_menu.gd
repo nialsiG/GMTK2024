@@ -18,6 +18,8 @@ func _ready():
 func DisplayChoice(evols : Array[EvolutionChoice]):
 	button_1.SetChoice(evols[0])
 	button_2.SetChoice(evols[1])
+	button_1.grab_focus()
+	button_1._on_focus_entered()
 
 func OnEvolSelected(evol : enums.evolution):
 	Chose.emit(evol)

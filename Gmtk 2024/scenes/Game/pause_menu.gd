@@ -4,6 +4,8 @@ class_name PauseMenu
 @onready var start_menu = "res://scenes/Menus/start_menu.tscn"
 @onready var _secretLabel = $CenterContainer/MarginContainer/Label
 @onready var _secretContainer = $CenterContainer
+@onready var _resumeButton = $VBoxContainer/VBoxContainer/resume_button
+@onready var _backToMenuButton = $VBoxContainer/VBoxContainer/back_to_menu_button
 
 static var is_paused: bool
 
@@ -12,10 +14,13 @@ signal Resume()
 func _ready():
 	is_paused = true
 	SecretOptions.connect("UnlockedOptions", OnEvolutionUnlocked)
+	_resumeButton.grab_focus()
 
 func Pause():
 	show()
 	SecretOptions.AllowCode(true)
+	_resumeButton.grab_focus()
+	
 
 func UnPause():
 	SecretOptions.AllowCode(false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc246xdwv0pbw"]
+[gd_scene load_steps=15 format=3 uid="uid://cc246xdwv0pbw"]
 
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="1_tq562"]
 [ext_resource type="Script" path="res://scenes/Menus/Tutorial.gd" id="1_y6nut"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ce8mkxv2baxkm" path="res://assets/sprites/Other/MoveIcon.png" id="10_cwff7"]
 [ext_resource type="StyleBox" uid="uid://o3xebk20tjhc" path="res://resources/buttons/sand_button.tres" id="10_t2xhi"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="11_xtohr"]
+[ext_resource type="Script" path="res://scenes/Technicals/menu_button.gd" id="14_6gk4h"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_y6nut")
@@ -283,5 +284,6 @@ theme_override_styles/hover = ExtResource("10_t2xhi")
 theme_override_styles/pressed = ExtResource("10_t2xhi")
 theme_override_styles/normal = ExtResource("10_t2xhi")
 text = "BUTTON_SURVIVE"
+script = ExtResource("14_6gk4h")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer5/PanelContainer/Button" to="." method="OnPlay"]

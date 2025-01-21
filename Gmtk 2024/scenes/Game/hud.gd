@@ -28,12 +28,16 @@ func DisplayDeath(display : bool):
 	Display(_deathContainer, display)
 
 func DisplayFinalScore(display : bool):
-	Display(_finalScoreContainer, display)
+	if display:
+		_finalScoreContainer.Display()
+	else:
+		Display(_finalScoreContainer, display)
 
 func DisplayEvolutionMenu(display: bool, choices: Array[EvolutionChoice] = []):
+	Display(_evolutionMenu, display)
 	if display:
 		_evolutionMenu.DisplayChoice(choices)
-	Display(_evolutionMenu, display)
+
 
 func DisplayPause(display: bool):
 	Display(_pauseMenu, display)

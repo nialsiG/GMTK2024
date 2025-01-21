@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://f0jqo5i07ilx"]
+[gd_scene load_steps=36 format=3 uid="uid://f0jqo5i07ilx"]
 
 [ext_resource type="Script" path="res://scenes/Menus/start_menu.gd" id="1_riksi"]
 [ext_resource type="Texture2D" uid="uid://cklvio3iby23j" path="res://assets/sprites/Other/Steps.png" id="2_ago1e"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://bf6adg71yvf77" path="res://assets/sprites/Wikis/size_chart_tyto.png" id="28_dms26"]
 [ext_resource type="LabelSettings" uid="uid://bop8dy30864cn" path="res://resources/labels/wiki_title.tres" id="28_lq5lg"]
 [ext_resource type="PackedScene" uid="uid://c8orq57mkxr34" path="res://LanguageControl.tscn" id="31_ikqsi"]
+[ext_resource type="Script" path="res://scenes/Technicals/menu_button.gd" id="31_ysybi"]
 
 [node name="start_menu" type="Node"]
 process_mode = 3
@@ -191,6 +192,7 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../quit_button")
+focus_neighbor_bottom = NodePath("../wiki_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -202,11 +204,13 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/normal = ExtResource("12_vy6tl")
 text = "START_GAME"
+script = ExtResource("31_ysybi")
 
 [node name="wiki_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_bottom = NodePath("../start_button")
+focus_neighbor_top = NodePath("../start_button")
+focus_neighbor_bottom = NodePath("../quit_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -218,10 +222,12 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/normal = ExtResource("12_vy6tl")
 text = "WIKI_MENU"
+script = ExtResource("31_ysybi")
 
 [node name="quit_button" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../wiki_button")
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_jex88")
 theme_override_colors/font_hover_color = Color(0.329412, 0.117647, 0.129412, 1)
@@ -234,6 +240,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/normal = ExtResource("12_vy6tl")
 text = "QUIT_GAME"
+script = ExtResource("31_ysybi")
 
 [node name="ShowCreditsButton" type="TextureButton" parent="CanvasLayer/Buttons"]
 visible = false
@@ -336,12 +343,16 @@ theme_override_styles/separator = ExtResource("19_wlh74")
 
 [node name="WikiButton" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../back_button")
+focus_neighbor_bottom = NodePath("../WikiButton2")
 _texture = ExtResource("22_4jb3s")
 _title = "Deinogalerix koenigswaldi"
 _text = "WIKI_DEINO_DESC"
 
 [node name="WikiButton2" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton")
+focus_neighbor_bottom = NodePath("../WikiButton3")
 _texture = ExtResource("23_hajxm")
 _title = "Garganornis ballmani"
 _text = "WIKI_GARGANO_DESC"
@@ -349,18 +360,24 @@ _text = "WIKI_GARGANO_DESC"
 [node name="WikiButton3" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 visible = false
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton2")
+focus_neighbor_bottom = NodePath("../WikiButton4")
 _texture = ExtResource("22_8pmt2")
 _title = "Hoplitomeryx matthei"
 _text = "Also known as prongdeer, Hoplitomeryx is an extinct ruminant endemic to Gargano Island. It is famous for its five horns, as well as protruding canines reminiscent of the extant musk deer. They showed a huge diversity of sizes and morphologies: it could be explained by the lack of predators on the island, with the exception of the giant owl Tyto."
 
 [node name="WikiButton4" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton3")
+focus_neighbor_bottom = NodePath("../WikiButton5")
 _texture = ExtResource("25_1brhj")
 _title = "Megacricetodon sp."
 _text = "WIKI_MEG_DESC"
 
 [node name="WikiButton5" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton4")
+focus_neighbor_bottom = NodePath("../WikiButton6")
 _texture = ExtResource("26_k376f")
 _title = "Mikrotia magna"
 _text = "WIKI_MIKRO_DESC"
@@ -368,12 +385,16 @@ _text = "WIKI_MIKRO_DESC"
 [node name="WikiButton6" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 visible = false
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton5")
+focus_neighbor_bottom = NodePath("../WikiButton7")
 _texture = ExtResource("25_0twsy")
 _title = "Prolagus imperialis"
 _text = "WIKI_PIKA_DESC"
 
 [node name="WikiButton7" parent="CanvasLayer/Buttons/WikiContainer/LeftPanel/VBoxContainer" instance=ExtResource("21_48d6r")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../WikiButton6")
+focus_neighbor_bottom = NodePath("../../../back_button")
 _texture = ExtResource("28_dms26")
 _title = "Tyto gigantea"
 _text = "WIKI_TYTO_DESC"
@@ -521,6 +542,7 @@ theme_override_styles/hover = ExtResource("12_vy6tl")
 theme_override_styles/pressed = ExtResource("12_vy6tl")
 theme_override_styles/normal = ExtResource("12_vy6tl")
 text = "WIKI_BACK_BUTTON"
+script = ExtResource("31_ysybi")
 
 [node name="LanguageControl" parent="CanvasLayer/Buttons" instance=ExtResource("31_ikqsi")]
 clip_contents = true

@@ -6,3 +6,7 @@ class_name  WikiButton extends Button
 
 func _ready():
 	self.text = _title
+
+func _process(delta):
+	if(Input.is_action_just_pressed("attack") && has_focus()):
+		pressed.emit()

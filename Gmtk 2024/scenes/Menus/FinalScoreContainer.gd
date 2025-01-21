@@ -8,6 +8,11 @@ const start_menu : String = "res://scenes/Menus/start_menu.tscn"
 @onready var trophy_label = %TrophyLabel
 @onready var description_label = %TrophyDescriptionLabel
 @onready var grid = %SelectedEvolGridContainer
+@onready var _backButton : Button = $BackToMenuButton
+
+func _ready():
+	_backButton.grab_focus()
+
 
 func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 	_score_label_2.text = str(score)
@@ -34,6 +39,10 @@ func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 		var tuile = TextureRect.new()
 		tuile.texture = evol.Texture()
 		grid.add_child(tuile)
+
+func Display():
+	show()
+	_backButton.grab_focus()
 
 func _on_back_to_menu_button_pressed():
 	var tree = get_tree()

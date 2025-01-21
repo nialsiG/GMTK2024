@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmnerimdrbfb8"]
+[gd_scene load_steps=6 format=3 uid="uid://bmnerimdrbfb8"]
 
 [ext_resource type="Script" path="res://scenes/Game/evolution_button.gd" id="1_5f5df"]
 [ext_resource type="LabelSettings" uid="uid://g1uwe3241j5k" path="res://resources/labels/pachinko_button.tres" id="2_i7gu5"]
 [ext_resource type="Texture2D" uid="uid://c6fpiupc46l76" path="res://assets/sprites/Icons/IconColor.png" id="3_coqf0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko3px"]
+bg_color = Color(0.708596, 0.507919, 0.265031, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loqrg"]
 bg_color = Color(0.976471, 0.941176, 0.941176, 1)
@@ -10,6 +13,7 @@ bg_color = Color(0.976471, 0.941176, 0.941176, 1)
 [node name="evolution_button" type="Button"]
 offset_right = 360.0
 offset_bottom = 360.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_ko3px")
 theme_override_styles/normal = SubResource("StyleBoxFlat_loqrg")
 script = ExtResource("1_5f5df")
 
@@ -39,6 +43,7 @@ size_flags_vertical = 4
 texture = ExtResource("3_coqf0")
 stretch_mode = 3
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
