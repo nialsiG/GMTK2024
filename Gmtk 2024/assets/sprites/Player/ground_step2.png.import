@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtenewiyj7e7w"
-path="res://.godot/imported/ground_step.png-5625f289ae72c22de25f5515b49b941e.ctex"
+uid="uid://bdei0nyaf48mf"
+path="res://.godot/imported/ground_step2.png-87c8af15182eb4a80c59946f3dcc806e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Player/ground_step.png"
-dest_files=["res://.godot/imported/ground_step.png-5625f289ae72c22de25f5515b49b941e.ctex"]
+source_file="res://assets/sprites/Player/ground_step2.png"
+dest_files=["res://.godot/imported/ground_step2.png-87c8af15182eb4a80c59946f3dcc806e.ctex"]
 
 [params]
 
