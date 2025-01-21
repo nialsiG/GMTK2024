@@ -347,7 +347,14 @@ position = Vector2(-21.5, -9.5)
 shape = SubResource("RectangleShape2D_vi5ue")
 
 [node name="Rock1" parent="Bounds" instance=ExtResource("3_o6xp1")]
+position = Vector2(1235, 706)
 
 [node name="Rock2" parent="Bounds" instance=ExtResource("4_pqeiq")]
+position = Vector2(79, 861)
 
 [node name="Rock3" parent="Bounds" instance=ExtResource("5_xuq0k")]
+position = Vector2(985, 1295)
+
+[node name="Rock4" parent="Bounds" instance=ExtResource("3_o6xp1")]
+position = Vector2(446, 1446)
+rotation = -0.911317

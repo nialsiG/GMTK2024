@@ -4,7 +4,8 @@ class_name ElementFactory
 const enums = preload("res://scripts/enums.gd")
 
 var meatPackedScene = preload("res://scenes/Consumables/Meat.tscn")
-var mapPackedScene = preload("res://scenes/Maps/Map1.tscn")
+var map1PackedScene = preload("res://scenes/Maps/Map1.tscn")
+var map2PackedScene = preload("res://scenes/Maps/Map2.tscn")
 var projectilePackedScene = preload("res://scenes/Player/Projectiles/Projectile.tscn")
 var meatProjectilePackedScene = preload("res://scenes/Player/Projectiles/MeatProjectile.tscn")
 
@@ -30,7 +31,9 @@ func GetMeat(foodValue : int, position : Vector2) -> Meat:
 
 func GetMap(mapNumber : int) -> GameMap:
 	if (mapNumber == 1):
-		return mapPackedScene.instantiate()
+		return map1PackedScene.instantiate()
+	elif(mapNumber == 2):
+		return map2PackedScene.instantiate()
 	else:
 		print("Map not found: "+str(mapNumber))
-		return mapPackedScene.instantiate()
+		return map1PackedScene.instantiate()
