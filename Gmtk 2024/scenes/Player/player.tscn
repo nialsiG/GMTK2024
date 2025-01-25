@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3mp8p0p305a3"]
+[gd_scene load_steps=17 format=3 uid="uid://c3mp8p0p305a3"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_8tpfr"]
 [ext_resource type="SpriteFrames" uid="uid://cgwmfc675gf35" path="res://assets/sprites/Player/player.tres" id="2_bg7yk"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/Player/ThrowManager.gd" id="12_awghw"]
 [ext_resource type="SpriteFrames" uid="uid://dpmqrpsxtcjkq" path="res://assets/VFX/EvolSpriteFrame.tres" id="13_eb8oj"]
 [ext_resource type="Script" path="res://scenes/Player/DigManager.gd" id="14_wbt1n"]
+[ext_resource type="Script" path="res://scripts/Evolutions/EvolutionTree.gd" id="15_4ftpa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifsr4"]
 radius = 60.0
@@ -90,3 +91,6 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("13_eb8oj")
 frame = 6
 frame_progress = 1.0
+
+[node name="EvolutionTree" type="Node" parent="."]
+script = ExtResource("15_4ftpa")

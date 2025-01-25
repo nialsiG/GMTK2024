@@ -3,7 +3,7 @@ class_name EvolutionMenu
 
 const enums = preload("res://scripts/enums.gd")
 
-signal Chose(evol : enums.evolution)
+signal Chose(evol : EvolutionChoice)
 
 @onready var button_1 : EvolutionButton = %evolution_button_1
 @onready var button_2 : EvolutionButton = %evolution_button_2
@@ -21,7 +21,7 @@ func DisplayChoice(evols : Array[EvolutionChoice]):
 	button_1.grab_focus()
 	button_1._on_focus_entered()
 
-func OnEvolSelected(evol : enums.evolution):
+func OnEvolSelected(evol : EvolutionChoice):
 	Chose.emit(evol)
 
 func UpdateTooltip(tooltip: String):

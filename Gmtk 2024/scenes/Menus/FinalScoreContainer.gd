@@ -37,7 +37,7 @@ func UpdateFinalPanel(pickedEvolutions : Array[EvolutionChoice], score : int):
 		
 	for evol in pickedEvolutions:
 		var tuile = TextureRect.new()
-		tuile.texture = evol.Texture()
+		tuile.texture = evol.GetTexture()
 		grid.add_child(tuile)
 
 func Display():

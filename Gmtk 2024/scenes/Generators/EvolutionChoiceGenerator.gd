@@ -102,6 +102,15 @@ func CreateChoice(evolName : String, description : String, evol : enums.evolutio
 	evolChoice.InitializeTexture(path)
 	return evolChoice
 
+func GetTwoRandomEvolsFromAvailableEvolutions(evols : Array[EvolutionChoice]) -> Array[EvolutionChoice]:
+	var choice1 = evols.pick_random()
+	var choice2 = evols.pick_random()
+	
+	if (evols.size() > 1):
+		while (choice1 == choice2):
+			choice2 = evols.pick_random()
+	return [choice1, choice2]
+
 func GetTwoRandomEvolsExcludingSome(excludedEvols : Array[enums.evolution]) -> Array[EvolutionChoice]:
 	var allowedEvols : Array[EvolutionChoice] = []
 	for i in _allEvolutions.size():

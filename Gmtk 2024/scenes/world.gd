@@ -7,7 +7,7 @@ var _width : float = 2000
 var _height : float = 2000
 var _margin : float = 30
 
-var _pickedEvolutions : Array[enums.evolution] = []
+var _pickedEvolutions : Array[EvolutionChoice] = []
 var _score : int = 0
 
 @onready var _hud : hud = $CanvasLayer/hud
@@ -137,7 +137,7 @@ func OnPlayerDeath():
 	# Final screen
 	var choicesRecap : Array[EvolutionChoice] = []
 	for i in _pickedEvolutions.size():
-		choicesRecap.append(_evolutionChoiceGenerator.GetEvolutionForChoice(_pickedEvolutions[i]))
+		choicesRecap.append(_pickedEvolutions[i])
 	_hud.DisplayFinalScore(true)
 	_hud.UpdateFinalPanel(choicesRecap, _score)
 
@@ -160,8 +160,9 @@ func Unpause():
 func Evolve():
 	_player.SetPaused()
 	currentState = gameState.Evolution
-	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsExcludingSome(_player.GetForbiddenEvols())
-	print(choices)
+	var choices = _evolutionChoiceGenerator.GetTwoRandomEvolsFromAvailableEvolutions(_player.GetAvailableEvolutions())
+	choices[0].Display()
+	choices[1].Display()
 	_hud.DisplayEvolutionMenu(true, choices)
 	for i in _currentAnimals.size():
 		_applyEnemyEvolForCycle(_currentAnimals[i])
@@ -180,11 +181,13 @@ func OnCycleTimeOut():
 	get_tree().paused = true
 	Evolve()
 	
-func OnEvolutionChosen(evol : enums.evolution):
+func OnEvolutionChosen(evol : EvolutionChoice):
 	_hud.DisplayEvolutionMenu(false)
 	_pickedEvolutions.append(evol)
 	_player.PROCESS_MODE_ALWAYS
-	_player.ApplyEvolution(evol)
+	evol.Activate()
+	evol.Display()
+	evol.Apply(_player)
 	await get_tree().create_timer(0.8).timeout
 	_player.PROCESS_MODE_INHERIT
 	AddScore(100 * _cycle)

@@ -5,10 +5,11 @@ var _isDigging : bool
 var _isRecovering : bool
 var _isUnderAttackBonus : bool
 var _digMaxDuration : int = 2
-var _digRecoveryTime : int = 2
+var _digRecoveryTime : int = 6
 var _digDuration : float = 0
 var _digAttackBonus : float = 0
 var _digAttackBonusDuration : float = 0.5
+var _digSpeedCoeff : float = 0.5
 
 func CanPerform() -> bool:
 	return _isActive && !_isRecovering
@@ -52,6 +53,12 @@ func GetAbilityAttackBonus():
 		return _digAttackBonus
 	return 0
 
+func GetSpeedCoef() -> float:
+	if (!_isDigging):
+		return 1
+	
+	return _digSpeedCoeff
+	
 func AddDigAttackBonus(bonus : int):
 	_digAttackBonus += bonus
 

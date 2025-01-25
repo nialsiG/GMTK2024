@@ -31,8 +31,8 @@ func GetStatAttackBonus():
 func AddDashAttackBonus(bonus : int):
 	_dashSizeBonus += bonus
 
-func UpdateDashRecoveryTime(coeff : float):
-	_dashRecoveryTime *= coeff
+func UpdateDashRecoveryTime(recoveryTime : float):
+	_dashRecoveryTime = recoveryTime
 
 func UpdateDashFoodCost(coeff : float):
 	_dashFoodCost *= coeff

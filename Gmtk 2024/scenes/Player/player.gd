@@ -6,7 +6,6 @@ var _actionAxis : Vector2
 
 var blink_timer : float = 0
 var blink_limit : float = 0.1
-var _digSpeedCoeff : float = 0.5
 
 var _stepTimer : float = 0
 var _stepMaxTimer : float = 0.1
@@ -28,6 +27,7 @@ var _overlappingAreas : Array[Node2D] = []
 @onready var _throwManager : ThrowManager = $ThrowManager
 @onready var _evolutionAnimation : AnimatedSprite2D = $EvolAnimation
 @onready var _lastDirection = Vector2.ZERO
+@onready var _evolutionTree : EvolutionTree = $EvolutionTree
 
 func _ready():
 	_colorGenerator = get_node("ColorGenerator")
@@ -37,6 +37,7 @@ func _ready():
 	_invincibilityTimer.connect("timeout", OnIFrameTimeOut)
 	_hud.UpdateHealth(currentHealth, maxHealth)
 	_dashManager.Initialize(_hud)
+	_evolutionTree.Initialize(current_size, _diet, _currentAbility)
 	if (_currentAbility == enums.Ability.Dash):
 		_dashManager.Enable()
 	_throwManager.Initialize(_hud)
@@ -205,11 +206,6 @@ func GetDashSpeed() -> float:
 	else:
 		return _dashManager.GetDashSpeedBonus()
 
-func GetDigSpeed() -> float:
-	if (_digManager.IsDigging()):
-		return _digSpeedCoeff
-	return 1
-
 func GetSizeValue() -> int:
 	var sizeValue = 0;
 	match(current_size):
@@ -252,7 +248,7 @@ func get_input_axis():
 
 func apply_acceleration(amount):
 	velocity += amount * GetDashSpeed()
-	velocity = velocity.limit_length(current_speed * GetDashSpeed() * GetDigSpeed())
+	velocity = velocity.limit_length(_max_speed * GetDashSpeed() * _digManager.GetSpeedCoef())
 
 func eat(amount: int, foodType : enums.FoodType):
 	_eatingSoundPlayer.play()
@@ -306,6 +302,9 @@ func GetFoodCoef(foodType : enums.FoodType) -> float :
 		return 0.2
 	return 1
 
+func GetAvailableEvolutions() -> Array[EvolutionChoice]:
+	return _evolutionTree.GetAvailableEvolutions()
+
 func GetForbiddenEvols() -> Array[enums.evolution]:
 	var evols : Array[enums.evolution] = []
 	if (_diet == enums.Diet.carnivore):
@@ -339,7 +338,12 @@ func GetForbiddenEvols() -> Array[enums.evolution]:
 		evols.append(enums.evolution.AGILITY)
 		evols.append(enums.evolution.CHEEKY)
 	return evols
-	
+
+func EvolveSize(newSize : enums.Size):
+	current_size = newSize
+	UpdateSize()
+	RaiseUpdateSize()
+
 func ApplyEvolution(evol : enums.evolution):
 	_evolutionAnimation.show()
 	_evolutionAnimation.play()
@@ -370,37 +374,47 @@ func ApplyEvolution(evol : enums.evolution):
 		enums.evolution.EFFICIENCY:
 			_dashManager.UpdateDashFoodCost(0.8)
 		enums.evolution.COLOR:
-			_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetRandomColor2())
+			SetRandomColor()
 		enums.evolution.LIGHTNESS:
 			_max_speed *= _speedEvolCoeff
 		enums.evolution.HEAVYNESS:
 			_max_speed /= _speedEvolCoeff
 		enums.evolution.DASH:
-			_currentAbility = enums.Ability.Dash
-			_dashManager.Enable()
-			_digManager.Disable()
-			_throwManager.Disable()
+			ApplyAbility(enums.Ability.Dash)
 		enums.evolution.THROW:
-			_currentAbility = enums.Ability.Throw
-			_dashManager.Disable()
-			_digManager.Disable()
-			_throwManager.Enable()
-			_throwManager.AddStorageSize(1)
+			ApplyAbility(enums.Ability.Throw)
 		enums.evolution.DIGGER:
-			_currentAbility = enums.Ability.Dig
-			_dashManager.Disable()
-			_digManager.Enable()
-			_throwManager.Disable()
+			ApplyAbility(enums.Ability.Dig)
 		enums.evolution.CHEEKY:
 			_throwManager.AddStorageSize(1)
 		enums.evolution.CLAWS:
-			_digSpeedCoeff += 0.15
+			_digManager._digSpeedCoeff += 0.15
 		enums.evolution.DIG_ATTACK_BONUS:
 			_digManager.AddDigAttackBonus(1)
 		enums.evolution.DIG_COOLDOWN_BONUS:
 			_digManager.AddDigCooldownBonus(1)
 		enums.evolution.DIG_DURATION_BONUS:
 			_digManager.AddDigDurationBonus(1)
+		
+func SetRandomColor():
+	_setShaderColor(_colorGenerator.GetRandomColor1(), _colorGenerator.GetRandomColor2())
+	
+func ApplyAbility(ability : enums.Ability):
+	_currentAbility = ability
+	if (ability == enums.Ability.Dash):
+		_dashManager.Enable()
+		_digManager.Disable()
+		_throwManager.Disable()
+	elif (ability == enums.Ability.Dig):
+		_dashManager.Disable()
+		_digManager.Enable()
+		_throwManager.Disable()
+	elif (ability == enums.Ability.Throw):
+		_dashManager.Disable()
+		_digManager.Disable()
+		_throwManager.Enable()
+		_throwManager.AddStorageSize(1)
+
 			
 func UpdateDiet(newDiet : enums.Diet):
 	_diet = newDiet
