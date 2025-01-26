@@ -17,19 +17,29 @@ func GetAvailableEvolutions() -> Array[EvolutionChoice]:
 	for branch in _evolutionBranches:
 		availablesEvols.append_array(branch.GetAvailableEvolutions())
 
-	AppendChainAvailableEvolution(availablesEvols, _speedChain)
-	AppendChainAvailableEvolution(availablesEvols, _sizeChain)
+	if (SecretOptions.AllowSpeedEvolution):
+		AppendChainAvailableEvolution(availablesEvols, _speedChain)
+	if (SecretOptions.AllowSizeEvolution):
+		AppendChainAvailableEvolution(availablesEvols, _sizeChain)
 	
 	for evol in availablesEvols:
 		print(evol.Name)
 	return availablesEvols
 
 func Initialize(startSize : enums.Size, startDiet : enums.Diet, startingAbility : enums.Ability):
-	InitializeSizeBranch(startSize)
-	_evolutionBranches.append(InitializeDietBranch(startDiet))
-	InitializeSpeedChain()
+	if (SecretOptions.AllowSizeEvolution):
+		InitializeSizeBranch(startSize)
+
+	if (SecretOptions.AllowDietBranch):
+		_evolutionBranches.append(InitializeDietBranch(startDiet))
+
+	if (SecretOptions.AllowSpeedEvolution):
+		InitializeSpeedChain()
+
 	_evolutionBranches.append_array(InitializeAbilityBranches(startingAbility))
-	_evolutionBranches.append(InitializeColorBranch())
+	
+	if (SecretOptions.AllowColorBranch):
+		_evolutionBranches.append(InitializeColorBranch())
 
 func InitializeDietBranch(startDiet : enums.Diet) -> EvolutionChoice:
 
@@ -197,16 +207,16 @@ func InitializeAbilityBranches(startAbility : enums.Ability) -> Array[EvolutionC
 	var dashBranch = InitializeDashBranch()
 	abilitiesStarter.append(dashBranch)
 
-	var digBranch = InitializeDigBranch()
-	abilitiesStarter.append(digBranch)
+	if (SecretOptions.AllowDig):
+		var digBranch = InitializeDigBranch()
+		abilitiesStarter.append(digBranch)
 
-	dashBranch.AlternativeEvolutions.append(digBranch)
-	digBranch.AlternativeEvolutions.append(dashBranch)
-
-	if (startAbility == enums.Ability.Dig):
-		digBranch.Activate()
-	elif (startAbility == enums.Ability.Dash):
-		dashBranch.Activate()
+	for ability in abilitiesStarter:
+		for otherAbility in abilitiesStarter:
+			if ability != otherAbility:
+				ability.AlternativeEvolutions.append(otherAbility)
+		if ability._ability == startAbility:
+			ability.Activate()
 
 	return abilitiesStarter
 

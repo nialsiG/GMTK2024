@@ -14,7 +14,7 @@ func _ready():
 	textureRec = get_node("VBoxContainer/TextureRect")
 	title = get_node("VBoxContainer/title")
 
-func _process(delta):
+func _process(_delta):
 	if (has_focus() && Input.is_action_just_pressed("attack")):
 		_on_pressed()
 	

@@ -85,9 +85,9 @@ enum Direction
 
 enum Ability
 {
-	Dash = 1,
-	Throw = 2,
-	Dig = 3
+	Dash = 0,
+	Throw = 1,
+	Dig = 2
 }
 
 enum StepType

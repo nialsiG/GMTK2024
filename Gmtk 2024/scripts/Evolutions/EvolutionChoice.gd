@@ -54,6 +54,6 @@ func Activate():
 func Deactivate():
 	_isActivated = false
 	
-func Apply(player : Player):
-	Activate()
+func Apply(_player : Player):
+	pass
 	

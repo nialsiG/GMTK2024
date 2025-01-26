@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://6dcf75kcsinj"]
+
+[ext_resource type="Script" path="res://scenes/Menus/debug_screen.gd" id="1_h2e2j"]
+
+[node name="DebugScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_h2e2j")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cycle max duration"
+
+[node name="CycleDuration" type="TextEdit" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+
+[node name="InvulnerabilityCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Invulnerability"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Evolutions"
+
+[node name="DietCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Diet"
+
+[node name="SizeCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Size"
+
+[node name="SpeedCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Speed"
+
+[node name="ColorCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Color"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Abilities"
+
+[node name="AllowDigCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Allow Dig"
+
+[node name="StartAbilityList" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+
+[node name="StartMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start menu"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer/InvulnerabilityCheckBox" to="." method="OnInvulnerabilityCheckBoxToggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer3/DietCheckBox" to="." method="_on_diet_check_box_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer3/SizeCheckBox" to="." method="_on_size_check_box_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer3/SpeedCheckBox" to="." method="_on_speed_check_box_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer3/ColorCheckBox" to="." method="_on_color_check_box_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer2/AllowDigCheckBox" to="." method="OnAllowDigToggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer2/StartAbilityList" to="." method="OnStartAbilityListItemSelected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartMenu" to="." method="_on_start_menu_pressed"]

@@ -569,6 +569,14 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
+[node name="DebugModeButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 1768.0
+offset_top = 35.0
+offset_right = 1870.0
+offset_bottom = 66.0
+text = "DebugMode"
+
 [node name="StartGoosePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_wla5a")
 volume_db = 23.998
@@ -580,3 +588,4 @@ script = ExtResource("21_j3qwn")
 [connection signal="pressed" from="CanvasLayer/Buttons/ShowCreditsButton" to="." method="_on_show_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/HideCreditsButtonBack" to="." method="_on_hide_credits_button_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/WikiContainer/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugModeButton" to="." method="OnDebugModePressed"]

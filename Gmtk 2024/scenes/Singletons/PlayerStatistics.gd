@@ -22,6 +22,7 @@ func HasSeenTutorial() -> bool:
 	return _hasSeenTutorial
 	
 func RegisterScoreAndCheckIsHighest(score : int) -> bool:
+	_numberOfGames+=1
 	_totalScore += score
 	if _maximumPoints < score:
 		_maximumPoints = score

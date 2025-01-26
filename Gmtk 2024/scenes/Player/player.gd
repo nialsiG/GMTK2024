@@ -30,6 +30,7 @@ var _overlappingAreas : Array[Node2D] = []
 @onready var _evolutionTree : EvolutionTree = $EvolutionTree
 
 func _ready():
+	_currentAbility = SecretOptions.StartingAbility
 	_colorGenerator = get_node("ColorGenerator")
 	current_size = initial_size
 	_hungerManager.connect("DiedOfHunger", OnDeathFromHunger)
@@ -430,7 +431,9 @@ func OnIFrameTimeOut():
 	sprite.show()
 
 func AddHealth(health : int):
-	currentHealth = clamp(currentHealth + health, 0, maxHealth)
+	if (!SecretOptions.GodMode):
+		currentHealth = clamp(currentHealth + health, 0, maxHealth)
+	
 	_hud.UpdateHealth(currentHealth, maxHealth)
 
 func RaiseSpawnStep():

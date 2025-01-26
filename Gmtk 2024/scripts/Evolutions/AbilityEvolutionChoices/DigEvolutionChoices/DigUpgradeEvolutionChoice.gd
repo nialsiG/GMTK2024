@@ -14,13 +14,14 @@ func _init(name : String, description : String, texturePath : String, attackBonu
 	_attackBonus = attackBonus
 	_recoveryTime = recoveryTime
 	_digSpeedCoeff = speedCoef
+	_maxDuration = duration
 
 func Apply(player : Player):
-	if _attackBonus > 0:
+	if _attackBonus > 0.0:
 		player._digManager._digAttackBonus = _attackBonus
-	if _recoveryTime < 3:
+	if _recoveryTime < 3.0:
 		player._digManager._digRecoveryTime = _recoveryTime
-	if _maxDuration > 0:
+	if _maxDuration > 0.0:
 		player._digManager._digMaxDuration = _maxDuration
 	if _digSpeedCoeff > 0.5:
 		player._digManager._digSpeedCoeff = _digSpeedCoeff

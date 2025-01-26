@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6l4w61rf18jd"]
+[gd_scene load_steps=11 format=3 uid="uid://6l4w61rf18jd"]
 
 [ext_resource type="Script" path="res://scenes/Game/pause_menu.gd" id="1_4dify"]
 [ext_resource type="Texture2D" uid="uid://bcx3u7mrl76ni" path="res://assets/sprites/UI/panel.png" id="2_vgesb"]
@@ -9,11 +9,7 @@
 [ext_resource type="Script" path="res://scenes/Technicals/menu_button.gd" id="6_6plhb"]
 [ext_resource type="Texture2D" uid="uid://875s1xw1xkow" path="res://assets/sprites/Other/DashKeyIcon.png" id="7_jo5ep"]
 [ext_resource type="LabelSettings" uid="uid://g1uwe3241j5k" path="res://resources/labels/pachinko_button.tres" id="8_vwgp1"]
-[ext_resource type="LabelSettings" uid="uid://dvfaskmp1p84m" path="res://resources/labels/text_label.tres" id="9_cld0h"]
 [ext_resource type="PackedScene" uid="uid://c8orq57mkxr34" path="res://LanguageControl.tscn" id="10_2gqwf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y75yd"]
-bg_color = Color(0.956863, 0.956863, 0.956863, 1)
 
 [node name="pause_menu" type="Control"]
 layout_mode = 3
@@ -135,33 +131,6 @@ text = "DASH_ACTION"
 label_settings = ExtResource("8_vwgp1")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 300
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 300
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_y75yd")
-
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(800, 0)
-layout_mode = 2
-text = "Very long description here and over there"
-label_settings = ExtResource("9_cld0h")
-autowrap_mode = 2
 
 [node name="VBoxContainer2" parent="." instance=ExtResource("10_2gqwf")]
 layout_mode = 0
